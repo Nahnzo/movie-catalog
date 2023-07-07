@@ -1,7 +1,8 @@
-import React from "react";
+import styles from "./fetchMovie.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getMovie } from "../../Slices/MovieSlice";
+import MovieCard from "../MovieCard/MovieCard";
 
 const FetchMovie = () => {
   const data = useSelector((state) => state.movie.movie.docs);
@@ -13,9 +14,9 @@ const FetchMovie = () => {
   }, []);
   if (data) {
     return (
-      <div>
+      <div className={styles.container}>
         {data.map((item) => (
-          <p key={item.id}>{item.description}</p>
+          <MovieCard data={item} key={item.id} />
         ))}
       </div>
     );
