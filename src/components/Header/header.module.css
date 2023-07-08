@@ -1,4 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap");
+
 .header {
   width: 100%;
   height: 90px;
+  padding: 20px;
+  color: white;
+  font-family: "Merriweather", serif;
+  /* position: fixed; */
+}
+.navigation {
+  display: flex;
+  justify-content: space-evenly;
+}
+.navigation > h3 {
+  cursor: pointer;
+}
+.navigation > h3:hover {
+  color: rgba(255, 255, 255, 0.6);
 }
