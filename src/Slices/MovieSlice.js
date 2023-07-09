@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const getMovie = createAsyncThunk("movie/getMovie", async () => {
   try {
-    const data = await fetch("https://api.kinopoisk.dev/v1/movie", {
+    const data = await fetch("https://api.kinopoisk.dev/v1/movie?limit=24", {
       method: "GET",
       headers: {
         "X-API-KEY": "KNARZC7-GV6MBQC-QY96MPW-RYZFKX5",

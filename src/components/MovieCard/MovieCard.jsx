@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { AiOutlineHeart } from "react-icons/ai";
+import { BsFolderPlus } from "react-icons/bs";
 
 /* eslint-disable react/prop-types */
 import styles from "./movieCard.module.css";
@@ -9,12 +10,10 @@ const MovieCard = ({ data }) => {
   function addClass(card) {
     card.target.classList.add(`${styles.hovered}`);
     setShowDetails(true);
-    console.log(showDetails);
   }
   function hideClass(card) {
     card.target.classList.remove(`${styles.hovered}`);
     setShowDetails(false);
-    console.log(showDetails);
   }
   return (
     <div>
@@ -25,11 +24,16 @@ const MovieCard = ({ data }) => {
         onMouseLeave={(event) => hideClass(event)}
       >
         <div className={styles.details} style={{ display: showDetails ? "block" : "none" }}>
-          <AiOutlineHeart className={styles.heart} />
+          <AiOutlineHeart className={styles.collection} />
+          <BsFolderPlus className={styles.wantToSee} />
         </div>
       </div>
       <div className={styles.info}>
-        <h3>{data.name || data.alternativeName}</h3>
+        <h3>
+          {(data.name || data.alternativeName).length > 17
+            ? (data.name || data.alternativeName).slice(0, 17) + "..."
+            : data.name || data.alternativeName}
+        </h3>
         <p>{data.type}</p>
         <p>{data.year}</p>
       </div>
