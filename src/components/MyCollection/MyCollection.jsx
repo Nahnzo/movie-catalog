@@ -1,7 +1,5 @@
-import React from "react";
-
 const MyCollection = () => {
-  return <div>MyCollection</div>;
+  <>s</>;
 };
 
 export default MyCollection;

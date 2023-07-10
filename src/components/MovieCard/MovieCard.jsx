@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BsFolderPlus } from "react-icons/bs";
+import { addMovie } from "../../Slices/WantToSeeSlice";
 
 /* eslint-disable react/prop-types */
 import styles from "./movieCard.module.css";
+import { useDispatch } from "react-redux";
 const MovieCard = ({ data }) => {
+  const dispatch = useDispatch();
   const [showDetails, setShowDetails] = useState(false);
 
   function addClass(card) {
@@ -25,7 +28,7 @@ const MovieCard = ({ data }) => {
       >
         <div className={styles.details} style={{ display: showDetails ? "block" : "none" }}>
           <AiOutlineHeart className={styles.collection} />
-          <BsFolderPlus className={styles.wantToSee} />
+          <BsFolderPlus className={styles.wantToSee} onClick={() => dispatch(addMovie(data))} />
         </div>
       </div>
       <div className={styles.info}>
