@@ -1,8 +1,8 @@
 import styles from "./fetchMovie.module.css";
+import MovieCard from "../MovieCard/MovieCard";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getMovie } from "../../Slices/MovieSlice";
-import MovieCard from "../MovieCard/MovieCard";
 
 const FetchMovie = () => {
   const data = useSelector((state) => state.movie.movie.docs);

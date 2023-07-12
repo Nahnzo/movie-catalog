@@ -31,17 +31,7 @@
   bottom: 20px;
   right: 10px;
 }
-.wantToSee {
-  position: absolute;
-  font-size: 27px;
-  color: rgb(148, 144, 144);
-  bottom: 50px;
-  right: 11px;
-}
 
 .details > .collection:hover {
   color: rgb(255, 0, 51);
-}
-.details > .wantToSee:hover {
-  color: rgb(44, 44, 247);
 }

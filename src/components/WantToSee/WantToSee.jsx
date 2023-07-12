@@ -8,7 +8,7 @@ const WantToSee = () => {
   } else {
     return (
       <section className={styles.main}>
-        <p>Здесь пусто</p>;
+        <p>Здесь пусто</p>
       </section>
     );
   }

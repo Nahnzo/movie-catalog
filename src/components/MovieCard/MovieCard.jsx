@@ -1,15 +1,11 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import { AiOutlineHeart } from "react-icons/ai";
-import { BsFolderPlus } from "react-icons/bs";
-import { addMovie } from "../../Slices/WantToSeeSlice";
-
-/* eslint-disable react/prop-types */
 import styles from "./movieCard.module.css";
-import { useDispatch } from "react-redux";
-const MovieCard = ({ data }) => {
-  const dispatch = useDispatch();
-  const [showDetails, setShowDetails] = useState(false);
+import HandleWantToSee from "../HandleWantToSee/HandleWantToSee";
 
+const MovieCard = ({ data }) => {
+  const [showDetails, setShowDetails] = useState(false);
   function addClass(card) {
     card.target.classList.add(`${styles.hovered}`);
     setShowDetails(true);
@@ -18,6 +14,7 @@ const MovieCard = ({ data }) => {
     card.target.classList.remove(`${styles.hovered}`);
     setShowDetails(false);
   }
+
   return (
     <div>
       <div
@@ -28,7 +25,7 @@ const MovieCard = ({ data }) => {
       >
         <div className={styles.details} style={{ display: showDetails ? "block" : "none" }}>
           <AiOutlineHeart className={styles.collection} />
-          <BsFolderPlus className={styles.wantToSee} onClick={() => dispatch(addMovie(data))} />
+          <HandleWantToSee movie={data} />
         </div>
       </div>
       <div className={styles.info}>

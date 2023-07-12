@@ -10,3 +10,19 @@
   font-family: "Inter", sans-serif;
   padding: 30px;
 }
+.information {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 400px;
+  height: 60px;
+  border: 1px solid white;
+}
+.disinformation {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 400px;
+  height: 60px;
+  border: 1px solid red;
+}

@@ -1,0 +1,22 @@
+.wantToSeePlus {
+  position: absolute;
+  font-size: 27px;
+  color: rgb(148, 144, 144);
+  bottom: 50px;
+  right: 11px;
+  opacity: 1;
+}
+.wantToSeeMinus {
+  position: absolute;
+  font-size: 27px;
+  color: red;
+  bottom: 50px;
+  right: 11px;
+  opacity: 1;
+}
+.wantToSeePlus:hover {
+  color: rgb(44, 44, 247);
+}
+.wantToSeeMinus:hover {
+  color: red;
+}
