@@ -6,7 +6,6 @@
   padding: 20px;
   color: white;
   font-family: "Merriweather", serif;
-  /* position: fixed; */
 }
 .navigation {
   display: flex;
@@ -16,5 +15,5 @@
   cursor: pointer;
 }
 .navigation > h3:hover {
-  color: rgba(255, 255, 255, 0.6);
+  opacity: 0.5;
 }

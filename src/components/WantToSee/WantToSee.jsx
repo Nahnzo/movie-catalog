@@ -1,9 +1,11 @@
 import React from "react";
 import styles from "./wantToSee.module.css";
-import { useSelector } from "react-redux";
+import { removeMovie } from "../../Slices/WantToSeeSlice";
+import { useDispatch, useSelector } from "react-redux";
 const WantToSee = () => {
   const data = useSelector((state) => state.wantToSee.wantToSee);
   const firstMovie = data[0];
+  const dispatch = useDispatch();
   console.log(firstMovie);
   if (data.length) {
     return (
@@ -20,13 +22,21 @@ const WantToSee = () => {
                 Название: <strong>{firstMovie.name}</strong>
               </p>
               <p>
-                Альтернативное название: <strong>{firstMovie.alternativeName}</strong>
+                Оригинальное название: <strong>{firstMovie.alternativeName}</strong>
               </p>
 
-              <p>Страна: {firstMovie.countries[0].name}</p>
+              <p>
+                Страна: {firstMovie.countries.map((item) => item.name) + "."} {firstMovie.year}
+              </p>
             </div>
 
             <div className={styles.rating}>
+              <button
+                className={styles.btnDelete}
+                onClick={() => dispatch(removeMovie(firstMovie))}
+              >
+                Удалить из списка
+              </button>
               <hr />
               Rating: Кинопоиск <strong> {firstMovie.rating.kp} </strong>
               IMDB <strong>{firstMovie.rating.imdb}</strong>
