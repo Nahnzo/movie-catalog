@@ -1,50 +1,24 @@
-import React from "react";
 import styles from "./wantToSee.module.css";
-import { removeMovie } from "../../Slices/WantToSeeSlice";
-import { useDispatch, useSelector } from "react-redux";
+import WantToSeeCard from "../WantToSeeCard/WantToSeeCard";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../../routes";
+
 const WantToSee = () => {
   const data = useSelector((state) => state.wantToSee.wantToSee);
+  const navigate = useNavigate();
   const firstMovie = data[0];
-  const dispatch = useDispatch();
-  console.log(firstMovie);
   if (data.length) {
     return (
       <section className={styles.main}>
+        <nav className={styles.header}>
+          <h3 onClick={() => navigate(`${ROUTES.home}`)}>На главную</h3>
+          <h3 onClick={() => navigate(`${ROUTES.myCollection}`)}>Моя коллекция</h3>
+          <h3 onClick={() => navigate(`${ROUTES.whatToSee}`)}>Что посмотреть?</h3>
+          <h3 onClick={() => navigate(`${ROUTES.myReviews}`)}>Мои рецензии</h3>
+        </nav>
         <div className={styles.container}>
-          <div
-            className={styles.firstItem}
-            style={{ backgroundImage: `url(${firstMovie.poster.url})` }}
-          ></div>
-          <div className={styles.wrapper}>
-            <div className={styles.info}>
-              <p>Жанры: {firstMovie.genres.map((item) => item.name + "") + "."}</p>
-              <p>
-                Название: <strong>{firstMovie.name}</strong>
-              </p>
-              <p>
-                Оригинальное название: <strong>{firstMovie.alternativeName}</strong>
-              </p>
-
-              <p>
-                Страна: {firstMovie.countries.map((item) => item.name) + "."} {firstMovie.year}
-              </p>
-            </div>
-
-            <div className={styles.rating}>
-              <button
-                className={styles.btnDelete}
-                onClick={() => dispatch(removeMovie(firstMovie))}
-              >
-                Удалить из списка
-              </button>
-              <hr />
-              Rating: Кинопоиск <strong> {firstMovie.rating.kp} </strong>
-              IMDB <strong>{firstMovie.rating.imdb}</strong>
-            </div>
-            <div className={styles.description}>
-              <h3>Описание:</h3> {firstMovie.description}
-            </div>
-          </div>
+          <WantToSeeCard firstMovie={firstMovie} />
         </div>
         {data.map((item) => item.name)}
       </section>
