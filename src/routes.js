@@ -1,5 +1,5 @@
 export const ROUTES = {
-  home: "/movie-catalog",
+  home: "/movie-catalog/",
   whatToSee: "/movie-catalog/whatToSee",
   wantToSee: "/movie-catalog/wantToSee",
   myCollection: "/movie-catalog/myCollection",

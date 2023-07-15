@@ -26,7 +26,13 @@ const WantToSee = () => {
   } else {
     return (
       <section className={styles.main}>
-        <p>Здесь пусто</p>
+        <nav className={styles.header}>
+          <h3 onClick={() => navigate(`${ROUTES.home}`)}>На главную</h3>
+          <h3 onClick={() => navigate(`${ROUTES.myCollection}`)}>Моя коллекция</h3>
+          <h3 onClick={() => navigate(`${ROUTES.whatToSee}`)}>Что посмотреть?</h3>
+          <h3 onClick={() => navigate(`${ROUTES.myReviews}`)}>Мои рецензии</h3>
+        </nav>
+        <h1> Список еще пуст</h1>
       </section>
     );
   }
