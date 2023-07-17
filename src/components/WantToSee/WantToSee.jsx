@@ -3,11 +3,19 @@ import WantToSeeCard from "../WantToSeeCard/WantToSeeCard";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../routes";
+import { useEffect, useState } from "react";
 
 const WantToSee = () => {
-  const data = useSelector((state) => state.wantToSee.wantToSee);
+  let data = useSelector((state) => state.wantToSee.wantToSee);
+  const [first, setFirst] = useState([]);
+  useEffect(() => {
+    setFirst([...data]);
+  }, []);
   const navigate = useNavigate();
-  const firstMovie = data[0];
+  const showFirst = (movie) => {
+    setFirst([movie]);
+  };
+
   if (data.length) {
     return (
       <section className={styles.main}>
@@ -18,9 +26,18 @@ const WantToSee = () => {
           <h3 onClick={() => navigate(`${ROUTES.myReviews}`)}>Мои рецензии</h3>
         </nav>
         <div className={styles.container}>
-          <WantToSeeCard firstMovie={firstMovie} />
+          <WantToSeeCard firstMovie={data && first} />
+          <div className={styles.wrapperCollection}>
+            {data.slice(1).map((item) => (
+              <div
+                className={styles.card}
+                key={item.id}
+                style={{ backgroundImage: `url(${item.poster.url})` }}
+                onClick={() => showFirst(item)}
+              ></div>
+            ))}
+          </div>
         </div>
-        {data.map((item) => item.name)}
       </section>
     );
   } else {

@@ -4,41 +4,43 @@ import { useDispatch } from "react-redux";
 import { removeMovie } from "../../Slices/WantToSeeSlice";
 
 const WantToSeeCard = ({ firstMovie }) => {
+  const fMovie = firstMovie[0];
   const dispatch = useDispatch();
-  return (
-    <>
-      <div
-        className={styles.firstItem}
-        style={{ backgroundImage: `url(${firstMovie.poster.url})` }}
-      ></div>
-      <div className={styles.wrapper}>
-        <div className={styles.info}>
-          <p>Жанры: {firstMovie.genres.map((item) => item.name + "") + "."}</p>
-          <p>
-            Название: <strong>{firstMovie.name}</strong>
-          </p>
-          <p>
-            Оригинальное название: <strong>{firstMovie.alternativeName}</strong>
-          </p>
+  if (fMovie)
+    return (
+      <>
+        <div
+          className={styles.firstItem}
+          style={{ backgroundImage: `url(${fMovie.poster.url})` }}
+        ></div>
+        <div className={styles.wrapper}>
+          <div className={styles.info}>
+            <p>Жанры: {fMovie.genres.map((item) => item.name + "") + "."}</p>
+            <p>
+              Название: <strong>{fMovie.name}</strong>
+            </p>
+            <p>
+              Оригинальное название: <strong>{fMovie.alternativeName}</strong>
+            </p>
 
-          <p>
-            Страна: {firstMovie.countries.map((item) => item.name) + "."} {firstMovie.year}
-          </p>
+            <p>
+              Страна: {fMovie.countries.map((item) => item.name) + "."} {fMovie.year}
+            </p>
+          </div>
+          <div className={styles.rating}>
+            <button className={styles.btnDelete} onClick={() => dispatch(removeMovie(fMovie))}>
+              Удалить из списка
+            </button>
+            <hr />
+            Rating: Кинопоиск <strong> {fMovie.rating.kp} </strong>
+            IMDB <strong>{fMovie.rating.imdb}</strong>
+          </div>
+          <div className={styles.description}>
+            <h3>Описание:</h3> {fMovie.description}
+          </div>
         </div>
-        <div className={styles.rating}>
-          <button className={styles.btnDelete} onClick={() => dispatch(removeMovie(firstMovie))}>
-            Удалить из списка
-          </button>
-          <hr />
-          Rating: Кинопоиск <strong> {firstMovie.rating.kp} </strong>
-          IMDB <strong>{firstMovie.rating.imdb}</strong>
-        </div>
-        <div className={styles.description}>
-          <h3>Описание:</h3> {firstMovie.description}
-        </div>
-      </div>
-    </>
-  );
+      </>
+    );
 };
 
 export default WantToSeeCard;
