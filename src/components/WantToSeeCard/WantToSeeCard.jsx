@@ -4,8 +4,13 @@ import { useDispatch } from "react-redux";
 import { removeMovie } from "../../Slices/WantToSeeSlice";
 
 const WantToSeeCard = ({ firstMovie }) => {
-  const fMovie = firstMovie[0];
+  let fMovie = firstMovie[0];
   const dispatch = useDispatch();
+  const f = () => {
+    dispatch(removeMovie(fMovie));
+    console.log(fMovie);
+  };
+
   if (fMovie)
     return (
       <>
@@ -28,7 +33,7 @@ const WantToSeeCard = ({ firstMovie }) => {
             </p>
           </div>
           <div className={styles.rating}>
-            <button className={styles.btnDelete} onClick={() => dispatch(removeMovie(fMovie))}>
+            <button className={styles.btnDelete} onClick={f}>
               Удалить из списка
             </button>
             <hr />
