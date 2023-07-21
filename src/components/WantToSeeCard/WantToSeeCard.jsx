@@ -3,6 +3,7 @@ import styles from "./wantToSeeCard.module.css";
 import { useDispatch } from "react-redux";
 import { removeMovie } from "../../Slices/WantToSeeSlice";
 import { useEffect } from "react";
+import formatTime from "../../tools/time";
 
 const WantToSeeCard = ({ firstMovie, setFirst, data }) => {
   let fMovie = firstMovie[0];
@@ -34,6 +35,7 @@ const WantToSeeCard = ({ firstMovie, setFirst, data }) => {
             <p>
               Страна: {fMovie.countries.map((item) => item.name) + "."} {fMovie.year}
             </p>
+            <p>Длительность: {formatTime(fMovie.movieLength)} </p>
           </div>
           <div className={styles.rating}>
             <button className={styles.btnDelete} onClick={removeMovies}>
@@ -43,9 +45,7 @@ const WantToSeeCard = ({ firstMovie, setFirst, data }) => {
             Rating: Кинопоиск <strong> {fMovie.rating.kp} </strong>
             IMDB <strong>{fMovie.rating.imdb}</strong>
           </div>
-          <div className={styles.description}>
-            <h3>Описание:</h3> {fMovie.description}
-          </div>
+          <div className={styles.description}>{fMovie.description}</div>
         </div>
       </>
     );
