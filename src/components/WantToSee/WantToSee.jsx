@@ -26,7 +26,7 @@ const WantToSee = () => {
           <h3 onClick={() => navigate(`${ROUTES.myReviews}`)}>Мои рецензии</h3>
         </nav>
         <div className={styles.container}>
-          <WantToSeeCard firstMovie={first} />
+          <WantToSeeCard firstMovie={first} setFirst={setFirst} data={data} />
           <div className={styles.wrapperCollection}>
             {data.map((item) => (
               <div

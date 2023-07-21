@@ -2,13 +2,16 @@
 import styles from "./wantToSeeCard.module.css";
 import { useDispatch } from "react-redux";
 import { removeMovie } from "../../Slices/WantToSeeSlice";
+import { useEffect } from "react";
 
-const WantToSeeCard = ({ firstMovie }) => {
+const WantToSeeCard = ({ firstMovie, setFirst, data }) => {
   let fMovie = firstMovie[0];
+  useEffect(() => {
+    setFirst([data[0]]);
+  }, [data]);
   const dispatch = useDispatch();
-  const f = () => {
+  const removeMovies = () => {
     dispatch(removeMovie(fMovie));
-    console.log(fMovie);
   };
 
   if (fMovie)
@@ -33,7 +36,7 @@ const WantToSeeCard = ({ firstMovie }) => {
             </p>
           </div>
           <div className={styles.rating}>
-            <button className={styles.btnDelete} onClick={f}>
+            <button className={styles.btnDelete} onClick={removeMovies}>
               Удалить из списка
             </button>
             <hr />
