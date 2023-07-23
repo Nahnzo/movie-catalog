@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
+import formatTime from "../../tools/time";
 import styles from "./wantToSeeCard.module.css";
 import { useDispatch } from "react-redux";
 import { removeMovie } from "../../Slices/WantToSeeSlice";
 import { useEffect } from "react";
-import formatTime from "../../tools/time";
 
 const WantToSeeCard = ({ firstMovie, setFirst, data }) => {
   let fMovie = firstMovie[0];
