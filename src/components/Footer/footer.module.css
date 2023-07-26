@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap");
+
+.wrapper {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  padding: 20px;
+  margin-top: 20px;
+  border-top: 2px solid white;
+  align-items: center;
+  color: white;
+  font-size: 18px;
+  font-family: "Merriweather", serif;
+}
+
+.description {
+  width: 30%;
+  height: 100%;
+  padding: 5px;
+  border-right: 2px solid white;
+}
+
+.contacts {
+  width: 30%;
+  height: 100%;
+  padding: 5px;
+}
+
+.github {
+  width: 20px;
+  height: 20px;
+  margin: 0 5px 0px;
+  cursor: pointer;
+  align-items: center;
+}
+
+.vk {
+  width: 20px;
+  height: 20px;
+  align-items: center;
+  margin: 0 8px 0px;
+  cursor: pointer;
+}
+
+.gmail {
+  width: 20px;
+  height: 20px;
+  align-items: center;
+  margin: 0 8px 0px;
+  cursor: pointer;
+}
+
+.github:hover,
+.gmail:hover,
+.vk:hover {
+  transform: scale(1.4);
+}
+.github,
+.gmail,
+.vk {
+  transition: all 0.2s ease-in;
+}

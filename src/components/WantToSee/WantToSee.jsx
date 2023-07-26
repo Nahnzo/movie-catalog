@@ -49,7 +49,7 @@ const WantToSee = () => {
           <h3 onClick={() => navigate(`${ROUTES.whatToSee}`)}>Что посмотреть?</h3>
           <h3 onClick={() => navigate(`${ROUTES.myReviews}`)}>Мои рецензии</h3>
         </nav>
-        <h1> Список еще пуст</h1>
+        <h1 style={{ margin: "50px" }}> Список пуст</h1>
       </section>
     );
   }
