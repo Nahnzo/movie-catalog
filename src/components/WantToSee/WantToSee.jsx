@@ -12,7 +12,7 @@ const WantToSee = () => {
   const [first, setFirst] = useState([]);
   useEffect(() => {
     setFirst([...data]);
-  }, []);
+  }, [data]);
   const navigate = useNavigate();
   const showFirst = (movie) => {
     setFirst([movie]);
@@ -22,7 +22,7 @@ const WantToSee = () => {
     return (
       <section className={styles.main}>
         <nav className={styles.header}>
-          <h3 onClick={() => navigate(`${ROUTES.home}`)}>На главную</h3>
+          <h3 onClick={() => navigate(`${ROUTES.home}`)}>Ha главную</h3>
           <h3 onClick={() => navigate(`${ROUTES.myCollection}`)}>Моя коллекция</h3>
           <h3 onClick={() => navigate(`${ROUTES.whatToSee}`)}>Что посмотреть?</h3>
           <h3 onClick={() => navigate(`${ROUTES.myReviews}`)}>Мои рецензии</h3>
@@ -49,7 +49,7 @@ const WantToSee = () => {
     return (
       <section className={styles.main}>
         <nav className={styles.header}>
-          <h3 onClick={() => navigate(`${ROUTES.home}`)}>На главную</h3>
+          <h3 onClick={() => navigate(`${ROUTES.home}`)}>Ha главную</h3>
           <h3 onClick={() => navigate(`${ROUTES.myCollection}`)}>Моя коллекция</h3>
           <h3 onClick={() => navigate(`${ROUTES.whatToSee}`)}>Что посмотреть?</h3>
           <h3 onClick={() => navigate(`${ROUTES.myReviews}`)}>Мои рецензии</h3>
