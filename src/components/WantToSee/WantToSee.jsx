@@ -1,12 +1,14 @@
 import styles from "./wantToSee.module.css";
 import WantToSeeCard from "../WantToSeeCard/WantToSeeCard";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../routes";
 import { useEffect, useState } from "react";
+import { clearAll } from "../../Slices/WantToSeeSlice";
 
 const WantToSee = () => {
   let data = useSelector((state) => state.wantToSee.wantToSee);
+  const dispatch = useDispatch();
   const [first, setFirst] = useState([]);
   useEffect(() => {
     setFirst([...data]);
@@ -24,6 +26,9 @@ const WantToSee = () => {
           <h3 onClick={() => navigate(`${ROUTES.myCollection}`)}>Моя коллекция</h3>
           <h3 onClick={() => navigate(`${ROUTES.whatToSee}`)}>Что посмотреть?</h3>
           <h3 onClick={() => navigate(`${ROUTES.myReviews}`)}>Мои рецензии</h3>
+          <button className={styles.deleteAll} onClick={() => dispatch(clearAll())}>
+            Очистить список
+          </button>
         </nav>
         <div className={styles.container}>
           <WantToSeeCard firstMovie={first} setFirst={setFirst} data={data} />

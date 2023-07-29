@@ -60,3 +60,23 @@
 .card:nth-child(1) {
   margin-left: 0;
 }
+
+.deleteAll {
+  width: 200px;
+  height: 30px;
+  text-align: center;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+  border: 1px solid white;
+  border-radius: 10px;
+  font-family: "Ysabeau Infant", sans-serif;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.deleteAll:hover {
+  opacity: 0.5;
+}

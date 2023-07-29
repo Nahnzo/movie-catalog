@@ -33,7 +33,8 @@ const WantToSeeCard = ({ firstMovie, setFirst, data }) => {
             </p>
 
             <p>
-              Страна: {fMovie.countries.map((item) => item.name) + "."} {fMovie.year}
+              {fMovie.countries.length > 1 ? "Страны: " : "Страна: "}
+              {fMovie.countries.map((item) => item.name) + "."} {fMovie.year}
             </p>
             <p>Длительность: {formatTime(fMovie.movieLength)} </p>
           </div>
@@ -41,6 +42,7 @@ const WantToSeeCard = ({ firstMovie, setFirst, data }) => {
             <button className={styles.btnDelete} onClick={removeMovies}>
               Удалить из списка
             </button>
+            <button>FAVORITE</button>
             <hr />
             Rating: Кинопоиск <strong> {fMovie.rating.kp} </strong>
             IMDB <strong>{fMovie.rating.imdb}</strong>

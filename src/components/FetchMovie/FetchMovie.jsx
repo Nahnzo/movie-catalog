@@ -1,12 +1,13 @@
 import styles from "./fetchMovie.module.css";
 import MovieCard from "../MovieCard/MovieCard";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getMovie } from "../../Slices/MovieSlice";
 
 const FetchMovie = () => {
   const data = useSelector((state) => state.movie.movie.docs);
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (!data) {
       dispatch(getMovie());

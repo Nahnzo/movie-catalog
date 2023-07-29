@@ -20,8 +20,12 @@ export const WantToSee = createSlice({
       state.wantToSee = state.wantToSee.filter((item) => item.id !== action.payload.id);
       state.length--;
     },
+    clearAll(state) {
+      state.wantToSee = [];
+      state.length = 0;
+    },
   },
 });
 
-export const { addMovie, removeMovie } = WantToSee.actions;
+export const { addMovie, removeMovie, clearAll } = WantToSee.actions;
 export default WantToSee.reducer;

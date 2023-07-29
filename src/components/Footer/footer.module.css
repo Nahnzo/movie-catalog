@@ -5,8 +5,8 @@
   height: 200px;
   display: flex;
   padding: 20px;
-  margin-top: 20px;
-  border-top: 2px solid white;
+  margin-top: 150px;
+  border-top: 2px solid gray;
   align-items: center;
   color: white;
   font-size: 18px;
@@ -22,14 +22,14 @@ a:visited {
   width: 33%;
   height: 100%;
   padding: 5px;
-  border-right: 2px solid white;
+  border-right: 2px solid gray;
 }
 
 .contacts {
   width: 33%;
   height: 100%;
   padding: 5px;
-  border-right: 2px solid white;
+  border-right: 2px solid gray;
 }
 
 .github {
