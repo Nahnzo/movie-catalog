@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import { AiOutlineHeart } from "react-icons/ai";
 import styles from "./movieCard.module.css";
 import HandleWantToSee from "../HandleWantToSee/HandleWantToSee";
+import HandleMyCollection from "../HandleMyCollection/HandleMyCollection";
 
 const MovieCard = ({ data }) => {
   const [showDetails, setShowDetails] = useState(false);
@@ -23,9 +23,9 @@ const MovieCard = ({ data }) => {
         onMouseEnter={(event) => addClass(event)}
         onMouseLeave={(event) => hideClass(event)}
       >
-        <div className={styles.details} style={{ display: showDetails ? "block" : "none" }}>
-          <AiOutlineHeart className={styles.collection} />
+        <div style={{ display: showDetails ? "block" : "none" }}>
           <HandleWantToSee movie={data} />
+          <HandleMyCollection movie={data} />
         </div>
       </div>
       <div className={styles.info}>

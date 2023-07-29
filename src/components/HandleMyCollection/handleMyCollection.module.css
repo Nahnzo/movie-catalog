@@ -1,0 +1,23 @@
+.collectionFill {
+  position: absolute;
+  font-size: 30px;
+  bottom: 20px;
+  right: 9px;
+  opacity: 1;
+  color: red;
+}
+.collectionEmpty {
+  position: absolute;
+  font-size: 30px;
+  color: rgb(148, 144, 144);
+  bottom: 20px;
+  right: 9px;
+}
+
+.collectionEmpty:hover {
+  color: rgb(250, 12, 12);
+}
+
+.collectionFill:hover {
+  opacity: 0.6;
+}

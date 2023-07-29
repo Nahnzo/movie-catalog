@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./myCollection.module.css";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../routes";
@@ -6,6 +6,10 @@ import { useSelector } from "react-redux";
 import { BsFolder2Open } from "react-icons/bs";
 
 const MyCollection = () => {
+  const data = useSelector((state) => state.myCollection);
+  useEffect(() => {
+    console.log(data);
+  }, []);
   const navigate = useNavigate();
   const dataLength = useSelector((state) => state.wantToSee.length);
   return (
