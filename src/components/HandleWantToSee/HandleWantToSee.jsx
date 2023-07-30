@@ -9,9 +9,9 @@ const HandleWantToSee = ({ movie }) => {
   const data = useSelector((state) => state.wantToSee);
   const isInWantToSee = data.wantToSee.some((item) => item.id === movie.id);
   const handleIconFolder = isInWantToSee ? (
-    <BsFolderMinus className={styles.wantToSeeMinus} />
+    <BsFolderMinus className={styles.wantToSeeMinus} onClick={() => handleClick(movie)} />
   ) : (
-    <BsFolderPlus className={styles.wantToSeePlus} />
+    <BsFolderPlus className={styles.wantToSeePlus} onClick={() => handleClick(movie)} />
   );
 
   const handleClick = (item) => {
@@ -21,7 +21,7 @@ const HandleWantToSee = ({ movie }) => {
       dispatch(addMovie(item));
     }
   };
-  return <div onClick={() => handleClick(movie)}>{handleIconFolder}</div>;
+  return <>{handleIconFolder}</>;
 };
 
 export default HandleWantToSee;

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useDispatch, useSelector } from "react-redux";
-import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { addMovieToCollection, removeMovieFromCollection } from "../../Slices/MyCollectionSlice";
 import styles from "./handleMyCollection.module.css";
 
@@ -9,9 +9,9 @@ const HandleWantToSee = ({ movie }) => {
   const data = useSelector((state) => state.myCollection);
   const isInMyCollection = data.myCollection.some((item) => item.id === movie.id);
   const handleIconFolder = isInMyCollection ? (
-    <AiFillHeart className={styles.collectionFill} />
+    <BsHeartFill className={styles.collectionFill} onClick={() => handleClick(movie)} />
   ) : (
-    <AiOutlineHeart className={styles.collectionEmpty} />
+    <BsHeart className={styles.collectionEmpty} onClick={() => handleClick(movie)} />
   );
 
   const handleClick = (item) => {
@@ -21,7 +21,7 @@ const HandleWantToSee = ({ movie }) => {
       dispatch(addMovieToCollection(item));
     }
   };
-  return <div onClick={() => handleClick(movie)}>{handleIconFolder}</div>;
+  return <>{handleIconFolder}</>;
 };
 
 export default HandleWantToSee;

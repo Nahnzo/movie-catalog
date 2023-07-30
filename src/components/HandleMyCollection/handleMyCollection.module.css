@@ -1,17 +1,19 @@
 .collectionFill {
   position: absolute;
-  font-size: 30px;
+  font-size: 25px;
   bottom: 20px;
-  right: 9px;
+  right: 11px;
   opacity: 1;
   color: red;
 }
+
 .collectionEmpty {
   position: absolute;
-  font-size: 30px;
-  color: rgb(148, 144, 144);
+  font-size: 25px;
   bottom: 20px;
-  right: 9px;
+  right: 11px;
+  opacity: 1;
+  color: rgb(148, 144, 144);
 }
 
 .collectionEmpty:hover {
@@ -19,5 +21,5 @@
 }
 
 .collectionFill:hover {
-  opacity: 0.6;
+  /* opacity: 0.5; */
 }

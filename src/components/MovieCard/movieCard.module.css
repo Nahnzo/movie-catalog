@@ -6,7 +6,7 @@
   background: no-repeat center;
   background-size: 100%;
   cursor: pointer;
-  transition: opacity, transform 0.3s ease-in;
+  transition: all, transform 0.3s ease-in;
 }
 
 .info {
@@ -19,7 +19,7 @@
   user-select: none;
 }
 
-.hovered {
+.card:hover {
   opacity: 0.4;
   transform: scale(1.1);
 }
