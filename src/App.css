@@ -9,3 +9,7 @@
   background-color: rgb(12, 10, 10);
   overflow-x: hidden;
 }
+body,
+html {
+  height: 100%;
+}

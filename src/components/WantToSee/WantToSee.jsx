@@ -5,9 +5,11 @@ import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../routes";
 import { useEffect, useState } from "react";
 import { clearAll } from "../../Slices/WantToSeeSlice";
+import { BiCameraMovie } from "react-icons/bi";
 
 const WantToSee = () => {
   let data = useSelector((state) => state.wantToSee.wantToSee);
+  const dataLengthMyCollection = useSelector((state) => state.myCollection.length);
   const dispatch = useDispatch();
   const [first, setFirst] = useState([]);
   useEffect(() => {
@@ -23,7 +25,17 @@ const WantToSee = () => {
       <section className={styles.main}>
         <nav className={styles.header}>
           <h3 onClick={() => navigate(`${ROUTES.home}`)}>Ha главную</h3>
-          <h3 onClick={() => navigate(`${ROUTES.myCollection}`)}>Моя коллекция</h3>
+          <h3 onClick={() => navigate(`${ROUTES.myCollection}`)}>
+            Моя коллекция
+            <div
+              className={
+                dataLengthMyCollection ? styles.counterWantToSee : styles.counterWantToSeeHidden
+              }
+            >
+              <BiCameraMovie />
+              <div className={styles.counter}>{dataLengthMyCollection}</div>
+            </div>
+          </h3>
           <h3 onClick={() => navigate(`${ROUTES.whatToSee}`)}>Что посмотреть?</h3>
           <h3 onClick={() => navigate(`${ROUTES.myReviews}`)}>Мои рецензии</h3>
           <button className={styles.deleteAll} onClick={() => dispatch(clearAll())}>
@@ -50,7 +62,17 @@ const WantToSee = () => {
       <section className={styles.main}>
         <nav className={styles.header}>
           <h3 onClick={() => navigate(`${ROUTES.home}`)}>Ha главную</h3>
-          <h3 onClick={() => navigate(`${ROUTES.myCollection}`)}>Моя коллекция</h3>
+          <h3 onClick={() => navigate(`${ROUTES.myCollection}`)}>
+            Моя коллекция
+            <div
+              className={
+                dataLengthMyCollection ? styles.counterWantToSee : styles.counterWantToSeeHidden
+              }
+            >
+              <BiCameraMovie />
+              <div className={styles.counter}>{dataLengthMyCollection}</div>
+            </div>
+          </h3>
           <h3 onClick={() => navigate(`${ROUTES.whatToSee}`)}>Что посмотреть?</h3>
           <h3 onClick={() => navigate(`${ROUTES.myReviews}`)}>Мои рецензии</h3>
         </nav>

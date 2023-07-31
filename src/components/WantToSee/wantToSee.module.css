@@ -80,3 +80,27 @@
 .deleteAll:hover {
   opacity: 0.5;
 }
+
+.counterWantToSee {
+  position: absolute;
+  margin-left: 10px;
+  display: inline-flex;
+  justify-content: space-between;
+  font-size: 25px;
+  align-items: center;
+  opacity: 1;
+  transition: opacity 0.2s ease-in;
+}
+.counter {
+  display: inline-block;
+  font-size: 15px;
+  margin: 5px 0 0 6px;
+}
+
+.counterWantToSeeHidden {
+  display: none;
+}
+
+.counterWantToSee:hover {
+  opacity: 0.5;
+}
