@@ -27,13 +27,9 @@ const WantToSee = () => {
           <h3 onClick={() => navigate(`${ROUTES.home}`)}>Ha главную</h3>
           <h3 onClick={() => navigate(`${ROUTES.myCollection}`)}>
             Моя коллекция
-            <div
-              className={
-                dataLengthMyCollection ? styles.counterWantToSee : styles.counterWantToSeeHidden
-              }
-            >
+            <div className={dataLengthMyCollection ? styles.counter : styles.counterHidden}>
               <BiCameraMovie />
-              <div className={styles.counter}>{dataLengthMyCollection}</div>
+              <div className={styles.counterS}>{dataLengthMyCollection}</div>
             </div>
           </h3>
           <h3 onClick={() => navigate(`${ROUTES.whatToSee}`)}>Что посмотреть?</h3>
@@ -64,13 +60,9 @@ const WantToSee = () => {
           <h3 onClick={() => navigate(`${ROUTES.home}`)}>Ha главную</h3>
           <h3 onClick={() => navigate(`${ROUTES.myCollection}`)}>
             Моя коллекция
-            <div
-              className={
-                dataLengthMyCollection ? styles.counterWantToSee : styles.counterWantToSeeHidden
-              }
-            >
+            <div className={dataLengthMyCollection ? styles.counter : styles.counterHidden}>
               <BiCameraMovie />
-              <div className={styles.counter}>{dataLengthMyCollection}</div>
+              <div className={styles.counterS}>{dataLengthMyCollection}</div>
             </div>
           </h3>
           <h3 onClick={() => navigate(`${ROUTES.whatToSee}`)}>Что посмотреть?</h3>
