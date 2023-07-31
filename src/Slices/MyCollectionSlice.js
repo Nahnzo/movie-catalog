@@ -5,13 +5,13 @@ export const myCollectionSlice = createSlice({
   initialState: {
     myCollection: [],
     length: 0,
-    rating: 0,
   },
   reducers: {
     addMovieToCollection(state, action) {
       const isExist = state.myCollection.find((item) => item.id === action.payload.id);
       if (!isExist) {
-        state.myCollection.push(action.payload);
+        const newMovie = { ...action.payload, myRating: 0 };
+        state.myCollection.push(newMovie);
         state.length++;
       }
     },

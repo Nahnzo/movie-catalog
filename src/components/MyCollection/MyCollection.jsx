@@ -9,20 +9,18 @@ import CardForCollection from "../CardForCollection/CardForCollection";
 
 const MyCollection = () => {
   const data = useSelector((state) => state.myCollection);
-  useEffect(() => {
-    console.log(data.myCollection);
-  }, []);
   const navigate = useNavigate();
-  const dataLength = useSelector((state) => state.myCollection.length);
+  const dataWantToSee = useSelector((state) => state.wantToSee.length);
+
   return (
     <section className={styles.main}>
       <nav className={styles.header}>
         <h3 onClick={() => navigate(`${ROUTES.home}`)}>Ha главную</h3>
         <h3 onClick={() => navigate(`${ROUTES.wantToSee}`)}>
           Хочу посмотреть
-          <div className={dataLength ? styles.counterWantToSee : styles.counterWantToSeeHidden}>
+          <div className={dataWantToSee ? styles.counterWantToSee : styles.counterWantToSeeHidden}>
             <BsFolder2Open />
-            <div className={styles.counter}>{dataLength}</div>
+            <div className={styles.counter}>{dataWantToSee}</div>
           </div>
         </h3>
         <h3 onClick={() => navigate(`${ROUTES.whatToSee}`)}>Что посмотреть?</h3>
