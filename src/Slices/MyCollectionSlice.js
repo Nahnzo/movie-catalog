@@ -23,9 +23,16 @@ export const myCollectionSlice = createSlice({
       state.myCollection = [];
       state.length = 0;
     },
+    addRating(state, action) {
+      const { movieId, rating } = action.payload;
+      const movieIndex = state.myCollection.findIndex((item) => item.id === movieId);
+      if (movieIndex !== -1) {
+        state.myCollection[movieIndex].myRating = rating;
+      }
+    },
   },
 });
 
-export const { addMovieToCollection, removeMovieFromCollection, clearAll } =
+export const { addMovieToCollection, removeMovieFromCollection, clearAll, addRating } =
   myCollectionSlice.actions;
 export default myCollectionSlice.reducer;

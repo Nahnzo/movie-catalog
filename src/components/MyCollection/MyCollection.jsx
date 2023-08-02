@@ -29,7 +29,7 @@ const MyCollection = () => {
       <section className={styles.wrapper}>
         <div className={styles.myCollection}>
           {data.myCollection.length === 0 ? (
-            <h2>Список пуст</h2>
+            <h1 style={{ fontSize: "26px" }}>Список пуст</h1>
           ) : (
             data.myCollection.map((item) => <CardForCollection movie={item} key={item.id} />)
           )}

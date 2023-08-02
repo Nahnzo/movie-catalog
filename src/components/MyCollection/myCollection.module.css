@@ -4,7 +4,7 @@
   justify-content: space-between;
   min-height: 100vh;
   background-color: rgb(12, 10, 10);
-  overflow-x: hidden;
+  overflow: hidden;
 }
 .wrapper {
   padding: 15px;

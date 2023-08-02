@@ -39,3 +39,26 @@
 .rateBtn:hover {
   opacity: 0.5;
 }
+
+.rate {
+  position: absolute;
+  width: 60%;
+  top: 0;
+  height: 240px;
+  background: black;
+  display: flex;
+  justify-content: center;
+  border-radius: 0px 25px 25px 0px;
+}
+
+.rateContent {
+  text-align: center;
+  padding: 30px;
+  font-size: 46px;
+  width: 70%;
+  height: 20%;
+  margin: 9% auto;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
