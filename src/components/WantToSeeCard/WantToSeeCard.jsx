@@ -4,6 +4,7 @@ import styles from "./wantToSeeCard.module.css";
 import { useDispatch } from "react-redux";
 import { removeMovie } from "../../Slices/WantToSeeSlice";
 import { useEffect } from "react";
+import HandleMovieInWantToSee from "../HandleMovieInWantToSee/HandleMovieInWantToSee";
 
 const WantToSeeCard = ({ firstMovie, setFirst, data }) => {
   let fMovie = firstMovie[0];
@@ -42,7 +43,7 @@ const WantToSeeCard = ({ firstMovie, setFirst, data }) => {
             <button className={styles.btnDelete} onClick={removeMovies}>
               Удалить из списка
             </button>
-            <button>FAVORITE</button>
+            <HandleMovieInWantToSee fMovie={fMovie} />
             <hr />
             Rating: Кинопоиск <strong> {fMovie.rating.kp} </strong>
             IMDB <strong>{fMovie.rating.imdb}</strong>
