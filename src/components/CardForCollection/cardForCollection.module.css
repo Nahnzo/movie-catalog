@@ -28,6 +28,7 @@
   height: 25px;
   cursor: pointer;
   background-color: transparent;
+  margin-left: 15px;
   text-align: center;
   color: white;
   border: 1px solid white;
@@ -39,7 +40,10 @@
 .rateBtn:hover {
   opacity: 0.5;
 }
-
+strong {
+  font-size: 18px;
+  margin: 10px;
+}
 .rate {
   position: absolute;
   width: 60%;
@@ -61,4 +65,48 @@
   display: flex;
   justify-content: space-between;
   cursor: pointer;
+}
+.btnDelete {
+  width: 200px;
+  height: 40px;
+  text-align: center;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+  border: 1px solid white;
+  margin: 20px 0 20px 169px;
+  border-radius: 10px;
+  font-family: "Ysabeau Infant", sans-serif;
+  font-size: 16px;
+  position: absolute;
+  bottom: -18px;
+  right: 10px;
+}
+
+.btnDelete:hover {
+  opacity: 0.5;
+}
+
+.btnChangeRate {
+  width: 200px;
+  height: 25px;
+  text-align: center;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+  border: 1px solid white;
+  margin: 20px 0 20px 169px;
+  border-radius: 10px;
+  font-family: "Ysabeau Infant", sans-serif;
+  font-size: 16px;
+  position: absolute;
+  bottom: -22px;
+  left: -20px;
+}
+.btnChangeRate:hover {
+  opacity: 0.5;
 }
