@@ -8,6 +8,7 @@ import HandleMovieInWantToSee from "../HandleMovieInWantToSee/HandleMovieInWantT
 
 const WantToSeeCard = ({ firstMovie, setFirst, data }) => {
   let fMovie = firstMovie[0];
+  console.log(fMovie);
   useEffect(() => {
     setFirst([data[0]]);
   }, [data]);
@@ -40,7 +41,7 @@ const WantToSeeCard = ({ firstMovie, setFirst, data }) => {
               {fMovie.countries.length > 1 ? "Страны: " : "Страна: "}
               {fMovie.countries.map((item) => item.name) + "."} {fMovie.year} год
             </p>
-            <p>Длительность: {formatTime(fMovie.movieLength)} </p>
+            <p>{fMovie.movieLength > 0 ? "Длительность: " + formatTime(fMovie.movieLength) : ""}</p>
           </div>
           <div className={styles.rating}>
             <button className={styles.btnDelete} onClick={removeMovies}>
