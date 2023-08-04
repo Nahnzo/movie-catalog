@@ -3,12 +3,13 @@ import WantToSeeCard from "../WantToSeeCard/WantToSeeCard";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../routes";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { clearAll } from "../../Slices/WantToSeeSlice";
 import { BiCameraMovie } from "react-icons/bi";
 
 const WantToSee = () => {
   let data = useSelector((state) => state.wantToSee.wantToSee);
+  const ref = useRef(null);
   const dataLengthMyCollection = useSelector((state) => state.myCollection.length);
   const dispatch = useDispatch();
   const [first, setFirst] = useState([]);
@@ -19,6 +20,32 @@ const WantToSee = () => {
   const showFirst = (movie) => {
     setFirst([movie]);
   };
+
+  const wrapper = ref.current;
+  let currentPosition = 0;
+  let count = 0;
+  function goForwardCarousel() {
+    let lengthMovie = data.length / 10;
+    count++;
+    currentPosition -= 100;
+    if (count >= lengthMovie) {
+      currentPosition = 0;
+      count = 0;
+    }
+    wrapper.style.transform = `translateX(${currentPosition}%)`;
+  }
+
+  function goBackCarousel() {
+    let lengthMovie = Math.floor(data.length / 10);
+    if (count === 0) {
+      currentPosition -= lengthMovie * 100;
+      count = lengthMovie;
+    } else {
+      count--;
+      currentPosition += 100;
+    }
+    wrapper.style.transform = `translateX(${currentPosition}%)`;
+  }
 
   if (data.length) {
     return (
@@ -40,7 +67,7 @@ const WantToSee = () => {
         </nav>
         <div className={styles.container}>
           <WantToSeeCard firstMovie={first} setFirst={setFirst} data={data} />
-          <div className={styles.wrapperCollection}>
+          <div className={styles.wrapperCollection} ref={ref}>
             {data.map((item) => (
               <div
                 className={styles.card}
@@ -51,6 +78,8 @@ const WantToSee = () => {
             ))}
           </div>
         </div>
+        <button onClick={() => goBackCarousel()}>Назад</button>
+        <button onClick={() => goForwardCarousel()}>Вперед</button>
       </section>
     );
   } else {

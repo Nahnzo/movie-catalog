@@ -25,7 +25,10 @@ const WantToSeeCard = ({ firstMovie, setFirst, data }) => {
         ></div>
         <div className={styles.wrapper}>
           <div className={styles.info}>
-            <p>Жанры: {fMovie.genres.map((item) => item.name + "") + "."}</p>
+            <p>
+              {fMovie.genres.length > 1 ? "Жанры: " : "Жанр: "}
+              {fMovie.genres.map((item) => item.name + "") + "."}
+            </p>
             <p>
               Название: <strong>{fMovie.name}</strong>
             </p>
@@ -35,7 +38,7 @@ const WantToSeeCard = ({ firstMovie, setFirst, data }) => {
 
             <p>
               {fMovie.countries.length > 1 ? "Страны: " : "Страна: "}
-              {fMovie.countries.map((item) => item.name) + "."} {fMovie.year}
+              {fMovie.countries.map((item) => item.name) + "."} {fMovie.year} год
             </p>
             <p>Длительность: {formatTime(fMovie.movieLength)} </p>
           </div>

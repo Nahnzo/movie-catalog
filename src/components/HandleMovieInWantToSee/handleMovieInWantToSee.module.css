@@ -1,5 +1,5 @@
 .btn {
-  width: 300px;
+  width: 200px;
   height: 40px;
   text-align: center;
   background-color: transparent;
@@ -8,10 +8,10 @@
   cursor: pointer;
   color: white;
   border: 1px solid white;
-  margin: 20px 0 20px 169px;
+  margin: 20px 0 20px 178px;
   border-radius: 10px;
   font-family: "Ysabeau Infant", sans-serif;
-  font-size: 18px;
+  font-size: 17px;
 }
 
 .btn:hover {

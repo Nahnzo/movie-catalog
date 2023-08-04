@@ -40,7 +40,7 @@
 .rateBtn:hover {
   opacity: 0.5;
 }
-strong {
+.rating > strong {
   font-size: 18px;
   margin: 10px;
 }
