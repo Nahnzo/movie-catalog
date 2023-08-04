@@ -1,5 +1,6 @@
 import styles from "./wantToSee.module.css";
 import WantToSeeCard from "../WantToSeeCard/WantToSeeCard";
+import CarouselX from "../CarouselX/CarouselX";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../routes";
@@ -8,44 +9,19 @@ import { clearAll } from "../../Slices/WantToSeeSlice";
 import { BiCameraMovie } from "react-icons/bi";
 
 const WantToSee = () => {
-  let data = useSelector((state) => state.wantToSee.wantToSee);
   const ref = useRef(null);
+  const wrapper = ref.current;
+  let data = useSelector((state) => state.wantToSee.wantToSee);
   const dataLengthMyCollection = useSelector((state) => state.myCollection.length);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [first, setFirst] = useState([]);
   useEffect(() => {
     setFirst([...data]);
   }, [data]);
-  const navigate = useNavigate();
   const showFirst = (movie) => {
     setFirst([movie]);
   };
-
-  const wrapper = ref.current;
-  let currentPosition = 0;
-  let count = 0;
-  function goForwardCarousel() {
-    let lengthMovie = data.length / 10;
-    count++;
-    currentPosition -= 100;
-    if (count >= lengthMovie) {
-      currentPosition = 0;
-      count = 0;
-    }
-    wrapper.style.transform = `translateX(${currentPosition}%)`;
-  }
-
-  function goBackCarousel() {
-    let lengthMovie = Math.floor(data.length / 10);
-    if (count === 0) {
-      currentPosition -= lengthMovie * 100;
-      count = lengthMovie;
-    } else {
-      count--;
-      currentPosition += 100;
-    }
-    wrapper.style.transform = `translateX(${currentPosition}%)`;
-  }
 
   if (data.length) {
     return (
@@ -78,8 +54,7 @@ const WantToSee = () => {
             ))}
           </div>
         </div>
-        <button onClick={() => goBackCarousel()}>Назад</button>
-        <button onClick={() => goForwardCarousel()}>Вперед</button>
+        <CarouselX wrapper={wrapper} data={data} />
       </section>
     );
   } else {
