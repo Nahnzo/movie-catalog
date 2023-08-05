@@ -108,3 +108,9 @@
 .counter:hover {
   opacity: 0.5;
 }
+
+.footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}

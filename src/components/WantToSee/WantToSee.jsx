@@ -1,6 +1,7 @@
 import styles from "./wantToSee.module.css";
 import WantToSeeCard from "../WantToSeeCard/WantToSeeCard";
 import CarouselX from "../CarouselX/CarouselX";
+import Footer from "../Footer/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../routes";
@@ -55,6 +56,7 @@ const WantToSee = () => {
           </div>
         </div>
         <CarouselX wrapper={wrapper} data={data} />
+        <Footer />
       </section>
     );
   } else {
@@ -73,6 +75,9 @@ const WantToSee = () => {
           <h3 onClick={() => navigate(`${ROUTES.myReviews}`)}>Мои рецензии</h3>
         </nav>
         <h1 style={{ margin: "50px" }}> Список пуст</h1>
+        <div className={styles.footer}>
+          <Footer />
+        </div>
       </section>
     );
   }
