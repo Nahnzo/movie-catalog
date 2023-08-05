@@ -38,7 +38,7 @@ const WantToSee = () => {
           <h3 onClick={() => navigate(`${ROUTES.whatToSee}`)}>Что посмотреть?</h3>
           <h3 onClick={() => navigate(`${ROUTES.myReviews}`)}>Мои рецензии</h3>
           <button className={styles.deleteAll} onClick={() => dispatch(clearAll())}>
-            Очистить список
+            Очистить список <div className={styles.counterS}>({data.length})</div>
           </button>
         </nav>
         <div className={styles.container}>
