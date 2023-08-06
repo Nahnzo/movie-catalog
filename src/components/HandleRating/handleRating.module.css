@@ -36,3 +36,8 @@
 .cancelBtn:hover {
   opacity: 0.5;
 }
+
+.infoRating {
+  position: absolute;
+  bottom: 10px;
+}

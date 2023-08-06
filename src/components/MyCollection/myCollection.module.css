@@ -7,7 +7,7 @@
   overflow: hidden;
 }
 .wrapper {
-  padding: 15px;
+  padding: 10px;
   width: 70%;
   height: 100vh;
   margin: 40px auto;
@@ -15,6 +15,21 @@
   text-align: center;
   color: white;
   font-family: "Merriweather", serif;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+.wrapper::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Стилизация трека скроллбара */
+.wrapper::-webkit-scrollbar-track {
+  background-color: rgb(12, 10, 10);
+}
+
+/* Стилизация бегунка скроллбара */
+.wrapper::-webkit-scrollbar-thumb {
+  background-color: white;
 }
 .myCollection {
   height: 100%;

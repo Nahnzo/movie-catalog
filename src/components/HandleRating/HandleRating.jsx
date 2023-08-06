@@ -45,13 +45,14 @@ const HandleRating = ({ movieId, setShowRateWindow }) => {
         <button className={styles.cancelBtn} onClick={() => setShowRateWindow()}>
           Отменить
         </button>
+        <div className={styles.infoRating}>
+          {rating && (
+            <p>
+              Оценка: {rating} ({ratingsData[rating - 1].description})
+            </p>
+          )}
+        </div>
       </div>
-
-      {rating && (
-        <p>
-          Оценка: {rating} ({ratingsData[rating - 1].description})
-        </p>
-      )}
     </div>
   );
 };
