@@ -29,7 +29,7 @@ const MyCollection = () => {
         <h3 onClick={() => navigate(`${ROUTES.myReviews}`)}>Мои рецензии</h3>
         {data.myCollection.length !== 0 ? (
           <button className={styles.deleteAll} onClick={() => dispatch(clearAll())}>
-            Очистить список
+            Очистить список <div className={styles.counter}>({data.length})</div>
           </button>
         ) : (
           ""

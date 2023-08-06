@@ -1,0 +1,38 @@
+.container {
+  height: 100%;
+}
+.wrapper {
+  height: 100%;
+  display: flex;
+  width: 80%;
+  justify-content: center;
+  margin: auto;
+  align-items: center;
+  position: relative;
+}
+.smiles {
+  font-size: 35px;
+  cursor: pointer;
+}
+.cancelBtn {
+  position: absolute;
+  right: -50px;
+  bottom: -10px;
+  width: 130px;
+  height: 40px;
+  text-align: center;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+  border: 1px solid white;
+  margin: 20px 0 20px 178px;
+  border-radius: 10px;
+  font-family: "Ysabeau Infant", sans-serif;
+  font-size: 17px;
+}
+
+.cancelBtn:hover {
+  opacity: 0.5;
+}

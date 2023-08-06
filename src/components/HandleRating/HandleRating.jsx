@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addRating } from "../../Slices/MyCollectionSlice";
+import styles from "./handleRating.module.css";
 
 const HandleRating = ({ movieId, setShowRateWindow }) => {
   const [rating, setRating] = useState(null);
@@ -27,20 +28,13 @@ const HandleRating = ({ movieId, setShowRateWindow }) => {
     { value: 5, emoji: "😃", description: "Отлично" },
   ];
 
-  const smileyStyle = {
-    fontSize: "30px",
-    width: "35px",
-    textAlign: "center",
-    cursor: "pointer",
-  };
-
   return (
-    <div>
-      <div>
+    <div className={styles.container}>
+      <div className={styles.wrapper}>
         {ratingsData.map((item) => (
           <span
             key={item.value}
-            style={smileyStyle}
+            className={styles.smiles}
             onMouseEnter={() => handleMouseEnter(item.value)}
             onMouseLeave={handleMouseLeave}
             onClick={() => handleR(item, item)}
@@ -48,7 +42,11 @@ const HandleRating = ({ movieId, setShowRateWindow }) => {
             {rating && rating >= item.value ? item.emoji : "😐"}
           </span>
         ))}
+        <button className={styles.cancelBtn} onClick={() => setShowRateWindow()}>
+          Отменить
+        </button>
       </div>
+
       {rating && (
         <p>
           Оценка: {rating} ({ratingsData[rating - 1].description})

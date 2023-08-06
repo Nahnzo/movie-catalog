@@ -8,6 +8,7 @@ import { removeMovieFromCollection } from "../../Slices/MyCollectionSlice";
 const CardForCollection = ({ movie }) => {
   const dispatch = useDispatch();
   const [showRateWindow, setShowRateWindow] = useState(false);
+
   return (
     <div className={styles.cardWrapper}>
       <div className={styles.poster} style={{ backgroundImage: `url(${movie.poster.url})` }}></div>
@@ -25,7 +26,9 @@ const CardForCollection = ({ movie }) => {
               </h5>
             ) : (
               <>
-                <strong>{movie.myRating}</strong>
+                <div className={styles.myRate}>
+                  <p>{movie.myRating}</p>
+                </div>
                 <button className={styles.btnChangeRate} onClick={() => setShowRateWindow(true)}>
                   Изменить оценку
                 </button>

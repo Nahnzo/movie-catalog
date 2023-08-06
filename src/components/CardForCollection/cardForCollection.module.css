@@ -36,14 +36,19 @@
   font-family: "Ysabeau Infant", sans-serif;
   font-size: 17px;
 }
+.myRate {
+  display: inline-flex;
+  font-size: 13px;
+}
+.myRate > p {
+  font-size: 17px;
+  margin: 0 0 0 5px;
+}
 
 .rateBtn:hover {
   opacity: 0.5;
 }
-.rating > strong {
-  font-size: 18px;
-  margin: 10px;
-}
+
 .rate {
   position: absolute;
   width: 60%;
@@ -76,7 +81,7 @@
   cursor: pointer;
   color: white;
   border: 1px solid white;
-  margin: 20px 0 20px 169px;
+  margin: 20px 0 27px 169px;
   border-radius: 10px;
   font-family: "Ysabeau Infant", sans-serif;
   font-size: 16px;
