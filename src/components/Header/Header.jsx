@@ -34,8 +34,8 @@ const Header = () => {
             <div className={styles.counter}>{dataLengthMyCollection}</div>
           </div>
         </h3>
-        <h3 onClick={() => navigate(`${ROUTES.whatToSee}`)}>Что посмотреть?</h3>
         <h3 onClick={() => navigate(`${ROUTES.myReviews}`)}>Мои рецензии</h3>
+        <h3 onClick={() => navigate(`${ROUTES.whatToSee}`)}>Что посмотреть?</h3>
       </nav>
     </section>
   );

@@ -3,6 +3,7 @@ import { ROUTES } from "../../routes";
 import { useSelector } from "react-redux";
 import { BiCameraMovie } from "react-icons/bi";
 import { BsFolder2Open } from "react-icons/bs";
+import Footer from "../Footer/Footer";
 import styles from "./myReviews.module.css";
 
 const MyReviews = () => {
@@ -34,8 +35,12 @@ const MyReviews = () => {
               <div className={styles.counter}>{myCollection.length}</div>
             </div>
           </h3>
+          <h3 onClick={() => navigate(ROUTES.whatToSee)}>Что посмотреть?</h3>
         </nav>
       </section>
+      <div className={styles.footer}>
+        <Footer />
+      </div>
     </section>
   );
 };
