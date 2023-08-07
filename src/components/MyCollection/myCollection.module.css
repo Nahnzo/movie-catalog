@@ -18,18 +18,17 @@
   overflow: hidden;
   overflow-y: scroll;
 }
+
 .wrapper::-webkit-scrollbar {
   width: 10px;
 }
 
-/* Стилизация трека скроллбара */
 .wrapper::-webkit-scrollbar-track {
-  background-color: rgb(12, 10, 10);
+  background-color: transparent;
 }
 
-/* Стилизация бегунка скроллбара */
 .wrapper::-webkit-scrollbar-thumb {
-  background-color: white;
+  background-color: transparent;
 }
 .myCollection {
   height: 100%;

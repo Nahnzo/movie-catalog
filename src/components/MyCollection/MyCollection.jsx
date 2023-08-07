@@ -35,7 +35,10 @@ const MyCollection = () => {
           ""
         )}
       </nav>
-      <section className={styles.wrapper}>
+      <section
+        className={styles.wrapper}
+        style={{ borderRight: data.myCollection.length ? "2px solid white" : "none" }}
+      >
         <div className={styles.myCollection}>
           {data.myCollection.length === 0 ? (
             <h1 style={{ fontSize: "26px" }}>Список пуст</h1>
