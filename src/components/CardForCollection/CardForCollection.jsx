@@ -1,10 +1,9 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { removeMovieFromCollection } from "../../Slices/MyCollectionSlice";
+import { addReview, removeMovieFromCollection } from "../../Slices/MyCollectionSlice";
 import styles from "./cardForCollection.module.css";
 import HandleRating from "../HandleRating/HandleRating";
-import HandleReview from "../HandleReview/HandleReview";
 
 const CardForCollection = ({ movie }) => {
   const dispatch = useDispatch();
@@ -21,6 +20,12 @@ const CardForCollection = ({ movie }) => {
           <div className={styles.reviews}>
             {movie.myReviews ? movie.myReviews : "Место для вашей рецензии "}
           </div>
+          <button
+            className={movie.myRating ? styles.rwBtn : styles.rwBtnAfter}
+            onClick={() => dispatch(addReview({ movieId: movie.id, myReviews: "sss" }))}
+          >
+            {movie.myReviews ? "Изменить резенцию" : "Оставить рецензию"}
+          </button>
           <h4>
             {movie.myRating === 0 ? (
               <h5>
@@ -28,11 +33,6 @@ const CardForCollection = ({ movie }) => {
                 <button className={styles.rateBtn} onClick={() => setShowRateWindow(true)}>
                   Оценить
                 </button>
-                {movie.myReviews ? (
-                  <HandleReview title="Изменить рецензию" rate={movie.myRating} />
-                ) : (
-                  <HandleReview title="Написать рецензию" rate={movie.myRating} />
-                )}
               </h5>
             ) : (
               <>
@@ -43,11 +43,6 @@ const CardForCollection = ({ movie }) => {
                 <button className={styles.btnChangeRate} onClick={() => setShowRateWindow(true)}>
                   Изменить оценку
                 </button>
-                {movie.myReviews ? (
-                  <HandleReview title="Изменить рецензию" rate={movie.myRating} />
-                ) : (
-                  <HandleReview title="Написать рецензию" rate={movie.myRating} />
-                )}
               </>
             )}
           </h4>

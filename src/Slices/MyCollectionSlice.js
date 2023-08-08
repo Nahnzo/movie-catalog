@@ -30,9 +30,16 @@ export const myCollectionSlice = createSlice({
         state.myCollection[movieIndex].myRating = rating;
       }
     },
+    addReview(state, action) {
+      const { movieId, myReviews } = action.payload;
+      const movieIndex = state.myCollection.findIndex((item) => item.id === movieId);
+      if (movieIndex !== -1) {
+        state.myCollection[movieIndex].myReviews = myReviews;
+      }
+    },
   },
 });
 
-export const { addMovieToCollection, removeMovieFromCollection, clearAll, addRating } =
+export const { addMovieToCollection, removeMovieFromCollection, clearAll, addRating, addReview } =
   myCollectionSlice.actions;
 export default myCollectionSlice.reducer;

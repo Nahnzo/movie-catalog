@@ -129,6 +129,7 @@
 }
 
 .reviews {
+  position: relative;
   margin: 10px 0 0 0;
   font-size: 16px;
 }
@@ -148,8 +149,8 @@
   font-family: "Ysabeau Infant", sans-serif;
   font-size: 16px;
   position: absolute;
-  bottom: -20px;
-  left: 145px;
+  bottom: -17px;
+  left: 365px;
   &:hover {
     opacity: 0.5;
   }
@@ -166,12 +167,12 @@
   color: white;
   border: 1px solid white;
   margin: 20px 0 20px 169px;
-  border-radius: 10px;
+  border-radius: 8px;
   font-family: "Ysabeau Infant", sans-serif;
   font-size: 16px;
   position: absolute;
-  bottom: -22px;
-  left: 205px;
+  bottom: -15px;
+  left: 295px;
   &:hover {
     opacity: 0.5;
   }
