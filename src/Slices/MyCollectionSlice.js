@@ -10,7 +10,7 @@ export const myCollectionSlice = createSlice({
     addMovieToCollection(state, action) {
       const isExist = state.myCollection.find((item) => item.id === action.payload.id);
       if (!isExist) {
-        const newMovie = { ...action.payload, myRating: 0 };
+        const newMovie = { ...action.payload, myRating: 0, myReviews: "" };
         state.myCollection.push(newMovie);
         state.length++;
       }

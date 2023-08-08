@@ -14,23 +14,34 @@ const CardForCollection = ({ movie }) => {
       <div className={styles.poster} style={{ backgroundImage: `url(${movie.poster.url})` }}></div>
       <div className={styles.info}>
         <div className={styles.rating}>
-          <p>{movie.name}</p>
+          <h3>{movie.name}</h3>
+          <p>{movie.shortDescription}</p>
+          <hr />
+          <div className={styles.reviews}>
+            {movie.myReviews ? movie.myReviews : "Место для вашей рецензии на фильм"}
+          </div>
           <h4>
-            Ваша оценка:
             {movie.myRating === 0 ? (
               <h5>
                 Вы еще не оценили
                 <button className={styles.rateBtn} onClick={() => setShowRateWindow(true)}>
                   Оценить
                 </button>
+                <button className={styles.rwBtn}>
+                  {movie.myReviews ? "Изменить рецензию" : "Написать рецензию"}
+                </button>
               </h5>
             ) : (
               <>
                 <div className={styles.myRate}>
+                  <h3>Ваша оценка: </h3>
                   <p>{movie.myRating}</p>
                 </div>
                 <button className={styles.btnChangeRate} onClick={() => setShowRateWindow(true)}>
                   Изменить оценку
+                </button>
+                <button className={styles.rwBtnAfter}>
+                  {movie.myReviews ? "Изменить рецензию" : "Написать рецензию"}
                 </button>
               </>
             )}
