@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import styles from "./cardForCollection.module.css";
-import HandleRating from "../HandleRating/HandleRating";
 import { useDispatch } from "react-redux";
 import { removeMovieFromCollection } from "../../Slices/MyCollectionSlice";
+import styles from "./cardForCollection.module.css";
+import HandleRating from "../HandleRating/HandleRating";
+import HandleReview from "../HandleReview/HandleReview";
 
 const CardForCollection = ({ movie }) => {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ const CardForCollection = ({ movie }) => {
           <p>{movie.shortDescription}</p>
           <hr />
           <div className={styles.reviews}>
-            {movie.myReviews ? movie.myReviews : "Место для вашей рецензии на фильм"}
+            {movie.myReviews ? movie.myReviews : "Место для вашей рецензии "}
           </div>
           <h4>
             {movie.myRating === 0 ? (
@@ -27,9 +28,11 @@ const CardForCollection = ({ movie }) => {
                 <button className={styles.rateBtn} onClick={() => setShowRateWindow(true)}>
                   Оценить
                 </button>
-                <button className={styles.rwBtn}>
-                  {movie.myReviews ? "Изменить рецензию" : "Написать рецензию"}
-                </button>
+                {movie.myReviews ? (
+                  <HandleReview title="Изменить рецензию" rate={movie.myRating} />
+                ) : (
+                  <HandleReview title="Написать рецензию" rate={movie.myRating} />
+                )}
               </h5>
             ) : (
               <>
@@ -40,9 +43,11 @@ const CardForCollection = ({ movie }) => {
                 <button className={styles.btnChangeRate} onClick={() => setShowRateWindow(true)}>
                   Изменить оценку
                 </button>
-                <button className={styles.rwBtnAfter}>
-                  {movie.myReviews ? "Изменить рецензию" : "Написать рецензию"}
-                </button>
+                {movie.myReviews ? (
+                  <HandleReview title="Изменить рецензию" rate={movie.myRating} />
+                ) : (
+                  <HandleReview title="Написать рецензию" rate={movie.myRating} />
+                )}
               </>
             )}
           </h4>

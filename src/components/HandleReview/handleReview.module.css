@@ -1,0 +1,42 @@
+.rwBtn {
+  width: 200px;
+  height: 25px;
+  text-align: center;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+  border: 1px solid white;
+  margin: 20px 0 20px 169px;
+  border-radius: 8px;
+  font-family: "Ysabeau Infant", sans-serif;
+  font-size: 16px;
+  position: absolute;
+  bottom: -22px;
+  left: 205px;
+  &:hover {
+    opacity: 0.5;
+  }
+}
+.rwBtnAfter {
+  width: 200px;
+  height: 26px;
+  text-align: center;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+  border: 1px solid white;
+  margin: 20px 0 20px 169px;
+  border-radius: 8px;
+  font-family: "Ysabeau Infant", sans-serif;
+  font-size: 16px;
+  position: absolute;
+  bottom: -21px;
+  left: 145px;
+  &:hover {
+    opacity: 0.5;
+  }
+}
