@@ -46,3 +46,13 @@
   position: absolute;
   bottom: 0;
 }
+
+.wrapper {
+  position: relative;
+  width: 80%;
+  height: 500px;
+  margin: auto;
+  color: white;
+  padding: 15px;
+  display: flex;
+}

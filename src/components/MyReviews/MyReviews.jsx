@@ -5,11 +5,19 @@ import { BiCameraMovie } from "react-icons/bi";
 import { BsFolder2Open } from "react-icons/bs";
 import Footer from "../Footer/Footer";
 import styles from "./myReviews.module.css";
+import { useEffect, useState } from "react";
+import CardForMyReviews from "../CardForMyReviews/CardForMyReviews";
 
 const MyReviews = () => {
   const { myCollection, wantToSee } = useSelector((data) => data);
-
+  const [arrayWithReviews, setArrayWithReviews] = useState([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const arr = myCollection.myCollection.filter((item) => item.myReviews !== "");
+    setArrayWithReviews(arr);
+  }, [myCollection.length]);
+
   return (
     <section className={styles.main}>
       <section className={styles.header}>
@@ -38,6 +46,11 @@ const MyReviews = () => {
           <h3 onClick={() => navigate(ROUTES.whatToSee)}>Что посмотреть?</h3>
         </nav>
       </section>
+      <div className={styles.wrapper}>
+        {arrayWithReviews.map((item) => <CardForMyReviews movie={item} key={item.id} />) && (
+          <p>Список пуст</p>
+        )}
+      </div>
       <div className={styles.footer}>
         <Footer />
       </div>
