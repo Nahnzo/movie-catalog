@@ -56,3 +56,7 @@
   padding: 15px;
   display: flex;
 }
+
+.wrapper > h1 {
+  margin: auto;
+}

@@ -7,6 +7,7 @@ import Footer from "../Footer/Footer";
 import styles from "./myReviews.module.css";
 import { useEffect, useState } from "react";
 import CardForMyReviews from "../CardForMyReviews/CardForMyReviews";
+import LeaveReview from "../LeaveReview/LeaveReview";
 
 const MyReviews = () => {
   const { myCollection, wantToSee } = useSelector((data) => data);
@@ -46,9 +47,10 @@ const MyReviews = () => {
           <h3 onClick={() => navigate(ROUTES.whatToSee)}>Что посмотреть?</h3>
         </nav>
       </section>
+      <LeaveReview />
       <div className={styles.wrapper}>
         {arrayWithReviews.map((item) => <CardForMyReviews movie={item} key={item.id} />) && (
-          <p>Список пуст</p>
+          <h1>Список пуст</h1>
         )}
       </div>
       <div className={styles.footer}>
