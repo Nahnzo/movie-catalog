@@ -53,9 +53,7 @@ const MyReviews = () => {
           <h1>Список пуст</h1>
         )}
       </div>
-      <div className={styles.footer}>
-        <Footer />
-      </div>
+      <div className={styles.footer}>{/* <Footer /> */}</div>
     </section>
   );
 };
