@@ -11,12 +11,16 @@ import LeaveReview from "../LeaveReview/LeaveReview";
 
 const MyReviews = () => {
   const { myCollection, wantToSee } = useSelector((data) => data);
+  const { arrayReview } = useSelector((state) => state);
+
   const [arrayWithReviews, setArrayWithReviews] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const arr = myCollection.myCollection.filter((item) => item.myReviews !== "");
-    setArrayWithReviews(arr);
+    // const arr = myCollection.myCollection.filter((item) => item.myReviews !== "");
+    // const arr = myCollection.myCollection.filter((item) => item.myReviews !== "");
+    setArrayWithReviews(arrayReview.movies);
+    console.log(arrayWithReviews, "s");
   }, [myCollection.length]);
 
   return (
@@ -49,8 +53,10 @@ const MyReviews = () => {
       </section>
       <LeaveReview />
       <div className={styles.wrapper}>
-        {arrayWithReviews.map((item) => <CardForMyReviews movie={item} key={item.id} />) && (
-          <h1>Список пуст</h1>
+        {arrayReview.movies.length > 0 ? (
+          arrayReview.movies.map((item) => <CardForMyReviews movie={item} key={item.id} />)
+        ) : (
+          <h3>Список пуст</h3>
         )}
       </div>
       <div className={styles.footer}>{/* <Footer /> */}</div>

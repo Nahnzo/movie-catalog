@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { HiMagnifyingGlass } from "react-icons/hi2";
 import styles from "./leaveReview.module.css";
 import CardForLeaveReview from "../CardForLeaveReview/CardForLeaveReview";
 
 const LeaveReview = () => {
   const [searchText, setSearchText] = useState("");
   const [arrayResults, setArrayResults] = useState([]);
+  const [showResultBlock, setShowResultBlock] = useState(false);
 
   const getMovie = async () => {
     try {
@@ -23,15 +25,12 @@ const LeaveReview = () => {
         }
       );
       const response = await data.json();
-      setArrayResults(response.docs);
+      setArrayResults(response.docs.filter((item) => item.poster));
+      setShowResultBlock(true);
     } catch (error) {
       console.log("Error: ", error.message);
     }
   };
-
-  // useEffect(() => {
-  //   console.log("arrayResults in useEffect:", arrayResults);
-  // }, [arrayResults]);
 
   const setText = (text) => {
     setSearchText(text);
@@ -39,22 +38,18 @@ const LeaveReview = () => {
 
   return (
     <div className={styles.wrapper}>
-      <div>
-        <button onClick={getMovie} className={styles.btn}>
-          найти
-        </button>
-      </div>
-
+      <h3>Найдите, что бы оставить рецензию</h3>
+      <HiMagnifyingGlass onClick={getMovie} className={styles.btn} />
       <input
         className={styles.search}
         placeholder="Кино, сериал, мультфильм"
         onChange={(e) => setText(e.target.value)}
       />
-      <div className={styles.searchResult}>
+      <div className={showResultBlock ? styles.searchResult : "none"}>
         {arrayResults.length > 0 ? (
           arrayResults.map((item) => <CardForLeaveReview movie={item} key={item.id} />)
         ) : (
-          <h2>Нет результатов</h2>
+          <h2 style={{ display: showResultBlock ? "block" : "none" }}>Нет результатов</h2>
         )}
       </div>
     </div>
