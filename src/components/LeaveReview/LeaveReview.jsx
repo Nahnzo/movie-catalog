@@ -47,7 +47,13 @@ const LeaveReview = () => {
       />
       <div className={showResultBlock ? styles.searchResult : "none"}>
         {arrayResults.length > 0 ? (
-          arrayResults.map((item) => <CardForLeaveReview movie={item} key={item.id} />)
+          arrayResults.map((item) => (
+            <CardForLeaveReview
+              movie={item}
+              key={item.id}
+              setShowResultBlock={setShowResultBlock}
+            />
+          ))
         ) : (
           <h2 style={{ display: showResultBlock ? "block" : "none" }}>Нет результатов</h2>
         )}

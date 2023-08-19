@@ -2,18 +2,20 @@
 import styles from "./handleReview.module.css";
 import { useState, useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { addReview } from "../../Slices/MyCollectionSlice";
+
+import { addReviews } from "../../Slices/ReviewSlice";
 
 const HandleReview = ({ movie }) => {
   const [readOnly, setReadOnly] = useState(true);
   const [initialText] = useState("Место для вашей рецензии");
   const dispatch = useDispatch();
+  console.log(movie);
 
   const [review, setReview] = useState("");
   const refTextArea = useRef(null);
 
   const leaveRw = () => {
-    dispatch(addReview({ movieId: movie.id, myReviews: review }));
+    dispatch(addReviews({ movieId: movie.id, myReviews: review }));
     setReadOnly((prev) => !prev);
     if (review == initialText) {
       setReview("");
@@ -38,14 +40,14 @@ const HandleReview = ({ movie }) => {
         ></textarea>
       </div>
       <button className={movie.myRating ? styles.rwBtn : styles.rwBtnAfter} onClick={leaveRw}>
-        {movie.myReviews ? "Изменить резенцию" : "Оставить рецензию"}
+        {movie.myReviews.length ? "Изменить резенцию" : "Оставить рецензию"}
       </button>
       {movie.myReviews.length !== 0 ? (
         <button
           className={styles.deleteRw}
           onClick={() => {
             setReview("");
-            dispatch(addReview({ movieId: movie.id, myReviews: "" }));
+            dispatch(addReviews({ movieId: movie.id, myReviews: "" }));
           }}
         >
           Удалить рецензию
