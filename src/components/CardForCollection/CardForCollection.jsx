@@ -7,10 +7,11 @@ import HandleRating from "../HandleRating/HandleRating";
 
 const CardForCollection = ({ movie }) => {
   const dispatch = useDispatch();
-  const { arrayReview } = useSelector((state) => state);
-  const review = arrayReview.movies.filter((item) => item.id === movie.id);
   const [showRateWindow, setShowRateWindow] = useState(false);
-  console.log(review[0]);
+  const { arrayReview } = useSelector((state) => state);
+  const review = arrayReview.movies
+    .filter((item) => item.id === movie.id)
+    .filter((item) => item.myReviews);
 
   return (
     <div className={styles.cardWrapper}>
@@ -20,7 +21,7 @@ const CardForCollection = ({ movie }) => {
           <h3>{movie.name}</h3>
           <p>{movie.shortDescription}</p>
           <hr />
-          <div className={styles.reviews}>{review[0].myReviews || "Место для вашей рецензии"}</div>
+          <div className={styles.reviews}>{review.map((item) => item.myReviews)}</div>
           <h4>
             {movie.myRating === 0 ? (
               <h5>

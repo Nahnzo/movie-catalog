@@ -9,7 +9,6 @@ const HandleReview = ({ movie }) => {
   const [readOnly, setReadOnly] = useState(true);
   const [initialText] = useState("Место для вашей рецензии");
   const dispatch = useDispatch();
-  console.log(movie);
 
   const [review, setReview] = useState("");
   const refTextArea = useRef(null);

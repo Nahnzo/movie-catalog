@@ -5,20 +5,14 @@ import { BiCameraMovie } from "react-icons/bi";
 import { BsFolder2Open } from "react-icons/bs";
 import Footer from "../Footer/Footer";
 import styles from "./myReviews.module.css";
-import { useEffect, useState } from "react";
 import CardForMyReviews from "../CardForMyReviews/CardForMyReviews";
 import LeaveReview from "../LeaveReview/LeaveReview";
+import { useEffect, useState } from "react";
 
 const MyReviews = () => {
-  const { myCollection, wantToSee } = useSelector((data) => data);
-  const { arrayReview } = useSelector((state) => state);
-
-  const [arrayWithReviews, setArrayWithReviews] = useState([]);
+  const { myCollection, wantToSee, arrayReview } = useSelector((data) => data);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    setArrayWithReviews(arrayReview.movies);
-  }, [myCollection.length]);
+  console.log(arrayReview);
 
   return (
     <section className={styles.main}>
@@ -50,11 +44,9 @@ const MyReviews = () => {
       </section>
       <LeaveReview />
       <div className={styles.wrapper}>
-        {arrayReview.movies.length > 0 ? (
-          arrayReview.movies.map((item) => <CardForMyReviews movie={item} key={item.id} />)
-        ) : (
-          <h1>Список пуст</h1>
-        )}
+        {arrayReview.movies.map((item) => (
+          <CardForMyReviews movie={item} key={item.id} />
+        ))}
       </div>
       <div className={styles.footer}>{/* <Footer /> */}</div>
     </section>
