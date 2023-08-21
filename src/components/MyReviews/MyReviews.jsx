@@ -17,10 +17,7 @@ const MyReviews = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // const arr = myCollection.myCollection.filter((item) => item.myReviews !== "");
-    // const arr = myCollection.myCollection.filter((item) => item.myReviews !== "");
     setArrayWithReviews(arrayReview.movies);
-    console.log(arrayWithReviews, "s");
   }, [myCollection.length]);
 
   return (
@@ -56,7 +53,7 @@ const MyReviews = () => {
         {arrayReview.movies.length > 0 ? (
           arrayReview.movies.map((item) => <CardForMyReviews movie={item} key={item.id} />)
         ) : (
-          <h3>Список пуст</h3>
+          <h1>Список пуст</h1>
         )}
       </div>
       <div className={styles.footer}>{/* <Footer /> */}</div>

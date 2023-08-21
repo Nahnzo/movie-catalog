@@ -29,7 +29,7 @@ const HandleReview = ({ movie }) => {
     }
   }, [readOnly]);
   return (
-    <div>
+    <div className={styles.wrapper}>
       <div className={styles.reviews}>
         <textarea
           className={styles.leaveRw}

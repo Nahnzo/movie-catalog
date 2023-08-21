@@ -1,20 +1,37 @@
 .wrapper {
-  width: 90%;
-  height: 70vh;
+  width: 100%;
+  height: 50vh;
   margin: auto;
   position: relative;
   align-items: center;
   text-align: center;
   padding: 10px;
   & > h3 {
+    font-size: 18px;
     color: white;
-    margin-bottom: 10px;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   }
-  display: none;
+}
+.wrapperHidden {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 30%;
+  height: 10vh;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  & > h3 {
+    font-size: 18px;
+    color: white;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  }
 }
 
 .search {
-  width: 500px;
+  margin: 10px;
+  width: 60%;
   height: 25px;
   padding: 10px;
   outline: none;
@@ -25,6 +42,20 @@
   font-family: "Ysabeau Infant", sans-serif;
   font-size: 17px;
 }
+.searchHidden {
+  margin: 10px;
+  width: 18%;
+  height: 25px;
+  padding: 10px;
+  outline: none;
+  color: white;
+  border: 1px solid white;
+  background-color: transparent;
+  border-radius: 8px;
+  font-family: "Ysabeau Infant", sans-serif;
+  font-size: 17px;
+}
+
 .searchResult {
   text-align: center;
   display: flex;
@@ -38,12 +69,28 @@
     margin: auto;
   }
 }
+.hiddenSearchResult {
+  display: none;
+  position: absolute;
+}
 
 .btn {
   position: absolute;
-  left: 62.5%;
-  top: 8.3%;
-  font-size: 26px;
+  top: 50px;
+  right: 50px;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+.btnHidden {
+  position: absolute;
+  top: 50px;
+  right: 38%;
+  font-size: 30px;
   color: white;
   cursor: pointer;
   &:hover {

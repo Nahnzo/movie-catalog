@@ -37,15 +37,19 @@ const LeaveReview = () => {
   };
 
   return (
-    <div className={styles.wrapper}>
+    <div className={showResultBlock ? styles.wrapper : styles.wrapperHidden}>
       <h3>Найдите, что бы оставить рецензию</h3>
-      <HiMagnifyingGlass onClick={getMovie} className={styles.btn} />
       <input
-        className={styles.search}
+        className={showResultBlock ? styles.searchHidden : styles.search}
         placeholder="Кино, сериал, мультфильм"
         onChange={(e) => setText(e.target.value)}
       />
-      <div className={showResultBlock ? styles.searchResult : "none"}>
+      <HiMagnifyingGlass
+        onClick={getMovie}
+        className={showResultBlock ? styles.btnHidden : styles.btn}
+      />
+
+      <div className={showResultBlock ? styles.searchResult : styles.hiddenSearchResult}>
         {arrayResults.length > 0 ? (
           arrayResults.map((item) => (
             <CardForLeaveReview
