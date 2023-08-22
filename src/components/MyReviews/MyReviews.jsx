@@ -7,12 +7,11 @@ import Footer from "../Footer/Footer";
 import styles from "./myReviews.module.css";
 import CardForMyReviews from "../CardForMyReviews/CardForMyReviews";
 import LeaveReview from "../LeaveReview/LeaveReview";
-import { useEffect, useState } from "react";
 
 const MyReviews = () => {
   const { myCollection, wantToSee, arrayReview } = useSelector((data) => data);
   const navigate = useNavigate();
-  console.log(arrayReview);
+  const firstMovie = arrayReview.movies[arrayReview.length - 1];
 
   return (
     <section className={styles.main}>
@@ -43,11 +42,7 @@ const MyReviews = () => {
         </nav>
       </section>
       <LeaveReview />
-      <div className={styles.wrapper}>
-        {arrayReview.movies.map((item) => (
-          <CardForMyReviews movie={item} key={item.id} />
-        ))}
-      </div>
+      <div className={styles.wrapper}>{firstMovie && <CardForMyReviews movie={firstMovie} />}</div>
       <div className={styles.footer}>{/* <Footer /> */}</div>
     </section>
   );

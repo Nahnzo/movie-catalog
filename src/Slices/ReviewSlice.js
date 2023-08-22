@@ -9,8 +9,7 @@ export const ReviewSlice = createSlice({
   reducers: {
     addMovieToReview(state, action) {
       state.movies.push({ ...action.payload, myReviews: "" });
-      // state.movies = [{ ...action.payload, myReviews: "" }];
-      state.length = 1;
+      state.length++;
     },
     addReviews(state, action) {
       const { movieId, myReviews } = action.payload;

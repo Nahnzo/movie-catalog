@@ -9,7 +9,6 @@ const HandleReview = ({ movie }) => {
   const [readOnly, setReadOnly] = useState(true);
   const [initialText] = useState("Место для вашей рецензии");
   const dispatch = useDispatch();
-
   const [review, setReview] = useState("");
   const refTextArea = useRef(null);
 
@@ -26,7 +25,7 @@ const HandleReview = ({ movie }) => {
     if (readOnly) {
       setReview(review || initialText);
     }
-  }, [readOnly]);
+  }, [readOnly, movie]);
   return (
     <div className={styles.wrapper}>
       <div className={styles.reviews}>

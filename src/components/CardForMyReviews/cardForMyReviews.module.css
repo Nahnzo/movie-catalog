@@ -2,6 +2,7 @@
   height: 500px;
   width: 300px;
   margin: 10px;
+  z-index: 2;
 }
 .poster {
   height: 100%;
