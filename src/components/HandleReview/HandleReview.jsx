@@ -1,8 +1,7 @@
 /* eslint-disable react/prop-types */
 import styles from "./handleReview.module.css";
 import { useState, useRef, useEffect } from "react";
-import { useDispatch } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
 import { addReviews } from "../../Slices/ReviewSlice";
 
 const HandleReview = ({ movie }) => {
@@ -15,7 +14,7 @@ const HandleReview = ({ movie }) => {
   const leaveRw = () => {
     dispatch(addReviews({ movieId: movie.id, myReviews: review }));
     setReadOnly((prev) => !prev);
-    if (review == initialText) {
+    if (review === initialText) {
       setReview("");
     }
     refTextArea.current.focus();
@@ -23,9 +22,10 @@ const HandleReview = ({ movie }) => {
 
   useEffect(() => {
     if (readOnly) {
-      setReview(review || initialText);
+      setReview(movie.myReviews || initialText);
     }
   }, [readOnly, movie]);
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.reviews}>

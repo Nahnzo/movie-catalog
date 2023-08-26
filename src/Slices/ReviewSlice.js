@@ -13,6 +13,7 @@ export const ReviewSlice = createSlice({
     },
     addReviews(state, action) {
       const { movieId, myReviews } = action.payload;
+      console.log(movieId, myReviews);
       const movieIndex = state.movies.findIndex((item) => item.id === movieId);
       if (movieIndex !== -1) {
         state.movies[movieIndex].myReviews = myReviews;
