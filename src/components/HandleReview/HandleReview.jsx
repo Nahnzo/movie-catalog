@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { addReviews } from "../../Slices/ReviewSlice";
 
 const HandleReview = ({ movie }) => {
+  const data = useSelector((data) => data.arrayReview.movies);
+  const filter = data.filter((item) => item.id === movie.id && item.myReviews);
   const [readOnly, setReadOnly] = useState(true);
   const [initialText] = useState("Место для вашей рецензии");
   const dispatch = useDispatch();
@@ -22,7 +24,7 @@ const HandleReview = ({ movie }) => {
 
   useEffect(() => {
     if (readOnly) {
-      setReview(movie.myReviews || initialText);
+      setReview(filter[0]?.myReviews || movie.myReviews || initialText);
     }
   }, [readOnly, movie]);
 
@@ -34,7 +36,7 @@ const HandleReview = ({ movie }) => {
           onChange={(e) => setReview(e.target.value)}
           readOnly={readOnly}
           ref={refTextArea}
-          value={readOnly ? movie.myReviews || initialText : review}
+          value={readOnly ? filter[0]?.myReviews || movie.myReviews || initialText : review}
         ></textarea>
       </div>
       <button className={movie.myRating ? styles.rwBtn : styles.rwBtnAfter} onClick={leaveRw}>
