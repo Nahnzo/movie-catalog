@@ -9,15 +9,17 @@ const HandleWantToSee = ({ movie }) => {
   const data = useSelector((state) => state.myCollection);
   const isInMyCollection = data.myCollection.some((item) => item.id === movie.id);
   const handleIconFolder = isInMyCollection ? (
-    <BsHeartFill className={styles.collectionFill} onClick={() => handleClick(movie)} />
+    <BsHeartFill className={styles.collectionFill} onClick={(event) => handleClick(event, movie)} />
   ) : (
-    <BsHeart className={styles.collectionEmpty} onClick={() => handleClick(movie)} />
+    <BsHeart className={styles.collectionEmpty} onClick={(event) => handleClick(event, movie)} />
   );
 
-  const handleClick = (item) => {
+  const handleClick = (event, item) => {
     if (isInMyCollection) {
+      event.stopPropagation();
       dispatch(removeMovieFromCollection(item));
     } else {
+      event.stopPropagation();
       dispatch(addMovieToCollection(item));
     }
   };

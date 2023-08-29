@@ -1,11 +1,16 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./movieCard.module.css";
 import HandleWantToSee from "../HandleWantToSee/HandleWantToSee";
 import HandleMyCollection from "../HandleMyCollection/HandleMyCollection";
 
 const MovieCard = ({ data }) => {
   const [showDetails, setShowDetails] = useState(false);
+  const navigate = useNavigate();
+  const navigateToDetail = (movie) => {
+    navigate(`/movie-catalog/film/${movie.id}`);
+  };
 
   return (
     <div>
@@ -14,6 +19,7 @@ const MovieCard = ({ data }) => {
         style={{ backgroundImage: `url(${data.poster.url})` }}
         onMouseEnter={() => setShowDetails(true)}
         onMouseLeave={() => setShowDetails(false)}
+        onClick={() => navigateToDetail(data)}
       >
         <div style={{ display: showDetails ? "block" : "none" }}>
           <HandleWantToSee movie={data} />

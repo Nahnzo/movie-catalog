@@ -59,10 +59,9 @@
 .searchResult {
   text-align: center;
   display: flex;
-  width: 100%;
+  width: 90%;
   height: 70vh;
   margin: 20px auto;
-  background-color: black;
   border-radius: 10px;
   & > h2 {
     color: white;

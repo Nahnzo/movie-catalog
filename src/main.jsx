@@ -9,6 +9,7 @@ import MyCollection from "./components/MyCollection/MyCollection.jsx";
 import WhatToSee from "./components/WhatToSee/WhatToSee.jsx";
 import WantToSee from "./components/WantToSee/WantToSee.jsx";
 import MyReviews from "./components/MyReviews/MyReviews.jsx";
+import AboutFilm from "./components/AboutFilm/AboutFilm.jsx";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,14 @@ const router = createBrowserRouter([
   {
     path: ROUTES.myReviews,
     element: <MyReviews />,
+  },
+  {
+    path: "/movie-catalog/film/:id",
+    element: <AboutFilm />,
+  },
+  {
+    path: "*",
+    element: <div style={{ textAlign: "center" }}>Такой страницы не существует</div>,
   },
 ]);
 

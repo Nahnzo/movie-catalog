@@ -5,4 +5,11 @@
   background-size: 70%;
   margin-top: 25px;
   cursor: pointer;
+  opacity: 0.9;
+  text-align: center;
+  align-items: center;
+}
+
+.wrapper > h4 {
+  color: rgb(245, 241, 241);
 }

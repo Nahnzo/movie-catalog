@@ -9,15 +9,20 @@ const HandleWantToSee = ({ movie }) => {
   const data = useSelector((state) => state.wantToSee);
   const isInWantToSee = data.wantToSee.some((item) => item.id === movie.id);
   const handleIconFolder = isInWantToSee ? (
-    <BsFolderMinus className={styles.wantToSeeMinus} onClick={() => handleClick(movie)} />
+    <BsFolderMinus
+      className={styles.wantToSeeMinus}
+      onClick={(event) => handleClick(event, movie)}
+    />
   ) : (
-    <BsFolderPlus className={styles.wantToSeePlus} onClick={() => handleClick(movie)} />
+    <BsFolderPlus className={styles.wantToSeePlus} onClick={(event) => handleClick(event, movie)} />
   );
 
-  const handleClick = (item) => {
+  const handleClick = (event, item) => {
     if (isInWantToSee) {
+      event.stopPropagation();
       dispatch(removeMovie(item));
     } else {
+      event.stopPropagation();
       dispatch(addMovie(item));
     }
   };

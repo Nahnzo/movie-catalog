@@ -31,6 +31,8 @@ const HandleReview = ({ movie }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.reviews}>
+        <h2>{movie.name || movie.alternativeName}</h2>
+        <hr />
         <textarea
           className={styles.leaveRw}
           onChange={(e) => setReview(e.target.value)}
@@ -39,6 +41,7 @@ const HandleReview = ({ movie }) => {
           value={readOnly ? filter[0]?.myReviews || movie.myReviews || initialText : review}
         ></textarea>
       </div>
+
       <button className={movie.myRating ? styles.rwBtn : styles.rwBtnAfter} onClick={leaveRw}>
         {movie.myReviews.length ? "Изменить резенцию" : "Оставить рецензию"}
       </button>
