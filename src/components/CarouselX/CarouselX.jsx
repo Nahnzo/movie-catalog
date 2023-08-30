@@ -2,6 +2,7 @@
 import styles from "./carouselX.module.css";
 
 const CarouselX = ({ wrapper, data }) => {
+  console.log(wrapper, data);
   let currentPosition = 0;
   let count = 0;
 

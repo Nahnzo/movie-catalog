@@ -9,7 +9,7 @@ const MovieCard = ({ data }) => {
   const [showDetails, setShowDetails] = useState(false);
   const navigate = useNavigate();
   const navigateToDetail = (movie) => {
-    navigate(`/movie-catalog/film/${movie.id}`);
+    navigate(`/movie-catalog/${movie.type}/${movie.id}`);
   };
 
   return (

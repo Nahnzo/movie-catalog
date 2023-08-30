@@ -1,13 +1,25 @@
-import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { getFilmById } from "../../tools/getFilmById";
+import styles from "./aboutFilm.module.css";
+import CardForDetail from "../CardForDetails/CardForDetail";
 
 const AboutFilm = () => {
   const { id } = useParams();
-  const detail = useSelector((state) =>
-    state.movie.movie.docs.find((emp) => emp.id === parseInt(id))
-  );
+  const [movie, setMovie] = useState([]);
 
-  return <div>{detail.name}</div>;
+  const getInfo = async () => {
+    const response = await getFilmById(id);
+    setMovie([response]);
+  };
+
+  useEffect(() => {
+    getInfo();
+  }, [id]);
+
+  return (
+    <main className={styles.mainWrapper}>{movie.length && <CardForDetail movie={movie[0]} />}</main>
+  );
 };
 
 export default AboutFilm;

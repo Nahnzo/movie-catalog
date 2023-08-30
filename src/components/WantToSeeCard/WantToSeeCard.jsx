@@ -8,7 +8,6 @@ import HandleMovieInWantToSee from "../HandleMovieInWantToSee/HandleMovieInWantT
 
 const WantToSeeCard = ({ firstMovie, setFirst, data }) => {
   let fMovie = firstMovie[0];
-  console.log(fMovie);
   useEffect(() => {
     setFirst([data[0]]);
   }, [data]);
