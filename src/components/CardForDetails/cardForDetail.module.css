@@ -10,7 +10,7 @@
 .wrapperCard {
   width: 90%;
   height: 60vh;
-  margin: auto;
+  margin: 140px auto;
   display: flex;
   justify-content: center;
 }
@@ -42,10 +42,12 @@
   height: 90%;
 }
 .wrapperActors {
-  overflow: hidden;
+  overflow-y: hidden;
   position: absolute;
   bottom: 50px;
+  margin: auto;
+  width: 70%;
   height: 130px;
-  width: 80%;
   display: flex;
+  transition: transform 0.8s ease-in;
 }

@@ -18,7 +18,9 @@ const AboutFilm = () => {
   }, [id]);
 
   return (
-    <main className={styles.mainWrapper}>{movie.length && <CardForDetail movie={movie[0]} />}</main>
+    <section className={styles.mainWrapper}>
+      {movie.length && <CardForDetail movie={movie[0]} />}
+    </section>
   );
 };
 

@@ -2,11 +2,7 @@
 import styles from "./cardForActors.module.css";
 
 const CardForActors = ({ actor }) => {
-  return (
-    <div>
-      <div style={{ backgroundImage: `url(${actor.photo})` }} className={styles.avatar}></div>
-    </div>
-  );
+  return <div style={{ backgroundImage: `url(${actor.photo})` }} className={styles.avatar}></div>;
 };
 
 export default CardForActors;

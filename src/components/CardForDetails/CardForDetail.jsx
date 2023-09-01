@@ -3,10 +3,17 @@ import formatTime from "../../tools/time";
 import CardForActors from "../CardForActors/CardForActors";
 import CarouselX from "../CarouselX/CarouselX";
 import styles from "./cardForDetail.module.css";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 const CardForDetail = ({ movie }) => {
   const ref = useRef(null);
-  const wrapper = ref.current;
+  const actors = movie.persons.filter((item) => item.enProfession === "actor");
+  const [wrapper, setWrapper] = useState(null);
+  useEffect(() => {
+    if (ref.current) {
+      const wrapperElement = ref.current;
+      setWrapper(wrapperElement);
+    }
+  }, []);
 
   return (
     <div className={styles.mainWrapper}>
@@ -17,7 +24,7 @@ const CardForDetail = ({ movie }) => {
         ></div>
         <div className={styles.infoWrapper}>
           <div className={styles.description}>
-            <p>{movie.shortDescription}</p>
+            <h3>{movie.shortDescription}</h3>
           </div>
           <div className={styles.info}>
             {movie.budget.value ? (
@@ -34,11 +41,13 @@ const CardForDetail = ({ movie }) => {
         </div>
       </div>
       <div className={styles.wrapperActors} ref={ref}>
-        {movie.persons.map((item, index) => (
-          <CardForActors actor={item} key={index} />
-        ))}
-        <CarouselX data={movie.persons} wrapper={wrapper} />
+        {movie.persons
+          .filter((item) => item.enProfession === "actor")
+          .map((item, index) => (
+            <CardForActors actor={item} key={index} />
+          ))}
       </div>
+      <CarouselX data={actors} wrapper={wrapper} />
     </div>
   );
 };
