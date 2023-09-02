@@ -1,12 +1,13 @@
 /* eslint-disable react/prop-types */
-import { useDispatch, useSelector } from "react-redux";
 import { BsFolderPlus, BsFolderMinus } from "react-icons/bs";
 import { addMovie, removeMovie } from "../../Slices/WantToSeeSlice";
 import styles from "./handleWantToSee.module.css";
+import useAppDispatch from "../../hooks/useAppDispatch";
+import useAppSelector from "../../hooks/useAppSelector";
 
 const HandleWantToSee = ({ movie }) => {
-  const dispatch = useDispatch();
-  const data = useSelector((state) => state.wantToSee);
+  const { dispatchFunction } = useAppDispatch();
+  const { data } = useAppSelector("wantToSee");
   const isInWantToSee = data.wantToSee.some((item) => item.id === movie.id);
   const handleIconFolder = isInWantToSee ? (
     <BsFolderMinus
@@ -20,10 +21,10 @@ const HandleWantToSee = ({ movie }) => {
   const handleClick = (event, item) => {
     if (isInWantToSee) {
       event.stopPropagation();
-      dispatch(removeMovie(item));
+      dispatchFunction(() => removeMovie(item));
     } else {
       event.stopPropagation();
-      dispatch(addMovie(item));
+      dispatchFunction(() => addMovie(item));
     }
   };
   return <>{handleIconFolder}</>;

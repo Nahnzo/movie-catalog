@@ -1,20 +1,20 @@
 /* eslint-disable react/prop-types */
-import styles from "./handleReview.module.css";
 import { useState, useRef, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { addReviews } from "../../Slices/ReviewSlice";
+import useFilteredMovie from "../../hooks/useFilteredMovie";
+import useAppDispatch from "../../hooks/useAppDispatch";
+import styles from "./handleReview.module.css";
 
 const HandleReview = ({ movie }) => {
-  const data = useSelector((data) => data.arrayReview.movies);
-  const filter = data.filter((item) => item.id === movie.id && item.myReviews);
+  const { filteredMovie } = useFilteredMovie("arrayReview", movie, { includeReview: true });
+  const { dispatchFunction } = useAppDispatch();
   const [readOnly, setReadOnly] = useState(true);
   const [initialText] = useState("Место для вашей рецензии");
-  const dispatch = useDispatch();
   const [review, setReview] = useState("");
   const refTextArea = useRef(null);
 
   const leaveRw = () => {
-    dispatch(addReviews({ movieId: movie.id, myReviews: review }));
+    dispatchFunction(() => addReviews({ movieId: movie.id, myReviews: review }));
     setReadOnly((prev) => !prev);
     if (review === initialText) {
       setReview("");
@@ -24,7 +24,7 @@ const HandleReview = ({ movie }) => {
 
   useEffect(() => {
     if (readOnly) {
-      setReview(filter[0]?.myReviews || movie.myReviews || initialText);
+      setReview(filteredMovie.myReviews || movie.myReviews || initialText);
     }
   }, [readOnly, movie]);
 
@@ -38,7 +38,7 @@ const HandleReview = ({ movie }) => {
           onChange={(e) => setReview(e.target.value)}
           readOnly={readOnly}
           ref={refTextArea}
-          value={readOnly ? filter[0]?.myReviews || movie.myReviews || initialText : review}
+          value={readOnly ? filteredMovie.myReviews || movie.myReviews || initialText : review}
         ></textarea>
       </div>
 
@@ -50,7 +50,7 @@ const HandleReview = ({ movie }) => {
           className={styles.deleteRw}
           onClick={() => {
             setReview("");
-            dispatch(addReviews({ movieId: movie.id, myReviews: "" }));
+            dispatchFunction(() => addReviews({ movieId: movie.id, myReviews: "" }));
           }}
         >
           Удалить рецензию

@@ -1,14 +1,17 @@
 /* eslint-disable react/prop-types */
-import { useDispatch, useSelector } from "react-redux";
-import { addMovieToCollection, removeMovieFromCollection } from "../../Slices/MyCollectionSlice";
 import styles from "./handleMovieInWantToSee.module.css";
+import useAppDispatch from "../../hooks/useAppDispatch";
+import useAppSelector from "../../hooks/useAppSelector";
+import { addMovieToCollection, removeMovieFromCollection } from "../../Slices/MyCollectionSlice";
 
 const HandleMovieInWantToSee = ({ fMovie }) => {
-  const dispatch = useDispatch();
-  let movie = useSelector((data) => data.myCollection.myCollection);
-  let phrase = movie.some((item) => item.id === fMovie.id);
+  const { dispatchFunction } = useAppDispatch();
+  const { data } = useAppSelector("myCollection");
+  let phrase = data.myCollection.some((item) => item.id === fMovie.id);
   const handleMovie = (movie) => {
-    phrase ? dispatch(removeMovieFromCollection(movie)) : dispatch(addMovieToCollection(movie));
+    phrase
+      ? dispatchFunction(() => removeMovieFromCollection(movie))
+      : dispatchFunction(() => addMovieToCollection(movie));
   };
 
   return (

@@ -1,12 +1,14 @@
 /* eslint-disable react/prop-types */
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { addMovieToCollection, removeMovieFromCollection } from "../../Slices/MyCollectionSlice";
 import styles from "./handleMyCollection.module.css";
+import useAppDispatch from "../../hooks/useAppDispatch";
+import useAppSelector from "../../hooks/useAppSelector";
 
 const HandleWantToSee = ({ movie }) => {
-  const dispatch = useDispatch();
-  const data = useSelector((state) => state.myCollection);
+  const { dispatchFunction } = useAppDispatch();
+  const { data } = useAppSelector("myCollection");
   const isInMyCollection = data.myCollection.some((item) => item.id === movie.id);
   const handleIconFolder = isInMyCollection ? (
     <BsHeartFill className={styles.collectionFill} onClick={(event) => handleClick(event, movie)} />
@@ -17,10 +19,10 @@ const HandleWantToSee = ({ movie }) => {
   const handleClick = (event, item) => {
     if (isInMyCollection) {
       event.stopPropagation();
-      dispatch(removeMovieFromCollection(item));
+      dispatchFunction(() => removeMovieFromCollection(item));
     } else {
       event.stopPropagation();
-      dispatch(addMovieToCollection(item));
+      dispatchFunction(() => addMovieToCollection(item));
     }
   };
   return <>{handleIconFolder}</>;
