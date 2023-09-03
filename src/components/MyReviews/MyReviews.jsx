@@ -1,44 +1,31 @@
-import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../routes";
-import { useSelector } from "react-redux";
 import { BiCameraMovie } from "react-icons/bi";
 import { BsFolder2Open } from "react-icons/bs";
-import Footer from "../Footer/Footer";
 import styles from "./myReviews.module.css";
 import CardForMyReviews from "../CardForMyReviews/CardForMyReviews";
 import LeaveReview from "../LeaveReview/LeaveReview";
+import Navbar from "../../shared/Navbar/Navbar";
+import useDataLength from "../../hooks/useDataLength";
 
 const MyReviews = () => {
-  const { myCollection, wantToSee, arrayReview } = useSelector((data) => data);
-  const navigate = useNavigate();
+  const { myCollection, wantToSee, arrayReview } = useDataLength();
   const firstMovie = arrayReview.movies[arrayReview.length - 1];
-
   return (
     <section className={styles.main}>
       <section className={styles.header}>
         <nav className={styles.navigation}>
-          <h3 onClick={() => navigate(ROUTES.home)}>На главную</h3>
-          <h3 onClick={() => navigate(ROUTES.wantToSee)}>
+          <Navbar path={ROUTES.home}>На главную</Navbar>
+          <Navbar path={ROUTES.wantToSee} icon={<BsFolder2Open />} dataLength={wantToSee.length}>
             Хочу посмотреть
-            <div
-              className={styles.icons}
-              style={{ display: wantToSee.length ? "inline-flex" : "none" }}
-            >
-              <BsFolder2Open />
-              <div className={styles.counter}>{wantToSee.length}</div>
-            </div>
-          </h3>
-          <h3 onClick={() => navigate(ROUTES.myCollection)}>
+          </Navbar>
+          <Navbar
+            path={ROUTES.myCollection}
+            icon={<BiCameraMovie />}
+            dataLength={myCollection.length}
+          >
             Моя коллекция
-            <div
-              className={styles.icons}
-              style={{ display: myCollection.length ? "inline-flex" : "none" }}
-            >
-              <BiCameraMovie />
-              <div className={styles.counter}>{myCollection.length}</div>
-            </div>
-          </h3>
-          <h3 onClick={() => navigate(ROUTES.whatToSee)}>Что посмотреть?</h3>
+          </Navbar>
+          <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>
         </nav>
       </section>
       <LeaveReview />

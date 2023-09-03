@@ -2,13 +2,12 @@
 import formatTime from "../../tools/time";
 import CardForActors from "../CardForActors/CardForActors";
 import CarouselX from "../CarouselX/CarouselX";
-import SimilarFilms from "../SimilarFilms/SimilarFilms";
+import SequelsAndPrequels from "../SequelsAndPrequels/SequelsAndPrequels";
 import styles from "./cardForDetail.module.css";
+import SimilarFilms from "../SimilarFilms/SimilarFilms";
 import { useEffect, useRef, useState } from "react";
 const CardForDetail = ({ movie }) => {
-  console.log(movie);
   const ref = useRef(null);
-  const actors = movie.persons.filter((item) => item.enProfession === "actor");
   const [wrapper, setWrapper] = useState(null);
   useEffect(() => {
     if (ref.current) {
@@ -18,7 +17,7 @@ const CardForDetail = ({ movie }) => {
   }, []);
 
   return (
-    <div className={styles.mainWrapper}>
+    <div>
       <div className={styles.wrapperCard}>
         <div
           className={styles.poster}
@@ -46,7 +45,6 @@ const CardForDetail = ({ movie }) => {
       <div className={styles.actors}>
         <h3>Актеры</h3>
       </div>
-
       <div className={styles.wrapperActors} ref={ref}>
         {movie.persons
           .filter((item) => item.enProfession === "actor")
@@ -54,15 +52,14 @@ const CardForDetail = ({ movie }) => {
             <CardForActors actor={item} key={index} />
           ))}
       </div>
-      <CarouselX data={actors} wrapper={wrapper} />
+      {/* <CarouselX data={actors} wrapper={wrapper} /> */}
       <div className={styles.sequelsAndPrequels}>
         <h3>Сиквелы и приквелы</h3>
       </div>
-      <SimilarFilms movies={movie.sequelsAndPrequels} />
+      <SequelsAndPrequels movies={movie.sequelsAndPrequels} />
       <div className={styles.similar}>
         <h3>Похожее</h3>
       </div>
-
       <SimilarFilms movies={movie.similarMovies} />
     </div>
   );

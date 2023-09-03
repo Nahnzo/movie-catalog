@@ -1,41 +1,27 @@
-import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../routes";
 import { BsFolder2Open } from "react-icons/bs";
-import { useSelector } from "react-redux";
 import { BiCameraMovie } from "react-icons/bi";
+import useDataLength from "../../hooks/useDataLength";
 import styles from "./header.module.css";
+import Navbar from "../../shared/Navbar/Navbar";
 
 const Header = () => {
-  const navigate = useNavigate();
-  const dataLengthWantToSee = useSelector((state) => state.wantToSee.length);
-  const dataLengthMyCollection = useSelector((state) => state.myCollection.length);
+  const { wantToSee, myCollection } = useDataLength();
   return (
     <section className={styles.header}>
       <nav className={styles.navigation}>
-        <h3 onClick={() => navigate(`${ROUTES.wantToSee}`)}>
+        <Navbar path={ROUTES.wantToSee} icon={<BsFolder2Open />} dataLength={wantToSee.length}>
           Хочу посмотреть
-          <div
-            className={
-              dataLengthWantToSee ? styles.counterWantToSee : styles.counterWantToSeeHidden
-            }
-          >
-            <BsFolder2Open />
-            <div className={styles.counter}>{dataLengthWantToSee}</div>
-          </div>
-        </h3>
-        <h3 onClick={() => navigate(`${ROUTES.myCollection}`)}>
+        </Navbar>
+        <Navbar
+          path={ROUTES.myCollection}
+          icon={<BiCameraMovie />}
+          dataLength={myCollection.length}
+        >
           Моя коллекция
-          <div
-            className={
-              dataLengthMyCollection ? styles.counterWantToSee : styles.counterWantToSeeHidden
-            }
-          >
-            <BiCameraMovie />
-            <div className={styles.counter}>{dataLengthMyCollection}</div>
-          </div>
-        </h3>
-        <h3 onClick={() => navigate(`${ROUTES.myReviews}`)}>Мои рецензии</h3>
-        <h3 onClick={() => navigate(`${ROUTES.whatToSee}`)}>Что посмотреть?</h3>
+        </Navbar>
+        <Navbar path={ROUTES.myReviews}>Мои рецензии</Navbar>
+        <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>
       </nav>
     </section>
   );

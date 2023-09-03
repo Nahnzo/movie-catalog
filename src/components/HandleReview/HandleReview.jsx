@@ -6,13 +6,12 @@ import useAppDispatch from "../../hooks/useAppDispatch";
 import styles from "./handleReview.module.css";
 
 const HandleReview = ({ movie }) => {
-  const { filteredMovie } = useFilteredMovie("arrayReview", movie, { includeReview: true });
+  const { filteredMovie } = useFilteredMovie("arrayReview", movie);
   const { dispatchFunction } = useAppDispatch();
   const [readOnly, setReadOnly] = useState(true);
   const [initialText] = useState("Место для вашей рецензии");
   const [review, setReview] = useState("");
   const refTextArea = useRef(null);
-
   const leaveRw = () => {
     dispatchFunction(() => addReviews({ movieId: movie.id, myReviews: review }));
     setReadOnly((prev) => !prev);
@@ -24,7 +23,7 @@ const HandleReview = ({ movie }) => {
 
   useEffect(() => {
     if (readOnly) {
-      setReview(filteredMovie.myReviews || movie.myReviews || initialText);
+      setReview(filteredMovie[0]?.myReviews || movie.myReviews || initialText);
     }
   }, [readOnly, movie]);
 
@@ -38,7 +37,7 @@ const HandleReview = ({ movie }) => {
           onChange={(e) => setReview(e.target.value)}
           readOnly={readOnly}
           ref={refTextArea}
-          value={readOnly ? filteredMovie.myReviews || movie.myReviews || initialText : review}
+          value={readOnly ? filteredMovie[0]?.myReviews || movie.myReviews || initialText : review}
         ></textarea>
       </div>
 
