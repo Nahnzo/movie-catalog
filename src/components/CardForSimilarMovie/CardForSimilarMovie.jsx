@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 const CardForSimilarMovie = ({ movie }) => {
   const navigate = useNavigate();
   const ref = useRef(null);
-  console.log(ref);
   const navigateToDetail = (movie) => {
     navigate(`/movie-catalog/${movie.type}/${movie.id}`);
     // ref.style.transform = `translateY(${50}%)`;

@@ -8,6 +8,7 @@ import SimilarFilms from "../SimilarFilms/SimilarFilms";
 import { useEffect, useRef, useState } from "react";
 const CardForDetail = ({ movie }) => {
   const ref = useRef(null);
+  console.log(movie);
   const [wrapper, setWrapper] = useState(null);
   useEffect(() => {
     if (ref.current) {
@@ -37,7 +38,8 @@ const CardForDetail = ({ movie }) => {
             <p>Страны: {movie.countries.map((item) => item.name) + "."}</p>
             <p>Жанры: {movie.genres.map((item) => item.name) + "."}</p>
             <p>Год {movie.year}</p>
-            <p>Длительность: {formatTime(movie.movieLength)}</p>
+            <p>Длительность: {formatTime(movie.movieLength) && movie.seasonsInfo.length}</p>
+            {/* Доделать */}
             <p>{movie.top10 || movie.top250 ? `Тoп - ${movie.top10 || movie.top250}` : ""}</p>
           </div>
         </div>
@@ -53,14 +55,14 @@ const CardForDetail = ({ movie }) => {
           ))}
       </div>
       {/* <CarouselX data={actors} wrapper={wrapper} /> */}
-      <div className={styles.sequelsAndPrequels}>
-        <h3>Сиквелы и приквелы</h3>
-      </div>
-      <SequelsAndPrequels movies={movie.sequelsAndPrequels} />
+      {movie.sequelsAndPrequels.length !== 0 && (
+        <div className={styles.sequelsAndPrequels}>
+          <SequelsAndPrequels movies={movie.sequelsAndPrequels} />
+        </div>
+      )}
       <div className={styles.similar}>
-        <h3>Похожее</h3>
+        <SimilarFilms movies={movie.similarMovies} />
       </div>
-      <SimilarFilms movies={movie.similarMovies} />
     </div>
   );
 };

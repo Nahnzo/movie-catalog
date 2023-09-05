@@ -4,11 +4,14 @@ import styles from "./sequelsAndPrequels.module.css";
 
 const SequelsAndPrequels = ({ movies }) => {
   return (
-    <div className={styles.wrapper}>
-      {movies.map((item) => (
-        <CardForSimilarMovie movie={item} key={item.id} />
-      ))}
-    </div>
+    <>
+      <h3>Сиквели и приквелы</h3>
+      <div className={styles.wrapper}>
+        {movies.map((item) => (
+          <CardForSimilarMovie movie={item} key={item.id} />
+        ))}
+      </div>
+    </>
   );
 };
 

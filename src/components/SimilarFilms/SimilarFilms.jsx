@@ -3,11 +3,14 @@ import styles from "./similarFilms.module.css";
 
 const SimilarFilms = ({ movies }) => {
   return (
-    <div className={styles.wrapper}>
-      {movies.map((item) => (
-        <CardForSimilarMovie movie={item} key={item.id} />
-      ))}
-    </div>
+    <>
+      <h3>Похожее</h3>
+      <div className={styles.wrapper}>
+        {movies.map((item) => (
+          <CardForSimilarMovie movie={item} key={item.id} />
+        ))}
+      </div>
+    </>
   );
 };
 
