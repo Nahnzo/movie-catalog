@@ -1,7 +1,7 @@
 import styles from "./wantToSee.module.css";
-import WantToSeeCard from "../WantToSeeCard/WantToSeeCard";
-import CarouselX from "../CarouselX/CarouselX";
-import Footer from "../Footer/Footer";
+import WantToSeeCard from "../../components/WantToSeeCard/WantToSeeCard";
+import CarouselX from "../../components/CarouselX/CarouselX";
+import Footer from "../../components/Footer/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../routes";

@@ -38,7 +38,11 @@ const CardForDetail = ({ movie }) => {
             <p>Страны: {movie.countries.map((item) => item.name) + "."}</p>
             <p>Жанры: {movie.genres.map((item) => item.name) + "."}</p>
             <p>Год {movie.year}</p>
-            <p>Длительность: {formatTime(movie.movieLength) && movie.seasonsInfo.length}</p>
+            {movie.seasonsInfo.length !== 0 && (
+              <p>
+                Длительность: {(formatTime(movie.movieLength) && movie.seasonsInfo.length) || ""}
+              </p>
+            )}
             {/* Доделать */}
             <p>{movie.top10 || movie.top250 ? `Тoп - ${movie.top10 || movie.top250}` : ""}</p>
           </div>

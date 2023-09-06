@@ -2,8 +2,8 @@ import { ROUTES } from "../../routes";
 import { BiCameraMovie } from "react-icons/bi";
 import { BsFolder2Open } from "react-icons/bs";
 import styles from "./myReviews.module.css";
-import CardForMyReviews from "../CardForMyReviews/CardForMyReviews";
-import LeaveReview from "../LeaveReview/LeaveReview";
+import CardForMyReviews from "../../components/CardForMyReviews/CardForMyReviews";
+import LeaveReview from "../../components/LeaveReview/LeaveReview";
 import Navbar from "../../shared/Navbar/Navbar";
 import useDataLength from "../../hooks/useDataLength";
 

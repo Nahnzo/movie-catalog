@@ -5,10 +5,10 @@ import { ROUTES } from "./routes.js";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
-import MyCollection from "./components/MyCollection/MyCollection.jsx";
-import WhatToSee from "./components/WhatToSee/WhatToSee.jsx";
-import WantToSee from "./components/WantToSee/WantToSee.jsx";
-import MyReviews from "./components/MyReviews/MyReviews.jsx";
+import MyCollection from "./pages/MyCollection/MyCollection.jsx";
+import WhatToSee from "./pages/WhatToSee/WhatToSee.jsx";
+import WantToSee from "./pages/WantToSee/WantToSee.jsx";
+import MyReviews from "./pages/MyReviews/MyReviews.jsx";
 import AboutFilm from "./components/AboutFilm/AboutFilm.jsx";
 
 const router = createBrowserRouter([

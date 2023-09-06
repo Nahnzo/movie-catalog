@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../routes";
 import { useDispatch, useSelector } from "react-redux";
 import { BsFolder2Open } from "react-icons/bs";
-import Footer from "../Footer/Footer";
+import Footer from "../../components/Footer/Footer";
 import styles from "./myCollection.module.css";
-import CardForCollection from "../CardForCollection/CardForCollection";
+import CardForCollection from "../../components/CardForCollection/CardForCollection";
 import { clearAll } from "../../Slices/MyCollectionSlice";
 
 const MyCollection = () => {
