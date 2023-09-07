@@ -3,6 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import { addReviews } from "../../Slices/ReviewSlice";
 import useFilteredMovie from "../../hooks/useFilteredMovie";
 import useAppDispatch from "../../hooks/useAppDispatch";
+import MyButton from "../../shared/MyButton/MyButton";
 import styles from "./handleReview.module.css";
 
 const HandleReview = ({ movie }) => {
@@ -40,20 +41,22 @@ const HandleReview = ({ movie }) => {
           value={readOnly ? filteredMovie[0]?.myReviews || movie.myReviews || initialText : review}
         ></textarea>
       </div>
-
-      <button className={movie.myRating ? styles.rwBtn : styles.rwBtnAfter} onClick={leaveRw}>
+      <MyButton
+        styles={movie.myRating ? styles.rwBtn : styles.rwBtnAfter}
+        handler={() => leaveRw()}
+      >
         {movie.myReviews.length ? "Изменить резенцию" : "Оставить рецензию"}
-      </button>
+      </MyButton>
       {movie.myReviews.length !== 0 ? (
-        <button
-          className={styles.deleteRw}
-          onClick={() => {
+        <MyButton
+          styles={styles.deleteRw}
+          handler={() => {
             setReview("");
             dispatchFunction(() => addReviews({ movieId: movie.id, myReviews: "" }));
           }}
         >
           Удалить рецензию
-        </button>
+        </MyButton>
       ) : (
         ""
       )}

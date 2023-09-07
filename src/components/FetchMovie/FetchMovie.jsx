@@ -7,6 +7,7 @@ import { getMovie } from "../../Slices/MovieSlice";
 const FetchMovie = () => {
   const data = useSelector((state) => state.movie.movie.docs);
   const dispatch = useDispatch();
+  console.log(data);
 
   useEffect(() => {
     if (!data) {
@@ -22,7 +23,11 @@ const FetchMovie = () => {
       </div>
     );
   } else {
-    return <p>Load</p>;
+    return (
+      <div className={styles.container}>
+        <h1>LOADING</h1>
+      </div>
+    );
   }
 };
 

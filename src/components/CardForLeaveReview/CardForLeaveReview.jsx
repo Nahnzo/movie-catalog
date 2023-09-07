@@ -4,6 +4,7 @@ import { addMovieToReview } from "../../Slices/ReviewSlice";
 import styles from "./cardForLeaveReview.module.css";
 
 const CardForLeaveReview = ({ movie, setShowResultBlock }) => {
+  console.log(movie);
   const f = () => {
     dispatch(addMovieToReview(movie));
     setShowResultBlock(false);

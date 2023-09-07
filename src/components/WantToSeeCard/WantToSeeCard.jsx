@@ -1,20 +1,20 @@
 /* eslint-disable react/prop-types */
 import formatTime from "../../tools/time";
 import styles from "./wantToSeeCard.module.css";
-import { useDispatch } from "react-redux";
 import { removeMovie } from "../../Slices/WantToSeeSlice";
 import { useEffect } from "react";
 import HandleMovieInWantToSee from "../HandleMovieInWantToSee/HandleMovieInWantToSee";
+import MyButton from "../../shared/MyButton/MyButton";
+import useAppDispatch from "../../hooks/useAppDispatch";
+import useAppSelector from "../../hooks/useAppSelector";
 
 const WantToSeeCard = ({ firstMovie, setFirst, data }) => {
+  const { dispatchFunction } = useAppDispatch();
   let fMovie = firstMovie[0];
+
   useEffect(() => {
     setFirst([data[0]]);
-  }, [data]);
-  const dispatch = useDispatch();
-  const removeMovies = () => {
-    dispatch(removeMovie(fMovie));
-  };
+  }, [data[0]]);
 
   if (fMovie)
     return (
@@ -43,9 +43,12 @@ const WantToSeeCard = ({ firstMovie, setFirst, data }) => {
             <p>{fMovie.movieLength > 0 ? "Длительность: " + formatTime(fMovie.movieLength) : ""}</p>
           </div>
           <div className={styles.rating}>
-            <button className={styles.btnDelete} onClick={removeMovies}>
+            <MyButton
+              styles={styles.btnDelete}
+              handler={() => dispatchFunction(() => removeMovie(fMovie))}
+            >
               Удалить из списка
-            </button>
+            </MyButton>
             <HandleMovieInWantToSee fMovie={fMovie} />
             <hr />
             Rating: Кинопоиск <strong> {fMovie.rating.kp} </strong>

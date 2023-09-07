@@ -1,51 +1,56 @@
 import styles from "./wantToSee.module.css";
 import WantToSeeCard from "../../components/WantToSeeCard/WantToSeeCard";
-import CarouselX from "../../components/CarouselX/CarouselX";
+import CarouselX from "../../widgets/CarouselX/CarouselX";
 import Footer from "../../components/Footer/Footer";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import Navbar from "../../shared/Navbar/Navbar";
+import useDataLength from "../../hooks/useDataLength";
 import { ROUTES } from "../../routes";
 import { useEffect, useState, useRef } from "react";
 import { clearAll } from "../../Slices/WantToSeeSlice";
 import { BiCameraMovie } from "react-icons/bi";
+import useAppDispatch from "../../hooks/useAppDispatch";
+import useAppSelector from "../../hooks/useAppSelector";
+import MyButton from "../../shared/MyButton/MyButton";
 
 const WantToSee = () => {
   const ref = useRef(null);
   const wrapper = ref.current;
-  let data = useSelector((state) => state.wantToSee.wantToSee);
-  const dataLengthMyCollection = useSelector((state) => state.myCollection.length);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const { myCollection } = useDataLength();
+  const { dispatchFunction } = useAppDispatch();
+  const { data } = useAppSelector("wantToSee");
   const [first, setFirst] = useState([]);
   useEffect(() => {
-    setFirst([...data]);
-  }, [data]);
+    setFirst([...data.wantToSee]);
+  }, [data.wantToSee]);
   const showFirst = (movie) => {
     setFirst([movie]);
   };
 
-  if (data.length) {
+  if (data.wantToSee.length) {
     return (
       <section className={styles.main}>
         <nav className={styles.header}>
-          <h3 onClick={() => navigate(`${ROUTES.home}`)}>Ha главную</h3>
-          <h3 onClick={() => navigate(`${ROUTES.myCollection}`)}>
+          <Navbar path={ROUTES.home}>Ha главную</Navbar>
+          <Navbar
+            path={ROUTES.myCollection}
+            icon={<BiCameraMovie />}
+            dataLength={myCollection.length}
+          >
             Моя коллекция
-            <div className={dataLengthMyCollection ? styles.counter : styles.counterHidden}>
-              <BiCameraMovie />
-              <div className={styles.counterS}>{dataLengthMyCollection}</div>
-            </div>
-          </h3>
-          <h3 onClick={() => navigate(`${ROUTES.whatToSee}`)}>Что посмотреть?</h3>
-          <h3 onClick={() => navigate(`${ROUTES.myReviews}`)}>Мои рецензии</h3>
-          <button className={styles.deleteAll} onClick={() => dispatch(clearAll())}>
-            Очистить список <div className={styles.counterS}>({data.length})</div>
-          </button>
+          </Navbar>
+          <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>
+          <Navbar path={ROUTES.myReviews}>Мои рецензии</Navbar>
+          <MyButton
+            styles={`${styles.deleteAll}`}
+            handler={() => dispatchFunction(() => clearAll())}
+          >
+            Очистить список ({data.wantToSee.length})
+          </MyButton>
         </nav>
         <div className={styles.container}>
           <WantToSeeCard firstMovie={first} setFirst={setFirst} data={data} />
           <div className={styles.wrapperCollection} ref={ref}>
-            {data.map((item) => (
+            {data.wantToSee.map((item) => (
               <div
                 className={styles.card}
                 key={item.id}
@@ -63,16 +68,16 @@ const WantToSee = () => {
     return (
       <section className={styles.main}>
         <nav className={styles.header}>
-          <h3 onClick={() => navigate(`${ROUTES.home}`)}>Ha главную</h3>
-          <h3 onClick={() => navigate(`${ROUTES.myCollection}`)}>
+          <Navbar path={ROUTES.home}>Ha главную</Navbar>
+          <Navbar
+            path={ROUTES.myCollection}
+            icon={<BiCameraMovie />}
+            dataLength={myCollection.length}
+          >
             Моя коллекция
-            <div className={dataLengthMyCollection ? styles.counter : styles.counterHidden}>
-              <BiCameraMovie />
-              <div className={styles.counterS}>{dataLengthMyCollection}</div>
-            </div>
-          </h3>
-          <h3 onClick={() => navigate(`${ROUTES.whatToSee}`)}>Что посмотреть?</h3>
-          <h3 onClick={() => navigate(`${ROUTES.myReviews}`)}>Мои рецензии</h3>
+          </Navbar>
+          <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>
+          <Navbar path={ROUTES.myReviews}>Мои рецензии</Navbar>
         </nav>
         <h1 style={{ margin: "50px" }}> Список пуст</h1>
         <div className={styles.footer}>

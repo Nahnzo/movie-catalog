@@ -7,7 +7,7 @@ export const getPersonById = async (id) => {
       },
     });
     const response = await data.json();
-    console.log(response);
+    return response;
   } catch (error) {
     console.log(error.message);
   }

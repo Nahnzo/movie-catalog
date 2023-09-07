@@ -28,7 +28,7 @@
 .rating {
   text-align: left;
 }
-.rating > h4 {
+.rating > .isRated {
   position: absolute;
   bottom: 5px;
 }

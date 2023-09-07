@@ -1,36 +1,33 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../routes";
-import { useDispatch, useSelector } from "react-redux";
 import { BsFolder2Open } from "react-icons/bs";
+import { clearAll } from "../../Slices/MyCollectionSlice";
 import Footer from "../../components/Footer/Footer";
 import styles from "./myCollection.module.css";
 import CardForCollection from "../../components/CardForCollection/CardForCollection";
-import { clearAll } from "../../Slices/MyCollectionSlice";
+import useDataLength from "../../hooks/useDataLength";
+import Navbar from "../../shared/Navbar/Navbar";
+import useAppSelector from "../../hooks/useAppSelector";
+import useAppDispatch from "../../hooks/useAppDispatch";
+import MyButton from "../../shared/MyButton/MyButton";
 
 const MyCollection = () => {
-  const data = useSelector((state) => state.myCollection);
-  const navigate = useNavigate();
-  const dataWantToSee = useSelector((state) => state.wantToSee.length);
-  const dispatch = useDispatch();
+  const { data } = useAppSelector("myCollection");
+  const { wantToSee } = useDataLength();
+  const { dispatchFunction } = useAppDispatch();
 
   return (
     <section className={styles.main}>
       <nav className={styles.header}>
-        <h3 onClick={() => navigate(`${ROUTES.home}`)}>Ha главную</h3>
-        <h3 onClick={() => navigate(`${ROUTES.wantToSee}`)}>
+        <Navbar path={ROUTES.home}>На главную</Navbar>
+        <Navbar path={ROUTES.wantToSee} icon={<BsFolder2Open />} dataLength={wantToSee.length}>
           Хочу посмотреть
-          <div className={dataWantToSee ? styles.counterWantToSee : styles.counterWantToSeeHidden}>
-            <BsFolder2Open />
-            <div className={styles.counter}>{dataWantToSee}</div>
-          </div>
-        </h3>
-        <h3 onClick={() => navigate(`${ROUTES.whatToSee}`)}>Что посмотреть?</h3>
-        <h3 onClick={() => navigate(`${ROUTES.myReviews}`)}>Мои рецензии</h3>
+        </Navbar>
+        <Navbar path={ROUTES.myReviews}>Мои рецензии</Navbar>
+        <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>
         {data.myCollection.length !== 0 ? (
-          <button className={styles.deleteAll} onClick={() => dispatch(clearAll())}>
-            Очистить список <div className={styles.counter}>({data.length})</div>
-          </button>
+          <MyButton styles={styles.deleteAll} handler={() => dispatchFunction(() => clearAll())}>
+            Очистить список ({data.length})
+          </MyButton>
         ) : (
           ""
         )}

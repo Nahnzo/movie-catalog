@@ -2,22 +2,23 @@
 import styles from "./handleMovieInWantToSee.module.css";
 import useAppDispatch from "../../hooks/useAppDispatch";
 import useAppSelector from "../../hooks/useAppSelector";
+import MyButton from "../../shared/MyButton/MyButton";
 import { addMovieToCollection, removeMovieFromCollection } from "../../Slices/MyCollectionSlice";
 
 const HandleMovieInWantToSee = ({ fMovie }) => {
   const { dispatchFunction } = useAppDispatch();
   const { data } = useAppSelector("myCollection");
-  let phrase = data.myCollection.some((item) => item.id === fMovie.id);
+  const description = data.myCollection.some((item) => item.id === fMovie.id);
   const handleMovie = (movie) => {
-    phrase
+    description
       ? dispatchFunction(() => removeMovieFromCollection(movie))
       : dispatchFunction(() => addMovieToCollection(movie));
   };
 
   return (
-    <button className={styles.btn} onClick={() => handleMovie(fMovie)}>
-      {phrase ? "Удалить из коллекции" : "Добавить в коллекцию"}
-    </button>
+    <MyButton styles={styles.btn} handler={() => handleMovie(fMovie)}>
+      {description ? "Удалить из коллекции" : "Добавить в коллекцию"}
+    </MyButton>
   );
 };
 

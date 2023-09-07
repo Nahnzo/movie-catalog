@@ -1,14 +1,15 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import { addRating } from "../../Slices/MyCollectionSlice";
 import styles from "./handleRating.module.css";
+import useAppDispatch from "../../hooks/useAppDispatch";
+import MyButton from "../../shared/MyButton/MyButton";
 
 const HandleRating = ({ movieId, setShowRateWindow }) => {
+  const { dispatchFunction } = useAppDispatch();
   const [rating, setRating] = useState(null);
-  const dispatch = useDispatch();
   const handleR = (item) => {
-    dispatch(addRating({ movieId: movieId, rating: item.value }));
+    dispatchFunction(() => addRating({ movieId: movieId, rating: item.value }));
     setShowRateWindow(false);
   };
 
@@ -42,9 +43,9 @@ const HandleRating = ({ movieId, setShowRateWindow }) => {
             {rating && rating >= item.value ? item.emoji : "😐"}
           </span>
         ))}
-        <button className={styles.cancelBtn} onClick={() => setShowRateWindow()}>
+        <MyButton styles={styles.cancelBtn} handler={() => setShowRateWindow()}>
           Отменить
-        </button>
+        </MyButton>
         <div className={styles.infoRating}>
           {rating && (
             <p>

@@ -4,6 +4,7 @@ import styles from "./cardForSimilarMovie.module.css";
 import { useNavigate } from "react-router-dom";
 
 const CardForSimilarMovie = ({ movie }) => {
+  console.log(movie);
   const navigate = useNavigate();
   const ref = useRef(null);
   const navigateToDetail = (movie) => {
