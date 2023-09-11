@@ -43,7 +43,6 @@ const CardForDetail = ({ movie }) => {
                 Длительность: {(formatTime(movie.movieLength) && movie.seasonsInfo.length) || ""}
               </p>
             )}
-            {/* Доделать */}
             <p>{movie.top10 || movie.top250 ? `Тoп - ${movie.top10 || movie.top250}` : ""}</p>
           </div>
         </div>

@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
-import { getPersonById } from "../../tools/getPerson";
+import { useNavigate } from "react-router-dom";
 import styles from "./cardForActors.module.css";
 
 const CardForActors = ({ actor }) => {
-  async function goToAboutPerson(id) {
-    await getPersonById(id);
-    console.log(id);
+  const navigate = useNavigate();
+  function goToAboutPerson(id) {
+    navigate(`/movie-catalog/person/${id}`);
   }
   return (
     <div

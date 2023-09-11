@@ -1,15 +1,13 @@
 /* eslint-disable react/prop-types */
 import { useRef } from "react";
-import styles from "./cardForSimilarMovie.module.css";
 import { useNavigate } from "react-router-dom";
+import styles from "./cardForSimilarMovie.module.css";
 
 const CardForSimilarMovie = ({ movie }) => {
-  console.log(movie);
   const navigate = useNavigate();
   const ref = useRef(null);
   const navigateToDetail = (movie) => {
     navigate(`/movie-catalog/${movie.type}/${movie.id}`);
-    // ref.style.transform = `translateY(${50}%)`;
   };
   return (
     <div

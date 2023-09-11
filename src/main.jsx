@@ -10,6 +10,7 @@ import WhatToSee from "./pages/WhatToSee/WhatToSee.jsx";
 import WantToSee from "./pages/WantToSee/WantToSee.jsx";
 import MyReviews from "./pages/MyReviews/MyReviews.jsx";
 import AboutFilm from "./components/AboutFilm/AboutFilm.jsx";
+import PersonDetail from "./components/PersonDetail/PersonDetail.jsx";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
   {
     path: "/movie-catalog/:type/:id",
     element: <AboutFilm />,
+  },
+  {
+    path: "/movie-catalog/person/:id",
+    element: <PersonDetail />,
   },
   {
     path: "*",
