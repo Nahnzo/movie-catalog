@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getFilmById } from "../../tools/getFilmById";
 import styles from "./aboutFilm.module.css";
-import CardForDetail from "../CardForDetails/CardForDetail";
+import CardForDetail from "../../entities/CardForDetails/CardForDetail";
 
 const AboutFilm = () => {
   const { id } = useParams();

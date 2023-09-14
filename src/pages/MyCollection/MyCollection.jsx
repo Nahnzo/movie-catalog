@@ -3,7 +3,7 @@ import { BsFolder2Open } from "react-icons/bs";
 import { clearAll } from "../../Slices/MyCollectionSlice";
 import Footer from "../../components/Footer/Footer";
 import styles from "./myCollection.module.css";
-import CardForCollection from "../../components/CardForCollection/CardForCollection";
+import CardForCollection from "../../entities/CardForCollection/CardForCollection";
 import useDataLength from "../../hooks/useDataLength";
 import Navbar from "../../shared/Navbar/Navbar";
 import useAppSelector from "../../hooks/useAppSelector";

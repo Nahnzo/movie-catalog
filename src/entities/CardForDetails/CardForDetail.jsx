@@ -2,9 +2,9 @@
 import formatTime from "../../tools/time";
 import CardForActors from "../CardForActors/CardForActors";
 import CarouselX from "../../widgets/CarouselX/CarouselX";
-import SequelsAndPrequels from "../SequelsAndPrequels/SequelsAndPrequels";
+import SequelsAndPrequels from "../../components/SequelsAndPrequels/SequelsAndPrequels";
 import styles from "./cardForDetail.module.css";
-import SimilarFilms from "../SimilarFilms/SimilarFilms";
+import SimilarFilms from "../../components/SimilarFilms/SimilarFilms";
 import { useEffect, useRef, useState } from "react";
 const CardForDetail = ({ movie }) => {
   const ref = useRef(null);

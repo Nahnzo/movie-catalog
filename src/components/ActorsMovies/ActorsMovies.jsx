@@ -5,10 +5,9 @@ const ActorsMovies = ({ movies }) => {
   const arrayId = movies.map((item) => item.id);
   const f = async () => {
     const res = await movies.forEach((item) => getFilmById(item));
-    console.log(res);
   };
 
-  return <></>;
+  return <div></div>;
 };
 
 export default ActorsMovies;

@@ -1,5 +1,5 @@
 import styles from "./fetchMovie.module.css";
-import MovieCard from "../MovieCard/MovieCard";
+import MovieCard from "../../entities/MovieCard/MovieCard";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getMovie } from "../../Slices/MovieSlice";

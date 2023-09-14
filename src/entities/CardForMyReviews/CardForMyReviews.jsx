@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import HandleReview from "../HandleReview/HandleReview";
+import HandleReview from "../../components/HandleReview/HandleReview";
 import styles from "./cardForMyReviews.module.css";
 
 const CardForMyReviews = ({ movie }) => {

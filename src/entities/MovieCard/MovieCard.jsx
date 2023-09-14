@@ -2,8 +2,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./movieCard.module.css";
-import HandleWantToSee from "../HandleWantToSee/HandleWantToSee";
-import HandleMyCollection from "../HandleMyCollection/HandleMyCollection";
+import HandleWantToSee from "../../components/HandleWantToSee/HandleWantToSee";
+import HandleMyCollection from "../../components/HandleMyCollection/HandleMyCollection";
 
 const MovieCard = ({ data }) => {
   const [showDetails, setShowDetails] = useState(false);

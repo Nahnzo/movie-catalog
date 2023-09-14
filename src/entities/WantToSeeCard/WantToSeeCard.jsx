@@ -3,7 +3,7 @@ import formatTime from "../../tools/time";
 import styles from "./wantToSeeCard.module.css";
 import { removeMovie } from "../../Slices/WantToSeeSlice";
 import { useEffect } from "react";
-import HandleMovieInWantToSee from "../HandleMovieInWantToSee/HandleMovieInWantToSee";
+import HandleMovieInWantToSee from "../../components/HandleMovieInWantToSee/HandleMovieInWantToSee";
 import MyButton from "../../shared/MyButton/MyButton";
 import useAppDispatch from "../../hooks/useAppDispatch";
 import useAppSelector from "../../hooks/useAppSelector";

@@ -1,5 +1,5 @@
 import styles from "./wantToSee.module.css";
-import WantToSeeCard from "../../components/WantToSeeCard/WantToSeeCard";
+import WantToSeeCard from "../../entities/WantToSeeCard/WantToSeeCard";
 import CarouselX from "../../widgets/CarouselX/CarouselX";
 import Footer from "../../components/Footer/Footer";
 import Navbar from "../../shared/Navbar/Navbar";

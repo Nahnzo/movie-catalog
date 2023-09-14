@@ -4,7 +4,7 @@ import { removeMovieFromCollection } from "../../Slices/MyCollectionSlice";
 import useAppDispatch from "../../hooks/useAppDispatch";
 import useAppSelector from "../../hooks/useAppSelector";
 import styles from "./cardForCollection.module.css";
-import HandleRating from "../HandleRating/HandleRating";
+import HandleRating from "../../components/HandleRating/HandleRating";
 import MyButton from "../../shared/MyButton/MyButton";
 
 const CardForCollection = ({ movie }) => {
