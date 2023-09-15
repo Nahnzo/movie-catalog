@@ -1,21 +1,21 @@
 /* eslint-disable react/prop-types */
-import { useDispatch } from "react-redux";
 import { addMovieToReview } from "../../Slices/ReviewSlice";
+import useAppDispatch from "../../hooks/useAppDispatch";
 import styles from "./cardForLeaveReview.module.css";
 
 const CardForLeaveReview = ({ movie, setShowResultBlock }) => {
-  console.log(movie);
-  const f = () => {
-    dispatch(addMovieToReview(movie));
+  const { dispatchFunction } = useAppDispatch();
+  const addMovie = () => {
+    dispatchFunction(() => addMovieToReview(movie));
     setShowResultBlock(false);
   };
-  const dispatch = useDispatch();
+
   return (
     <div className={styles.wrapper}>
       <div
         className={styles.card}
         style={{ backgroundImage: `url(${movie.poster})` }}
-        onClick={f}
+        onClick={addMovie}
       ></div>
       <h4>{movie.year}</h4>
     </div>

@@ -1,22 +1,11 @@
 /* eslint-disable react/prop-types */
 import formatTime from "../../tools/time";
 import CardForActors from "../CardForActors/CardForActors";
-import CarouselX from "../../widgets/CarouselX/CarouselX";
 import SequelsAndPrequels from "../../components/SequelsAndPrequels/SequelsAndPrequels";
 import styles from "./cardForDetail.module.css";
 import SimilarFilms from "../../components/SimilarFilms/SimilarFilms";
-import { useEffect, useRef, useState } from "react";
-const CardForDetail = ({ movie }) => {
-  const ref = useRef(null);
-  console.log(movie);
-  const [wrapper, setWrapper] = useState(null);
-  useEffect(() => {
-    if (ref.current) {
-      const wrapperElement = ref.current;
-      setWrapper(wrapperElement);
-    }
-  }, []);
 
+const CardForDetail = ({ movie }) => {
   return (
     <div>
       <div className={styles.wrapperCard}>
@@ -50,14 +39,13 @@ const CardForDetail = ({ movie }) => {
       <div className={styles.actors}>
         <h3>Актеры</h3>
       </div>
-      <div className={styles.wrapperActors} ref={ref}>
+      <div className={styles.wrapperActors}>
         {movie.persons
           .filter((item) => item.enProfession === "actor")
           .map((item, index) => (
             <CardForActors actor={item} key={index} />
           ))}
       </div>
-      {/* <CarouselX data={actors} wrapper={wrapper} /> */}
       {movie.sequelsAndPrequels.length !== 0 && (
         <div className={styles.sequelsAndPrequels}>
           <SequelsAndPrequels movies={movie.sequelsAndPrequels} />

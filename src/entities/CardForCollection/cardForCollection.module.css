@@ -45,6 +45,23 @@
   font-family: "Ysabeau Infant", sans-serif;
   font-size: 17px;
 }
+.reviewBtn {
+  width: 170px;
+  height: 25px;
+  cursor: pointer;
+  background-color: transparent;
+  margin-left: 15px;
+  text-align: center;
+  color: white;
+  border: 1px solid white;
+  border-radius: 8px;
+  font-family: "Ysabeau Infant", sans-serif;
+  font-size: 17px;
+}
+.reviewBtn:hover {
+  opacity: 0.5;
+}
+
 .myRate {
   display: inline-flex;
   font-size: 13px;

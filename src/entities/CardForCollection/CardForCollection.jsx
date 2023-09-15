@@ -6,14 +6,23 @@ import useAppSelector from "../../hooks/useAppSelector";
 import styles from "./cardForCollection.module.css";
 import HandleRating from "../../components/HandleRating/HandleRating";
 import MyButton from "../../shared/MyButton/MyButton";
+import { ROUTES } from "../../routes";
+import { useNavigate } from "react-router-dom";
+import { addMovieToReview } from "../../Slices/ReviewSlice";
 
 const CardForCollection = ({ movie }) => {
   const { dispatchFunction } = useAppDispatch();
   const { data } = useAppSelector("arrayReview");
+  const navigate = useNavigate();
   const [showRateWindow, setShowRateWindow] = useState(false);
   const review = data.movies
     .filter((item) => item.id === movie.id)
     .filter((item) => item.myReviews);
+
+  function handleReview() {
+    navigate(`${ROUTES.myReviews}`);
+    dispatchFunction(() => addMovieToReview(movie));
+  }
 
   return (
     <div className={styles.cardWrapper}>
@@ -30,6 +39,9 @@ const CardForCollection = ({ movie }) => {
                 Вы еще не оценили
                 <MyButton styles={styles.rateBtn} handler={() => setShowRateWindow(true)}>
                   Оценить
+                </MyButton>
+                <MyButton styles={styles.reviewBtn} handler={handleReview}>
+                  {review.length ? "Изменить рецензию" : "Оставить рецензию"}
                 </MyButton>
               </h5>
             ) : (

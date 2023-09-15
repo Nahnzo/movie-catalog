@@ -15,7 +15,6 @@
   width: 80%;
   height: 50vh;
   display: flex;
-  border: 4px solid white;
 }
 .card {
   width: 30%;
@@ -23,11 +22,8 @@
   background: center / 70% no-repeat;
 }
 
-.movie {
+.description {
   margin-top: 10px;
-  margin: auto;
   width: 80%;
-  height: 15vh;
-  border: 4px solid white;
-  display: flex;
+  height: 30%;
 }
