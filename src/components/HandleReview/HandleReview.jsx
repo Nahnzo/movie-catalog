@@ -45,9 +45,11 @@ const HandleReview = ({ movie }) => {
         styles={movie.myRating ? styles.rwBtn : styles.rwBtnAfter}
         handler={() => leaveRw()}
       >
-        {movie.myReviews.length ? "Изменить резенцию" : "Оставить рецензию"}
+        {movie.myReviews.length || filteredMovie[0].myReviews.length
+          ? "Изменить резенцию"
+          : "Оставить рецензию"}
       </MyButton>
-      {movie.myReviews.length !== 0 ? (
+      {movie.myReviews.length !== 0 || filteredMovie[0].myReviews.length ? (
         <MyButton
           styles={styles.deleteRw}
           handler={() => {
