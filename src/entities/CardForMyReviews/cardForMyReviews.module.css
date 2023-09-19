@@ -1,5 +1,5 @@
 .wrapper {
-  height: 500px;
+  height: 350px;
   width: 300px;
   margin: 10px;
   z-index: 2;
@@ -7,7 +7,7 @@
 .poster {
   height: 100%;
   width: 100%;
-  background: center / 100% no-repeat;
+  background: center / 85% no-repeat;
 }
 .myReviews {
   width: 70%;

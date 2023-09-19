@@ -6,9 +6,18 @@ import CardForMyReviews from "../../entities/CardForMyReviews/CardForMyReviews";
 import LeaveReview from "../../components/LeaveReview/LeaveReview";
 import Navbar from "../../shared/Navbar/Navbar";
 import useDataLength from "../../hooks/useDataLength";
+import useAppSelector from "../../hooks/useAppSelector";
+import CarouselX from "../../widgets/CarouselX/CarouselX";
+import { useRef } from "react";
 
 const MyReviews = () => {
   const { myCollection, wantToSee, arrayReview } = useDataLength();
+  const { data } = useAppSelector("arrayReview");
+  const ref = useRef(null);
+  const wrapper = ref.current;
+  const movieWithReviews = data.movies.filter(
+    (item) => item.myReviews !== "Место для вашей рецензии" && item.myReviews !== ""
+  );
   const firstMovie = arrayReview.movies[arrayReview.length - 1];
   return (
     <section className={styles.main}>
@@ -30,6 +39,21 @@ const MyReviews = () => {
       </section>
       <LeaveReview />
       <div className={styles.wrapper}>{firstMovie && <CardForMyReviews movie={firstMovie} />}</div>
+      <div className={styles.container}>
+        {movieWithReviews.length && (
+          <div className={styles.containerArrayReviews} ref={ref}>
+            {movieWithReviews.map((movie) => (
+              <div
+                key={movie.id}
+                className={styles.rCard}
+                style={{ backgroundImage: `url(${movie.poster})` }}
+              ></div>
+            ))}
+          </div>
+        )}
+        <CarouselX wrapper={wrapper} data={movieWithReviews} />
+      </div>
+
       <div className={styles.footer}>{/* <Footer /> */}</div>
     </section>
   );

@@ -34,8 +34,8 @@
 .wrapper {
   position: relative;
   width: 80%;
-  height: 500px;
-  margin: auto;
+  height: 350px;
+  margin: 15px auto;
   color: white;
   padding: 15px;
   display: flex;
@@ -43,4 +43,28 @@
 
 .wrapper > h1 {
   margin: auto;
+}
+
+.container {
+  margin: 0 auto;
+  width: 77%;
+  margin-bottom: 50px;
+  font-family: "Ysabeau Infant", sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.containerArrayReviews {
+  width: 100%;
+  margin: auto;
+  height: 30vh;
+  display: flex;
+  transition: transform 0.8s ease-in;
+}
+
+.rCard {
+  min-width: 140px;
+  height: 100%;
+  background: center / 100% no-repeat;
+  margin: 5px;
 }

@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import styles from "./carouselX.module.css";
+import React from "react";
 
 const CarouselX = ({ wrapper, data }) => {
   let currentPosition = 0;
@@ -40,4 +41,4 @@ const CarouselX = ({ wrapper, data }) => {
   );
 };
 
-export default CarouselX;
+export default React.memo(CarouselX);
