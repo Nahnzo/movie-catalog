@@ -61,6 +61,20 @@
 .reviewBtn:hover {
   opacity: 0.5;
 }
+.reviewBtnAfter {
+  width: 170px;
+  height: 25px;
+  cursor: pointer;
+  background-color: transparent;
+  margin: 1px 0 0 245px;
+  position: absolute;
+  text-align: center;
+  color: white;
+  border: 1px solid white;
+  border-radius: 8px;
+  font-family: "Ysabeau Infant", sans-serif;
+  font-size: 17px;
+}
 
 .myRate {
   display: inline-flex;
@@ -74,7 +88,8 @@
   font-size: 15px;
 }
 
-.rateBtn:hover {
+.rateBtn:hover,
+.reviewBtnAfter:hover {
   opacity: 0.5;
 }
 

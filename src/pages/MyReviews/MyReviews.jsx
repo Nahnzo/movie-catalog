@@ -49,11 +49,10 @@ const MyReviews = () => {
                 style={{ backgroundImage: `url(${movie.poster})` }}
               ></div>
             ))}
+            <CarouselX wrapper={wrapper} data={movieWithReviews} />
           </div>
         )}
-        <CarouselX wrapper={wrapper} data={movieWithReviews} />
       </div>
-
       <div className={styles.footer}>{/* <Footer /> */}</div>
     </section>
   );

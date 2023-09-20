@@ -1,18 +1,15 @@
-.wrapper {
-  height: 350px;
-  width: 300px;
-  margin: 10px;
-  z-index: 2;
+.container {
+  width: 80%;
+  height: 40vh;
+  margin: 20px auto;
+  display: flex;
 }
+
 .poster {
   height: 100%;
-  width: 100%;
-  background: center / 85% no-repeat;
+  width: 30%;
+  background: center / 80% no-repeat;
 }
 .myReviews {
-  width: 70%;
-  height: 360px;
-  position: absolute;
-  bottom: 118px;
-  right: 130px;
+  width: 80%;
 }

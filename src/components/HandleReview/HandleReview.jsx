@@ -29,10 +29,10 @@ const HandleReview = ({ movie }) => {
   }, [readOnly, movie]);
 
   return (
-    <div className={styles.wrapper}>
+    <div>
+      <h2>{movie.name || movie.alternativeName}</h2>
+      <hr />
       <div className={styles.reviews}>
-        <h2>{movie.name || movie.alternativeName}</h2>
-        <hr />
         <textarea
           className={styles.leaveRw}
           onChange={(e) => setReview(e.target.value)}
@@ -41,27 +41,30 @@ const HandleReview = ({ movie }) => {
           value={readOnly ? filteredMovie[0]?.myReviews || movie.myReviews || initialText : review}
         ></textarea>
       </div>
-      <MyButton
-        styles={movie.myRating ? styles.rwBtn : styles.rwBtnAfter}
-        handler={() => leaveRw()}
-      >
-        {movie.myReviews.length || filteredMovie[0].myReviews.length
-          ? "Изменить резенцию"
-          : "Оставить рецензию"}
-      </MyButton>
-      {movie.myReviews.length !== 0 || filteredMovie[0].myReviews.length ? (
+      <div className={styles.buttons}>
         <MyButton
-          styles={styles.deleteRw}
-          handler={() => {
-            setReview("");
-            dispatchFunction(() => addReviews({ movieId: movie.id, myReviews: "" }));
-          }}
+          styles={movie.myRating ? styles.rwBtn : styles.rwBtnAfter}
+          handler={() => leaveRw()}
         >
-          Удалить рецензию
+          {movie.myReviews.length || filteredMovie[0].myReviews.length
+            ? "Изменить резенцию"
+            : "Оставить рецензию"}
         </MyButton>
-      ) : (
-        ""
-      )}
+
+        {movie.myReviews.length !== 0 || filteredMovie[0].myReviews.length ? (
+          <MyButton
+            styles={styles.deleteRw}
+            handler={() => {
+              setReview("");
+              dispatchFunction(() => addReviews({ movieId: movie.id, myReviews: "" }));
+            }}
+          >
+            Удалить рецензию
+          </MyButton>
+        ) : (
+          ""
+        )}
+      </div>
     </div>
   );
 };

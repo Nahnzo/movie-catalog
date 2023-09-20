@@ -53,6 +53,9 @@ const CardForCollection = ({ movie }) => {
                 <MyButton styles={styles.btnChangeRate} handler={() => setShowRateWindow(true)}>
                   Изменить оценку
                 </MyButton>
+                <MyButton styles={styles.reviewBtnAfter} handler={handleReview}>
+                  {review.length ? "Изменить рецензию" : "Оставить рецензию"}
+                </MyButton>
               </h4>
             )}
           </div>
