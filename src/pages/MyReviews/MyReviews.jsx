@@ -8,17 +8,25 @@ import Navbar from "../../shared/Navbar/Navbar";
 import useDataLength from "../../hooks/useDataLength";
 import useAppSelector from "../../hooks/useAppSelector";
 import CarouselX from "../../widgets/CarouselX/CarouselX";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 
 const MyReviews = () => {
   const { myCollection, wantToSee, arrayReview } = useDataLength();
   const { data } = useAppSelector("arrayReview");
+  const [selectedMovie, setSelectedMovie] = useState(null);
   const ref = useRef(null);
   const wrapper = ref.current;
   const movieWithReviews = data.movies.filter(
     (item) => item.myReviews !== "Место для вашей рецензии" && item.myReviews !== ""
   );
-  const firstMovie = arrayReview.movies[arrayReview.length - 1];
+  useEffect(() => {
+    setSelectedMovie(arrayReview.movies[arrayReview.length - 1]);
+  }, [arrayReview.length, arrayReview.movies]);
+
+  const setFirst = (item) => {
+    setSelectedMovie(item);
+  };
+
   return (
     <section className={styles.main}>
       <section className={styles.header}>
@@ -38,15 +46,20 @@ const MyReviews = () => {
         </nav>
       </section>
       <LeaveReview />
-      <div className={styles.wrapper}>{firstMovie && <CardForMyReviews movie={firstMovie} />}</div>
+      <div className={styles.wrapper}>
+        {selectedMovie && <CardForMyReviews movie={selectedMovie} />}
+      </div>
       <div className={styles.container}>
         {movieWithReviews.length && (
           <div className={styles.containerArrayReviews} ref={ref}>
             {movieWithReviews.map((movie) => (
               <div
+                onClick={() => setFirst(movie)}
                 key={movie.id}
                 className={styles.rCard}
-                style={{ backgroundImage: `url(${movie.poster})` }}
+                style={{
+                  backgroundImage: `url(${movie.poster.url || movie.poster})`,
+                }}
               ></div>
             ))}
             <CarouselX wrapper={wrapper} data={movieWithReviews} />
