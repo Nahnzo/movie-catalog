@@ -1,5 +1,5 @@
 import "./App.css";
-import FetchMovie from "./components/FetchMovie/FetchMovie";
+import FetchMovie from "./pages/FetchMovie/FetchMovie";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 

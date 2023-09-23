@@ -4,26 +4,28 @@ import CarouselX from "../../widgets/CarouselX/CarouselX";
 import Footer from "../../components/Footer/Footer";
 import Navbar from "../../shared/Navbar/Navbar";
 import useDataLength from "../../hooks/useDataLength";
+import useAppDispatch from "../../hooks/useAppDispatch";
+import useAppSelector from "../../hooks/useAppSelector";
+import MyButton from "../../shared/MyButton/MyButton";
 import { ROUTES } from "../../routes";
 import { useEffect, useState, useRef } from "react";
 import { clearAll } from "../../Slices/WantToSeeSlice";
 import { BiCameraMovie } from "react-icons/bi";
-import useAppDispatch from "../../hooks/useAppDispatch";
-import useAppSelector from "../../hooks/useAppSelector";
-import MyButton from "../../shared/MyButton/MyButton";
+import { CiViewList } from "react-icons/ci";
 
 const WantToSee = () => {
   const ref = useRef(null);
   const wrapper = ref.current;
-  const { myCollection } = useDataLength();
+  const { myCollection, arrayReview } = useDataLength();
   const { dispatchFunction } = useAppDispatch();
   const { data } = useAppSelector("wantToSee");
-  const [first, setFirst] = useState([]);
+  const [selectedMovie, setSelectedMovie] = useState(null);
+
   useEffect(() => {
-    setFirst([...data.wantToSee]);
+    setSelectedMovie(data.wantToSee[0]);
   }, [data.wantToSee]);
   const showFirst = (movie) => {
-    setFirst([movie]);
+    setSelectedMovie(movie);
   };
 
   if (data.wantToSee.length) {
@@ -38,8 +40,10 @@ const WantToSee = () => {
           >
             Моя коллекция
           </Navbar>
+          <Navbar path={ROUTES.myReviews} icon={<CiViewList />} dataLength={arrayReview.length}>
+            Мои рецензии
+          </Navbar>
           <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>
-          <Navbar path={ROUTES.myReviews}>Мои рецензии</Navbar>
           <MyButton
             styles={`${styles.deleteAll}`}
             handler={() => dispatchFunction(() => clearAll())}
@@ -48,7 +52,7 @@ const WantToSee = () => {
           </MyButton>
         </nav>
         <div className={styles.container}>
-          <WantToSeeCard firstMovie={first} setFirst={setFirst} data={data} />
+          {selectedMovie && <WantToSeeCard firstMovie={selectedMovie} />}
           <div className={styles.wrapperCollection} ref={ref}>
             {data.wantToSee.map((item) => (
               <div
@@ -76,8 +80,10 @@ const WantToSee = () => {
           >
             Моя коллекция
           </Navbar>
+          <Navbar path={ROUTES.myReviews} icon={<CiViewList />} dataLength={arrayReview.length}>
+            Мои рецензии
+          </Navbar>
           <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>
-          <Navbar path={ROUTES.myReviews}>Мои рецензии</Navbar>
         </nav>
         <h1 style={{ margin: "50px" }}> Список пуст</h1>
         <div className={styles.footer}>

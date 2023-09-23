@@ -5,10 +5,10 @@ import useAppSelector from "../../hooks/useAppSelector";
 import MyButton from "../../shared/MyButton/MyButton";
 import { addMovieToCollection, removeMovieFromCollection } from "../../Slices/MyCollectionSlice";
 
-const HandleMovieInWantToSee = ({ fMovie }) => {
+const HandleMovieInWantToSee = ({ firstMovie }) => {
   const { dispatchFunction } = useAppDispatch();
   const { data } = useAppSelector("myCollection");
-  const description = data.myCollection.some((item) => item.id === fMovie.id);
+  const description = data.myCollection.some((item) => item.id === firstMovie.id);
   const handleMovie = (movie) => {
     description
       ? dispatchFunction(() => removeMovieFromCollection(movie))
@@ -16,7 +16,7 @@ const HandleMovieInWantToSee = ({ fMovie }) => {
   };
 
   return (
-    <MyButton styles={styles.btn} handler={() => handleMovie(fMovie)}>
+    <MyButton styles={styles.btn} handler={() => handleMovie(firstMovie)}>
       {description ? "Удалить из коллекции" : "Добавить в коллекцию"}
     </MyButton>
   );

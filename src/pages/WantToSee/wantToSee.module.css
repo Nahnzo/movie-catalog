@@ -61,6 +61,11 @@
   background: center / 100% no-repeat;
   cursor: pointer;
 }
+
+.card:hover {
+  opacity: 0.5;
+}
+
 .card:nth-child(1) {
   margin-left: 0;
 }

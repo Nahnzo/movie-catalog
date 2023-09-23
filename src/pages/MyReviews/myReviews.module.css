@@ -67,4 +67,28 @@
   height: 100%;
   background: center / 100% no-repeat;
   margin: 5px;
+  cursor: pointer;
+}
+.rCard:hover {
+  opacity: 0.5;
+}
+
+.deleteAll {
+  width: 200px;
+  height: 30px;
+  text-align: center;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+  border: 1px solid white;
+  border-radius: 10px;
+  font-family: "Ysabeau Infant", sans-serif;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.deleteAll:hover {
+  opacity: 0.5;
 }

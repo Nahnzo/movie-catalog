@@ -9,9 +9,13 @@ import useDataLength from "../../hooks/useDataLength";
 import useAppSelector from "../../hooks/useAppSelector";
 import CarouselX from "../../widgets/CarouselX/CarouselX";
 import { useRef, useState, useEffect } from "react";
+import MyButton from "../../shared/MyButton/MyButton";
+import { deleteAll } from "../../Slices/ReviewSlice";
+import useAppDispatch from "../../hooks/useAppDispatch";
 
 const MyReviews = () => {
   const { myCollection, wantToSee, arrayReview } = useDataLength();
+  const { dispatchFunction } = useAppDispatch();
   const { data } = useAppSelector("arrayReview");
   const [selectedMovie, setSelectedMovie] = useState(null);
   const ref = useRef(null);
@@ -43,6 +47,13 @@ const MyReviews = () => {
             Моя коллекция
           </Navbar>
           <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>
+          {arrayReview.length ? (
+            <MyButton styles={styles.deleteAll} handler={() => dispatchFunction(() => deleteAll())}>
+              Очистить список ({data.length})
+            </MyButton>
+          ) : (
+            ""
+          )}
         </nav>
       </section>
       <LeaveReview />

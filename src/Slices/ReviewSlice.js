@@ -18,8 +18,12 @@ export const ReviewSlice = createSlice({
         state.movies[movieIndex].myReviews = myReviews;
       }
     },
+    deleteAll(state) {
+      state.movies = [];
+      state.length = 0;
+    },
   },
 });
 
-export const { addMovieToReview, addReviews } = ReviewSlice.actions;
+export const { addMovieToReview, addReviews, deleteAll } = ReviewSlice.actions;
 export default ReviewSlice.reducer;

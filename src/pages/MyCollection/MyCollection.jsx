@@ -1,5 +1,6 @@
 import { ROUTES } from "../../routes";
 import { BsFolder2Open } from "react-icons/bs";
+import { CiViewList } from "react-icons/ci";
 import { clearAll } from "../../Slices/MyCollectionSlice";
 import Footer from "../../components/Footer/Footer";
 import styles from "./myCollection.module.css";
@@ -12,7 +13,7 @@ import MyButton from "../../shared/MyButton/MyButton";
 
 const MyCollection = () => {
   const { data } = useAppSelector("myCollection");
-  const { wantToSee } = useDataLength();
+  const { wantToSee, arrayReview } = useDataLength();
   const { dispatchFunction } = useAppDispatch();
 
   return (
@@ -22,7 +23,9 @@ const MyCollection = () => {
         <Navbar path={ROUTES.wantToSee} icon={<BsFolder2Open />} dataLength={wantToSee.length}>
           Хочу посмотреть
         </Navbar>
-        <Navbar path={ROUTES.myReviews}>Мои рецензии</Navbar>
+        <Navbar path={ROUTES.myReviews} icon={<CiViewList />} dataLength={arrayReview.length}>
+          Мои рецензии
+        </Navbar>
         <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>
         {data.myCollection.length !== 0 ? (
           <MyButton styles={styles.deleteAll} handler={() => dispatchFunction(() => clearAll())}>
