@@ -12,6 +12,7 @@ import { useRef, useState, useEffect } from "react";
 import MyButton from "../../shared/MyButton/MyButton";
 import { deleteAll } from "../../Slices/ReviewSlice";
 import useAppDispatch from "../../hooks/useAppDispatch";
+import { getOnlyUniq } from "../../tools/getOnlyUniq";
 
 const MyReviews = () => {
   const { myCollection, wantToSee, arrayReview } = useDataLength();
@@ -49,7 +50,8 @@ const MyReviews = () => {
           <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>
           {arrayReview.length ? (
             <MyButton styles={styles.deleteAll} handler={() => dispatchFunction(() => deleteAll())}>
-              Очистить список ({data.length})
+              {/* Получение уникальной длины */}
+              Очистить список ({getOnlyUniq(data.movies)})
             </MyButton>
           ) : (
             ""

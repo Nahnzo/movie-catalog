@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getMovie } from "../../Slices/MovieSlice";
 import useAppDispatch from "../../hooks/useAppDispatch";
+import Loader from "../../widgets/Loader/Loader";
 
 const FetchMovie = () => {
   const data = useSelector((state) => state.movie.movie.docs);
@@ -25,7 +26,7 @@ const FetchMovie = () => {
   } else {
     return (
       <div className={styles.container}>
-        <h1>LOADING</h1>
+        <Loader />
       </div>
     );
   }

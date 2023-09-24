@@ -25,7 +25,7 @@ h2 {
   position: relative;
 }
 
-.rwBtn {
+/* .rwBtn {
   width: 200px;
   height: 25px;
   text-align: center;
@@ -42,11 +42,12 @@ h2 {
   position: absolute;
   bottom: -17px;
   left: 365px;
+  background-color: red;
   &:hover {
     opacity: 0.5;
   }
-}
-.rwBtnAfter {
+} */
+.reviewBtn {
   width: 200px;
   height: 25px;
   text-align: center;
