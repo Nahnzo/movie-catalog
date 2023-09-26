@@ -11,10 +11,21 @@ import useAppSelector from "../../hooks/useAppSelector";
 import useAppDispatch from "../../hooks/useAppDispatch";
 import MyButton from "../../shared/MyButton/MyButton";
 
+import { useEffect } from "react";
+import useLocalStorageData from "../../hooks/useLocalStorage";
+
 const MyCollection = () => {
   const { data } = useAppSelector("myCollection");
   const { wantToSee, arrayReview } = useDataLength();
   const { dispatchFunction } = useAppDispatch();
+  const { array, updateArray, clearArray } = useLocalStorageData("myCollection", data.myCollection);
+  const clearStorage = () => {
+    dispatchFunction(() => {
+      // localStorage.removeItem("myCollectionArray");
+      clearArray();
+      dispatchFunction(() => clearAll());
+    });
+  };
 
   return (
     <section className={styles.main}>
@@ -27,9 +38,9 @@ const MyCollection = () => {
           Мои рецензии
         </Navbar>
         <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>
-        {data.myCollection.length !== 0 ? (
-          <MyButton styles={styles.deleteAll} handler={() => dispatchFunction(() => clearAll())}>
-            Очистить список ({data.length})
+        {array.length !== 0 ? (
+          <MyButton styles={styles.deleteAll} handler={clearStorage}>
+            Очистить список ({array.length})
           </MyButton>
         ) : (
           ""
@@ -37,13 +48,13 @@ const MyCollection = () => {
       </nav>
       <section
         className={styles.wrapper}
-        style={{ borderRight: data.myCollection.length ? "2px solid white" : "none" }}
+        style={{ borderRight: array.length ? "2px solid white" : "none" }}
       >
         <div className={styles.myCollection}>
-          {data.myCollection.length === 0 ? (
+          {array.length === 0 ? (
             <h1 style={{ fontSize: "26px" }}>Список пуст</h1>
           ) : (
-            data.myCollection.map((item) => <CardForCollection movie={item} key={item.id} />)
+            array.map((item) => <CardForCollection movie={item} key={item.id} />)
           )}
         </div>
       </section>

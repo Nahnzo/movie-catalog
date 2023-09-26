@@ -22,6 +22,7 @@ export const myCollectionSlice = createSlice({
     clearAll(state) {
       state.myCollection = [];
       state.length = 0;
+      // localStorage.clear();
     },
     addRating(state, action) {
       const { movieId, rating } = action.payload;
