@@ -1,35 +1,32 @@
 import { useState, useEffect } from "react";
+import useAppSelector from "./useAppSelector";
 
 const useLocalStorageData = (key, initialData) => {
-  const [array, setArray] = useState(initialData);
+  const [data, setData] = useState(() => {
+    const storedData = localStorage.getItem(key);
+    return storedData ? JSON.parse(storedData) : initialData;
+  });
 
   useEffect(() => {
-    if (key) {
-      const storedData = localStorage.getItem(key);
-      if (storedData) {
-        setArray(JSON.parse(storedData));
-        console.log(JSON.parse(storedData));
-      } else {
-        localStorage.setItem(key, JSON.stringify(array));
-      }
+    // Первоначальная инициализация из localStorage
+    const storedData = localStorage.getItem(key);
+    if (storedData) {
+      setData(JSON.parse(storedData));
+    } else {
+      localStorage.setItem(key, JSON.stringify(initialData));
     }
-  }, []);
+  }, [key, initialData]);
 
-  const updateArray = (newArray) => {
-    setArray(newArray);
-    localStorage.setItem(key, JSON.stringify(newArray));
+  const updateData = (newData) => {
+    // Объединяем старые данные с новыми
+    const updatedData = [...data, newData];
+    // Сохраняем обновленные данные в localStorage
+    localStorage.setItem(key, JSON.stringify(updatedData));
+    // Обновляем состояние компонента
+    setData(updatedData);
   };
 
-  const clearArray = () => {
-    setArray([]);
-    localStorage.removeItem(key);
-  };
-
-  return {
-    array,
-    updateArray,
-    clearArray,
-  };
+  return [data, updateData];
 };
 
 export default useLocalStorageData;

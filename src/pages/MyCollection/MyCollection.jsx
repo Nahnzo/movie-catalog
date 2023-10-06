@@ -10,26 +10,38 @@ import Navbar from "../../shared/Navbar/Navbar";
 import useAppSelector from "../../hooks/useAppSelector";
 import useAppDispatch from "../../hooks/useAppDispatch";
 import MyButton from "../../shared/MyButton/MyButton";
-
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useLocalStorageData from "../../hooks/useLocalStorage";
 
 const MyCollection = () => {
-  const { data } = useAppSelector("myCollection");
   const { wantToSee, arrayReview } = useDataLength();
   const { dispatchFunction } = useAppDispatch();
-  const { array, updateArray, clearArray } = useLocalStorageData("myCollection", data.myCollection);
-  const clearStorage = () => {
-    dispatchFunction(() => {
-      // localStorage.removeItem("myCollectionArray");
-      clearArray();
-      dispatchFunction(() => clearAll());
-    });
-  };
+  // const [array, setArray] = useLocalStorageData("myCollection", data.myCollection);
+  const { data } = useAppSelector("myCollection");
+
+  const [array, setArray] = useState(() => {
+    const storedData = localStorage.getItem("myCollection");
+    return storedData ? JSON.parse(storedData) : [];
+  });
+
+  useEffect(() => {
+    if (data.myCollection.length) {
+      setArray((prevArray) => {
+        const mergedData = [...new Set([...prevArray, ...data.myCollection])];
+        localStorage.setItem("myCollection", JSON.stringify(mergedData));
+        return mergedData;
+      });
+    }
+  }, [data.myCollection]);
 
   return (
     <section className={styles.main}>
-      <nav className={styles.header}>
+      {array.map((item) => (
+        <p style={{ margin: "auto", fontSize: "30px", color: "white" }} key={item.id}>
+          {item.name}
+        </p>
+      ))}
+      {/* <nav className={styles.header}>
         <Navbar path={ROUTES.home}>На главную</Navbar>
         <Navbar path={ROUTES.wantToSee} icon={<BsFolder2Open />} dataLength={wantToSee.length}>
           Хочу посмотреть
@@ -38,9 +50,9 @@ const MyCollection = () => {
           Мои рецензии
         </Navbar>
         <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>
-        {array.length !== 0 ? (
-          <MyButton styles={styles.deleteAll} handler={clearStorage}>
-            Очистить список ({array.length})
+        {data.length !== 0 ? (
+          <MyButton styles={styles.deleteAll} handler={() => dispatchFunction(() => clearAll())}>
+            Очистить список ({data.length})
           </MyButton>
         ) : (
           ""
@@ -48,17 +60,17 @@ const MyCollection = () => {
       </nav>
       <section
         className={styles.wrapper}
-        style={{ borderRight: array.length ? "2px solid white" : "none" }}
+        style={{ borderRight: data.length ? "2px solid white" : "none" }}
       >
         <div className={styles.myCollection}>
-          {array.length === 0 ? (
+          {data.length === 0 ? (
             <h1 style={{ fontSize: "26px" }}>Список пуст</h1>
           ) : (
-            array.map((item) => <CardForCollection movie={item} key={item.id} />)
+            data.myCollection.map((item) => <CardForCollection movie={item} key={item.id} />)
           )}
         </div>
       </section>
-      <Footer />
+      <Footer /> */}
     </section>
   );
 };

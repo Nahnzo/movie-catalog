@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import { useSelector } from "react-redux";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { addMovieToCollection, removeMovieFromCollection } from "../../Slices/MyCollectionSlice";
 import styles from "./handleMyCollection.module.css";
@@ -9,6 +8,7 @@ import useAppSelector from "../../hooks/useAppSelector";
 const HandleWantToSee = ({ movie }) => {
   const { dispatchFunction } = useAppDispatch();
   const { data } = useAppSelector("myCollection");
+
   const isInMyCollection = data.myCollection.some((item) => item.id === movie.id);
   const handleIconFolder = isInMyCollection ? (
     <BsHeartFill className={styles.collectionFill} onClick={(event) => handleClick(event, movie)} />
