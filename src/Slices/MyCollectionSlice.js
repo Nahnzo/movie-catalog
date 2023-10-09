@@ -13,16 +13,34 @@ export const myCollectionSlice = createSlice({
         const newMovie = { ...action.payload, myRating: 0, myReviews: "" };
         state.myCollection.push(newMovie);
         state.length++;
+        localStorage.setItem("myCollection", JSON.stringify(state.myCollection));
       }
     },
     removeMovieFromCollection(state, action) {
-      state.myCollection = state.myCollection.filter((item) => item.id !== action.payload.id);
+      // state.myCollection = state.myCollection.filter((item) => item.id !== action.payload.id);
+      // const storedData = JSON.parse(localStorage.getItem("myCollection"));
+      // if (storedData) {
+      //   state.myCollection = storedData.filter((item) => item.id !== action.payload.id);
+      // }
+
+      // state.length--;
+      const movieToRemove = state.myCollection.find((item) => item.id === action.payload.id);
+      if (movieToRemove) {
+        // Удаляем элемент из Redux-состояния
+        state.myCollection = state.myCollection.filter((item) => item.id !== action.payload.id);
+
+        // Удаляем элемент из localStorage
+        const storedData = JSON.parse(localStorage.getItem("myCollection"));
+        if (storedData) {
+          const updatedData = storedData.filter((item) => item.id !== action.payload.id);
+          localStorage.setItem("myCollection", JSON.stringify(updatedData));
+        }
+      }
       state.length--;
     },
     clearAll(state) {
       state.myCollection = [];
       state.length = 0;
-      // localStorage.clear();
     },
     addRating(state, action) {
       const { movieId, rating } = action.payload;

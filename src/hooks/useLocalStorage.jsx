@@ -1,32 +1,23 @@
 import { useState, useEffect } from "react";
-import useAppSelector from "./useAppSelector";
 
 const useLocalStorageData = (key, initialData) => {
-  const [data, setData] = useState(() => {
+  const [array, setArray] = useState(() => {
     const storedData = localStorage.getItem(key);
-    return storedData ? JSON.parse(storedData) : initialData;
+    return storedData ? JSON.parse(storedData) : [];
   });
 
   useEffect(() => {
-    // Первоначальная инициализация из localStorage
-    const storedData = localStorage.getItem(key);
-    if (storedData) {
-      setData(JSON.parse(storedData));
-    } else {
-      localStorage.setItem(key, JSON.stringify(initialData));
-    }
-  }, [key, initialData]);
-
-  const updateData = (newData) => {
-    // Объединяем старые данные с новыми
-    const updatedData = [...data, newData];
-    // Сохраняем обновленные данные в localStorage
-    localStorage.setItem(key, JSON.stringify(updatedData));
-    // Обновляем состояние компонента
-    setData(updatedData);
-  };
-
-  return [data, updateData];
+    setArray((prevArray) => {
+      const newData = initialData.filter((item) => {
+        return prevArray.every((prevItem) => prevItem.id !== item.id);
+      });
+      const mergedData = [...prevArray, ...newData];
+      localStorage.setItem(key, JSON.stringify(mergedData));
+      localStorage.setItem("lengthMyCollection", JSON.stringify(mergedData.length));
+      return mergedData;
+    });
+  }, [initialData.length, initialData, key]);
+  return [array, setArray];
 };
 
 export default useLocalStorageData;
