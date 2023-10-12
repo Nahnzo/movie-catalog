@@ -12,6 +12,8 @@ import { useEffect, useState, useRef } from "react";
 import { clearAll } from "../../Slices/WantToSeeSlice";
 import { BiCameraMovie } from "react-icons/bi";
 import { CiViewList } from "react-icons/ci";
+import useLocalStorageData from "../../hooks/useLocalStorage";
+import { useLocalStorageLength } from "../../hooks/useLocalStorageLength";
 
 const WantToSee = () => {
   const ref = useRef(null);
@@ -20,6 +22,7 @@ const WantToSee = () => {
   const { dispatchFunction } = useAppDispatch();
   const { data } = useAppSelector("wantToSee");
   const [selectedMovie, setSelectedMovie] = useState(null);
+  useLocalStorageData("wantToSee");
 
   useEffect(() => {
     setSelectedMovie(data.wantToSee[0]);
@@ -36,11 +39,15 @@ const WantToSee = () => {
           <Navbar
             path={ROUTES.myCollection}
             icon={<BiCameraMovie />}
-            dataLength={myCollection.length}
+            dataLength={useLocalStorageLength("myCollection")}
           >
             Моя коллекция
           </Navbar>
-          <Navbar path={ROUTES.myReviews} icon={<CiViewList />} dataLength={arrayReview.length}>
+          <Navbar
+            path={ROUTES.myReviews}
+            icon={<CiViewList />}
+            dataLength={useLocalStorageLength("myReviews")}
+          >
             Мои рецензии
           </Navbar>
           <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>
@@ -76,11 +83,15 @@ const WantToSee = () => {
           <Navbar
             path={ROUTES.myCollection}
             icon={<BiCameraMovie />}
-            dataLength={myCollection.length}
+            dataLength={useLocalStorageLength("myCollection")}
           >
             Моя коллекция
           </Navbar>
-          <Navbar path={ROUTES.myReviews} icon={<CiViewList />} dataLength={arrayReview.length}>
+          <Navbar
+            path={ROUTES.myReviews}
+            icon={<CiViewList />}
+            dataLength={useLocalStorageLength("myReviews")}
+          >
             Мои рецензии
           </Navbar>
           <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>

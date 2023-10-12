@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import { removeMovieFromCollection } from "../../Slices/MyCollectionSlice";
+import { addMovieToCollection, removeMovieFromCollection } from "../../Slices/MyCollectionSlice";
 import useAppDispatch from "../../hooks/useAppDispatch";
 import useAppSelector from "../../hooks/useAppSelector";
 import styles from "./cardForCollection.module.css";

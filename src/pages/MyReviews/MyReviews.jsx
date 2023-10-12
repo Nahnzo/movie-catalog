@@ -13,6 +13,8 @@ import MyButton from "../../shared/MyButton/MyButton";
 import { deleteAll } from "../../Slices/ReviewSlice";
 import useAppDispatch from "../../hooks/useAppDispatch";
 import { getOnlyUniq } from "../../tools/getOnlyUniq";
+import useLocalStorageData from "../../hooks/useLocalStorage";
+import { useLocalStorageLength } from "../../hooks/useLocalStorageLength";
 
 const MyReviews = () => {
   const { myCollection, wantToSee, arrayReview } = useDataLength();
@@ -21,6 +23,7 @@ const MyReviews = () => {
   const [selectedMovie, setSelectedMovie] = useState(null);
   const ref = useRef(null);
   const wrapper = ref.current;
+  useLocalStorageData("myReviews");
   const movieWithReviews = data.movies.filter(
     (item) => item.myReviews !== "Место для вашей рецензии" && item.myReviews !== ""
   );
@@ -37,20 +40,23 @@ const MyReviews = () => {
       <section className={styles.header}>
         <nav className={styles.navigation}>
           <Navbar path={ROUTES.home}>На главную</Navbar>
-          <Navbar path={ROUTES.wantToSee} icon={<BsFolder2Open />} dataLength={wantToSee.length}>
+          <Navbar
+            path={ROUTES.wantToSee}
+            icon={<BsFolder2Open />}
+            dataLength={useLocalStorageLength("wantToSee")}
+          >
             Хочу посмотреть
           </Navbar>
           <Navbar
             path={ROUTES.myCollection}
             icon={<BiCameraMovie />}
-            dataLength={myCollection.length}
+            dataLength={useLocalStorageLength("myCollection")}
           >
             Моя коллекция
           </Navbar>
           <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>
           {arrayReview.length ? (
             <MyButton styles={styles.deleteAll} handler={() => dispatchFunction(() => deleteAll())}>
-              {/* Получение уникальной длины */}
               Очистить список ({getOnlyUniq(data.movies)})
             </MyButton>
           ) : (

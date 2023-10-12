@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import HandleReview from "../../components/HandleReview/HandleReview";
+import useLocalStorageData from "../../hooks/useLocalStorage";
 import styles from "./cardForMyReviews.module.css";
 
 const CardForMyReviews = ({ movie }) => {

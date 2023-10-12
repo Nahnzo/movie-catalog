@@ -8,33 +8,35 @@ import styles from "./header.module.css";
 import Navbar from "../../shared/Navbar/Navbar";
 import useAppDispatch from "../../hooks/useAppDispatch";
 import { addMovieToCollection } from "../../Slices/MyCollectionSlice";
+import useLocalStorageData from "../../hooks/useLocalStorage";
+import { useLocalStorageLength } from "../../hooks/useLocalStorageLength";
 
 const Header = () => {
   const { wantToSee, myCollection, arrayReview } = useDataLength();
-  const { dispatchFunction } = useAppDispatch();
-  useEffect(() => {
-    const storedData = localStorage.getItem("myCollection");
-    if (storedData) {
-      JSON.parse(storedData).forEach((item) => {
-        dispatchFunction(() => addMovieToCollection(item));
-      });
-    }
-  }, []);
 
   return (
     <section className={styles.header}>
       <nav className={styles.navigation}>
-        <Navbar path={ROUTES.wantToSee} icon={<BsFolder2Open />} dataLength={wantToSee.length}>
+        <Navbar
+          path={ROUTES.wantToSee}
+          icon={<BsFolder2Open />}
+          dataLength={useLocalStorageLength("wantToSee")}
+        >
           Хочу посмотреть
         </Navbar>
+
         <Navbar
           path={ROUTES.myCollection}
           icon={<BiCameraMovie />}
-          dataLength={myCollection.length}
+          dataLength={useLocalStorageLength("myCollection")}
         >
           Моя коллекция
         </Navbar>
-        <Navbar path={ROUTES.myReviews} icon={<CiViewList />} dataLength={arrayReview.length}>
+        <Navbar
+          path={ROUTES.myReviews}
+          icon={<CiViewList />}
+          dataLength={useLocalStorageLength("myReviews")}
+        >
           Мои рецензии
         </Navbar>
         <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>

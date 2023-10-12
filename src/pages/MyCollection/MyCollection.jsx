@@ -11,19 +11,14 @@ import useAppSelector from "../../hooks/useAppSelector";
 import useAppDispatch from "../../hooks/useAppDispatch";
 import MyButton from "../../shared/MyButton/MyButton";
 import { useEffect } from "react";
+import useLocalStorageData from "../../hooks/useLocalStorage";
+import { useLocalStorageLength } from "../../hooks/useLocalStorageLength";
 
 const MyCollection = () => {
   const { wantToSee, arrayReview } = useDataLength();
   const { dispatchFunction } = useAppDispatch();
   const { data } = useAppSelector("myCollection");
-  useEffect(() => {
-    const storedData = localStorage.getItem("myCollection");
-    if (storedData) {
-      JSON.parse(storedData).forEach((item) => {
-        dispatchFunction(() => addMovieToCollection(item));
-      });
-    }
-  }, []);
+  useLocalStorageData("myCollection");
 
   const deleteAll = () => {
     dispatchFunction(() => clearAll());
@@ -35,7 +30,11 @@ const MyCollection = () => {
     <section className={styles.main}>
       <nav className={styles.header}>
         <Navbar path={ROUTES.home}>На главную</Navbar>
-        <Navbar path={ROUTES.wantToSee} icon={<BsFolder2Open />} dataLength={wantToSee.length}>
+        <Navbar
+          path={ROUTES.wantToSee}
+          icon={<BsFolder2Open />}
+          dataLength={useLocalStorageLength("wantToSee")}
+        >
           Хочу посмотреть
         </Navbar>
         <Navbar path={ROUTES.myReviews} icon={<CiViewList />} dataLength={arrayReview.length}>

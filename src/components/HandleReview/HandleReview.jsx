@@ -5,7 +5,6 @@ import useFilteredMovie from "../../hooks/useFilteredMovie";
 import useAppDispatch from "../../hooks/useAppDispatch";
 import MyButton from "../../shared/MyButton/MyButton";
 import styles from "./handleReview.module.css";
-// import AreaForReview from "../AreaForReview/AreaForReview";
 
 const HandleReview = ({ movie }) => {
   const { filteredMovie } = useFilteredMovie("arrayReview", movie);
@@ -34,7 +33,6 @@ const HandleReview = ({ movie }) => {
       <h2>{movie.name || movie.alternativeName}</h2>
       <hr />
       <div className={styles.reviews}>
-        {/* <AreaForReview movie={movie} /> */}
         <textarea
           className={styles.leaveRw}
           onChange={(e) => setReview(e.target.value)}
