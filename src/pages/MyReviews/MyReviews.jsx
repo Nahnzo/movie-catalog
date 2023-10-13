@@ -5,7 +5,6 @@ import styles from "./myReviews.module.css";
 import CardForMyReviews from "../../entities/CardForMyReviews/CardForMyReviews";
 import LeaveReview from "../../components/LeaveReview/LeaveReview";
 import Navbar from "../../shared/Navbar/Navbar";
-import useDataLength from "../../hooks/useDataLength";
 import useAppSelector from "../../hooks/useAppSelector";
 import CarouselX from "../../widgets/CarouselX/CarouselX";
 import { useRef, useState, useEffect } from "react";
@@ -17,7 +16,6 @@ import useLocalStorageData from "../../hooks/useLocalStorage";
 import { useLocalStorageLength } from "../../hooks/useLocalStorageLength";
 
 const MyReviews = () => {
-  const { myCollection, wantToSee, arrayReview } = useDataLength();
   const { dispatchFunction } = useAppDispatch();
   const { data } = useAppSelector("arrayReview");
   const [selectedMovie, setSelectedMovie] = useState(null);
@@ -28,8 +26,8 @@ const MyReviews = () => {
     (item) => item.myReviews !== "Место для вашей рецензии" && item.myReviews !== ""
   );
   useEffect(() => {
-    setSelectedMovie(arrayReview.movies[arrayReview.length - 1]);
-  }, [arrayReview.length, arrayReview.movies]);
+    setSelectedMovie(data.movies[data.length - 1]);
+  }, [data.length, data.movies]);
 
   const setFirst = (item) => {
     setSelectedMovie(item);
@@ -55,7 +53,7 @@ const MyReviews = () => {
             Моя коллекция
           </Navbar>
           <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>
-          {arrayReview.length ? (
+          {data.length ? (
             <MyButton styles={styles.deleteAll} handler={() => dispatchFunction(() => deleteAll())}>
               Очистить список ({getOnlyUniq(data.movies)})
             </MyButton>

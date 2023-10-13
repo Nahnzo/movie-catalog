@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import formatTime from "../../tools/time";
 import styles from "./wantToSeeCard.module.css";
-import HandleMovieInWantToSee from "../../components/HandleMovieInWantToSee/HandleMovieInWantToSee";
+import HandleMovieInWantToSee from "../../Handlers/HandleMovieInWantToSee/HandleMovieInWantToSee";
 import MyButton from "../../shared/MyButton/MyButton";
 import useAppDispatch from "../../hooks/useAppDispatch";
 import { removeMovie } from "../../Slices/WantToSeeSlice";

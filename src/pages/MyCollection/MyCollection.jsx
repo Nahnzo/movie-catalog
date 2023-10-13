@@ -1,29 +1,23 @@
 import { ROUTES } from "../../routes";
 import { BsFolder2Open } from "react-icons/bs";
 import { CiViewList } from "react-icons/ci";
-import { addMovieToCollection, clearAll } from "../../Slices/MyCollectionSlice";
+import { clearAll } from "../../Slices/MyCollectionSlice";
+import { useLocalStorageLength } from "../../hooks/useLocalStorageLength";
 import Footer from "../../components/Footer/Footer";
-import styles from "./myCollection.module.css";
 import CardForCollection from "../../entities/CardForCollection/CardForCollection";
-import useDataLength from "../../hooks/useDataLength";
 import Navbar from "../../shared/Navbar/Navbar";
 import useAppSelector from "../../hooks/useAppSelector";
 import useAppDispatch from "../../hooks/useAppDispatch";
 import MyButton from "../../shared/MyButton/MyButton";
-import { useEffect } from "react";
 import useLocalStorageData from "../../hooks/useLocalStorage";
-import { useLocalStorageLength } from "../../hooks/useLocalStorageLength";
+import styles from "./myCollection.module.css";
 
 const MyCollection = () => {
-  const { wantToSee, arrayReview } = useDataLength();
   const { dispatchFunction } = useAppDispatch();
   const { data } = useAppSelector("myCollection");
   useLocalStorageData("myCollection");
-
   const deleteAll = () => {
     dispatchFunction(() => clearAll());
-    localStorage.removeItem("myCollection");
-    setArray([]);
   };
 
   return (
@@ -37,7 +31,11 @@ const MyCollection = () => {
         >
           Хочу посмотреть
         </Navbar>
-        <Navbar path={ROUTES.myReviews} icon={<CiViewList />} dataLength={arrayReview.length}>
+        <Navbar
+          path={ROUTES.myReviews}
+          icon={<CiViewList />}
+          dataLength={useLocalStorageLength("myReviews")}
+        >
           Мои рецензии
         </Navbar>
         <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>

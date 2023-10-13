@@ -3,7 +3,6 @@ import WantToSeeCard from "../../entities/WantToSeeCard/WantToSeeCard";
 import CarouselX from "../../widgets/CarouselX/CarouselX";
 import Footer from "../../components/Footer/Footer";
 import Navbar from "../../shared/Navbar/Navbar";
-import useDataLength from "../../hooks/useDataLength";
 import useAppDispatch from "../../hooks/useAppDispatch";
 import useAppSelector from "../../hooks/useAppSelector";
 import MyButton from "../../shared/MyButton/MyButton";
@@ -18,7 +17,6 @@ import { useLocalStorageLength } from "../../hooks/useLocalStorageLength";
 const WantToSee = () => {
   const ref = useRef(null);
   const wrapper = ref.current;
-  const { myCollection, arrayReview } = useDataLength();
   const { dispatchFunction } = useAppDispatch();
   const { data } = useAppSelector("wantToSee");
   const [selectedMovie, setSelectedMovie] = useState(null);

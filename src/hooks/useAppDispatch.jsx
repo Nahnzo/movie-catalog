@@ -2,8 +2,8 @@ import { useDispatch } from "react-redux";
 
 const useAppDispatch = () => {
   const dispatch = useDispatch();
-  const dispatchFunction = (func) => {
-    dispatch(func());
+  const dispatchFunction = (callback) => {
+    dispatch(callback());
   };
 
   return {

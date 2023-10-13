@@ -4,7 +4,7 @@ import { addMovieToCollection, removeMovieFromCollection } from "../../Slices/My
 import useAppDispatch from "../../hooks/useAppDispatch";
 import useAppSelector from "../../hooks/useAppSelector";
 import styles from "./cardForCollection.module.css";
-import HandleRating from "../../components/HandleRating/HandleRating";
+import HandleRating from "../../Handlers/HandleRating/HandleRating";
 import MyButton from "../../shared/MyButton/MyButton";
 import { ROUTES } from "../../routes";
 import { useNavigate } from "react-router-dom";

@@ -8,9 +8,12 @@ export const ReviewSlice = createSlice({
   },
   reducers: {
     addMovieToReview(state, action) {
-      state.movies.push({ ...action.payload, myReviews: action.payload.myReviews || "" });
-      localStorage.setItem("myReviews", JSON.stringify(state.movies));
-      state.length++;
+      const isExist = state.movies.find((item) => item.id === action.payload.id);
+      if (!isExist) {
+        state.movies.push({ ...action.payload, myReviews: action.payload.myReviews || "" });
+        localStorage.setItem("myReviews", JSON.stringify(state.movies));
+        state.length++;
+      }
     },
 
     addReviews(state, action) {
