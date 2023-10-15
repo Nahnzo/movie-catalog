@@ -5,7 +5,6 @@ import styles from "./myReviews.module.css";
 import CardForMyReviews from "../../entities/CardForMyReviews/CardForMyReviews";
 import LeaveReview from "../../components/LeaveReview/LeaveReview";
 import Navbar from "../../shared/Navbar/Navbar";
-import useAppSelector from "../../hooks/useAppSelector";
 import CarouselX from "../../widgets/CarouselX/CarouselX";
 import { useRef, useState, useEffect } from "react";
 import MyButton from "../../shared/MyButton/MyButton";
@@ -13,21 +12,21 @@ import { deleteAll } from "../../Slices/ReviewSlice";
 import useAppDispatch from "../../hooks/useAppDispatch";
 import { getOnlyUniq } from "../../tools/getOnlyUniq";
 import useLocalStorageData from "../../hooks/useLocalStorage";
-import { useLocalStorageLength } from "../../hooks/useLocalStorageLength";
+import { useDataLength } from "../../hooks/useDataLength";
 
 const MyReviews = () => {
   const { dispatchFunction } = useAppDispatch();
-  const { data } = useAppSelector("arrayReview");
+  const data = useDataLength();
   const [selectedMovie, setSelectedMovie] = useState(null);
   const ref = useRef(null);
   const wrapper = ref.current;
   useLocalStorageData("myReviews");
-  const movieWithReviews = data.movies.filter(
+  const movieWithReviews = data.arrayReview.movies.filter(
     (item) => item.myReviews !== "Место для вашей рецензии" && item.myReviews !== ""
   );
   useEffect(() => {
-    setSelectedMovie(data.movies[data.length - 1]);
-  }, [data.length, data.movies]);
+    setSelectedMovie(data.arrayReview.movies[data.arrayReview.length - 1]);
+  }, [data.arrayReview.length, data.arrayReview.movies]);
 
   const setFirst = (item) => {
     setSelectedMovie(item);
@@ -41,21 +40,21 @@ const MyReviews = () => {
           <Navbar
             path={ROUTES.wantToSee}
             icon={<BsFolder2Open />}
-            dataLength={useLocalStorageLength("wantToSee")}
+            dataLength={data.wantToSee.length}
           >
             Хочу посмотреть
           </Navbar>
           <Navbar
             path={ROUTES.myCollection}
             icon={<BiCameraMovie />}
-            dataLength={useLocalStorageLength("myCollection")}
+            dataLength={data.myCollection.length}
           >
             Моя коллекция
           </Navbar>
           <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>
-          {data.length ? (
+          {data.arrayReview.length ? (
             <MyButton styles={styles.deleteAll} handler={() => dispatchFunction(() => deleteAll())}>
-              Очистить список ({getOnlyUniq(data.movies)})
+              Очистить список ({getOnlyUniq(data.arrayReview.movies)})
             </MyButton>
           ) : (
             ""

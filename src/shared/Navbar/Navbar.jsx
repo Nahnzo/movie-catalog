@@ -1,9 +1,11 @@
 /* eslint-disable react/prop-types */
 import { useNavigate } from "react-router-dom";
 import styles from "./navbar.module.css";
+import { useEffect } from "react";
 
 const Navbar = ({ path, children, icon, dataLength }) => {
   const navigate = useNavigate();
+  // useEffect(() => {}, [dataLength])
   return (
     <h3 onClick={() => navigate(path)}>
       {children}

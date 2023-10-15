@@ -13,17 +13,18 @@ import { BiCameraMovie } from "react-icons/bi";
 import { CiViewList } from "react-icons/ci";
 import useLocalStorageData from "../../hooks/useLocalStorage";
 import { useLocalStorageLength } from "../../hooks/useLocalStorageLength";
+import { useDataLength } from "../../hooks/useDataLength";
 
 const WantToSee = () => {
   const ref = useRef(null);
   const wrapper = ref.current;
   const { dispatchFunction } = useAppDispatch();
-  const { data } = useAppSelector("wantToSee");
+  const data = useDataLength();
   const [selectedMovie, setSelectedMovie] = useState(null);
   useLocalStorageData("wantToSee");
 
   useEffect(() => {
-    setSelectedMovie(data.wantToSee[0]);
+    setSelectedMovie(data.wantToSee.wantToSee[0]);
   }, [data.wantToSee]);
   const showFirst = (movie) => {
     setSelectedMovie(movie);
@@ -37,14 +38,14 @@ const WantToSee = () => {
           <Navbar
             path={ROUTES.myCollection}
             icon={<BiCameraMovie />}
-            dataLength={useLocalStorageLength("myCollection")}
+            dataLength={data.myCollection.length}
           >
             Моя коллекция
           </Navbar>
           <Navbar
             path={ROUTES.myReviews}
             icon={<CiViewList />}
-            dataLength={useLocalStorageLength("myReviews")}
+            dataLength={data.arrayReview.length}
           >
             Мои рецензии
           </Navbar>
@@ -59,7 +60,7 @@ const WantToSee = () => {
         <div className={styles.container}>
           {selectedMovie && <WantToSeeCard firstMovie={selectedMovie} />}
           <div className={styles.wrapperCollection} ref={ref}>
-            {data.wantToSee.map((item) => (
+            {data.wantToSee.wantToSee.map((item) => (
               <div
                 className={styles.card}
                 key={item.id}
@@ -81,14 +82,14 @@ const WantToSee = () => {
           <Navbar
             path={ROUTES.myCollection}
             icon={<BiCameraMovie />}
-            dataLength={useLocalStorageLength("myCollection")}
+            dataLength={data.myCollection.length}
           >
             Моя коллекция
           </Navbar>
           <Navbar
             path={ROUTES.myReviews}
             icon={<CiViewList />}
-            dataLength={useLocalStorageLength("myReviews")}
+            dataLength={data.arrayReview.length}
           >
             Мои рецензии
           </Navbar>
