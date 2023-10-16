@@ -2,8 +2,8 @@
 import { BsFolderPlus, BsFolderMinus } from "react-icons/bs";
 import { addMovie, removeMovie } from "../../Slices/WantToSeeSlice";
 import styles from "./handleWantToSee.module.css";
-import useAppDispatch from "../../hooks/useAppDispatch";
-import useAppSelector from "../../hooks/useAppSelector";
+import useAppDispatch from "hooks/useAppDispatch";
+import useAppSelector from "hooks/useAppSelector";
 
 const HandleWantToSee = ({ movie }) => {
   const { dispatchFunction } = useAppDispatch();

@@ -5,4 +5,11 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   base: "/movie-catalog/",
+  resolve: {
+    alias: {
+      src: "/src",
+      components: "/src/components",
+      hooks: "/src/hooks",
+    },
+  },
 });

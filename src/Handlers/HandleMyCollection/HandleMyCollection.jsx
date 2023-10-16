@@ -2,8 +2,8 @@
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { addMovieToCollection, removeMovieFromCollection } from "../../Slices/MyCollectionSlice";
 import styles from "./handleMyCollection.module.css";
-import useAppDispatch from "../../hooks/useAppDispatch";
-import useAppSelector from "../../hooks/useAppSelector";
+import useAppDispatch from "hooks/useAppDispatch";
+import useAppSelector from "hooks/useAppSelector";
 
 const HandleWantToSee = ({ movie }) => {
   const { dispatchFunction } = useAppDispatch();

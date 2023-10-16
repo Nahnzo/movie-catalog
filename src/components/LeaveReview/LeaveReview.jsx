@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { HiMagnifyingGlass } from "react-icons/hi2";
 import { getFilmByName } from "../../tools/getFilmByName";
-import styles from "./leaveReview.module.css";
 import CardForLeaveReview from "../../entities/CardForLeaveReview/CardForLeaveReview";
+import styles from "./leaveReview.module.css";
 
 const LeaveReview = () => {
   const [name, setSearchName] = useState("");

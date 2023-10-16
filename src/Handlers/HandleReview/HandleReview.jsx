@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
 import { useState, useRef, useEffect } from "react";
 import { addReviews } from "../../Slices/ReviewSlice";
-import useFilteredMovie from "../../hooks/useFilteredMovie";
-import useAppDispatch from "../../hooks/useAppDispatch";
+import useFilteredMovie from "hooks/useFilteredMovie";
+import useAppDispatch from "hooks/useAppDispatch";
 import MyButton from "../../shared/MyButton/MyButton";
 import styles from "./handleReview.module.css";
 
 const HandleReview = ({ movie }) => {
-  const { filteredMovie } = useFilteredMovie("arrayReview", movie);
+  const { filteredMovie } = useFilteredMovie("arrayReviews", movie);
   const { dispatchFunction } = useAppDispatch();
   const [readOnly, setReadOnly] = useState(true);
   const [initialText] = useState("Место для вашей рецензии");

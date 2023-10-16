@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import styles from "./handleMovieInWantToSee.module.css";
-import useAppDispatch from "../../hooks/useAppDispatch";
-import useAppSelector from "../../hooks/useAppSelector";
+import useAppDispatch from "hooks/useAppDispatch";
+import useAppSelector from "hooks/useAppSelector";
 import MyButton from "../../shared/MyButton/MyButton";
 import { addMovieToCollection, removeMovieFromCollection } from "../../Slices/MyCollectionSlice";
 

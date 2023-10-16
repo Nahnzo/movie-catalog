@@ -3,7 +3,7 @@ import MovieCard from "../../entities/MovieCard/MovieCard";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getMovie } from "../../Slices/MovieSlice";
-import useAppDispatch from "../../hooks/useAppDispatch";
+import useAppDispatch from "hooks/useAppDispatch";
 import Loader from "../../widgets/Loader/Loader";
 
 const FetchMovie = () => {

@@ -2,19 +2,19 @@ import { ROUTES } from "../../routes";
 import { BsFolder2Open } from "react-icons/bs";
 import { CiViewList } from "react-icons/ci";
 import { clearAll } from "../../Slices/MyCollectionSlice";
-import { useLocalStorageLength } from "../../hooks/useLocalStorageLength";
-import { useDataLength } from "../../hooks/useDataLength";
-import Footer from "../../components/Footer/Footer";
+import { useDataLength } from "hooks/useDataLength";
+import Footer from "components/Footer/Footer";
 import CardForCollection from "../../entities/CardForCollection/CardForCollection";
 import Navbar from "../../shared/Navbar/Navbar";
-import useAppDispatch from "../../hooks/useAppDispatch";
+import useAppDispatch from "hooks/useAppDispatch";
 import MyButton from "../../shared/MyButton/MyButton";
-import useLocalStorageData from "../../hooks/useLocalStorage";
+import useLocalStorageData from "hooks/useLocalStorage";
 import styles from "./myCollection.module.css";
 
 const MyCollection = () => {
   const { dispatchFunction } = useAppDispatch();
   const data = useDataLength();
+  console.log(data);
   useLocalStorageData("myCollection");
   const deleteAll = () => {
     dispatchFunction(() => clearAll());
@@ -27,15 +27,11 @@ const MyCollection = () => {
         <Navbar
           path={ROUTES.wantToSee}
           icon={<BsFolder2Open />}
-          dataLength={useLocalStorageLength("wantToSee")}
+          dataLength={data.myCollection.length}
         >
           Хочу посмотреть
         </Navbar>
-        <Navbar
-          path={ROUTES.myReviews}
-          icon={<CiViewList />}
-          dataLength={useLocalStorageLength("myReviews")}
-        >
+        <Navbar path={ROUTES.myReviews} icon={<CiViewList />} dataLength={data.arrayReviews.length}>
           Мои рецензии
         </Navbar>
         <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>

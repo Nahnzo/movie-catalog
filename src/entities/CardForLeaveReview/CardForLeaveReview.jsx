@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import { addMovieToReview } from "../../Slices/ReviewSlice";
-import useAppDispatch from "../../hooks/useAppDispatch";
-import useLocalStorageData from "../../hooks/useLocalStorage";
+import useAppDispatch from "hooks/useAppDispatch";
 import styles from "./cardForLeaveReview.module.css";
 
 const CardForLeaveReview = ({ movie, setShowResultBlock }) => {

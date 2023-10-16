@@ -1,19 +1,17 @@
-import styles from "./wantToSee.module.css";
-import WantToSeeCard from "../../entities/WantToSeeCard/WantToSeeCard";
-import CarouselX from "../../widgets/CarouselX/CarouselX";
-import Footer from "../../components/Footer/Footer";
-import Navbar from "../../shared/Navbar/Navbar";
-import useAppDispatch from "../../hooks/useAppDispatch";
-import useAppSelector from "../../hooks/useAppSelector";
-import MyButton from "../../shared/MyButton/MyButton";
 import { ROUTES } from "../../routes";
 import { useEffect, useState, useRef } from "react";
-import { clearAll } from "../../Slices/WantToSeeSlice";
+import { useDataLength } from "hooks/useDataLength";
 import { BiCameraMovie } from "react-icons/bi";
 import { CiViewList } from "react-icons/ci";
-import useLocalStorageData from "../../hooks/useLocalStorage";
-import { useLocalStorageLength } from "../../hooks/useLocalStorageLength";
-import { useDataLength } from "../../hooks/useDataLength";
+import { clearAll } from "../../Slices/WantToSeeSlice";
+import MyButton from "../../shared/MyButton/MyButton";
+import WantToSeeCard from "../../entities/WantToSeeCard/WantToSeeCard";
+import CarouselX from "../../widgets/CarouselX/CarouselX";
+import Footer from "components/Footer/Footer";
+import Navbar from "../../shared/Navbar/Navbar";
+import useAppDispatch from "hooks/useAppDispatch";
+import useLocalStorageData from "hooks/useLocalStorage";
+import styles from "./wantToSee.module.css";
 
 const WantToSee = () => {
   const ref = useRef(null);
@@ -45,7 +43,7 @@ const WantToSee = () => {
           <Navbar
             path={ROUTES.myReviews}
             icon={<CiViewList />}
-            dataLength={data.arrayReview.length}
+            dataLength={data.arrayReviews.length}
           >
             Мои рецензии
           </Navbar>
@@ -89,7 +87,7 @@ const WantToSee = () => {
           <Navbar
             path={ROUTES.myReviews}
             icon={<CiViewList />}
-            dataLength={data.arrayReview.length}
+            dataLength={data.arrayReviews.length}
           >
             Мои рецензии
           </Navbar>

@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import formatTime from "../../tools/time";
 import CardForActors from "../CardForActors/CardForActors";
-import SequelsAndPrequels from "../../components/SequelsAndPrequels/SequelsAndPrequels";
+import SequelsAndPrequels from "components/SequelsAndPrequels/SequelsAndPrequels";
+import SimilarFilms from "components/SimilarFilms/SimilarFilms";
 import styles from "./cardForDetail.module.css";
-import SimilarFilms from "../../components/SimilarFilms/SimilarFilms";
 
 const CardForDetail = ({ movie }) => {
   return (

@@ -1,14 +1,14 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
-import { addMovieToCollection, removeMovieFromCollection } from "../../Slices/MyCollectionSlice";
-import useAppDispatch from "../../hooks/useAppDispatch";
-import useAppSelector from "../../hooks/useAppSelector";
-import styles from "./cardForCollection.module.css";
-import HandleRating from "../../Handlers/HandleRating/HandleRating";
-import MyButton from "../../shared/MyButton/MyButton";
 import { ROUTES } from "../../routes";
 import { useNavigate } from "react-router-dom";
 import { addMovieToReview } from "../../Slices/ReviewSlice";
+import { useState } from "react";
+import { removeMovieFromCollection } from "../../Slices/MyCollectionSlice";
+import useAppDispatch from "hooks/useAppDispatch";
+import useAppSelector from "hooks/useAppSelector";
+import MyButton from "../../shared/MyButton/MyButton";
+import HandleRating from "../../Handlers/HandleRating/HandleRating";
+import styles from "./cardForCollection.module.css";
 
 const CardForCollection = ({ movie }) => {
   const { dispatchFunction } = useAppDispatch();

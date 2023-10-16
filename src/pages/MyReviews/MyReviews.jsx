@@ -1,18 +1,18 @@
 import { ROUTES } from "../../routes";
 import { BiCameraMovie } from "react-icons/bi";
+import { deleteAll } from "../../Slices/ReviewSlice";
+import { getOnlyUniq } from "../../tools/getOnlyUniq";
+import { useDataLength } from "hooks/useDataLength";
+import { useRef, useState, useEffect } from "react";
 import { BsFolder2Open } from "react-icons/bs";
-import styles from "./myReviews.module.css";
+import MyButton from "../../shared/MyButton/MyButton";
 import CardForMyReviews from "../../entities/CardForMyReviews/CardForMyReviews";
-import LeaveReview from "../../components/LeaveReview/LeaveReview";
+import LeaveReview from "components/LeaveReview/LeaveReview";
 import Navbar from "../../shared/Navbar/Navbar";
 import CarouselX from "../../widgets/CarouselX/CarouselX";
-import { useRef, useState, useEffect } from "react";
-import MyButton from "../../shared/MyButton/MyButton";
-import { deleteAll } from "../../Slices/ReviewSlice";
-import useAppDispatch from "../../hooks/useAppDispatch";
-import { getOnlyUniq } from "../../tools/getOnlyUniq";
-import useLocalStorageData from "../../hooks/useLocalStorage";
-import { useDataLength } from "../../hooks/useDataLength";
+import useAppDispatch from "hooks/useAppDispatch";
+import useLocalStorageData from "hooks/useLocalStorage";
+import styles from "./myReviews.module.css";
 
 const MyReviews = () => {
   const { dispatchFunction } = useAppDispatch();
@@ -21,12 +21,12 @@ const MyReviews = () => {
   const ref = useRef(null);
   const wrapper = ref.current;
   useLocalStorageData("myReviews");
-  const movieWithReviews = data.arrayReview.movies.filter(
+  const movieWithReviews = data.arrayReviews.movies.filter(
     (item) => item.myReviews !== "Место для вашей рецензии" && item.myReviews !== ""
   );
   useEffect(() => {
-    setSelectedMovie(data.arrayReview.movies[data.arrayReview.length - 1]);
-  }, [data.arrayReview.length, data.arrayReview.movies]);
+    setSelectedMovie(data.arrayReviews.movies[data.arrayReviews.length - 1]);
+  }, [data.arrayReviews.length, data.arrayReviews.movies]);
 
   const setFirst = (item) => {
     setSelectedMovie(item);
@@ -52,9 +52,9 @@ const MyReviews = () => {
             Моя коллекция
           </Navbar>
           <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>
-          {data.arrayReview.length ? (
+          {data.arrayReviews.length ? (
             <MyButton styles={styles.deleteAll} handler={() => dispatchFunction(() => deleteAll())}>
-              Очистить список ({getOnlyUniq(data.arrayReview.movies)})
+              Очистить список ({getOnlyUniq(data.arrayReviews.movies)})
             </MyButton>
           ) : (
             ""

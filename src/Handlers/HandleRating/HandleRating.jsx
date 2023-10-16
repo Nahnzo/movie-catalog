@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { addRating } from "../../Slices/MyCollectionSlice";
 import styles from "./handleRating.module.css";
-import useAppDispatch from "../../hooks/useAppDispatch";
+import useAppDispatch from "hooks/useAppDispatch";
 import MyButton from "../../shared/MyButton/MyButton";
 
 const HandleRating = ({ movieId, setShowRateWindow }) => {
