@@ -14,7 +14,6 @@ import styles from "./myCollection.module.css";
 const MyCollection = () => {
   const { dispatchFunction } = useAppDispatch();
   const data = useDataLength();
-  console.log(data);
   useLocalStorageData("myCollection");
   const deleteAll = () => {
     dispatchFunction(() => clearAll());
