@@ -66,7 +66,9 @@ const MyReviews = () => {
         {selectedMovie && <CardForMyReviews movie={selectedMovie} />}
       </div>
       <div className={styles.container}>
-        {movieWithReviews.length && (
+        {movieWithReviews.length === 0 ? (
+          <h2>Список пуст</h2>
+        ) : (
           <div className={styles.containerArrayReviews} ref={ref}>
             {movieWithReviews.map((movie) => (
               <div

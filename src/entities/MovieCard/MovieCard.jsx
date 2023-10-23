@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./movieCard.module.css";
@@ -11,7 +10,6 @@ const MovieCard = ({ data }) => {
   const navigateToDetail = (movie) => {
     navigate(`/movie-catalog/${movie.type}/${movie.id}`);
   };
-
   return (
     <div>
       <div

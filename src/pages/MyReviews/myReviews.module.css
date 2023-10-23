@@ -52,6 +52,8 @@
   font-family: "Ysabeau Infant", sans-serif;
   position: relative;
   overflow: hidden;
+  color: white;
+  font-size: 24px;
 }
 
 .containerArrayReviews {

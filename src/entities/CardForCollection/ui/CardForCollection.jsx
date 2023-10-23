@@ -1,24 +1,27 @@
 /* eslint-disable react/prop-types */
-import { ROUTES } from "../../routes";
+import { ROUTES } from "../../../routes";
 import { useNavigate } from "react-router-dom";
-import { addMovieToReview } from "../../Slices/ReviewSlice";
+import { addMovieToReview } from "../../../Slices/ReviewSlice";
 import { useState } from "react";
-import { removeMovieFromCollection } from "../../Slices/MyCollectionSlice";
+import { removeMovieFromCollection } from "../../../Slices/MyCollectionSlice";
 import useAppDispatch from "hooks/useAppDispatch";
-import useAppSelector from "hooks/useAppSelector";
-import MyButton from "../../shared/MyButton/MyButton";
-import HandleRating from "../../Handlers/HandleRating/HandleRating";
+import useAppSelector from "../../../hooks/useAppSelector";
+import MyButton from "../../../shared/MyButton/MyButton";
+import HandleRating from "../../../Handlers/HandleRating/HandleRating";
 import styles from "./cardForCollection.module.css";
+import { getSortedMovie } from "../model/selectors/getSortedMovie/getSortedMovie";
+import { useSelector } from "react-redux";
 
 const CardForCollection = ({ movie }) => {
   const { dispatchFunction } = useAppDispatch();
-  const { data } = useAppSelector("arrayReview");
+  const { data } = useAppSelector("arrayReviews");
   const navigate = useNavigate();
   const [showRateWindow, setShowRateWindow] = useState(false);
-  const review = data.movies
-    .filter((item) => item.id === movie.id)
-    .filter((item) => item.myReviews);
-
+  // const review = data.movies
+  //   .filter((item) => item.id === movie.id)
+  //   .filter((item) => item.myReviews);
+  const review = useSelector(getSortedMovie);
+  // console.log(mov, review);
   function handleReview() {
     navigate(`${ROUTES.myReviews}`);
     dispatchFunction(() => addMovieToReview(movie));

@@ -4,7 +4,7 @@ import { CiViewList } from "react-icons/ci";
 import { clearAll } from "../../Slices/MyCollectionSlice";
 import { useDataLength } from "hooks/useDataLength";
 import Footer from "components/Footer/Footer";
-import CardForCollection from "../../entities/CardForCollection/CardForCollection";
+import CardForCollection from "../../entities/CardForCollection/ui/CardForCollection";
 import Navbar from "../../shared/Navbar/Navbar";
 import useAppDispatch from "hooks/useAppDispatch";
 import MyButton from "../../shared/MyButton/MyButton";
