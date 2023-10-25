@@ -10,11 +10,13 @@ import useAppDispatch from "hooks/useAppDispatch";
 import MyButton from "../../shared/MyButton/MyButton";
 import useLocalStorageData from "hooks/useLocalStorage";
 import styles from "./myCollection.module.css";
+import { useSelector } from "react-redux";
 
 const MyCollection = () => {
   const { dispatchFunction } = useAppDispatch();
-  const data = useDataLength();
-  useLocalStorageData("myCollection");
+  const data = useDataLength(["arrayReviews", "wantToSee"]);
+  useLocalStorageData(["wantToSee", "myReviews", "myCollection"]);
+  const movies = useSelector((state) => state.myCollection.myCollection);
   const deleteAll = () => {
     dispatchFunction(() => clearAll());
   };
@@ -23,20 +25,16 @@ const MyCollection = () => {
     <section className={styles.main}>
       <nav className={styles.header}>
         <Navbar path={ROUTES.home}>На главную</Navbar>
-        <Navbar
-          path={ROUTES.wantToSee}
-          icon={<BsFolder2Open />}
-          dataLength={data.myCollection.length}
-        >
+        <Navbar path={ROUTES.wantToSee} icon={<BsFolder2Open />} dataLength={data["wantToSee"]}>
           Хочу посмотреть
         </Navbar>
-        <Navbar path={ROUTES.myReviews} icon={<CiViewList />} dataLength={data.arrayReviews.length}>
+        <Navbar path={ROUTES.myReviews} icon={<CiViewList />} dataLength={data["arrayReviews"]}>
           Мои рецензии
         </Navbar>
         <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>
-        {data.myCollection.length !== 0 ? (
+        {data["myCollection"] !== 0 ? (
           <MyButton styles={styles.deleteAll} handler={deleteAll}>
-            Очистить список ({data.myCollection.length})
+            Очистить список ({data["myCollection"]})
           </MyButton>
         ) : (
           ""
@@ -44,15 +42,13 @@ const MyCollection = () => {
       </nav>
       <section
         className={styles.wrapper}
-        style={{ borderRight: data.myCollection.length ? "2px solid white" : "none" }}
+        style={{ borderRight: data["myCollection"] ? "2px solid white" : "none" }}
       >
         <div className={styles.myCollection}>
-          {data.myCollection.length === 0 ? (
+          {data["myCollection"] === 0 ? (
             <h1 style={{ fontSize: "26px" }}>Список пуст</h1>
           ) : (
-            data.myCollection.myCollection.map((item) => (
-              <CardForCollection movie={item} key={item.id} />
-            ))
+            movies.map((item) => <CardForCollection movie={item} key={item.id} />)
           )}
         </div>
       </section>

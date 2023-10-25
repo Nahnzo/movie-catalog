@@ -8,27 +8,24 @@ import styles from "./header.module.css";
 import Navbar from "../../shared/Navbar/Navbar";
 
 const Header = () => {
-  const data = useDataLength();
-  // need to Fix!!!
-  useLocalStorageData("myCollection");
-  useLocalStorageData("myReviews");
-  useLocalStorageData("wantToSee");
-
+  const data = useDataLength(["arrayReviews", "wantToSee", "myCollection"]);
+  console.log(data);
+  useLocalStorageData(["wantToSee", "myReviews", "myCollection"]);
   return (
     <section className={styles.header}>
       <nav className={styles.navigation}>
-        <Navbar path={ROUTES.wantToSee} icon={<BsFolder2Open />} dataLength={data.wantToSee.length}>
+        <Navbar path={ROUTES.wantToSee} icon={<BsFolder2Open />} dataLength={data["wantToSee"]}>
           Хочу посмотреть
         </Navbar>
 
         <Navbar
           path={ROUTES.myCollection}
           icon={<BiCameraMovie />}
-          dataLength={data.myCollection.length}
+          dataLength={data["myCollection"]}
         >
           Моя коллекция
         </Navbar>
-        <Navbar path={ROUTES.myReviews} icon={<CiViewList />} dataLength={data.arrayReviews.length}>
+        <Navbar path={ROUTES.myReviews} icon={<CiViewList />} dataLength={data["arrayReviews"]}>
           Мои рецензии
         </Navbar>
         <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>

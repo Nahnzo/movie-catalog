@@ -3,29 +3,29 @@ import { createSlice } from "@reduxjs/toolkit";
 export const ReviewSlice = createSlice({
   name: "ReviewSlice",
   initialState: {
-    movies: [],
+    arrayReviews: [],
     length: 0,
   },
   reducers: {
     addMovieToReview(state, action) {
-      const isExist = state.movies.find((item) => item.id === action.payload.id);
+      const isExist = state.arrayReviews.find((item) => item.id === action.payload.id);
       if (!isExist) {
-        state.movies.push({ ...action.payload, myReviews: action.payload.myReviews || "" });
-        localStorage.setItem("myReviews", JSON.stringify(state.movies));
+        state.arrayReviews.push({ ...action.payload, myReviews: action.payload.myReviews || "" });
+        localStorage.setItem("myReviews", JSON.stringify(state.arrayReviews));
         state.length++;
       }
     },
 
     addReviews(state, action) {
       const { movieId, myReviews } = action.payload;
-      const movieIndex = state.movies.findIndex((item) => item.id === movieId);
+      const movieIndex = state.arrayReviews.findIndex((item) => item.id === movieId);
       if (movieIndex !== -1) {
-        state.movies[movieIndex].myReviews = myReviews;
-        localStorage.setItem("myReviews", JSON.stringify(state.movies));
+        state.arrayReviews[movieIndex].myReviews = myReviews;
+        localStorage.setItem("myReviews", JSON.stringify(state.arrayReviews));
       }
     },
     deleteAll(state) {
-      state.movies = [];
+      state.arrayReviews = [];
       state.length = 0;
       localStorage.removeItem("myReviews");
     },

@@ -5,7 +5,6 @@ import { addMovieToReview } from "../../../Slices/ReviewSlice";
 import { useState } from "react";
 import { removeMovieFromCollection } from "../../../Slices/MyCollectionSlice";
 import useAppDispatch from "hooks/useAppDispatch";
-import useAppSelector from "../../../hooks/useAppSelector";
 import MyButton from "../../../shared/MyButton/MyButton";
 import HandleRating from "../../../Handlers/HandleRating/HandleRating";
 import styles from "./cardForCollection.module.css";
@@ -14,14 +13,9 @@ import { useSelector } from "react-redux";
 
 const CardForCollection = ({ movie }) => {
   const { dispatchFunction } = useAppDispatch();
-  const { data } = useAppSelector("arrayReviews");
-  const navigate = useNavigate();
   const [showRateWindow, setShowRateWindow] = useState(false);
-  // const review = data.movies
-  //   .filter((item) => item.id === movie.id)
-  //   .filter((item) => item.myReviews);
+  const navigate = useNavigate();
   const review = useSelector(getSortedMovie);
-  // console.log(mov, review);
   function handleReview() {
     navigate(`${ROUTES.myReviews}`);
     dispatchFunction(() => addMovieToReview(movie));
@@ -35,7 +29,7 @@ const CardForCollection = ({ movie }) => {
           <h3>{movie.name}</h3>
           <p>{movie.shortDescription}</p>
           <hr />
-          <div className={styles.reviews}>{review.map((item) => item.myReviews)}</div>
+          <div className={styles.reviews}>{review.arrayReviews.map((item) => item.myReviews)}</div>
           <div className={styles.isRated}>
             {movie.myRating === 0 ? (
               <h5>

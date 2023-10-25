@@ -13,20 +13,22 @@ import CarouselX from "../../widgets/CarouselX/CarouselX";
 import useAppDispatch from "hooks/useAppDispatch";
 import useLocalStorageData from "hooks/useLocalStorage";
 import styles from "./myReviews.module.css";
+import { useSelector } from "react-redux";
 
 const MyReviews = () => {
   const { dispatchFunction } = useAppDispatch();
-  const data = useDataLength();
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const movies = useSelector((state) => state.arrayReviews.arrayReviews);
+  const data = useDataLength(["wantToSee", "myCollection"]);
+  useLocalStorageData(["wantToSee", "myReviews", "myCollection"]);
   const ref = useRef(null);
   const wrapper = ref.current;
-  useLocalStorageData("myReviews");
-  const movieWithReviews = data.arrayReviews.movies.filter(
+  const movieWithReviews = movies.filter(
     (item) => item.myReviews !== "Место для вашей рецензии" && item.myReviews !== ""
   );
   useEffect(() => {
-    setSelectedMovie(data.arrayReviews.movies[data.arrayReviews.length - 1]);
-  }, [data.arrayReviews.length, data.arrayReviews.movies]);
+    setSelectedMovie(movies[movies.length - 1]);
+  }, [movies.length, movies]);
 
   const setFirst = (item) => {
     setSelectedMovie(item);
@@ -37,24 +39,20 @@ const MyReviews = () => {
       <section className={styles.header}>
         <nav className={styles.navigation}>
           <Navbar path={ROUTES.home}>На главную</Navbar>
-          <Navbar
-            path={ROUTES.wantToSee}
-            icon={<BsFolder2Open />}
-            dataLength={data.wantToSee.length}
-          >
+          <Navbar path={ROUTES.wantToSee} icon={<BsFolder2Open />} dataLength={data["wantToSee"]}>
             Хочу посмотреть
           </Navbar>
           <Navbar
             path={ROUTES.myCollection}
             icon={<BiCameraMovie />}
-            dataLength={data.myCollection.length}
+            dataLength={data["myCollection"]}
           >
             Моя коллекция
           </Navbar>
           <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>
-          {data.arrayReviews.length ? (
+          {movies.length ? (
             <MyButton styles={styles.deleteAll} handler={() => dispatchFunction(() => deleteAll())}>
-              Очистить список ({getOnlyUniq(data.arrayReviews.movies)})
+              Очистить список ({getOnlyUniq(movies)})
             </MyButton>
           ) : (
             ""

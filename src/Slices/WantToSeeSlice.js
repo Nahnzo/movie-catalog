@@ -18,11 +18,16 @@ export const WantToSee = createSlice({
       }
     },
     removeMovie(state, action) {
-      state.wantToSee = state.wantToSee.filter((item) => item.id !== action.payload.id);
+      const movieToRemove = state.wantToSee.find((item) => item.id === action.payload.id);
+      if (movieToRemove) {
+        state.wantToSee = state.wantToSee.filter((item) => item.id !== action.payload.id);
+        const storedData = JSON.parse(localStorage.getItem("wantToSee"));
+        if (storedData) {
+          const updatedData = storedData.filter((item) => item.id !== action.payload.id);
+          localStorage.setItem("wantToSee", JSON.stringify(updatedData));
+        }
+      }
       state.length--;
-      const storedData = JSON.parse(localStorage.getItem("myCollection"));
-      const updatedData = storedData.filter((item) => item.id !== action.payload.id);
-      localStorage.setItem("wantToSee", JSON.stringify(updatedData));
     },
     clearAll(state) {
       state.wantToSee = [];

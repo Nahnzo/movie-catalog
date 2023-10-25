@@ -12,23 +12,25 @@ import Navbar from "../../shared/Navbar/Navbar";
 import useAppDispatch from "hooks/useAppDispatch";
 import useLocalStorageData from "hooks/useLocalStorage";
 import styles from "./wantToSee.module.css";
+import { useSelector } from "react-redux";
 
 const WantToSee = () => {
   const ref = useRef(null);
-  const wrapper = ref.current;
   const { dispatchFunction } = useAppDispatch();
-  const data = useDataLength();
+  const wrapper = ref.current;
+  const data = useDataLength(["arrayReviews", "myCollection"]);
+  useLocalStorageData(["wantToSee", "myReviews", "myCollection"]);
+  const movies = useSelector((state) => state.wantToSee.wantToSee);
   const [selectedMovie, setSelectedMovie] = useState(null);
-  useLocalStorageData("wantToSee");
 
   useEffect(() => {
-    setSelectedMovie(data.wantToSee.wantToSee[0]);
-  }, [data.wantToSee]);
+    setSelectedMovie(movies[0]);
+  }, [movies]);
   const showFirst = (movie) => {
     setSelectedMovie(movie);
   };
 
-  if (data.wantToSee.length) {
+  if (data["wantToSee"]) {
     return (
       <section className={styles.main}>
         <nav className={styles.header}>
@@ -36,15 +38,11 @@ const WantToSee = () => {
           <Navbar
             path={ROUTES.myCollection}
             icon={<BiCameraMovie />}
-            dataLength={data.myCollection.length}
+            dataLength={data["myCollection"]}
           >
             Моя коллекция
           </Navbar>
-          <Navbar
-            path={ROUTES.myReviews}
-            icon={<CiViewList />}
-            dataLength={data.arrayReviews.length}
-          >
+          <Navbar path={ROUTES.myReviews} icon={<CiViewList />} dataLength={data["arrayReview"]}>
             Мои рецензии
           </Navbar>
           <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>
@@ -52,13 +50,13 @@ const WantToSee = () => {
             styles={`${styles.deleteAll}`}
             handler={() => dispatchFunction(() => clearAll())}
           >
-            Очистить список ({data.wantToSee.length})
+            Очистить список ({data["wantToSee"]})
           </MyButton>
         </nav>
         <div className={styles.container}>
           {selectedMovie && <WantToSeeCard firstMovie={selectedMovie} />}
           <div className={styles.wrapperCollection} ref={ref}>
-            {data.wantToSee.wantToSee.map((item) => (
+            {movies.map((item) => (
               <div
                 className={styles.card}
                 key={item.id}
@@ -80,15 +78,11 @@ const WantToSee = () => {
           <Navbar
             path={ROUTES.myCollection}
             icon={<BiCameraMovie />}
-            dataLength={data.myCollection.length}
+            dataLength={data["myCollection"]}
           >
             Моя коллекция
           </Navbar>
-          <Navbar
-            path={ROUTES.myReviews}
-            icon={<CiViewList />}
-            dataLength={data.arrayReviews.length}
-          >
+          <Navbar path={ROUTES.myReviews} icon={<CiViewList />} dataLength={data["arrayReviews"]}>
             Мои рецензии
           </Navbar>
           <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>

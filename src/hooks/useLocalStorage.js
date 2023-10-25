@@ -4,7 +4,7 @@ import { addMovie } from "../Slices/WantToSeeSlice";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-const useLocalStorageData = (key) => {
+const useLocalStorageData = (keys) => {
   const dispatch = useDispatch();
   useEffect(() => {
     const collections = {
@@ -12,13 +12,20 @@ const useLocalStorageData = (key) => {
       myCollection: addMovieToCollection,
       myReviews: addMovieToReview,
     };
-    const storedData = localStorage.getItem(key);
-    if (storedData) {
-      JSON.parse(storedData).forEach((item) => {
-        dispatch(collections[key](item));
-      });
-    }
-  }, [dispatch, key]);
+    const data = {};
+    keys.forEach((key) => {
+      const item = localStorage.getItem(key);
+      if (item) {
+        data[key] = JSON.parse(item);
+      }
+    });
+    keys.forEach((key) => {
+      if (collections[key] && data[key]) {
+        data[key].forEach((item) => {
+          dispatch(collections[key](item));
+        });
+      }
+    });
+  }, [dispatch, keys]);
 };
-
 export default useLocalStorageData;
