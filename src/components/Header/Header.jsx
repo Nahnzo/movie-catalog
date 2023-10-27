@@ -9,7 +9,6 @@ import Navbar from "../../shared/Navbar/Navbar";
 
 const Header = () => {
   const data = useDataLength(["arrayReviews", "wantToSee", "myCollection"]);
-  console.log(data);
   useLocalStorageData(["wantToSee", "myReviews", "myCollection"]);
   return (
     <section className={styles.header}>
@@ -17,7 +16,6 @@ const Header = () => {
         <Navbar path={ROUTES.wantToSee} icon={<BsFolder2Open />} dataLength={data["wantToSee"]}>
           Хочу посмотреть
         </Navbar>
-
         <Navbar
           path={ROUTES.myCollection}
           icon={<BiCameraMovie />}

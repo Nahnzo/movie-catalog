@@ -1,10 +1,10 @@
 import "./App.css";
-import FetchMovie from "./pages/FetchMovie/FetchMovie";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
+import { FetchMovie } from "./pages/FetchMovie";
 import { ErrorBoundary } from "./app/providers";
 
-function App() {
+const App = () => {
   return (
     <section className="main">
       <Header />
@@ -14,6 +14,6 @@ function App() {
       <Footer />
     </section>
   );
-}
+};
 
 export default App;

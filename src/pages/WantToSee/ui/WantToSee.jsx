@@ -1,26 +1,27 @@
-import { ROUTES } from "../../routes";
+import { ROUTES } from "../../../routes";
 import { useEffect, useState, useRef } from "react";
 import { useDataLength } from "hooks/useDataLength";
 import { BiCameraMovie } from "react-icons/bi";
 import { CiViewList } from "react-icons/ci";
-import { clearAll } from "../../Slices/WantToSeeSlice";
-import MyButton from "../../shared/MyButton/MyButton";
-import WantToSeeCard from "../../entities/WantToSeeCard/WantToSeeCard";
-import CarouselX from "../../widgets/CarouselX/CarouselX";
+import { clearAll } from "../../../Slices/WantToSeeSlice";
+import MyButton from "../../../shared/MyButton/MyButton";
+import WantToSeeCard from "../../../entities/WantToSeeCard/WantToSeeCard";
+import CarouselX from "../../../widgets/CarouselX/CarouselX";
 import Footer from "components/Footer/Footer";
-import Navbar from "../../shared/Navbar/Navbar";
+import Navbar from "../../../shared/Navbar/Navbar";
 import useAppDispatch from "hooks/useAppDispatch";
 import useLocalStorageData from "hooks/useLocalStorage";
 import styles from "./wantToSee.module.css";
 import { useSelector } from "react-redux";
+import { getMovieForWantToSee } from "../model/selectors/getMovieForWantToSee";
 
 const WantToSee = () => {
   const ref = useRef(null);
   const { dispatchFunction } = useAppDispatch();
   const wrapper = ref.current;
-  const data = useDataLength(["arrayReviews", "myCollection"]);
+  const data = useDataLength(["arrayReviews", "myCollection", "wantToSee"]);
   useLocalStorageData(["wantToSee", "myReviews", "myCollection"]);
-  const movies = useSelector((state) => state.wantToSee.wantToSee);
+  const movies = useSelector(getMovieForWantToSee);
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   useEffect(() => {

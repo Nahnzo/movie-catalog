@@ -1,22 +1,22 @@
-import { ROUTES } from "../../routes";
+import { ROUTES } from "../../../routes";
 import { BsFolder2Open } from "react-icons/bs";
 import { CiViewList } from "react-icons/ci";
-import { clearAll } from "../../Slices/MyCollectionSlice";
+import { clearAll } from "../../../Slices/MyCollectionSlice";
 import { useDataLength } from "hooks/useDataLength";
 import Footer from "components/Footer/Footer";
-import CardForCollection from "../../entities/CardForCollection/ui/CardForCollection";
-import Navbar from "../../shared/Navbar/Navbar";
+import CardForCollection from "../../../entities/CardForCollection/ui/CardForCollection";
+import Navbar from "../../../shared/Navbar/Navbar";
 import useAppDispatch from "hooks/useAppDispatch";
-import MyButton from "../../shared/MyButton/MyButton";
+import MyButton from "../../../shared/MyButton/MyButton";
 import useLocalStorageData from "hooks/useLocalStorage";
 import styles from "./myCollection.module.css";
 import { useSelector } from "react-redux";
-
+import { getMovieForCollection } from "../model/selectors/getMovieForCollection/getMovieForCollection";
 const MyCollection = () => {
   const { dispatchFunction } = useAppDispatch();
-  const data = useDataLength(["arrayReviews", "wantToSee"]);
+  const data = useDataLength(["arrayReviews", "wantToSee", "myCollection"]);
   useLocalStorageData(["wantToSee", "myReviews", "myCollection"]);
-  const movies = useSelector((state) => state.myCollection.myCollection);
+  const movies = useSelector(getMovieForCollection);
   const deleteAll = () => {
     dispatchFunction(() => clearAll());
   };

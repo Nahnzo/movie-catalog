@@ -1,8 +1,8 @@
 import App from "../../../../App";
-import MyCollection from "../../../../pages/MyCollection/MyCollection";
-import WantToSee from "../../../../pages/WantToSee/WantToSee";
-import MyReviews from "../../../../pages/MyReviews/MyReviews";
-import WhatToSee from "../../../../pages/WhatToSee/WhatToSee";
+import MyCollection from "pages/MyCollection/ui/MyCollection";
+import WantToSee from "pages/WantToSee/ui/WantToSee";
+import MyReviews from "pages/MyReviews/ui/MyReviews";
+// import WhatToSee from "pages/WhatToSee/ui/WhatToSee";
 import AboutFilm from "../../../../components/AboutFilm/AboutFilm";
 import PersonDetail from "../../../../components/PersonDetail/PersonDetail";
 import { createBrowserRouter } from "react-router-dom";
@@ -17,10 +17,11 @@ export const router = createBrowserRouter([
     path: ROUTES.myCollection,
     element: <MyCollection />,
   },
-  {
-    path: ROUTES.whatToSee,
-    element: <WhatToSee />,
-  },
+  ,
+  // {
+  //   path: ROUTES.whatToSee,
+  //   element: <WhatToSee />,
+  // },
   {
     path: ROUTES.wantToSee,
     element: <WantToSee />,

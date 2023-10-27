@@ -1,24 +1,25 @@
-import { ROUTES } from "../../routes";
+import { ROUTES } from "../../../routes";
 import { BiCameraMovie } from "react-icons/bi";
-import { deleteAll } from "../../Slices/ReviewSlice";
-import { getOnlyUniq } from "../../tools/getOnlyUniq";
+import { deleteAll } from "../../../Slices/ReviewSlice";
+import { getOnlyUniq } from "../../../tools/getOnlyUniq";
 import { useDataLength } from "hooks/useDataLength";
 import { useRef, useState, useEffect } from "react";
 import { BsFolder2Open } from "react-icons/bs";
-import MyButton from "../../shared/MyButton/MyButton";
-import CardForMyReviews from "../../entities/CardForMyReviews/CardForMyReviews";
+import MyButton from "../../../shared/MyButton/MyButton";
+import CardForMyReviews from "../../../entities/CardForMyReviews/CardForMyReviews";
 import LeaveReview from "components/LeaveReview/LeaveReview";
-import Navbar from "../../shared/Navbar/Navbar";
-import CarouselX from "../../widgets/CarouselX/CarouselX";
+import Navbar from "../../../shared/Navbar/Navbar";
+import CarouselX from "../../../widgets/CarouselX/CarouselX";
 import useAppDispatch from "hooks/useAppDispatch";
 import useLocalStorageData from "hooks/useLocalStorage";
-import styles from "./myReviews.module.css";
 import { useSelector } from "react-redux";
+import { getMoviesForReviews } from "../model/selectors/getMoviesForReviews/getMoviesForReviews";
+import styles from "./myReviews.module.css";
 
 const MyReviews = () => {
   const { dispatchFunction } = useAppDispatch();
   const [selectedMovie, setSelectedMovie] = useState(null);
-  const movies = useSelector((state) => state.arrayReviews.arrayReviews);
+  const movies = useSelector(getMoviesForReviews);
   const data = useDataLength(["wantToSee", "myCollection"]);
   useLocalStorageData(["wantToSee", "myReviews", "myCollection"]);
   const ref = useRef(null);

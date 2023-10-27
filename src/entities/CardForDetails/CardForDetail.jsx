@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import formatTime from "../../tools/time";
 import CardForActors from "../CardForActors/CardForActors";
 import SequelsAndPrequels from "components/SequelsAndPrequels/SequelsAndPrequels";

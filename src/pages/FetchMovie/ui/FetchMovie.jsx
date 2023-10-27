@@ -1,17 +1,17 @@
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
-import { getMovie } from "../../Slices/MovieSlice";
-import MovieCard from "../../entities/MovieCard/MovieCard";
+import { memo, useEffect } from "react";
+import { getMovie } from "../../../Slices/MovieSlice";
+import { getAllMovie } from "../model/selectors/getAllMovie/getAllMovie";
+import MovieCard from "../../../entities/MovieCard/MovieCard";
 import useAppDispatch from "hooks/useAppDispatch";
-import Loader from "../../widgets/Loader/Loader";
+import Loader from "../../../widgets/Loader/Loader";
 import styles from "./fetchMovie.module.css";
 
 const FetchMovie = () => {
-  const data = useSelector((state) => state.movie.movie.docs);
+  const data = useSelector(getAllMovie);
   const { dispatchFunction } = useAppDispatch();
-
   useEffect(() => {
-    if (!data) {
+    if (!data?.length) {
       dispatchFunction(() => getMovie());
     }
   }, [data, dispatchFunction]);
