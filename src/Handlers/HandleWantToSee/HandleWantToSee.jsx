@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { BsFolderPlus, BsFolderMinus } from "react-icons/bs";
-import { addMovie, removeMovie } from "../../Slices/WantToSeeSlice";
+import { addMovie, removeMovie } from "../../pages/WantToSee/model/slices/WantToSeeSlice";
 import styles from "./handleWantToSee.module.css";
 import useAppDispatch from "hooks/useAppDispatch";
 import useAppSelector from "hooks/useAppSelector";

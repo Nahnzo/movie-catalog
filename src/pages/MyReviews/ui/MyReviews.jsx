@@ -1,6 +1,6 @@
 import { ROUTES } from "../../../routes";
 import { BiCameraMovie } from "react-icons/bi";
-import { deleteAll } from "../../../Slices/ReviewSlice";
+import deleteAll from "pages/MyReviews/index.js";
 import { getOnlyUniq } from "../../../tools/getOnlyUniq";
 import { useDataLength } from "hooks/useDataLength";
 import { useRef, useState, useEffect } from "react";

@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import { ROUTES } from "../../../routes";
 import { useNavigate } from "react-router-dom";
-import { addMovieToReview } from "../../../Slices/ReviewSlice";
+import addMovieToReview from "pages/MyReviews/index.js";
 import { useState } from "react";
-import { removeMovieFromCollection } from "../../../Slices/MyCollectionSlice";
+import removeMovieFromCollection from "pages/MyCollection/index.js";
 import useAppDispatch from "hooks/useAppDispatch";
 import MyButton from "../../../shared/MyButton/MyButton";
 import HandleRating from "../../../Handlers/HandleRating/HandleRating";

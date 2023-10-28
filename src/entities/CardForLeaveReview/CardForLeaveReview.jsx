@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { addMovieToReview } from "../../Slices/ReviewSlice";
+import addMovieToReview from "pages/MyReviews/index.js";
 import useAppDispatch from "hooks/useAppDispatch";
 import styles from "./cardForLeaveReview.module.css";
 

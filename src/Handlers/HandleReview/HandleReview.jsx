@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState, useRef, useEffect } from "react";
-import { addReviews } from "../../Slices/ReviewSlice";
+import addReviews from "pages/MyReviews/index.js";
 import useFilteredMovie from "hooks/useFilteredMovie";
 import useAppDispatch from "hooks/useAppDispatch";
 import MyButton from "../../shared/MyButton/MyButton";

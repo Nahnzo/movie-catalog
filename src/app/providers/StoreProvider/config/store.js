@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import ReviewSlice from "../../../../Slices/ReviewSlice";
-import MovieSlice from "../../../../Slices/MovieSlice";
-import WantToSeeSlice from "../../../../Slices/WantToSeeSlice";
-import MyCollectionSlice from "../../../../Slices/MyCollectionSlice";
+import ReviewSlice from "../../../../pages/MyReviews/model/slices/ReviewSlice";
+import MovieSlice from "../../../../pages/FetchMovie/model/slices/MovieSlice";
+import WantToSeeSlice from "../../../../pages/WantToSee/model/slices/WantToSeeSlice";
+import MyCollectionSlice from "../../../../pages/MyCollection/model/slices/MyCollectionSlice";
 
 const rootReducers = {
   movie: MovieSlice,

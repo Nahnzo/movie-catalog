@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import { addRating } from "../../Slices/MyCollectionSlice";
+import addRating from "pages/MyCollection/index.js";
 import styles from "./handleRating.module.css";
 import useAppDispatch from "hooks/useAppDispatch";
 import MyButton from "../../shared/MyButton/MyButton";

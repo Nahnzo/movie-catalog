@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
-import { memo, useEffect } from "react";
-import { getMovie } from "../../../Slices/MovieSlice";
+import { useEffect } from "react";
+import { getMovie } from "../model/slices/MovieSlice";
 import { getAllMovie } from "../model/selectors/getAllMovie/getAllMovie";
 import MovieCard from "../../../entities/MovieCard/MovieCard";
 import useAppDispatch from "hooks/useAppDispatch";

@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { removeMovie } from "../../Slices/WantToSeeSlice";
+import { removeMovie } from "../../pages/WantToSee/model/slices/WantToSeeSlice";
 import formatTime from "../../tools/time";
 import styles from "./wantToSeeCard.module.css";
 import HandleMovieInWantToSee from "../../Handlers/HandleMovieInWantToSee/HandleMovieInWantToSee";

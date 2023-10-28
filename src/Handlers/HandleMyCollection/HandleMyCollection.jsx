@@ -1,6 +1,9 @@
 /* eslint-disable react/prop-types */
 import { BsHeart, BsHeartFill } from "react-icons/bs";
-import { addMovieToCollection, removeMovieFromCollection } from "../../Slices/MyCollectionSlice";
+import {
+  addMovieToCollection,
+  removeMovieFromCollection,
+} from "../../pages/MyCollection/model/slices/MyCollectionSlice";
 import styles from "./handleMyCollection.module.css";
 import useAppDispatch from "hooks/useAppDispatch";
 import useAppSelector from "hooks/useAppSelector";

@@ -3,7 +3,9 @@ import { useEffect, useState, useRef } from "react";
 import { useDataLength } from "hooks/useDataLength";
 import { BiCameraMovie } from "react-icons/bi";
 import { CiViewList } from "react-icons/ci";
-import { clearAll } from "../../../Slices/WantToSeeSlice";
+import { clearAll } from "../model/slices/WantToSeeSlice";
+import { useSelector } from "react-redux";
+import { getMovieForWantToSee } from "../model/selectors/getMovieForWantToSee";
 import MyButton from "../../../shared/MyButton/MyButton";
 import WantToSeeCard from "../../../entities/WantToSeeCard/WantToSeeCard";
 import CarouselX from "../../../widgets/CarouselX/CarouselX";
@@ -12,17 +14,15 @@ import Navbar from "../../../shared/Navbar/Navbar";
 import useAppDispatch from "hooks/useAppDispatch";
 import useLocalStorageData from "hooks/useLocalStorage";
 import styles from "./wantToSee.module.css";
-import { useSelector } from "react-redux";
-import { getMovieForWantToSee } from "../model/selectors/getMovieForWantToSee";
 
 const WantToSee = () => {
-  const ref = useRef(null);
-  const { dispatchFunction } = useAppDispatch();
-  const wrapper = ref.current;
-  const data = useDataLength(["arrayReviews", "myCollection", "wantToSee"]);
   useLocalStorageData(["wantToSee", "myReviews", "myCollection"]);
-  const movies = useSelector(getMovieForWantToSee);
+  const data = useDataLength(["arrayReviews", "myCollection", "wantToSee"]);
+  const ref = useRef(null);
+  const wrapper = ref.current;
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const { dispatchFunction } = useAppDispatch();
+  const movies = useSelector(getMovieForWantToSee);
 
   useEffect(() => {
     setSelectedMovie(movies[0]);
@@ -67,7 +67,7 @@ const WantToSee = () => {
             ))}
           </div>
         </div>
-        <CarouselX wrapper={wrapper} data={data} />
+        <CarouselX wrapper={wrapper} data={movies} />
         <Footer />
       </section>
     );

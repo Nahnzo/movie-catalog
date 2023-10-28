@@ -3,7 +3,10 @@ import styles from "./handleMovieInWantToSee.module.css";
 import useAppDispatch from "hooks/useAppDispatch";
 import useAppSelector from "hooks/useAppSelector";
 import MyButton from "../../shared/MyButton/MyButton";
-import { addMovieToCollection, removeMovieFromCollection } from "../../Slices/MyCollectionSlice";
+import {
+  addMovieToCollection,
+  removeMovieFromCollection,
+} from "../../pages/MyCollection/model/slices/MyCollectionSlice";
 
 const HandleMovieInWantToSee = ({ firstMovie }) => {
   const { dispatchFunction } = useAppDispatch();

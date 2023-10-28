@@ -1,7 +1,7 @@
 import { ROUTES } from "../../../routes";
 import { BsFolder2Open } from "react-icons/bs";
 import { CiViewList } from "react-icons/ci";
-import { clearAll } from "../../../Slices/MyCollectionSlice";
+import clearAll from "pages/MyCollection/index.js";
 import { useDataLength } from "hooks/useDataLength";
 import Footer from "components/Footer/Footer";
 import CardForCollection from "../../../entities/CardForCollection/ui/CardForCollection";
