@@ -1,11 +1,12 @@
-import addMovieToCollection from "pages/MyCollection/index.js";
-import addMovieToReview from "pages/MyReviews/index.js";
-import addMovie from "pages/WantToSee/index.js";
+import { addMovie } from "../pages/WantToSee/model/slices/WantToSeeSlice";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { addMovieToCollection } from "../pages/MyCollection/model/slices/MyCollectionSlice";
+import { addMovieToReview } from "../pages/MyReviews/model/slices/ReviewSlice";
 
 const useLocalStorageData = (keys) => {
   const dispatch = useDispatch();
+
   useEffect(() => {
     const collections = {
       wantToSee: addMovie,
