@@ -1,15 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-
-import ReviewSlice from "../../../../pages/MyReviews/model/slices/ReviewSlice";
-import MovieSlice from "../../../../pages/FetchMovie/model/slices/MovieSlice";
-import WantToSeeSlice from "../../../../pages/WantToSee/model/slices/WantToSeeSlice";
-import MyCollectionSlice from "../../../../pages/MyCollection/model/slices/MyCollectionSlice";
+import { ReviewReducer } from "../../../../pages/MyReviews/model/slices/ReviewSlice";
+import { MovieReducer } from "../../../../pages/FetchMovie/model/slices/MovieSlice";
+import { WantToSeeReducer } from "../../../../pages/WantToSee/model/slices/WantToSeeSlice";
+import { MyCollectionReducer } from "../../../../pages/MyCollection/model/slices/MyCollectionSlice";
 
 const rootReducers = {
-  movie: MovieSlice,
-  wantToSee: WantToSeeSlice,
-  myCollection: MyCollectionSlice,
-  arrayReviews: ReviewSlice,
+  movie: MovieReducer,
+  wantToSee: WantToSeeReducer,
+  myCollection: MyCollectionReducer,
+  arrayReviews: ReviewReducer,
 };
 
 export const store = configureStore({

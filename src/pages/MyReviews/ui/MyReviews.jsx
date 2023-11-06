@@ -1,6 +1,6 @@
 import { ROUTES } from "../../../routes";
 import { BiCameraMovie } from "react-icons/bi";
-import deleteAll from "pages/MyReviews/index.js";
+// import deleteAll from "pages/MyReviews/index.js";
 import { getOnlyUniq } from "../../../tools/getOnlyUniq";
 import { useDataLength } from "hooks/useDataLength";
 import { useRef, useState, useEffect } from "react";
@@ -15,6 +15,7 @@ import useLocalStorageData from "hooks/useLocalStorage";
 import { useSelector } from "react-redux";
 import { getMoviesForReviews } from "../model/selectors/getMoviesForReviews/getMoviesForReviews";
 import styles from "./myReviews.module.css";
+import { ReviewSlice } from "../model/slices/ReviewSlice";
 
 const MyReviews = () => {
   const { dispatchFunction } = useAppDispatch();
@@ -52,7 +53,10 @@ const MyReviews = () => {
           </Navbar>
           <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>
           {movies.length ? (
-            <MyButton styles={styles.deleteAll} handler={() => dispatchFunction(() => deleteAll())}>
+            <MyButton
+              styles={styles.deleteAll}
+              handler={() => dispatchFunction(() => ReviewSlice.actions.deleteAll())}
+            >
               Очистить список ({getOnlyUniq(movies)})
             </MyButton>
           ) : (

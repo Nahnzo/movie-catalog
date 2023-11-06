@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { removeMovie } from "../../pages/WantToSee/model/slices/WantToSeeSlice";
+import { WantToSeeSlice } from "../../pages/WantToSee/model/slices/WantToSeeSlice";
 import formatTime from "../../tools/time";
 import styles from "./wantToSeeCard.module.css";
 import HandleMovieInWantToSee from "../../Handlers/HandleMovieInWantToSee/HandleMovieInWantToSee";
@@ -41,7 +41,7 @@ const WantToSeeCard = ({ firstMovie }) => {
           <div className={styles.rating}>
             <MyButton
               styles={styles.btnDelete}
-              handler={() => dispatchFunction(() => removeMovie(firstMovie))}
+              handler={() => dispatchFunction(() => WantToSeeSlice.actions.removeMovie(firstMovie))}
             >
               Удалить из списка
             </MyButton>

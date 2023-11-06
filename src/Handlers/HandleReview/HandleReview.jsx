@@ -1,6 +1,5 @@
-/* eslint-disable react/prop-types */
 import { useState, useRef, useEffect } from "react";
-import addReviews from "pages/MyReviews/index.js";
+import { ReviewActions, ReviewSlice } from "../../pages/MyReviews/model/slices/ReviewSlice";
 import useFilteredMovie from "hooks/useFilteredMovie";
 import useAppDispatch from "hooks/useAppDispatch";
 import MyButton from "../../shared/MyButton/MyButton";
@@ -14,7 +13,7 @@ const HandleReview = ({ movie }) => {
   const [review, setReview] = useState("");
   const refTextArea = useRef(null);
   const leaveRw = () => {
-    dispatchFunction(() => addReviews({ movieId: movie.id, myReviews: review }));
+    dispatchFunction(() => ReviewActions.addReviews({ movieId: movie.id, myReviews: review }));
     setReadOnly((prev) => !prev);
     if (review === initialText) {
       setReview("");
@@ -53,7 +52,9 @@ const HandleReview = ({ movie }) => {
             styles={styles.deleteRw}
             handler={() => {
               setReview("");
-              dispatchFunction(() => addReviews({ movieId: movie.id, myReviews: "" }));
+              dispatchFunction(() =>
+                ReviewActions.addReviews({ movieId: movie.id, myReviews: "" })
+              );
             }}
           >
             Удалить рецензию

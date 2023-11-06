@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import addRating from "pages/MyCollection/index.js";
+import { MyCollectionActions } from "../../pages/MyCollection/model/slices/MyCollectionSlice";
 import styles from "./handleRating.module.css";
 import useAppDispatch from "hooks/useAppDispatch";
 import MyButton from "../../shared/MyButton/MyButton";
@@ -9,7 +9,7 @@ const HandleRating = ({ movieId, setShowRateWindow }) => {
   const { dispatchFunction } = useAppDispatch();
   const [rating, setRating] = useState(null);
   const handleR = (item) => {
-    dispatchFunction(() => addRating({ movieId: movieId, rating: item.value }));
+    dispatchFunction(() => MyCollectionActions.addRating({ movieId: movieId, rating: item.value }));
     setShowRateWindow(false);
   };
 

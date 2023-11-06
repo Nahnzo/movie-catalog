@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import { useDataLength } from "hooks/useDataLength";
 import { BiCameraMovie } from "react-icons/bi";
 import { CiViewList } from "react-icons/ci";
-import { clearAll } from "../model/slices/WantToSeeSlice";
+import { WantToSeeActions } from "../model/slices/WantToSeeSlice";
 import { useSelector } from "react-redux";
 import { getMovieForWantToSee } from "../model/selectors/getMovieForWantToSee";
 import MyButton from "../../../shared/MyButton/MyButton";
@@ -49,7 +49,7 @@ const WantToSee = () => {
           <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>
           <MyButton
             styles={`${styles.deleteAll}`}
-            handler={() => dispatchFunction(() => clearAll())}
+            handler={() => dispatchFunction(() => WantToSeeActions.clearAll())}
           >
             Очистить список ({data["wantToSee"]})
           </MyButton>

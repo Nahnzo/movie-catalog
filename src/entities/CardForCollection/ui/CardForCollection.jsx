@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { ROUTES } from "../../../routes";
 import { useNavigate } from "react-router-dom";
-import addMovieToReview from "pages/MyReviews/index.js";
+// import addMovieToReview from "pages/MyReviews/index.js";
 import { useState } from "react";
 import removeMovieFromCollection from "pages/MyCollection/index.js";
 import useAppDispatch from "hooks/useAppDispatch";
@@ -10,6 +10,7 @@ import HandleRating from "../../../Handlers/HandleRating/HandleRating";
 import styles from "./cardForCollection.module.css";
 import { getSortedMovie } from "../model/selectors/getSortedMovie/getSortedMovie";
 import { useSelector } from "react-redux";
+import { ReviewSlice } from "../../../pages/MyReviews/model/slices/ReviewSlice";
 
 const CardForCollection = ({ movie }) => {
   const { dispatchFunction } = useAppDispatch();
@@ -18,7 +19,7 @@ const CardForCollection = ({ movie }) => {
   const review = useSelector(getSortedMovie);
   function handleReview() {
     navigate(`${ROUTES.myReviews}`);
-    dispatchFunction(() => addMovieToReview(movie));
+    dispatchFunction(() => ReviewSlice.actions.addMovieToReview(movie));
   }
 
   return (

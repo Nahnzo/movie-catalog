@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const WantToSee = createSlice({
+export const WantToSeeSlice = createSlice({
   name: "WantToSee",
   initialState: {
     wantToSee: [],
@@ -37,5 +37,5 @@ export const WantToSee = createSlice({
   },
 });
 
-export const { addMovie, removeMovie, clearAll } = WantToSee.actions;
-export default WantToSee.reducer;
+export const { actions: WantToSeeActions } = WantToSeeSlice;
+export const { reducer: WantToSeeReducer } = WantToSeeSlice;

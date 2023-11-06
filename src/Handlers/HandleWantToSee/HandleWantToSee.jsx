@@ -1,6 +1,5 @@
-/* eslint-disable react/prop-types */
 import { BsFolderPlus, BsFolderMinus } from "react-icons/bs";
-import { addMovie, removeMovie } from "../../pages/WantToSee/model/slices/WantToSeeSlice";
+import { WantToSeeActions } from "../../pages/WantToSee/model/slices/WantToSeeSlice";
 import styles from "./handleWantToSee.module.css";
 import useAppDispatch from "hooks/useAppDispatch";
 import useAppSelector from "hooks/useAppSelector";
@@ -21,10 +20,10 @@ const HandleWantToSee = ({ movie }) => {
   const handleClick = (event, item) => {
     if (isInWantToSee) {
       event.stopPropagation();
-      dispatchFunction(() => removeMovie(item));
+      dispatchFunction(() => WantToSeeActions.removeMovie(item));
     } else {
       event.stopPropagation();
-      dispatchFunction(() => addMovie(item));
+      dispatchFunction(() => WantToSeeActions.addMovie(item));
     }
   };
   return <>{handleIconFolder}</>;

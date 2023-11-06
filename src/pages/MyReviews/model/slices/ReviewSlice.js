@@ -32,5 +32,5 @@ export const ReviewSlice = createSlice({
   },
 });
 
-export const { addMovieToReview, addReviews, deleteAll } = ReviewSlice.actions;
-export default ReviewSlice.reducer;
+export const { actions: ReviewActions } = ReviewSlice;
+export const { reducer: ReviewReducer } = ReviewSlice;

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const myCollectionSlice = createSlice({
+export const MyCollectionSlice = createSlice({
   name: "collectionSLice",
   initialState: {
     myCollection: [],
@@ -50,6 +50,5 @@ export const myCollectionSlice = createSlice({
   },
 });
 
-export const { addMovieToCollection, removeMovieFromCollection, clearAll, addRating, addReview } =
-  myCollectionSlice.actions;
-export default myCollectionSlice.reducer;
+export const { actions: MyCollectionActions } = MyCollectionSlice;
+export const { reducer: MyCollectionReducer } = MyCollectionSlice;
