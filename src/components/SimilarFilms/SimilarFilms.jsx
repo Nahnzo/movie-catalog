@@ -1,4 +1,4 @@
-import CardForSimilarMovie from "../../entities/CardForSimilarMovie/CardForSimilarMovie"; /* eslint-disable react/prop-types */
+import { CardForSimilarMovie } from "entities/CardMovie/index"; /* eslint-disable react/prop-types */
 import styles from "./similarFilms.module.css";
 
 const SimilarFilms = ({ movies }) => {

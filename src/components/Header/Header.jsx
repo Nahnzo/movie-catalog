@@ -2,10 +2,10 @@ import { ROUTES } from "../../routes";
 import { BsFolder2Open } from "react-icons/bs";
 import { BiCameraMovie } from "react-icons/bi";
 import { CiViewList } from "react-icons/ci";
-import { useDataLength } from "hooks/useDataLength";
-import useLocalStorageData from "hooks/useLocalStorage";
+import { useDataLength } from "../../shared/lib/hooks/useDataLength";
+import useLocalStorageData from "../../shared/lib/hooks/useLocalStorage";
 import styles from "./header.module.css";
-import Navbar from "../../shared/Navbar/Navbar";
+import Navbar from "../../shared/ui/Navbar/Navbar";
 
 const Header = () => {
   const data = useDataLength(["arrayReviews", "wantToSee", "myCollection"]);

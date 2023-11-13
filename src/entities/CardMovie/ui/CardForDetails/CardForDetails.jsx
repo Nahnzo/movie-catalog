@@ -1,10 +1,10 @@
-import formatTime from "../../tools/time";
+import formatTime from "../../../../tools/time";
 import CardForActors from "../CardForActors/CardForActors";
 import SequelsAndPrequels from "components/SequelsAndPrequels/SequelsAndPrequels";
 import SimilarFilms from "components/SimilarFilms/SimilarFilms";
 import styles from "./cardForDetail.module.css";
 
-const CardForDetail = ({ movie }) => {
+const CardForDetails = ({ movie }) => {
   return (
     <div>
       <div className={styles.wrapperCard}>
@@ -57,4 +57,4 @@ const CardForDetail = ({ movie }) => {
   );
 };
 
-export default CardForDetail;
+export default CardForDetails;

@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
 // import addMovieToReview from "pages/MyReviews/index.js";
-import useAppDispatch from "hooks/useAppDispatch";
+import { useDispatch } from "react-redux";
 import styles from "./cardForLeaveReview.module.css";
-import { ReviewSlice } from "../../pages/MyReviews/model/slices/ReviewSlice";
+// import { ReviewSlice } from "../../pages/MyReviews/model/slices/ReviewSlice";
 
 const CardForLeaveReview = ({ movie, setShowResultBlock }) => {
-  const { dispatchFunction } = useAppDispatch();
+  const dispatch = useDispatch();
   const addMovie = () => {
-    dispatchFunction(() => ReviewSlice.actions.addMovieToReview(movie));
+    dispatch(ReviewSlice.actions.addMovieToReview(movie));
     setShowResultBlock(false);
   };
 

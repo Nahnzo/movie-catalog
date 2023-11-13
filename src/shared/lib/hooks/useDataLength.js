@@ -10,5 +10,6 @@ export const useDataLength = (keys) => {
       result[key] = 0;
     }
   });
+  console.log(result);
   return result;
 };

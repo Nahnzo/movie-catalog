@@ -9,8 +9,9 @@ export default defineConfig({
     alias: {
       src: "/src",
       components: "/src/components",
-      hooks: "/src/hooks",
       pages: "/src/pages",
+      shared: "/src/shared",
+      entities: "/src/entities",
     },
   },
 });

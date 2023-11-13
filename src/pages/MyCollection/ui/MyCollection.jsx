@@ -2,23 +2,22 @@ import { ROUTES } from "../../../routes";
 import { BsFolder2Open } from "react-icons/bs";
 import { CiViewList } from "react-icons/ci";
 import clearAll from "pages/MyCollection/index.js";
-import { useDataLength } from "hooks/useDataLength";
+import { useDataLength } from "../../../shared/lib/hooks/useDataLength";
 import Footer from "components/Footer/Footer";
-import CardForCollection from "../../../entities/CardForCollection/ui/CardForCollection";
-import Navbar from "../../../shared/Navbar/Navbar";
-import useAppDispatch from "hooks/useAppDispatch";
-import MyButton from "../../../shared/MyButton/MyButton";
-import useLocalStorageData from "hooks/useLocalStorage";
+import CardForCollection from "../../../entities/CardMovie/ui/CardForCollection/CardForCollection";
+import Navbar from "../../../shared/ui/Navbar/Navbar";
+import MyButton from "../../../shared/ui/MyButton/MyButton";
+import useLocalStorageData from "../../../shared/lib/hooks/useLocalStorage";
 import styles from "./myCollection.module.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { getMovieForCollection } from "../model/selectors/getMovieForCollection/getMovieForCollection";
 const MyCollection = () => {
-  const { dispatchFunction } = useAppDispatch();
+  const dispatch = useDispatch();
   const data = useDataLength(["arrayReviews", "wantToSee", "myCollection"]);
   useLocalStorageData(["wantToSee", "myReviews", "myCollection"]);
   const movies = useSelector(getMovieForCollection);
   const deleteAll = () => {
-    dispatchFunction(() => clearAll());
+    dispatch(() => clearAll());
   };
 
   return (

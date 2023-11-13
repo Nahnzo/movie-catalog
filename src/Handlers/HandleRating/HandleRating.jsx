@@ -2,14 +2,14 @@
 import { useState } from "react";
 import { MyCollectionActions } from "../../pages/MyCollection/model/slices/MyCollectionSlice";
 import styles from "./handleRating.module.css";
-import useAppDispatch from "hooks/useAppDispatch";
-import MyButton from "../../shared/MyButton/MyButton";
+import { useDispatch } from "react-redux";
+import MyButton from "shared/ui/MyButton/MyButton";
 
 const HandleRating = ({ movieId, setShowRateWindow }) => {
-  const { dispatchFunction } = useAppDispatch();
+  const dispatch = useDispatch();
   const [rating, setRating] = useState(null);
   const handleR = (item) => {
-    dispatchFunction(() => MyCollectionActions.addRating({ movieId: movieId, rating: item.value }));
+    dispatch(() => MyCollectionActions.addRating({ movieId: movieId, rating: item.value }));
     setShowRateWindow(false);
   };
 

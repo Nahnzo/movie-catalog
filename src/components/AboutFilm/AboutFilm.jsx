@@ -2,7 +2,8 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getFilmById } from "../../tools/getFilmById";
 import styles from "./aboutFilm.module.css";
-import CardForDetail from "../../entities/CardForDetails/CardForDetail";
+// import CardForDetail from "../../entities/CardForDetails/CardForDetail";
+import { CardForDetails } from "entities/CardMovie/index";
 
 const AboutFilm = () => {
   const { id } = useParams();
@@ -19,7 +20,7 @@ const AboutFilm = () => {
 
   return (
     <section className={styles.mainWrapper}>
-      {movie.length && <CardForDetail movie={movie[0]} />}
+      {movie.length && <CardForDetails movie={movie[0]} />}
     </section>
   );
 };

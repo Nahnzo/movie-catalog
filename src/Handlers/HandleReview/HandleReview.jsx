@@ -1,19 +1,19 @@
 import { useState, useRef, useEffect } from "react";
-import { ReviewActions, ReviewSlice } from "../../pages/MyReviews/model/slices/ReviewSlice";
-import useFilteredMovie from "hooks/useFilteredMovie";
-import useAppDispatch from "hooks/useAppDispatch";
-import MyButton from "../../shared/MyButton/MyButton";
+import { ReviewActions } from "../../pages/MyReviews/model/slices/ReviewSlice";
+import useFilteredMovie from "shared/lib/hooks/useFilteredMovie";
+import { useDispatch } from "react-redux";
+import MyButton from "shared/ui/MyButton/MyButton";
 import styles from "./handleReview.module.css";
 
 const HandleReview = ({ movie }) => {
   const { filteredMovie } = useFilteredMovie("arrayReviews", movie);
-  const { dispatchFunction } = useAppDispatch();
+  const dispatch = useDispatch();
   const [readOnly, setReadOnly] = useState(true);
   const [initialText] = useState("Место для вашей рецензии");
   const [review, setReview] = useState("");
   const refTextArea = useRef(null);
   const leaveRw = () => {
-    dispatchFunction(() => ReviewActions.addReviews({ movieId: movie.id, myReviews: review }));
+    dispatch(() => ReviewActions.addReviews({ movieId: movie.id, myReviews: review }));
     setReadOnly((prev) => !prev);
     if (review === initialText) {
       setReview("");
@@ -52,9 +52,7 @@ const HandleReview = ({ movie }) => {
             styles={styles.deleteRw}
             handler={() => {
               setReview("");
-              dispatchFunction(() =>
-                ReviewActions.addReviews({ movieId: movie.id, myReviews: "" })
-              );
+              dispatch(() => ReviewActions.addReviews({ movieId: movie.id, myReviews: "" }));
             }}
           >
             Удалить рецензию

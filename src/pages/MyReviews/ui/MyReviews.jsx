@@ -2,23 +2,23 @@ import { ROUTES } from "../../../routes";
 import { BiCameraMovie } from "react-icons/bi";
 // import deleteAll from "pages/MyReviews/index.js";
 import { getOnlyUniq } from "../../../tools/getOnlyUniq";
-import { useDataLength } from "hooks/useDataLength";
+import { useDataLength } from "shared/lib/hooks/useDataLength";
 import { useRef, useState, useEffect } from "react";
 import { BsFolder2Open } from "react-icons/bs";
-import MyButton from "../../../shared/MyButton/MyButton";
-import CardForMyReviews from "../../../entities/CardForMyReviews/CardForMyReviews";
+import MyButton from "shared/ui/MyButton/MyButton";
+import { CardForMyReviews } from "entities/CardMovie";
 import LeaveReview from "components/LeaveReview/LeaveReview";
-import Navbar from "../../../shared/Navbar/Navbar";
+import Navbar from "shared/ui/Navbar/Navbar";
 import CarouselX from "../../../widgets/CarouselX/CarouselX";
-import useAppDispatch from "hooks/useAppDispatch";
-import useLocalStorageData from "hooks/useLocalStorage";
+import { useDispatch } from "react-redux";
+import useLocalStorageData from "shared/lib/hooks/useLocalStorage";
 import { useSelector } from "react-redux";
 import { getMoviesForReviews } from "../model/selectors/getMoviesForReviews/getMoviesForReviews";
-import styles from "./myReviews.module.css";
 import { ReviewSlice } from "../model/slices/ReviewSlice";
+import styles from "./myReviews.module.css";
 
 const MyReviews = () => {
-  const { dispatchFunction } = useAppDispatch();
+  const { dispatch } = useDispatch();
   const [selectedMovie, setSelectedMovie] = useState(null);
   const movies = useSelector(getMoviesForReviews);
   const data = useDataLength(["wantToSee", "myCollection"]);
@@ -55,7 +55,7 @@ const MyReviews = () => {
           {movies.length ? (
             <MyButton
               styles={styles.deleteAll}
-              handler={() => dispatchFunction(() => ReviewSlice.actions.deleteAll())}
+              handler={() => dispatch(() => ReviewSlice.actions.deleteAll())}
             >
               Очистить список ({getOnlyUniq(movies)})
             </MyButton>

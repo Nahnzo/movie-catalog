@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import CardForSimilarMovie from "../../entities/CardForSimilarMovie/CardForSimilarMovie";
+import { CardForSimilarMovie } from "entities/CardMovie/index";
 import styles from "./sequelsAndPrequels.module.css";
 
 const SequelsAndPrequels = ({ movies }) => {

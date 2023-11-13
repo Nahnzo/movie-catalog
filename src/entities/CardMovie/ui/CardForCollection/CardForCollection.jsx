@@ -1,25 +1,23 @@
 /* eslint-disable react/prop-types */
-import { ROUTES } from "../../../routes";
+import { ROUTES } from "../../../../routes";
 import { useNavigate } from "react-router-dom";
-// import addMovieToReview from "pages/MyReviews/index.js";
 import { useState } from "react";
 import removeMovieFromCollection from "pages/MyCollection/index.js";
-import useAppDispatch from "hooks/useAppDispatch";
-import MyButton from "../../../shared/MyButton/MyButton";
-import HandleRating from "../../../Handlers/HandleRating/HandleRating";
+import MyButton from "shared/ui/MyButton/MyButton";
+import HandleRating from "../../../../Handlers/HandleRating/HandleRating";
 import styles from "./cardForCollection.module.css";
-import { getSortedMovie } from "../model/selectors/getSortedMovie/getSortedMovie";
-import { useSelector } from "react-redux";
-import { ReviewSlice } from "../../../pages/MyReviews/model/slices/ReviewSlice";
+import { getSortedMovie } from "../../model/selectors/getSortedMovie/getSortedMovie";
+import { useSelector, useDispatch } from "react-redux";
+import { ReviewSlice } from "../../../../pages/MyReviews/model/slices/ReviewSlice";
 
 const CardForCollection = ({ movie }) => {
-  const { dispatchFunction } = useAppDispatch();
+  const dispatch = useDispatch();
   const [showRateWindow, setShowRateWindow] = useState(false);
   const navigate = useNavigate();
   const review = useSelector(getSortedMovie);
   function handleReview() {
     navigate(`${ROUTES.myReviews}`);
-    dispatchFunction(() => ReviewSlice.actions.addMovieToReview(movie));
+    dispatch(() => ReviewSlice.actions.addMovieToReview(movie));
   }
 
   return (
@@ -59,7 +57,7 @@ const CardForCollection = ({ movie }) => {
           </div>
           <MyButton
             styles={styles.btnDelete}
-            handler={() => dispatchFunction(() => removeMovieFromCollection(movie))}
+            handler={() => dispatch(() => removeMovieFromCollection(movie))}
           >
             Удалить из коллекции
           </MyButton>

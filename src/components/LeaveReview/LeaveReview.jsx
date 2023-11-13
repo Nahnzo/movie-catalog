@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { HiMagnifyingGlass } from "react-icons/hi2";
 import { getFilmByName } from "../../tools/getFilmByName";
-import CardForLeaveReview from "../../entities/CardForLeaveReview/CardForLeaveReview";
+import { CardForLeaveReview } from "entities/CardMovie/index";
 import styles from "./leaveReview.module.css";
 
 const LeaveReview = () => {
