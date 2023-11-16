@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { ReviewActions } from "../../pages/MyReviews/model/slices/ReviewSlice";
+import { ReviewActions } from "pages/MyReviews/model/slices/ReviewSlice";
 import useFilteredMovie from "shared/lib/hooks/useFilteredMovie";
 import { useDispatch } from "react-redux";
 import MyButton from "shared/ui/MyButton/MyButton";

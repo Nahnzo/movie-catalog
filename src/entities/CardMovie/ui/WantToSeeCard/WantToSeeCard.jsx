@@ -1,10 +1,9 @@
-/* eslint-disable react/prop-types */
-import { WantToSeeSlice } from "../../../../pages/WantToSee/model/slices/WantToSeeSlice";
+import { WantToSeeSlice } from "pages/WantToSee/model/slices/WantToSeeSlice";
 import { useDispatch } from "react-redux";
-import formatTime from "../../../../tools/time";
-import styles from "./wantToSeeCard.module.css";
-import HandleMovieInWantToSee from "../../../../Handlers/HandleMovieInWantToSee/HandleMovieInWantToSee";
+import { HandleMovieInWantToSee } from "pages/WantToSee/index.js";
+import formatTime from "../../model/services/time/time";
 import MyButton from "shared/ui/MyButton/MyButton";
+import styles from "./wantToSeeCard.module.css";
 
 const WantToSeeCard = ({ firstMovie }) => {
   const dispatch = useDispatch();
@@ -41,7 +40,7 @@ const WantToSeeCard = ({ firstMovie }) => {
           <div className={styles.rating}>
             <MyButton
               styles={styles.btnDelete}
-              handler={() => dispatch(() => WantToSeeSlice.actions.removeMovie(firstMovie))}
+              handler={() => dispatch(WantToSeeSlice.actions.removeMovie(firstMovie))}
             >
               Удалить из списка
             </MyButton>

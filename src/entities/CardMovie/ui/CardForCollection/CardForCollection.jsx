@@ -2,22 +2,22 @@
 import { ROUTES } from "../../../../routes";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import removeMovieFromCollection from "pages/MyCollection/index.js";
-import MyButton from "shared/ui/MyButton/MyButton";
-import HandleRating from "../../../../Handlers/HandleRating/HandleRating";
-import styles from "./cardForCollection.module.css";
 import { getSortedMovie } from "../../model/selectors/getSortedMovie/getSortedMovie";
 import { useSelector, useDispatch } from "react-redux";
-import { ReviewSlice } from "../../../../pages/MyReviews/model/slices/ReviewSlice";
+import { ReviewActions } from "pages/MyReviews/model/slices/ReviewSlice";
+import { MyCollectionActions } from "pages/MyCollection/model/slices/MyCollectionSlice";
+import MyButton from "shared/ui/MyButton/MyButton";
+import HandleRating from "../../model/services/HandleRating/HandleRating";
+import styles from "./cardForCollection.module.css";
 
 const CardForCollection = ({ movie }) => {
   const dispatch = useDispatch();
-  const [showRateWindow, setShowRateWindow] = useState(false);
   const navigate = useNavigate();
   const review = useSelector(getSortedMovie);
+  const [showRateWindow, setShowRateWindow] = useState(false);
   function handleReview() {
     navigate(`${ROUTES.myReviews}`);
-    dispatch(() => ReviewSlice.actions.addMovieToReview(movie));
+    dispatch(() => ReviewActions.addMovieToReview(movie));
   }
 
   return (
@@ -57,7 +57,7 @@ const CardForCollection = ({ movie }) => {
           </div>
           <MyButton
             styles={styles.btnDelete}
-            handler={() => dispatch(() => removeMovieFromCollection(movie))}
+            handler={() => dispatch(MyCollectionActions.removeMovieFromCollection(movie))}
           >
             Удалить из коллекции
           </MyButton>

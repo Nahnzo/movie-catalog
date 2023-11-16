@@ -1,6 +1,6 @@
 import App from "../../../../App";
 import MyCollection from "pages/MyCollection/ui/MyCollection";
-import WantToSee from "pages/WantToSee/ui/WantToSee";
+import WantToSee from "pages/WantToSee/ui/WantToSee/WantToSee";
 import MyReviews from "pages/MyReviews/ui/MyReviews";
 // import WhatToSee from "pages/WhatToSee/ui/WhatToSee";
 import AboutFilm from "../../../../components/AboutFilm/AboutFilm";

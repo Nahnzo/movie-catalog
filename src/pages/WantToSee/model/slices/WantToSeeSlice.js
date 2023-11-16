@@ -11,6 +11,7 @@ export const WantToSeeSlice = createSlice({
   reducers: {
     addMovie(state, action) {
       const isExist = state.wantToSee.find((item) => item.id === action.payload.id);
+      console.log(isExist);
       if (!isExist) {
         state.wantToSee.push(action.payload);
         state.length++;

@@ -1,6 +1,5 @@
-/* eslint-disable react/prop-types */
 import { BsHeart, BsHeartFill } from "react-icons/bs";
-import { MyCollectionActions } from "../../pages/MyCollection/model/slices/MyCollectionSlice";
+import { MyCollectionActions } from "pages/MyCollection/model/slices/MyCollectionSlice";
 import { useDispatch } from "react-redux";
 import styles from "./handleMyCollection.module.css";
 import useAppSelector from "shared/lib/hooks/useAppSelector";
@@ -19,10 +18,10 @@ const HandleWantToSee = ({ movie }) => {
   const handleClick = (event, item) => {
     if (isInMyCollection) {
       event.stopPropagation();
-      dispatch(() => MyCollectionActions.removeMovieFromCollection(item));
+      dispatch(MyCollectionActions.removeMovieFromCollection(item));
     } else {
       event.stopPropagation();
-      dispatch(() => MyCollectionActions.addMovieToCollection(item));
+      dispatch(MyCollectionActions.addMovieToCollection(item));
     }
   };
   return <>{handleIconFolder}</>;

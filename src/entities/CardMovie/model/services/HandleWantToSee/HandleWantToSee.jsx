@@ -1,5 +1,5 @@
 import { BsFolderPlus, BsFolderMinus } from "react-icons/bs";
-import { WantToSeeActions } from "../../pages/WantToSee/model/slices/WantToSeeSlice";
+import { WantToSeeActions } from "../../../../../pages/WantToSee/model/slices/WantToSeeSlice";
 import { useDispatch } from "react-redux";
 import styles from "./handleWantToSee.module.css";
 import useAppSelector from "shared/lib/hooks/useAppSelector";
@@ -20,10 +20,10 @@ const HandleWantToSee = ({ movie }) => {
   const handleClick = (event, item) => {
     if (isInWantToSee) {
       event.stopPropagation();
-      dispatch(() => WantToSeeActions.removeMovie(item));
+      dispatch(WantToSeeActions.removeMovie(item));
     } else {
       event.stopPropagation();
-      dispatch(() => WantToSeeActions.addMovie(item));
+      dispatch(WantToSeeActions.addMovie(item));
     }
   };
   return <>{handleIconFolder}</>;

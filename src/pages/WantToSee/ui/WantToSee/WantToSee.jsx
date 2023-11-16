@@ -1,14 +1,14 @@
-import { ROUTES } from "../../../routes";
+import { ROUTES } from "../../../../routes";
 import { useEffect, useState, useRef } from "react";
 import { useDataLength } from "shared/lib/hooks/useDataLength";
 import { BiCameraMovie } from "react-icons/bi";
 import { CiViewList } from "react-icons/ci";
-import { WantToSeeActions } from "../model/slices/WantToSeeSlice";
+import { WantToSeeActions } from "../../model/slices/WantToSeeSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { getMovieForWantToSee } from "../model/selectors/getMovieForWantToSee";
+import { getMovieForWantToSee } from "../../model/selectors/getMovieForWantToSee";
 import MyButton from "shared/ui/MyButton/MyButton";
 import { WantToSeeCard } from "entities/CardMovie/index";
-import CarouselX from "../../../widgets/CarouselX/CarouselX";
+import CarouselX from "../../../../widgets/CarouselX/CarouselX";
 import Footer from "components/Footer/Footer";
 import Navbar from "shared/ui/Navbar/Navbar";
 import useLocalStorageData from "shared/lib/hooks/useLocalStorage";
@@ -48,7 +48,7 @@ const WantToSee = () => {
           <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>
           <MyButton
             styles={`${styles.deleteAll}`}
-            handler={() => dispatch(() => WantToSeeActions.clearAll())}
+            handler={() => dispatch(WantToSeeActions.clearAll())}
           >
             Очистить список ({data["wantToSee"]})
           </MyButton>
