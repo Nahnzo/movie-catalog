@@ -1,6 +1,5 @@
 import { ROUTES } from "../../../routes";
 import { BiCameraMovie } from "react-icons/bi";
-// import deleteAll from "pages/MyReviews/index.js";
 import { getOnlyUniq } from "../../../tools/getOnlyUniq";
 import { useDataLength } from "shared/lib/hooks/useDataLength";
 import { useRef, useState, useEffect } from "react";
@@ -9,12 +8,14 @@ import MyButton from "shared/ui/MyButton/MyButton";
 import { CardForMyReviews } from "entities/CardMovie";
 import LeaveReview from "components/LeaveReview/LeaveReview";
 import Navbar from "shared/ui/Navbar/Navbar";
-import CarouselX from "../../../widgets/CarouselX/CarouselX";
+import CarouselX from "widgets/CarouselX/CarouselX";
 import { useDispatch } from "react-redux";
 import useLocalStorageData from "shared/lib/hooks/useLocalStorage";
 import { useSelector } from "react-redux";
 import { getMoviesForReviews } from "../model/selectors/getMoviesForReviews/getMoviesForReviews";
 import { ReviewSlice } from "../model/slices/ReviewSlice";
+import FilmIcon from "shared/assets/film-icon.svg";
+import HeartIcon from "shared/assets/heart-icon.svg";
 import styles from "./myReviews.module.css";
 
 const MyReviews = () => {
@@ -41,14 +42,10 @@ const MyReviews = () => {
       <section className={styles.header}>
         <nav className={styles.navigation}>
           <Navbar path={ROUTES.home}>На главную</Navbar>
-          <Navbar path={ROUTES.wantToSee} icon={<BsFolder2Open />} dataLength={data["wantToSee"]}>
+          <Navbar path={ROUTES.wantToSee} icon={FilmIcon} dataLength={data["wantToSee"]}>
             Хочу посмотреть
           </Navbar>
-          <Navbar
-            path={ROUTES.myCollection}
-            icon={<BiCameraMovie />}
-            dataLength={data["myCollection"]}
-          >
+          <Navbar path={ROUTES.myCollection} icon={HeartIcon} dataLength={data["myCollection"]}>
             Моя коллекция
           </Navbar>
           <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>

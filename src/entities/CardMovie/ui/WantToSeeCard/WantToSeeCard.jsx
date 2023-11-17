@@ -1,11 +1,12 @@
-import { WantToSeeSlice } from "pages/WantToSee/model/slices/WantToSeeSlice";
 import { useDispatch } from "react-redux";
 import { HandleMovieInWantToSee } from "pages/WantToSee/index.js";
+import { WantToSeeActions } from "pages/WantToSee/model/slices/WantToSeeSlice";
+import { memo } from "react";
 import formatTime from "../../model/services/time/time";
 import MyButton from "shared/ui/MyButton/MyButton";
 import styles from "./wantToSeeCard.module.css";
 
-const WantToSeeCard = ({ firstMovie }) => {
+const WantToSeeCard = memo(({ firstMovie }) => {
   const dispatch = useDispatch();
   if (firstMovie)
     return (
@@ -40,7 +41,7 @@ const WantToSeeCard = ({ firstMovie }) => {
           <div className={styles.rating}>
             <MyButton
               styles={styles.btnDelete}
-              handler={() => dispatch(WantToSeeSlice.actions.removeMovie(firstMovie))}
+              handler={() => dispatch(WantToSeeActions.removeMovie(firstMovie))}
             >
               Удалить из списка
             </MyButton>
@@ -53,6 +54,6 @@ const WantToSeeCard = ({ firstMovie }) => {
         </div>
       </>
     );
-};
+});
 
 export default WantToSeeCard;

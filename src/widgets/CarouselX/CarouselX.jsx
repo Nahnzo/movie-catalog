@@ -1,8 +1,8 @@
-/* eslint-disable react/prop-types */
+import React, { memo } from "react";
 import styles from "./carouselX.module.css";
-import React from "react";
 
-const CarouselX = ({ wrapper, data }) => {
+const CarouselX = memo(({ wrapper, data }) => {
+  console.log("render");
   let currentPosition = 0;
   let count = 0;
 
@@ -39,6 +39,6 @@ const CarouselX = ({ wrapper, data }) => {
       </button>
     </div>
   );
-};
+});
 
-export default React.memo(CarouselX);
+export default CarouselX;

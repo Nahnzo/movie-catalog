@@ -1,48 +1,43 @@
 import { ROUTES } from "../../../../routes";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, memo } from "react";
 import { useDataLength } from "shared/lib/hooks/useDataLength";
-import { BiCameraMovie } from "react-icons/bi";
-import { CiViewList } from "react-icons/ci";
 import { WantToSeeActions } from "../../model/slices/WantToSeeSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { getMovieForWantToSee } from "../../model/selectors/getMovieForWantToSee";
-import MyButton from "shared/ui/MyButton/MyButton";
 import { WantToSeeCard } from "entities/CardMovie/index";
-import CarouselX from "../../../../widgets/CarouselX/CarouselX";
+import { getFirstMovie } from "../../model/selectors/getFirstMovie";
+import MyButton from "shared/ui/MyButton/MyButton";
+import CarouselX from "widgets/CarouselX/CarouselX";
 import Footer from "components/Footer/Footer";
 import Navbar from "shared/ui/Navbar/Navbar";
 import useLocalStorageData from "shared/lib/hooks/useLocalStorage";
+import HeartIcon from "shared/assets/heart-icon.svg";
+import ListReviewIcon from "shared/assets/list-review-icon.svg";
 import styles from "./wantToSee.module.css";
 
-const WantToSee = () => {
+const WantToSee = memo(() => {
   useLocalStorageData(["wantToSee", "myReviews", "myCollection"]);
   const data = useDataLength(["arrayReviews", "myCollection", "wantToSee"]);
+  const [selectedMovie, setSelectedMovie] = useState(null);
   const ref = useRef(null);
   const wrapper = ref.current;
-  const [selectedMovie, setSelectedMovie] = useState(null);
   const dispatch = useDispatch();
   const movies = useSelector(getMovieForWantToSee);
+  const firstMovie = useSelector(getFirstMovie);
 
   useEffect(() => {
-    setSelectedMovie(movies[0]);
-  }, [movies]);
-  const showFirst = (movie) => {
-    setSelectedMovie(movie);
-  };
+    setSelectedMovie(firstMovie);
+  }, [firstMovie]);
 
   if (data["wantToSee"]) {
     return (
       <section className={styles.main}>
         <nav className={styles.header}>
           <Navbar path={ROUTES.home}>Ha главную</Navbar>
-          <Navbar
-            path={ROUTES.myCollection}
-            icon={<BiCameraMovie />}
-            dataLength={data["myCollection"]}
-          >
+          <Navbar path={ROUTES.myCollection} icon={HeartIcon} dataLength={data["myCollection"]}>
             Моя коллекция
           </Navbar>
-          <Navbar path={ROUTES.myReviews} icon={<CiViewList />} dataLength={data["arrayReview"]}>
+          <Navbar path={ROUTES.myReviews} icon={ListReviewIcon} dataLength={data["arrayReview"]}>
             Мои рецензии
           </Navbar>
           <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>
@@ -61,7 +56,7 @@ const WantToSee = () => {
                 className={styles.card}
                 key={item.id}
                 style={{ backgroundImage: `url(${item.poster.url})` }}
-                onClick={() => showFirst(item)}
+                onClick={() => setSelectedMovie(item)}
               ></div>
             ))}
           </div>
@@ -75,14 +70,10 @@ const WantToSee = () => {
       <section className={styles.main}>
         <nav className={styles.header}>
           <Navbar path={ROUTES.home}>Ha главную</Navbar>
-          <Navbar
-            path={ROUTES.myCollection}
-            icon={<BiCameraMovie />}
-            dataLength={data["myCollection"]}
-          >
+          <Navbar path={ROUTES.myCollection} icon={HeartIcon} dataLength={data["myCollection"]}>
             Моя коллекция
           </Navbar>
-          <Navbar path={ROUTES.myReviews} icon={<CiViewList />} dataLength={data["arrayReviews"]}>
+          <Navbar path={ROUTES.myReviews} icon={ListReviewIcon} dataLength={data["arrayReviews"]}>
             Мои рецензии
           </Navbar>
           <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>
@@ -94,6 +85,6 @@ const WantToSee = () => {
       </section>
     );
   }
-};
+});
 
 export default WantToSee;

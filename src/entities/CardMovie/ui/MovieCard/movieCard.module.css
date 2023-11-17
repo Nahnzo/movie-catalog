@@ -12,11 +12,18 @@
 .info {
   margin: 0 auto;
   display: flex;
-  justify-content: flex-start;
   flex-direction: column;
-  padding: 0 20px 20px 20px;
   text-align: center;
   user-select: none;
+  max-width: 200px;
+  height: 50px;
+  white-space: nowrap;
+}
+.textEllipsis {
+  font-family: "Merriweather", serif;
+  font-size: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .card:hover {

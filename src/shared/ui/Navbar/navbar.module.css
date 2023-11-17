@@ -3,15 +3,16 @@
   margin-left: 10px;
   display: inline-flex;
   justify-content: space-between;
-  font-size: 25px;
-  align-items: center;
+  /* align-items: center; */
   opacity: 1;
   transition: opacity 0.2s ease-in;
+  /* background-color: red; */
 }
 .counter {
-  display: inline-block;
-  font-size: 15px;
-  margin: 5px 0 0 6px;
+  font-size: 16px;
+  margin: 2px;
+  /* position: relative; */
+  top: 0px;
 }
 
 .counterWantToSeeHidden {
@@ -20,4 +21,10 @@
 
 .counterWantToSee:hover {
   opacity: 0.5;
+}
+.icon {
+  position: relative;
+  top: -5px;
+  width: 35px;
+  height: 35px;
 }

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./movieCard.module.css";
 import HandleWantToSee from "../../model/services/HandleWantToSee/HandleWantToSee";
 import HandleMyCollection from "../../model/services/HandleMyCollection/HandleMyCollection";
+import styles from "./movieCard.module.css";
 
 const MovieCard = ({ data }) => {
   const [showDetails, setShowDetails] = useState(false);
@@ -25,13 +25,7 @@ const MovieCard = ({ data }) => {
         </div>
       </div>
       <div className={styles.info}>
-        <h3>
-          {(data.name || data.alternativeName).length > 17
-            ? (data.name || data.alternativeName).slice(0, 17) + "..."
-            : data.name || data.alternativeName}
-        </h3>
-        <p>{data.type}</p>
-        <p>{data.year}</p>
+        <p className={styles.textEllipsis}>{data.name || data.alternativeName}</p>
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ const Navbar = ({ path, children, icon, dataLength }) => {
     <h3 onClick={() => navigate(path)}>
       {children}
       <div className={dataLength ? styles.counterWantToSee : styles.counterWantToSeeHidden}>
-        {icon}
+        <img src={icon} alt={icon} className={styles.icon} />
         <div className={styles.counter}>{dataLength}</div>
       </div>
     </h3>

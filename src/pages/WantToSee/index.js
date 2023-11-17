@@ -1,5 +1,5 @@
 import WantToSee from "./ui/WantToSee/WantToSee";
-import { WantToSeeSlice } from "./model/slices/WantToSeeSlice";
 import HandleMovieInWantToSee from "./ui/HandleMovieInWantToSee/HandleMovieInWantToSee";
+import { WantToSeeSlice } from "./model/slices/WantToSeeSlice";
 export { WantToSee, HandleMovieInWantToSee };
 export default WantToSeeSlice;
