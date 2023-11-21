@@ -1,7 +1,7 @@
 import { ROUTES } from "../../../../routes";
 import { useEffect, useState, useRef, memo } from "react";
 import { useDataLength } from "shared/lib/hooks/useDataLength";
-import { WantToSeeActions } from "../../model/slices/WantToSeeSlice";
+import { WantToSeeActions } from "pages/WantToSee/model/slices/WantToSeeSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { getMovieForWantToSee } from "../../model/selectors/getMovieForWantToSee";
 import { WantToSeeCard } from "entities/CardMovie/index";
@@ -37,7 +37,7 @@ const WantToSee = memo(() => {
           <Navbar path={ROUTES.myCollection} icon={HeartIcon} dataLength={data["myCollection"]}>
             Моя коллекция
           </Navbar>
-          <Navbar path={ROUTES.myReviews} icon={ListReviewIcon} dataLength={data["arrayReview"]}>
+          <Navbar path={ROUTES.myReviews} icon={ListReviewIcon} dataLength={data["arrayReviews"]}>
             Мои рецензии
           </Navbar>
           <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>

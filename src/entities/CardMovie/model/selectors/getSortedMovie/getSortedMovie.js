@@ -1,1 +1,3 @@
 export const getSortedMovie = (state) => state?.arrayReviews;
+export const getExistingMovieForMyCollection = (state) => (movie) =>
+  state?.myCollection.myCollection.some((item) => item.id === movie.id);

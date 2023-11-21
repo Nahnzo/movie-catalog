@@ -1,23 +1,23 @@
 .collectionFill {
+  width: 40px;
+  height: 40px;
   position: absolute;
-  font-size: 25px;
-  bottom: 20px;
-  right: 11px;
-  opacity: 1;
-  color: red;
+  bottom: 15px;
+  right: 5px;
 }
 
 .collectionEmpty {
+  width: 40px;
+  height: 40px;
   position: absolute;
-  font-size: 25px;
-  bottom: 20px;
-  right: 11px;
-  opacity: 1;
-  color: rgb(148, 144, 144);
+  bottom: 15px;
+  right: 5px;
+  stroke: gray;
 }
 
 .collectionEmpty:hover {
-  color: rgb(250, 12, 12);
+  color: red;
+  stroke: red;
 }
 
 .collectionFill:hover {

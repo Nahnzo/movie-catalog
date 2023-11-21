@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useState } from "react";
 import { MyCollectionActions } from "pages/MyCollection/model/slices/MyCollectionSlice";
 import { useDispatch } from "react-redux";

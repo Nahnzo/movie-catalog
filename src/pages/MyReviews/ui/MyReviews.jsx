@@ -1,41 +1,39 @@
 import { ROUTES } from "../../../routes";
-import { BiCameraMovie } from "react-icons/bi";
-import { getOnlyUniq } from "../../../tools/getOnlyUniq";
+import { getOnlyUniqMoviesLength } from "../model/services/getOnlyUniqMoviesLength/getOnlyUniqMoviesLength";
 import { useDataLength } from "shared/lib/hooks/useDataLength";
 import { useRef, useState, useEffect } from "react";
-import { BsFolder2Open } from "react-icons/bs";
-import MyButton from "shared/ui/MyButton/MyButton";
 import { CardForMyReviews } from "entities/CardMovie";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { ReviewActions } from "../model/slices/ReviewSlice";
+import {
+  getFilteredMovie,
+  getFirsMovie,
+  getMoviesForReviews,
+} from "../model/selectors/getMoviesForReviews";
+import useLocalStorageData from "shared/lib/hooks/useLocalStorage";
+import MyButton from "shared/ui/MyButton/MyButton";
 import LeaveReview from "components/LeaveReview/LeaveReview";
 import Navbar from "shared/ui/Navbar/Navbar";
 import CarouselX from "widgets/CarouselX/CarouselX";
-import { useDispatch } from "react-redux";
-import useLocalStorageData from "shared/lib/hooks/useLocalStorage";
-import { useSelector } from "react-redux";
-import { getMoviesForReviews } from "../model/selectors/getMoviesForReviews/getMoviesForReviews";
-import { ReviewSlice } from "../model/slices/ReviewSlice";
 import FilmIcon from "shared/assets/film-icon.svg";
 import HeartIcon from "shared/assets/heart-icon.svg";
 import styles from "./myReviews.module.css";
 
 const MyReviews = () => {
-  const { dispatch } = useDispatch();
-  const [selectedMovie, setSelectedMovie] = useState(null);
-  const movies = useSelector(getMoviesForReviews);
-  const data = useDataLength(["wantToSee", "myCollection"]);
   useLocalStorageData(["wantToSee", "myReviews", "myCollection"]);
+  const [selectedMovie, setSelectedMovie] = useState(null);
+  const dispatch = useDispatch();
   const ref = useRef(null);
   const wrapper = ref.current;
-  const movieWithReviews = movies.filter(
-    (item) => item.myReviews !== "Место для вашей рецензии" && item.myReviews !== ""
-  );
-  useEffect(() => {
-    setSelectedMovie(movies[movies.length - 1]);
-  }, [movies.length, movies]);
+  const data = useDataLength(["wantToSee", "myCollection"]);
+  const movies = useSelector(getMoviesForReviews);
+  const firstMovie = useSelector(getFirsMovie);
+  const movieWithReviews = useSelector(getFilteredMovie);
 
-  const setFirst = (item) => {
-    setSelectedMovie(item);
-  };
+  useEffect(() => {
+    setSelectedMovie(firstMovie);
+  }, [firstMovie]);
 
   return (
     <section className={styles.main}>
@@ -50,11 +48,8 @@ const MyReviews = () => {
           </Navbar>
           <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>
           {movies.length ? (
-            <MyButton
-              styles={styles.deleteAll}
-              handler={() => dispatch(() => ReviewSlice.actions.deleteAll())}
-            >
-              Очистить список ({getOnlyUniq(movies)})
+            <MyButton styles={styles.deleteAll} handler={() => dispatch(ReviewActions.deleteAll())}>
+              Очистить список ({getOnlyUniqMoviesLength(movies)})
             </MyButton>
           ) : (
             ""
@@ -66,13 +61,13 @@ const MyReviews = () => {
         {selectedMovie && <CardForMyReviews movie={selectedMovie} />}
       </div>
       <div className={styles.container}>
-        {movieWithReviews.length === 0 ? (
+        {!movieWithReviews.length ? (
           <h2>Список пуст</h2>
         ) : (
           <div className={styles.containerArrayReviews} ref={ref}>
             {movieWithReviews.map((movie) => (
               <div
-                onClick={() => setFirst(movie)}
+                onClick={() => setSelectedMovie(movie)}
                 key={movie.id}
                 className={styles.rCard}
                 style={{

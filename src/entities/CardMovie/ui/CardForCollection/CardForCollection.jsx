@@ -1,7 +1,6 @@
-/* eslint-disable react/prop-types */
 import { ROUTES } from "../../../../routes";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { memo, useCallback, useState } from "react";
 import { getSortedMovie } from "../../model/selectors/getSortedMovie/getSortedMovie";
 import { useSelector, useDispatch } from "react-redux";
 import { ReviewActions } from "pages/MyReviews/model/slices/ReviewSlice";
@@ -10,15 +9,15 @@ import MyButton from "shared/ui/MyButton/MyButton";
 import HandleRating from "../../model/services/HandleRating/HandleRating";
 import styles from "./cardForCollection.module.css";
 
-const CardForCollection = ({ movie }) => {
+const CardForCollection = memo(({ movie }) => {
+  const [showRateWindow, setShowRateWindow] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const review = useSelector(getSortedMovie);
-  const [showRateWindow, setShowRateWindow] = useState(false);
-  function handleReview() {
+  const handleReview = useCallback(() => {
     navigate(`${ROUTES.myReviews}`);
-    dispatch(() => ReviewActions.addMovieToReview(movie));
-  }
+    dispatch(ReviewActions.addMovieToReview(movie));
+  }, [dispatch, movie, navigate]);
 
   return (
     <div className={styles.cardWrapper}>
@@ -68,6 +67,6 @@ const CardForCollection = ({ movie }) => {
       </div>
     </div>
   );
-};
+});
 
 export default CardForCollection;

@@ -3,8 +3,9 @@ import CardForActors from "../CardForActors/CardForActors";
 import SequelsAndPrequels from "components/SequelsAndPrequels/SequelsAndPrequels";
 import SimilarFilms from "components/SimilarFilms/SimilarFilms";
 import styles from "./cardForDetail.module.css";
+import { memo } from "react";
 
-const CardForDetails = ({ movie }) => {
+const CardForDetails = memo(({ movie }) => {
   return (
     <div>
       <div className={styles.wrapperCard}>
@@ -55,6 +56,6 @@ const CardForDetails = ({ movie }) => {
       </div>
     </div>
   );
-};
+});
 
 export default CardForDetails;

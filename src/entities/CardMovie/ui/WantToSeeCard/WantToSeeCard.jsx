@@ -27,7 +27,6 @@ const WantToSeeCard = memo(({ firstMovie }) => {
             <p>
               Оригинальное название: <strong>{firstMovie.alternativeName}</strong>
             </p>
-
             <p>
               {firstMovie.countries.length > 1 ? "Страны: " : "Страна: "}
               {firstMovie.countries.map((item) => item.name) + "."} {firstMovie.year} год

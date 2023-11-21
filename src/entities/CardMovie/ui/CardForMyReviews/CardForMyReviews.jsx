@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import HandleReview from "../../model/services/HandleReview/HandleReview";
 import styles from "./cardForMyReviews.module.css";
 

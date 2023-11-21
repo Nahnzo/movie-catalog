@@ -1,9 +1,8 @@
-// import { WantToSeeActions, addMovie } from "../pages/WantToSee/model/slices/WantToSeeSlice";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { MyCollectionActions } from "../../../pages/MyCollection/model/slices/MyCollectionSlice";
-import { ReviewActions } from "../../../pages/MyReviews/model/slices/ReviewSlice";
-import { WantToSeeActions } from "../../../pages/WantToSee/model/slices/WantToSeeSlice";
+import { MyCollectionActions } from "pages/MyCollection/model/slices/MyCollectionSlice";
+import { ReviewActions } from "pages/MyReviews/model/slices/ReviewSlice";
+import { WantToSeeActions } from "pages/WantToSee/model/slices/WantToSeeSlice";
 
 const useLocalStorageData = (keys) => {
   const dispatch = useDispatch();

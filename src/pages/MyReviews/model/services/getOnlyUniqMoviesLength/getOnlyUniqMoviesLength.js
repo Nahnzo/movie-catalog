@@ -1,4 +1,4 @@
-export const getOnlyUniq = (array) => {
+export const getOnlyUniqMoviesLength = (array) => {
   let uniqueObjects = [];
   let uniqueIDs = {};
   for (var i = 0; i < array.length; i++) {

@@ -7,6 +7,7 @@ export const WantToSeeSlice = createSlice({
     loading: false,
     error: null,
     length: 0,
+    source: "wantToSee",
   },
   reducers: {
     addMovie(state, action) {

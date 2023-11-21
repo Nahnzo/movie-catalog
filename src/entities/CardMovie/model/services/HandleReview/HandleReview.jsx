@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { ReviewActions } from "pages/MyReviews/model/slices/ReviewSlice";
-import useFilteredMovie from "shared/lib/hooks/useFilteredMovie";
 import { useDispatch } from "react-redux";
+import useFilteredMovie from "shared/lib/hooks/useFilteredMovie";
 import MyButton from "shared/ui/MyButton/MyButton";
 import styles from "./handleReview.module.css";
 
@@ -13,7 +13,7 @@ const HandleReview = ({ movie }) => {
   const [review, setReview] = useState("");
   const refTextArea = useRef(null);
   const leaveRw = () => {
-    dispatch(() => ReviewActions.addReviews({ movieId: movie.id, myReviews: review }));
+    dispatch(ReviewActions.addReviews({ movieId: movie.id, myReviews: review }));
     setReadOnly((prev) => !prev);
     if (review === initialText) {
       setReview("");
