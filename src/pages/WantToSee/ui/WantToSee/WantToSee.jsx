@@ -13,6 +13,7 @@ import Navbar from "shared/ui/Navbar/Navbar";
 import useLocalStorageData from "shared/lib/hooks/useLocalStorage";
 import HeartIcon from "shared/assets/heart-icon.svg";
 import ListReviewIcon from "shared/assets/list-review-icon.svg";
+import Svg from "shared/ui/Svg/Svg";
 import styles from "./wantToSee.module.css";
 
 const WantToSee = memo(() => {
@@ -34,11 +35,13 @@ const WantToSee = memo(() => {
       <section className={styles.main}>
         <nav className={styles.header}>
           <Navbar path={ROUTES.home}>Ha главную</Navbar>
-          <Navbar path={ROUTES.myCollection} icon={HeartIcon} dataLength={data["myCollection"]}>
+          <Navbar path={ROUTES.myCollection} dataLength={data["myCollection"]}>
             Моя коллекция
+            <Svg path={HeartIcon} styles={styles.svg} viewBox="-30 -15 180 130" />
           </Navbar>
-          <Navbar path={ROUTES.myReviews} icon={ListReviewIcon} dataLength={data["arrayReviews"]}>
+          <Navbar path={ROUTES.myReviews} dataLength={data["arrayReviews"]}>
             Мои рецензии
+            <Svg path={ListReviewIcon} styles={styles.svg} viewBox="-200 -10 890 500" />
           </Navbar>
           <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>
           <MyButton

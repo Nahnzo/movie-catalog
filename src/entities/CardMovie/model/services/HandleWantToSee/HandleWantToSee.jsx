@@ -1,32 +1,18 @@
-import { BsFolderPlus, BsFolderMinus } from "react-icons/bs";
 import { WantToSeeActions } from "pages/WantToSee/model/slices/WantToSeeSlice";
-import { useDispatch } from "react-redux";
-import styles from "./handleWantToSee.module.css";
-import useAppSelector from "shared/lib/hooks/useAppSelector";
+import { useDispatch, useSelector } from "react-redux";
+import { memo } from "react";
+import { getExistingMovieForWanToSee } from "../../selectors/getSortedMovie/getSortedMovie";
 import AddMovieFolder from "shared/assets/folder-plus-icon.svg";
 import DeletedMovieFolder from "shared/assets/folder-minus-icon.svg";
-import { memo } from "react";
+import Svg from "shared/ui/Svg/Svg";
+import styles from "./handleWantToSee.module.css";
 
 const HandleWantToSee = memo(({ movie }) => {
   const dispatch = useDispatch();
-  const { data } = useAppSelector("wantToSee");
-  const isInWantToSee = data.wantToSee.some((item) => item.id === movie.id);
-  const handleIconFolder = isInWantToSee ? (
-    <img
-      src={AddMovieFolder}
-      className={styles.wantToSeeMinus}
-      onClick={(event) => handleClick(event, movie)}
-    />
-  ) : (
-    <img
-      src={DeletedMovieFolder}
-      className={styles.wantToSeePlus}
-      onClick={(event) => handleClick(event, movie)}
-    />
-  );
+  const isExist = useSelector((state) => getExistingMovieForWanToSee(state)(movie));
 
   const handleClick = (event, item) => {
-    if (isInWantToSee) {
+    if (isExist) {
       event.stopPropagation();
       dispatch(WantToSeeActions.removeMovie(item));
     } else {
@@ -34,7 +20,14 @@ const HandleWantToSee = memo(({ movie }) => {
       dispatch(WantToSeeActions.addMovie(item));
     }
   };
-  return <>{handleIconFolder}</>;
+  return (
+    <Svg
+      styles={isExist ? styles.wantToSeeMinus : styles.wantToSeePlus}
+      onClick={(event) => handleClick(event, movie)}
+      path={isExist ? DeletedMovieFolder : AddMovieFolder}
+      viewBox="-1.6 2 25 25"
+    />
+  );
 });
 
 export default HandleWantToSee;

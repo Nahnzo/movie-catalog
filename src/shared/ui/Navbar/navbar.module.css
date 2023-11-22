@@ -1,25 +1,25 @@
-.counterWantToSee {
+.counterWrapper {
   position: absolute;
-  margin-left: 10px;
+  margin-left: 50px;
+  width: 40px;
+  height: 40px;
   display: inline-flex;
   justify-content: space-between;
-  /* align-items: center; */
   opacity: 1;
   transition: opacity 0.2s ease-in;
-  /* background-color: red; */
 }
 .counter {
   font-size: 16px;
-  margin: 2px;
-  /* position: relative; */
+  margin: 1px;
+  position: absolute;
   top: 0px;
 }
 
-.counterWantToSeeHidden {
+.counterWrapperHidden {
   display: none;
 }
 
-.counterWantToSee:hover {
+.counterWrapper:hover {
   opacity: 0.5;
 }
 .icon {

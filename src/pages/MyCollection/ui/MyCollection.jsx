@@ -8,6 +8,7 @@ import CardForCollection from "entities/CardMovie/ui/CardForCollection/CardForCo
 import Navbar from "shared/ui/Navbar/Navbar";
 import MyButton from "shared/ui/MyButton/MyButton";
 import useLocalStorageData from "shared/lib/hooks/useLocalStorage";
+import Svg from "shared/ui/Svg/Svg";
 import FilmIcon from "shared/assets/film-icon.svg";
 import ListReviewIcon from "shared/assets/list-review-icon.svg";
 import styles from "./myCollection.module.css";
@@ -22,11 +23,13 @@ const MyCollection = () => {
     <section className={styles.main}>
       <nav className={styles.header}>
         <Navbar path={ROUTES.home}>На главную</Navbar>
-        <Navbar path={ROUTES.wantToSee} icon={FilmIcon} dataLength={data["wantToSee"]}>
+        <Navbar path={ROUTES.wantToSee} dataLength={data["wantToSee"]}>
           Хочу посмотреть
+          <Svg path={FilmIcon} styles={styles.svg} viewBox="0 0 60 60" />
         </Navbar>
-        <Navbar path={ROUTES.myReviews} icon={ListReviewIcon} dataLength={data["arrayReviews"]}>
+        <Navbar path={ROUTES.myReviews} dataLength={data["arrayReviews"]}>
           Мои рецензии
+          <Svg path={ListReviewIcon} styles={styles.svg} viewBox="-200 -10 890 500" />
         </Navbar>
         <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>
         {data["myCollection"] !== 0 ? (

@@ -6,6 +6,9 @@ import CardForSimilarMovie from "./ui/CardForSimilarMovie/CardForSimilarMovie";
 import CardForActors from "./ui/CardForActors/CardForActors";
 import MovieCard from "./ui/MovieCard/MovieCard";
 import WantToSeeCard from "./ui/WantToSeeCard/WantToSeeCard";
+import { getSortedMovie } from "./model/selectors/getSortedMovie/getSortedMovie";
+import { getExistingMovieForMyCollection } from "./model/selectors/getSortedMovie/getSortedMovie";
+import { getExistingMovieForWanToSee } from "./model/selectors/getSortedMovie/getSortedMovie";
 
 export {
   CardForCollection,
@@ -17,3 +20,5 @@ export {
   WantToSeeCard,
   MovieCard,
 };
+
+export { getExistingMovieForMyCollection, getSortedMovie, getExistingMovieForWanToSee };

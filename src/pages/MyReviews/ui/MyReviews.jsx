@@ -18,6 +18,7 @@ import Navbar from "shared/ui/Navbar/Navbar";
 import CarouselX from "widgets/CarouselX/CarouselX";
 import FilmIcon from "shared/assets/film-icon.svg";
 import HeartIcon from "shared/assets/heart-icon.svg";
+import Svg from "shared/ui/Svg/Svg";
 import styles from "./myReviews.module.css";
 
 const MyReviews = () => {
@@ -40,11 +41,13 @@ const MyReviews = () => {
       <section className={styles.header}>
         <nav className={styles.navigation}>
           <Navbar path={ROUTES.home}>На главную</Navbar>
-          <Navbar path={ROUTES.wantToSee} icon={FilmIcon} dataLength={data["wantToSee"]}>
+          <Navbar path={ROUTES.wantToSee} dataLength={data["wantToSee"]}>
             Хочу посмотреть
+            <Svg path={FilmIcon} styles={styles.svg} viewBox="0 0 60 60" />
           </Navbar>
-          <Navbar path={ROUTES.myCollection} icon={HeartIcon} dataLength={data["myCollection"]}>
+          <Navbar path={ROUTES.myCollection} dataLength={data["myCollection"]}>
             Моя коллекция
+            <Svg path={HeartIcon} styles={styles.svg} viewBox="-30 -15 180 130" />
           </Navbar>
           <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>
           {movies.length ? (

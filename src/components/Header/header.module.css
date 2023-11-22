@@ -16,3 +16,10 @@
 .navigation > h3:hover {
   opacity: 0.5;
 }
+.svg {
+  fill: white;
+  position: absolute;
+  bottom: -10px;
+  width: 50px;
+  height: 40px;
+}

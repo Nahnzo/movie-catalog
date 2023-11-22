@@ -1,22 +1,22 @@
 .wantToSeePlus {
+  width: 45px;
+  height: 45px;
   position: absolute;
-  font-size: 27px;
-  color: rgb(148, 144, 144);
-  bottom: 50px;
-  right: 11px;
-  opacity: 1;
+  bottom: 45px;
+  right: 5px;
+  stroke: gray;
 }
 .wantToSeeMinus {
+  width: 45px;
+  height: 45px;
   position: absolute;
-  font-size: 27px;
-  color: red;
-  bottom: 50px;
-  right: 11px;
-  opacity: 1;
+  bottom: 45px;
+  right: 5px;
+  stroke: rgb(44, 44, 247);
 }
 .wantToSeePlus:hover {
-  color: rgb(44, 44, 247);
+  stroke: rgb(44, 44, 247);
 }
 .wantToSeeMinus:hover {
-  color: red;
+  stroke: red;
 }
