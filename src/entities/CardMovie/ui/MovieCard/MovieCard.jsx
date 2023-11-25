@@ -1,11 +1,11 @@
-import { memo, useState } from "react";
+import { memo, useCallback, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../../../routes";
 import HandleWantToSee from "../../model/services/HandleWantToSee/HandleWantToSee";
 import HandleMyCollection from "../../model/services/HandleMyCollection/HandleMyCollection";
 import styles from "./movieCard.module.css";
 
-const MovieCard = memo(({ data }) => {
+const MovieCard = ({ data }) => {
   const [showDetails, setShowDetails] = useState(false);
   const navigate = useNavigate();
   const navigateToDetail = (movie) => {
@@ -30,6 +30,6 @@ const MovieCard = memo(({ data }) => {
       </div>
     </div>
   );
-});
+};
 
 export default MovieCard;

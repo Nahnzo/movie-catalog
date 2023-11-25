@@ -7,6 +7,7 @@ import HeartIcon from "shared/assets/heart-icon.svg";
 import Svg from "shared/ui/Svg/Svg";
 import styles from "./header.module.css";
 import Navbar from "shared/ui/Navbar/Navbar";
+import { memo } from "react";
 
 const Header = () => {
   const data = useDataLength(["arrayReviews", "wantToSee", "myCollection"]);

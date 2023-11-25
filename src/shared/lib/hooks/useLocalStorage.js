@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useDispatch } from "react-redux";
 import { MyCollectionActions } from "pages/MyCollection/model/slices/MyCollectionSlice";
 import { ReviewActions } from "pages/MyReviews/model/slices/ReviewSlice";
@@ -6,14 +6,14 @@ import { WantToSeeActions } from "pages/WantToSee/model/slices/WantToSeeSlice";
 
 const useLocalStorageData = (keys) => {
   const dispatch = useDispatch();
+  // const collections = useMemo(() => {
+  //   wantToSee: WantToSeeActions.addMovie;
+  //   myCollection: MyCollectionActions.addMovieToCollection;
+  //   myReviews: ReviewActions.addMovieToReview;
+  // }, []);
 
+  const data = {};
   useEffect(() => {
-    const collections = {
-      wantToSee: WantToSeeActions.addMovie,
-      myCollection: MyCollectionActions.addMovieToCollection,
-      myReviews: ReviewActions.addMovieToReview,
-    };
-    const data = {};
     keys.forEach((key) => {
       const item = localStorage.getItem(key);
       if (item) {
@@ -27,6 +27,6 @@ const useLocalStorageData = (keys) => {
         });
       }
     });
-  }, [dispatch, keys]);
+  }, [collections, data, dispatch, keys]);
 };
 export default useLocalStorageData;

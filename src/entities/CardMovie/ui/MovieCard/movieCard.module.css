@@ -1,12 +1,13 @@
 .card {
   position: relative;
   width: 200px;
-  height: 330px;
+  height: 300px;
   margin: 25px;
   background: no-repeat center;
   background-size: 100%;
   cursor: pointer;
   transition: all, transform 0.3s ease-in;
+  background-color: red;
 }
 
 .info {

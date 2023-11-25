@@ -3,8 +3,12 @@ import { memo, useEffect } from "react";
 import { getMovie } from "../model/slices/MovieSlice";
 import { getAllMovie } from "../model/selectors/getAllMovie/getAllMovie";
 import { MovieCard } from "entities/CardMovie/index";
-import Loader from "shared/ui/Loader/Loader";
+import Skeleton from "shared/ui/Skeleton/Skeleton";
 import styles from "./fetchMovie.module.css";
+
+const skeletons = Array(20)
+  .fill()
+  .map((_, index) => index + 1);
 
 const FetchMovie = memo(() => {
   const data = useSelector(getAllMovie);
@@ -25,7 +29,9 @@ const FetchMovie = memo(() => {
   } else {
     return (
       <div className={styles.container}>
-        <Loader />
+        {skeletons.map((item) => (
+          <Skeleton width={200} height={300} key={item} />
+        ))}
       </div>
     );
   }

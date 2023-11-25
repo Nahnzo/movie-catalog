@@ -1,22 +1,21 @@
 import { MyCollectionActions } from "pages/MyCollection/model/slices/MyCollectionSlice";
-import { useDispatch } from "react-redux";
-import useAppSelector from "shared/lib/hooks/useAppSelector";
+import { useDispatch, useSelector } from "react-redux";
+import { getSortedMovie } from "../../model/selectors/getSortedMovie";
 import MyButton from "shared/ui/MyButton/MyButton";
 import styles from "./handleMovieInWantToSee.module.css";
 
 const HandleMovieInWantToSee = ({ firstMovie }) => {
-  const { data } = useAppSelector("myCollection");
   const dispatch = useDispatch();
-  const description = data.myCollection.some((item) => item.id === firstMovie.id);
+  const action = useSelector((state) => getSortedMovie(state)(firstMovie.id));
   const handleMovie = (movie) => {
-    description
+    action
       ? dispatch(MyCollectionActions.removeMovieFromCollection(movie))
       : dispatch(MyCollectionActions.addMovieToCollection(movie));
   };
 
   return (
     <MyButton styles={styles.btn} handler={() => handleMovie(firstMovie)}>
-      {description ? "Удалить из коллекции" : "Добавить в коллекцию"}
+      {action ? "Удалить из коллекции" : "Добавить в коллекцию"}
     </MyButton>
   );
 };
