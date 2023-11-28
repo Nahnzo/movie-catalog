@@ -7,6 +7,7 @@ export const WantToSeeSlice = createSlice({
     loading: false,
     error: null,
     length: 0,
+    // length: JSON.parse(localStorage.getItem("wantToSee"))?.length ?? 0,
     source: "wantToSee",
   },
   reducers: {

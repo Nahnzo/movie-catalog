@@ -1,6 +1,6 @@
 import "./App.css";
 import Footer from "./components/Footer/Footer";
-import Header from "./components/Header/Header";
+import Header from "./shared/ui/Header/Header";
 import { FetchMovie } from "./pages/FetchMovie";
 import { ErrorBoundary } from "./app/providers";
 

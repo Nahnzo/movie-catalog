@@ -27,7 +27,7 @@ const MyReviews = () => {
   const dispatch = useDispatch();
   const ref = useRef(null);
   const wrapper = ref.current;
-  const data = useDataLength(["wantToSee", "myCollection"]);
+  const { wantToSeeLength, myCollectionLength } = useDataLength();
   const movies = useSelector(getMoviesForReviews);
   const firstMovie = useSelector(getFirsMovie);
   const movieWithReviews = useSelector(getFilteredMovie);
@@ -41,11 +41,11 @@ const MyReviews = () => {
       <section className={styles.header}>
         <nav className={styles.navigation}>
           <Navbar path={ROUTES.home}>На главную</Navbar>
-          <Navbar path={ROUTES.wantToSee} dataLength={data["wantToSee"]}>
+          <Navbar path={ROUTES.wantToSee} dataLength={wantToSeeLength}>
             Хочу посмотреть
             <Svg path={FilmIcon} styles={styles.svg} viewBox="0 0 60 60" />
           </Navbar>
-          <Navbar path={ROUTES.myCollection} dataLength={data["myCollection"]}>
+          <Navbar path={ROUTES.myCollection} dataLength={myCollectionLength}>
             Моя коллекция
             <Svg path={HeartIcon} styles={styles.svg} viewBox="-30 -15 180 130" />
           </Navbar>

@@ -5,6 +5,7 @@ export const MyCollectionSlice = createSlice({
   initialState: {
     myCollection: [],
     length: 0,
+    // length: JSON.parse(localStorage.getItem("myCollection"))?.length ?? 0,
     source: "myCollection",
   },
   reducers: {

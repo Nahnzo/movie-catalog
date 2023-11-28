@@ -18,7 +18,7 @@ import styles from "./wantToSee.module.css";
 
 const WantToSee = memo(() => {
   useLocalStorageData(["wantToSee", "myReviews", "myCollection"]);
-  const data = useDataLength(["arrayReviews", "myCollection", "wantToSee"]);
+  const { wantToSeeLength, myCollectionLength, myReviewsLength } = useDataLength();
   const [selectedMovie, setSelectedMovie] = useState(null);
   const ref = useRef(null);
   const wrapper = ref.current;
@@ -30,16 +30,16 @@ const WantToSee = memo(() => {
     setSelectedMovie(firstMovie);
   }, [firstMovie]);
 
-  if (data["wantToSee"]) {
+  if (wantToSeeLength) {
     return (
       <section className={styles.main}>
         <nav className={styles.header}>
           <Navbar path={ROUTES.home}>Ha главную</Navbar>
-          <Navbar path={ROUTES.myCollection} dataLength={data["myCollection"]}>
+          <Navbar path={ROUTES.myCollection} dataLength={myCollectionLength}>
             Моя коллекция
             <Svg path={HeartIcon} styles={styles.svg} viewBox="-30 -15 180 130" />
           </Navbar>
-          <Navbar path={ROUTES.myReviews} dataLength={data["arrayReviews"]}>
+          <Navbar path={ROUTES.myReviews} dataLength={myReviewsLength}>
             Мои рецензии
             <Svg path={ListReviewIcon} styles={styles.svg} viewBox="-200 -10 890 500" />
           </Navbar>
@@ -48,7 +48,7 @@ const WantToSee = memo(() => {
             styles={`${styles.deleteAll}`}
             handler={() => dispatch(WantToSeeActions.clearAll())}
           >
-            Очистить список ({data["wantToSee"]})
+            Очистить список ({wantToSeeLength})
           </MyButton>
         </nav>
         <div className={styles.container}>
@@ -73,10 +73,10 @@ const WantToSee = memo(() => {
       <section className={styles.main}>
         <nav className={styles.header}>
           <Navbar path={ROUTES.home}>Ha главную</Navbar>
-          <Navbar path={ROUTES.myCollection} icon={HeartIcon} dataLength={data["myCollection"]}>
+          <Navbar path={ROUTES.myCollection} icon={HeartIcon} dataLength={myCollectionLength}>
             Моя коллекция
           </Navbar>
-          <Navbar path={ROUTES.myReviews} icon={ListReviewIcon} dataLength={data["arrayReviews"]}>
+          <Navbar path={ROUTES.myReviews} icon={ListReviewIcon} dataLength={myReviewsLength}>
             Мои рецензии
           </Navbar>
           <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>

@@ -4,6 +4,7 @@ export const ReviewSlice = createSlice({
   name: "ReviewSlice",
   initialState: {
     arrayReviews: [],
+    // length: JSON.parse(localStorage.getItem("arrayReview"))?.length ?? 0,
     length: 0,
   },
   reducers: {
