@@ -6,7 +6,7 @@ import { MovieCard } from "entities/CardMovie/index";
 import Skeleton from "shared/ui/Skeleton/Skeleton";
 import styles from "./fetchMovie.module.css";
 
-const skeletons = Array(20)
+const skeletons = Array(24)
   .fill()
   .map((_, index) => index + 1);
 

@@ -7,12 +7,10 @@ import HeartIcon from "shared/assets/heart-icon.svg";
 import Svg from "shared/ui/Svg/Svg";
 import styles from "./header.module.css";
 import Navbar from "shared/ui/Navbar/Navbar";
-import { memo } from "react";
 
 const Header = () => {
-  const { wantToSeeLength, myCollectionLength, myReviewsLength } = useDataLength();
   useLocalStorageData(["wantToSee", "myReviews", "myCollection"]);
-  // console.log(data);
+  const { wantToSeeLength, myCollectionLength, myReviewsLength } = useDataLength();
   return (
     <section className={styles.header}>
       <nav className={styles.navigation}>

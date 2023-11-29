@@ -70,21 +70,21 @@ const WantToSee = memo(() => {
     );
   } else {
     return (
-      <section className={styles.main}>
+      <section className={styles.mainEmpty}>
         <nav className={styles.header}>
           <Navbar path={ROUTES.home}>Ha главную</Navbar>
-          <Navbar path={ROUTES.myCollection} icon={HeartIcon} dataLength={myCollectionLength}>
+          <Navbar path={ROUTES.myCollection} dataLength={myCollectionLength}>
             Моя коллекция
+            <Svg path={HeartIcon} styles={styles.svg} viewBox="-30 -15 180 130" />
           </Navbar>
-          <Navbar path={ROUTES.myReviews} icon={ListReviewIcon} dataLength={myReviewsLength}>
+          <Navbar path={ROUTES.myReviews} dataLength={myReviewsLength}>
             Мои рецензии
+            <Svg path={ListReviewIcon} styles={styles.svg} viewBox="-200 -10 890 500" />
           </Navbar>
           <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>
         </nav>
-        <h1 style={{ margin: "50px" }}> Список пуст</h1>
-        <div className={styles.footer}>
-          <Footer />
-        </div>
+        <h1> Список пуст</h1>
+        <Footer />
       </section>
     );
   }

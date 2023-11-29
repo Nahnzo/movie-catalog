@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { MyCollectionActions } from "pages/MyCollection/model/slices/MyCollectionSlice";
 import { ReviewActions } from "pages/MyReviews/model/slices/ReviewSlice";
@@ -10,6 +10,11 @@ const collections = {
   myCollection: MyCollectionActions.addMovieToCollection,
   myReviews: ReviewActions.addMovieToReview,
 };
+const actionsForAllExistingItems = {
+  wantToSee: WantToSeeActions.addAllInitialMovie,
+  myCollection: MyCollectionActions.addAllInitialMovie,
+  myReviews: ReviewActions.addAllInitialMovie,
+};
 const data = {};
 const useLocalStorageData = (keys) => {
   const { wantToSeeLength, myCollectionLength, myReviewsLength } = useDataLength();
@@ -19,7 +24,11 @@ const useLocalStorageData = (keys) => {
       keys.forEach((key) => {
         const item = localStorage.getItem(key);
         if (item) {
-          data[key] = JSON.parse(item);
+          if (JSON.parse(item).length > 1) {
+            dispatch(actionsForAllExistingItems[key](JSON.parse(item)));
+          } else {
+            data[key] = JSON.parse(item);
+          }
         }
       });
       keys.forEach((key) => {

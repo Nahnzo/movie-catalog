@@ -5,10 +5,13 @@ export const MyCollectionSlice = createSlice({
   initialState: {
     myCollection: [],
     length: 0,
-    // length: JSON.parse(localStorage.getItem("myCollection"))?.length ?? 0,
     source: "myCollection",
   },
   reducers: {
+    addAllInitialMovie(state, action) {
+      state.myCollection = action.payload;
+      state.length = action.payload.length;
+    },
     addMovieToCollection(state, action) {
       const isExist = state.myCollection.find((item) => item.id === action.payload.id);
       if (!isExist) {

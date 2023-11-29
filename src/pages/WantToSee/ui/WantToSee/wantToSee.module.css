@@ -8,14 +8,28 @@
   overflow-x: hidden;
   color: white;
   font-size: 18px;
-  overflow-x: hidden;
   font-family: "Merriweather", serif;
 }
-.main > h1 {
+
+.mainEmpty {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  min-height: 100vh;
+  background-color: rgb(12, 10, 10);
+  color: white;
+  font-size: 18px;
+  font-family: "Merriweather", serif;
+}
+h1 {
   text-align: center;
+  margin-top: 20vh;
+  margin-bottom: 21%;
+  font-size: 30px;
 }
 
 .container {
+  overflow: hidden;
   margin: 0 auto;
   width: 90%;
   height: 100vh;
@@ -112,12 +126,6 @@
 
 .counter:hover {
   opacity: 0.5;
-}
-
-.footer {
-  width: 100%;
-  position: absolute;
-  bottom: 0;
 }
 
 .svg {

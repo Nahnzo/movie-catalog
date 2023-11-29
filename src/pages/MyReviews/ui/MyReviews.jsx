@@ -24,10 +24,10 @@ import styles from "./myReviews.module.css";
 const MyReviews = () => {
   useLocalStorageData(["wantToSee", "myReviews", "myCollection"]);
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const { wantToSeeLength, myCollectionLength } = useDataLength();
   const dispatch = useDispatch();
   const ref = useRef(null);
   const wrapper = ref.current;
-  const { wantToSeeLength, myCollectionLength } = useDataLength();
   const movies = useSelector(getMoviesForReviews);
   const firstMovie = useSelector(getFirsMovie);
   const movieWithReviews = useSelector(getFilteredMovie);

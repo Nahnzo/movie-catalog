@@ -29,7 +29,7 @@ const CardForCollection = memo(({ movie }) => {
           <hr />
           <div className={styles.reviews}>{review.arrayReviews.map((item) => item.myReviews)}</div>
           <div className={styles.isRated}>
-            {movie.myRating === 0 ? (
+            {!movie.myRating ? (
               <h5>
                 Вы еще не оценили
                 <MyButton styles={styles.rateBtn} handler={() => setShowRateWindow(true)}>

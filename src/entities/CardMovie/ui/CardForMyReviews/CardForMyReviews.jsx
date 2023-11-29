@@ -1,4 +1,4 @@
-import HandleReview from "../../model/services/HandleReview/HandleReview";
+import ReviewArea from "../../../ReviewArea/ui/ReviewArea";
 import styles from "./cardForMyReviews.module.css";
 
 const CardForMyReviews = ({ movie }) => {
@@ -8,7 +8,7 @@ const CardForMyReviews = ({ movie }) => {
       <div className={styles.container}>
         <div className={styles.poster} style={{ backgroundImage: `url(${URL})` }}></div>
         <div className={styles.myReviews}>
-          <HandleReview movie={movie} />
+          <ReviewArea movie={movie} />
         </div>
       </div>
     );

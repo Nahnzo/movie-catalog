@@ -16,7 +16,7 @@ const HandleRating = ({ movieId, setShowRateWindow }) => {
   const dispatch = useDispatch();
   const [rating, setRating] = useState(null);
   const handleR = (item) => {
-    dispatch(() => MyCollectionActions.addRating({ movieId: movieId, rating: item.value }));
+    dispatch(MyCollectionActions.addRating({ movieId: movieId, rating: item.value }));
     setShowRateWindow(false);
   };
 

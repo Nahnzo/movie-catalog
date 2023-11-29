@@ -7,10 +7,13 @@ export const WantToSeeSlice = createSlice({
     loading: false,
     error: null,
     length: 0,
-    // length: JSON.parse(localStorage.getItem("wantToSee"))?.length ?? 0,
     source: "wantToSee",
   },
   reducers: {
+    addAllInitialMovie(state, action) {
+      state.wantToSee = action.payload;
+      state.length = action.payload.length;
+    },
     addMovie(state, action) {
       const isExist = state.wantToSee.find((item) => item.id === action.payload.id);
       if (!isExist) {

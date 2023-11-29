@@ -9,7 +9,7 @@
   color: white;
   font-family: "Inter", sans-serif;
   padding: 30px;
-  height: 100vh;
+  min-height: 100vh;
 }
 .information {
   position: fixed;
@@ -18,12 +18,4 @@
   width: 400px;
   height: 60px;
   border: 1px solid white;
-}
-.disinformation {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 400px;
-  height: 60px;
-  border: 1px solid red;
 }
