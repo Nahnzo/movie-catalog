@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { LOCAL_STORAGE_MY_COLLECTION } from "shared/lib/const/const";
 
 export const MyCollectionSlice = createSlice({
   name: "collectionSLice",
@@ -17,17 +18,17 @@ export const MyCollectionSlice = createSlice({
       if (!isExist) {
         state.myCollection.push(action.payload);
         state.length++;
-        localStorage.setItem("myCollection", JSON.stringify(state.myCollection));
+        localStorage.setItem(LOCAL_STORAGE_MY_COLLECTION, JSON.stringify(state.myCollection));
       }
     },
     removeMovieFromCollection(state, action) {
       const movieToRemove = state.myCollection.find((item) => item.id === action.payload.id);
       if (movieToRemove) {
         state.myCollection = state.myCollection.filter((item) => item.id !== action.payload.id);
-        const storedData = JSON.parse(localStorage.getItem("myCollection"));
+        const storedData = JSON.parse(localStorage.getItem(LOCAL_STORAGE_MY_COLLECTION));
         if (storedData) {
           const updatedData = storedData.filter((item) => item.id !== action.payload.id);
-          localStorage.setItem("myCollection", JSON.stringify(updatedData));
+          localStorage.setItem(LOCAL_STORAGE_MY_COLLECTION, JSON.stringify(updatedData));
         }
       }
       state.length--;
@@ -35,14 +36,14 @@ export const MyCollectionSlice = createSlice({
     clearAll(state) {
       state.myCollection = [];
       state.length = 0;
-      localStorage.removeItem("myCollection");
+      localStorage.removeItem(LOCAL_STORAGE_MY_COLLECTION);
     },
     addRating(state, action) {
       const { movieId, rating } = action.payload;
       const movieIndex = state.myCollection.findIndex((item) => item.id === movieId);
       if (movieIndex !== -1) {
         state.myCollection[movieIndex].myRating = rating;
-        localStorage.setItem("myCollection", JSON.stringify(state.myCollection));
+        localStorage.setItem(LOCAL_STORAGE_MY_COLLECTION, JSON.stringify(state.myCollection));
       }
     },
     addReview(state, action) {

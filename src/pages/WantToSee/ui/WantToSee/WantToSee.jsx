@@ -14,10 +14,19 @@ import useLocalStorageData from "shared/lib/hooks/useLocalStorage";
 import HeartIcon from "shared/assets/heart-icon.svg";
 import ListReviewIcon from "shared/assets/list-review-icon.svg";
 import Svg from "shared/ui/Svg/Svg";
+import {
+  LOCAL_STORAGE_MY_REVIEWS,
+  LOCAL_STORAGE_MY_COLLECTION,
+  LOCAL_STORAGE_WANT_TO_SEE,
+} from "shared/lib/const/const";
 import styles from "./wantToSee.module.css";
 
 const WantToSee = memo(() => {
-  useLocalStorageData(["wantToSee", "myReviews", "myCollection"]);
+  useLocalStorageData([
+    LOCAL_STORAGE_WANT_TO_SEE,
+    LOCAL_STORAGE_MY_REVIEWS,
+    LOCAL_STORAGE_MY_COLLECTION,
+  ]);
   const { wantToSeeLength, myCollectionLength, myReviewsLength } = useDataLength();
   const [selectedMovie, setSelectedMovie] = useState(null);
   const ref = useRef(null);

@@ -11,9 +11,9 @@ const collections = {
   myReviews: ReviewActions.addMovieToReview,
 };
 const actionsForAllExistingItems = {
-  wantToSee: WantToSeeActions.addAllInitialMovie,
-  myCollection: MyCollectionActions.addAllInitialMovie,
-  myReviews: ReviewActions.addAllInitialMovie,
+  WANT_TO_SEE: WantToSeeActions.addAllInitialMovie,
+  MY_COLLECTION: MyCollectionActions.addAllInitialMovie,
+  MY_REVIEWS: ReviewActions.addAllInitialMovie,
 };
 const data = {};
 const useLocalStorageData = (keys) => {

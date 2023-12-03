@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { ReviewReducer } from "pages/MyReviews/model/slices/ReviewSlice";
-import { MovieReducer } from "pages/FetchMovie/model/slices/MovieSlice";
+import { MovieReducer } from "pages/MainPage/model/slices/MovieSlice";
 import { WantToSeeReducer } from "pages/WantToSee/model/slices/WantToSeeSlice";
 import { MyCollectionReducer } from "pages/MyCollection/model/slices/MyCollectionSlice";
 

@@ -20,9 +20,18 @@ import FilmIcon from "shared/assets/film-icon.svg";
 import HeartIcon from "shared/assets/heart-icon.svg";
 import Svg from "shared/ui/Svg/Svg";
 import styles from "./myReviews.module.css";
+import {
+  LOCAL_STORAGE_MY_COLLECTION,
+  LOCAL_STORAGE_MY_REVIEWS,
+  LOCAL_STORAGE_WANT_TO_SEE,
+} from "shared/lib/const/const";
 
 const MyReviews = () => {
-  useLocalStorageData(["wantToSee", "myReviews", "myCollection"]);
+  useLocalStorageData([
+    LOCAL_STORAGE_MY_COLLECTION,
+    LOCAL_STORAGE_MY_REVIEWS,
+    LOCAL_STORAGE_WANT_TO_SEE,
+  ]);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const { wantToSeeLength, myCollectionLength } = useDataLength();
   const dispatch = useDispatch();

@@ -1,7 +1,7 @@
 import "./App.css";
 import Footer from "./components/Footer/Footer";
 import Header from "./shared/ui/Header/Header";
-import { FetchMovie } from "./pages/FetchMovie";
+import { MainPage } from "./pages/MainPage";
 import { ErrorBoundary } from "./app/providers";
 
 const App = () => {
@@ -9,7 +9,7 @@ const App = () => {
     <section className="main">
       <Header />
       <ErrorBoundary>
-        <FetchMovie />
+        <MainPage />
       </ErrorBoundary>
       <Footer />
     </section>

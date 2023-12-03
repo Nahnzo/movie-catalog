@@ -8,9 +8,6 @@
   background-color: rgb(12, 10, 10);
   overflow: hidden;
 }
-/* body {
-  min-height: 100vh;
-} */
 
 body {
   display: flex;

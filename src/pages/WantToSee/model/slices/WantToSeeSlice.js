@@ -1,11 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { LOCAL_STORAGE_WANT_TO_SEE } from "shared/lib/const/const";
 
 export const WantToSeeSlice = createSlice({
   name: "WantToSee",
   initialState: {
     wantToSee: [],
-    loading: false,
-    error: null,
     length: 0,
     source: "wantToSee",
   },
@@ -19,17 +18,17 @@ export const WantToSeeSlice = createSlice({
       if (!isExist) {
         state.wantToSee.push(action.payload);
         state.length++;
-        localStorage.setItem("wantToSee", JSON.stringify(state.wantToSee));
+        localStorage.setItem(LOCAL_STORAGE_WANT_TO_SEE, JSON.stringify(state.wantToSee));
       }
     },
     removeMovie(state, action) {
       const movieToRemove = state.wantToSee.find((item) => item.id === action.payload.id);
       if (movieToRemove) {
         state.wantToSee = state.wantToSee.filter((item) => item.id !== action.payload.id);
-        const storedData = JSON.parse(localStorage.getItem("wantToSee"));
+        const storedData = JSON.parse(localStorage.getItem(LOCAL_STORAGE_WANT_TO_SEE));
         if (storedData) {
           const updatedData = storedData.filter((item) => item.id !== action.payload.id);
-          localStorage.setItem("wantToSee", JSON.stringify(updatedData));
+          localStorage.setItem(LOCAL_STORAGE_WANT_TO_SEE, JSON.stringify(updatedData));
         }
       }
       state.length--;
@@ -37,7 +36,7 @@ export const WantToSeeSlice = createSlice({
     clearAll(state) {
       state.wantToSee = [];
       state.length = 0;
-      localStorage.removeItem("wantToSee");
+      localStorage.removeItem(LOCAL_STORAGE_WANT_TO_SEE);
     },
   },
 });

@@ -7,9 +7,18 @@ import HeartIcon from "shared/assets/heart-icon.svg";
 import Svg from "shared/ui/Svg/Svg";
 import styles from "./header.module.css";
 import Navbar from "shared/ui/Navbar/Navbar";
+import {
+  LOCAL_STORAGE_MY_COLLECTION,
+  LOCAL_STORAGE_WANT_TO_SEE,
+  LOCAL_STORAGE_MY_REVIEWS,
+} from "../../lib/const/const";
 
 const Header = () => {
-  useLocalStorageData(["wantToSee", "myReviews", "myCollection"]);
+  useLocalStorageData([
+    LOCAL_STORAGE_WANT_TO_SEE,
+    LOCAL_STORAGE_MY_REVIEWS,
+    LOCAL_STORAGE_MY_COLLECTION,
+  ]);
   const { wantToSeeLength, myCollectionLength, myReviewsLength } = useDataLength();
   return (
     <section className={styles.header}>

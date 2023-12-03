@@ -1,0 +1,29 @@
+.btnsWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.currentPage {
+  width: 50px;
+  height: 50px;
+  margin: 25px 10px;
+  background-color: transparent;
+  align-items: center;
+  border: 2px solid wheat;
+  cursor: pointer;
+  color: white;
+  border-radius: 5px;
+  font-size: 15px;
+}
+.otherPages {
+  width: 50px;
+  height: 50px;
+  margin: 25px 10px;
+  background-color: transparent;
+  align-items: center;
+  border: 2px solid teal;
+  cursor: pointer;
+  color: white;
+  border-radius: 5px;
+  font-size: 15px;
+}
