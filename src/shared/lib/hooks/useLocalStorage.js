@@ -6,9 +6,9 @@ import { WantToSeeActions } from "pages/WantToSee/model/slices/WantToSeeSlice";
 import { useDataLength } from "shared/lib/hooks/useDataLength";
 
 const collections = {
-  wantToSee: WantToSeeActions.addMovie,
-  myCollection: MyCollectionActions.addMovieToCollection,
-  myReviews: ReviewActions.addMovieToReview,
+  WANT_TO_SEE: WantToSeeActions.addMovie,
+  MY_COLLECTION: MyCollectionActions.addMovieToCollection,
+  MY_REVIEWS: ReviewActions.addMovieToReview,
 };
 const actionsForAllExistingItems = {
   WANT_TO_SEE: WantToSeeActions.addAllInitialMovie,
