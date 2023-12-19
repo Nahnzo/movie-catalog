@@ -2,7 +2,6 @@ import React, { memo } from "react";
 import styles from "./carouselX.module.css";
 
 const CarouselX = memo(({ wrapper, data }) => {
-  console.log("render");
   let currentPosition = 0;
   let count = 0;
 

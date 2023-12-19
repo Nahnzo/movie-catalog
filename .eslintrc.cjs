@@ -10,8 +10,9 @@ module.exports = {
 
   parserOptions: { ecmaVersion: "latest", sourceType: "module" },
   settings: { react: { version: "18.2" } },
-  plugins: ["react-refresh"],
+  plugins: ["react-refresh", "ulbi-tv-plugin"],
   rules: {
+    "ulbi-tv-plugin/path-checker": "error",
     "react/prop-types": "off",
     "react-refresh/only-export-components": "warn",
     "react/display-name": "off",

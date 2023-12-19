@@ -1,11 +1,11 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getFilmById } from "../../tools/getFilmById";
-import styles from "./aboutFilm.module.css";
-// import CardForDetail from "../../entities/CardForDetails/CardForDetail";
+import { getFilmById } from "../model/api/getFilmById";
 import { CardForDetails } from "entities/CardMovie/index";
+// import CardForDetail from "../../entities/CardForDetails/CardForDetail";
+import styles from "./detailsMoviePage.module.css";
 
-const AboutFilm = () => {
+const DetailsMoviePage = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState([]);
 
@@ -18,11 +18,7 @@ const AboutFilm = () => {
     getInfo();
   }, [id]);
 
-  return (
-    <section className={styles.mainWrapper}>
-      {movie.length && <CardForDetails movie={movie[0]} />}
-    </section>
-  );
+  return <section className={styles.mainWrapper}>{movie.length && <CardForDetails movie={movie[0]} />}</section>;
 };
 
-export default AboutFilm;
+export default DetailsMoviePage;

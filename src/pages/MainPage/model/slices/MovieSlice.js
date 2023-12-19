@@ -1,22 +1,5 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-// API ограничивает limit
-export const getMovie = createAsyncThunk("movie/getMovie", async ({ page, limit }) => {
-  try {
-    const data = await fetch(
-      `https://api.kinopoisk.dev/v1/movie?limit=${limit}&offset=${(page - 1) * limit}`,
-      {
-        method: "GET",
-        headers: {
-          "X-API-KEY": "KNARZC7-GV6MBQC-QY96MPW-RYZFKX5",
-        },
-      }
-    );
-    const response = await data.json();
-    return response;
-  } catch (error) {
-    console.log("Error: ", error.message);
-  }
-});
+import { createSlice } from "@reduxjs/toolkit";
+import { getMovie } from "../api/getMovie";
 
 export const movieSlice = createSlice({
   name: "movie",
@@ -25,7 +8,11 @@ export const movieSlice = createSlice({
     loading: false,
     error: null,
   },
-  reducers: {},
+  reducers: {
+    setFilmBySearch: (state, action) => {
+      state.movie = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getMovie.pending, (state) => {
       state.loading = true;

@@ -13,6 +13,7 @@ export default defineConfig({
       shared: "/src/shared",
       entities: "/src/entities",
       widgets: "/src/widgets",
+      features: "/src/features",
     },
   },
 });

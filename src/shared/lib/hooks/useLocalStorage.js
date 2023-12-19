@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { MyCollectionActions } from "pages/MyCollection/model/slices/MyCollectionSlice";
 import { ReviewActions } from "pages/MyReviews/model/slices/ReviewSlice";
 import { WantToSeeActions } from "pages/WantToSee/model/slices/WantToSeeSlice";
-import { useDataLength } from "shared/lib/hooks/useDataLength";
+import { useDataLength } from "../../lib/hooks/useDataLength";
 
 const collections = {
   WANT_TO_SEE: WantToSeeActions.addMovie,

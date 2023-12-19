@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { LOCAL_STORAGE_MY_COLLECTION } from "shared/lib/const/const";
 
 export const MyCollectionSlice = createSlice({
-  name: "collectionSLice",
+  name: "collectionSlice",
   initialState: {
     myCollection: [],
     length: 0,

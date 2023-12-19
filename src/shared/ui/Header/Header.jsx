@@ -1,12 +1,12 @@
-import { ROUTES } from "../../../routes";
-import { useDataLength } from "shared/lib/hooks/useDataLength";
-import useLocalStorageData from "shared/lib/hooks/useLocalStorage";
-import FilmIcon from "shared/assets/film-icon.svg";
-import ListReviewIcon from "shared/assets/list-review-icon.svg";
-import HeartIcon from "shared/assets/heart-icon.svg";
-import Svg from "shared/ui/Svg/Svg";
+import { ROUTES } from "../../lib/config/routes";
+import { useDataLength } from "../../lib/hooks/useDataLength";
+import useLocalStorageData from "../../lib/hooks/useLocalStorage";
+import FilmIcon from "../../assets/film-icon.svg";
+import ListReviewIcon from "../../assets/list-review-icon.svg";
+import HeartIcon from "../../assets/heart-icon.svg";
+import Svg from "../Svg/Svg";
 import styles from "./header.module.css";
-import Navbar from "shared/ui/Navbar/Navbar";
+import Navbar from "../Navbar/Navbar";
 import {
   LOCAL_STORAGE_MY_COLLECTION,
   LOCAL_STORAGE_WANT_TO_SEE,
@@ -14,11 +14,7 @@ import {
 } from "../../lib/const/const";
 
 const Header = () => {
-  useLocalStorageData([
-    LOCAL_STORAGE_WANT_TO_SEE,
-    LOCAL_STORAGE_MY_REVIEWS,
-    LOCAL_STORAGE_MY_COLLECTION,
-  ]);
+  useLocalStorageData([LOCAL_STORAGE_WANT_TO_SEE, LOCAL_STORAGE_MY_REVIEWS, LOCAL_STORAGE_MY_COLLECTION]);
   const { wantToSeeLength, myCollectionLength, myReviewsLength } = useDataLength();
   return (
     <section className={styles.header}>

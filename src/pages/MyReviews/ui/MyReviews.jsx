@@ -1,4 +1,4 @@
-import { ROUTES } from "../../../routes";
+import { ROUTES } from "shared/lib/config/routes";
 import { getOnlyUniqMoviesLength } from "../model/services/getOnlyUniqMoviesLength/getOnlyUniqMoviesLength";
 import { useDataLength } from "shared/lib/hooks/useDataLength";
 import { useRef, useState, useEffect } from "react";
@@ -6,14 +6,11 @@ import { CardForMyReviews } from "entities/CardMovie";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { ReviewActions } from "../model/slices/ReviewSlice";
-import {
-  getFilteredMovie,
-  getFirsMovie,
-  getMoviesForReviews,
-} from "../model/selectors/getMoviesForReviews";
+import { getFilteredMovie, getFirsMovie, getMoviesForReviews } from "../model/selectors/getMoviesForReviews";
+import { GetFilmBySearch } from "features/getFilmBySearch";
 import useLocalStorageData from "shared/lib/hooks/useLocalStorage";
 import MyButton from "shared/ui/MyButton/MyButton";
-import LeaveReview from "components/LeaveReview/LeaveReview";
+// import LeaveReview from "components/LeaveReview/LeaveReview";
 import Navbar from "shared/ui/Navbar/Navbar";
 import CarouselX from "widgets/CarouselX/CarouselX";
 import FilmIcon from "shared/assets/film-icon.svg";
@@ -27,11 +24,7 @@ import {
 } from "shared/lib/const/const";
 
 const MyReviews = () => {
-  useLocalStorageData([
-    LOCAL_STORAGE_MY_COLLECTION,
-    LOCAL_STORAGE_MY_REVIEWS,
-    LOCAL_STORAGE_WANT_TO_SEE,
-  ]);
+  useLocalStorageData([LOCAL_STORAGE_MY_COLLECTION, LOCAL_STORAGE_MY_REVIEWS, LOCAL_STORAGE_WANT_TO_SEE]);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const { wantToSeeLength, myCollectionLength } = useDataLength();
   const dispatch = useDispatch();
@@ -68,10 +61,8 @@ const MyReviews = () => {
           )}
         </nav>
       </section>
-      <LeaveReview />
-      <div className={styles.wrapper}>
-        {selectedMovie && <CardForMyReviews movie={selectedMovie} />}
-      </div>
+      {/* <GetFilmBySearch placeholder="Введите название..." /> */}
+      <div className={styles.wrapper}>{selectedMovie && <CardForMyReviews movie={selectedMovie} />}</div>
       <div className={styles.container}>
         {!movieWithReviews.length ? (
           <h2>Список пуст</h2>

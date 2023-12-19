@@ -18,11 +18,13 @@ const MainPage = memo(() => {
 
   if (isLoading) {
     return (
-      <div className={styles.container}>
-        {skeletons.map((item) => (
-          <Skeleton width={200} height={300} key={item} />
-        ))}
-      </div>
+      <>
+        <div className={styles.container}>
+          {skeletons.map((item) => (
+            <Skeleton width={200} height={300} key={item} />
+          ))}
+        </div>
+      </>
     );
   } else {
     return (

@@ -1,12 +1,12 @@
-import App from "../../../../App";
-import MyCollection from "pages/MyCollection/ui/MyCollection";
-import WantToSee from "pages/WantToSee/ui/WantToSee/WantToSee";
-import MyReviews from "pages/MyReviews/ui/MyReviews";
-// import WhatToSee from "pages/WhatToSee/ui/WhatToSee";
-import AboutFilm from "../../../../components/AboutFilm/AboutFilm";
-import PersonDetail from "../../../../components/PersonDetail/PersonDetail";
+import App from "/src/App";
+import { MyCollection } from "pages/MyCollection";
+import { WantToSee } from "pages/WantToSee";
+import { MyReviews } from "pages/MyReviews";
+import { WhatToSee } from "pages/WhatToSee";
+import { DetailsMoviePage } from "pages/DetailsMoviePage";
+import { DetailsPersonPage } from "pages/DetailsPersonPage";
 import { createBrowserRouter } from "react-router-dom";
-import { ROUTES } from "../../../../routes";
+import { ROUTES } from "shared/lib/config/routes";
 
 export const router = createBrowserRouter([
   {
@@ -18,10 +18,10 @@ export const router = createBrowserRouter([
     element: <MyCollection />,
   },
   ,
-  // {
-  //   path: ROUTES.whatToSee,
-  //   element: <WhatToSee />,
-  // },
+  {
+    path: ROUTES.whatToSee,
+    element: <WhatToSee />,
+  },
   {
     path: ROUTES.wantToSee,
     element: <WantToSee />,
@@ -32,11 +32,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "/movie-catalog/:type/:id",
-    element: <AboutFilm />,
+    element: <DetailsMoviePage />,
   },
   {
     path: "/movie-catalog/person/:id",
-    element: <PersonDetail />,
+    element: <DetailsPersonPage />,
   },
   {
     path: "*",

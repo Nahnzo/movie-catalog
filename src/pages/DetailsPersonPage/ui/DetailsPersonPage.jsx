@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getPersonById } from "../../tools/getPerson";
-import styles from "./personDetail.module.css";
-import ActorsMovies from "../ActorsMovies/ActorsMovies";
+import { getPersonById } from "../model/api/getPersonById";
+import { DetailsMoviePage } from "pages/DetailsMoviePage";
+import styles from "./DetailsPersonPage.module.css";
 
-const PersonDetail = () => {
+const DetailsPersonPage = () => {
   const { id } = useParams();
   const [person, setPerson] = useState([]);
   const getPerson = async () => {
@@ -15,7 +15,6 @@ const PersonDetail = () => {
   useEffect(() => {
     getPerson(id);
   }, [id]);
-  console.log(person);
 
   return (
     <section className={styles.main}>
@@ -27,9 +26,9 @@ const PersonDetail = () => {
           <h3>Фильмов: {person.movies?.length}</h3>
         </div>
       </div>
-      {person.movies && <ActorsMovies movies={person.movies} />}
+      {person.movies && <DetailsMoviePage movies={person.movies} />}
     </section>
   );
 };
 
-export default PersonDetail;
+export default DetailsPersonPage;

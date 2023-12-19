@@ -1,9 +1,9 @@
-import { ROUTES } from "../../../routes";
+import { ROUTES } from "shared/lib/config/routes";
 import { useSelector, useDispatch } from "react-redux";
 import { getMovieForCollection } from "../model/selectors/getMovieForCollection/getMovieForCollection";
 import { MyCollectionActions } from "../model/slices/MyCollectionSlice";
 import { useDataLength } from "shared/lib/hooks/useDataLength";
-import Footer from "components/Footer/Footer";
+import Footer from "shared/ui/Footer/Footer";
 import CardForCollection from "entities/CardMovie/ui/CardForCollection/CardForCollection";
 import Navbar from "shared/ui/Navbar/Navbar";
 import MyButton from "shared/ui/MyButton/MyButton";
@@ -20,13 +20,9 @@ import {
 
 const MyCollection = () => {
   const dispatch = useDispatch();
-  const { wantToSeeLength, myCollectionLength, myReviewsLength } = useDataLength();
-  useLocalStorageData([
-    LOCAL_STORAGE_MY_COLLECTION,
-    LOCAL_STORAGE_MY_REVIEWS,
-    LOCAL_STORAGE_WANT_TO_SEE,
-  ]);
   const movies = useSelector(getMovieForCollection);
+  const { wantToSeeLength, myCollectionLength, myReviewsLength } = useDataLength();
+  useLocalStorageData([LOCAL_STORAGE_MY_COLLECTION, LOCAL_STORAGE_MY_REVIEWS, LOCAL_STORAGE_WANT_TO_SEE]);
 
   return (
     <section className={styles.main}>
@@ -41,24 +37,18 @@ const MyCollection = () => {
           <Svg path={ListReviewIcon} styles={styles.svg} viewBox="-200 -10 890 500" />
         </Navbar>
         <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>
-        {myCollectionLength !== 0 ? (
-          <MyButton
-            styles={styles.deleteAll}
-            handler={() => dispatch(MyCollectionActions.clearAll())}
-          >
+        {myCollectionLength ? (
+          <MyButton styles={styles.deleteAll} handler={() => dispatch(MyCollectionActions.clearAll())}>
             Очистить список ({myCollectionLength})
           </MyButton>
         ) : (
           ""
         )}
       </nav>
-      <section
-        className={styles.wrapper}
-        style={{ borderRight: myCollectionLength ? "2px solid white" : "none" }}
-      >
+      <section className={!myCollectionLength ? styles.wrapper : styles.wrapperEmpty}>
         <div className={styles.myCollection}>
-          {myCollectionLength === 0 ? (
-            <h1 style={{ fontSize: "26px" }}>Список пуст</h1>
+          {!myCollectionLength ? (
+            <h1 className={styles.listEmpty}>Список пуст</h1>
           ) : (
             movies.map((item) => <CardForCollection movie={item} key={item.id} />)
           )}

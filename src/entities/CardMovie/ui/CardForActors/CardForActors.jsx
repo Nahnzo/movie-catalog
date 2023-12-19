@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useNavigate } from "react-router-dom";
 import styles from "./cardForActors.module.css";
 

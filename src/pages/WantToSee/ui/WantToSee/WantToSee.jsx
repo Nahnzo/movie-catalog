@@ -1,14 +1,14 @@
-import { ROUTES } from "../../../../routes";
+import { ROUTES } from "shared/lib/config/routes";
 import { useEffect, useState, useRef, memo } from "react";
 import { useDataLength } from "shared/lib/hooks/useDataLength";
-import { WantToSeeActions } from "pages/WantToSee/model/slices/WantToSeeSlice";
+import { WantToSeeActions } from "../../model/slices/WantToSeeSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { getMovieForWantToSee } from "../../model/selectors/getMovieForWantToSee";
 import { WantToSeeCard } from "entities/CardMovie/index";
 import { getFirstMovie } from "../../model/selectors/getFirstMovie";
 import MyButton from "shared/ui/MyButton/MyButton";
 import CarouselX from "widgets/CarouselX/CarouselX";
-import Footer from "components/Footer/Footer";
+import Footer from "shared/ui/Footer/Footer";
 import Navbar from "shared/ui/Navbar/Navbar";
 import useLocalStorageData from "shared/lib/hooks/useLocalStorage";
 import HeartIcon from "shared/assets/heart-icon.svg";
@@ -22,11 +22,7 @@ import {
 import styles from "./wantToSee.module.css";
 
 const WantToSee = memo(() => {
-  useLocalStorageData([
-    LOCAL_STORAGE_WANT_TO_SEE,
-    LOCAL_STORAGE_MY_REVIEWS,
-    LOCAL_STORAGE_MY_COLLECTION,
-  ]);
+  useLocalStorageData([LOCAL_STORAGE_WANT_TO_SEE, LOCAL_STORAGE_MY_REVIEWS, LOCAL_STORAGE_MY_COLLECTION]);
   const { wantToSeeLength, myCollectionLength, myReviewsLength } = useDataLength();
   const [selectedMovie, setSelectedMovie] = useState(null);
   const ref = useRef(null);
@@ -53,10 +49,7 @@ const WantToSee = memo(() => {
             <Svg path={ListReviewIcon} styles={styles.svg} viewBox="-200 -10 890 500" />
           </Navbar>
           <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>
-          <MyButton
-            styles={`${styles.deleteAll}`}
-            handler={() => dispatch(WantToSeeActions.clearAll())}
-          >
+          <MyButton styles={`${styles.deleteAll}`} handler={() => dispatch(WantToSeeActions.clearAll())}>
             Очистить список ({wantToSeeLength})
           </MyButton>
         </nav>

@@ -1,5 +1,4 @@
 import { getMovieForCollection } from "./model/selectors/getMovieForCollection/getMovieForCollection";
-// import myCollectionSlice from "./model/slices/MyCollectionSlice";
-
-// export { myCollectionSlice };
+import MyCollection from "./ui/MyCollection";
 export default getMovieForCollection;
+export { MyCollection };

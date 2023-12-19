@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useDispatch } from "react-redux";
 import { ReviewActions } from "pages/MyReviews/model/slices/ReviewSlice";
 import styles from "./cardForLeaveReview.module.css";
@@ -12,11 +11,7 @@ const CardForLeaveReview = ({ movie, setShowResultBlock }) => {
 
   return (
     <div className={styles.wrapper}>
-      <div
-        className={styles.card}
-        style={{ backgroundImage: `url(${movie.poster})` }}
-        onClick={addMovie}
-      ></div>
+      <div className={styles.card} style={{ backgroundImage: `url(${movie.poster})` }} onClick={addMovie}></div>
       <h4>{movie.year}</h4>
     </div>
   );

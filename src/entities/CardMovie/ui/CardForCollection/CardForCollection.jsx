@@ -1,4 +1,4 @@
-import { ROUTES } from "../../../../routes";
+import { ROUTES } from "shared/lib/config/routes";
 import { useNavigate } from "react-router-dom";
 import { memo, useCallback, useState } from "react";
 import { getSortedMovie } from "../../model/selectors/getSortedMovie/getSortedMovie";

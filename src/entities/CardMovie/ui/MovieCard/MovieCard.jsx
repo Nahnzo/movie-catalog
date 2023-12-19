@@ -1,6 +1,6 @@
-import { memo, useCallback, useMemo, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ROUTES } from "../../../../routes";
+import { ROUTES } from "shared/lib/config/routes";
 import HandleWantToSee from "../../model/services/HandleWantToSee/HandleWantToSee";
 import HandleMyCollection from "../../model/services/HandleMyCollection/HandleMyCollection";
 import styles from "./movieCard.module.css";
@@ -15,7 +15,7 @@ const MovieCard = ({ data }) => {
     <div>
       <div
         className={styles.card}
-        style={{ backgroundImage: `url(${data.poster.url})` }}
+        style={{ backgroundImage: `url(${data.poster.url || data.poster})` }}
         onMouseEnter={() => setShowDetails(true)}
         onMouseLeave={() => setShowDetails(false)}
         onClick={() => navigateToDetail(data)}

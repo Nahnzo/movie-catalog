@@ -1,4 +1,4 @@
-import ReviewArea from "../../../ReviewArea/ui/ReviewArea";
+import { ReviewArea } from "features/ReviewArea/index.js";
 import styles from "./cardForMyReviews.module.css";
 
 const CardForMyReviews = ({ movie }) => {

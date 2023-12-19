@@ -1,5 +1,5 @@
 import "./App.css";
-import Footer from "./components/Footer/Footer";
+import Footer from "./shared/ui/Footer/Footer";
 import Header from "./shared/ui/Header/Header";
 import { MainPage } from "./pages/MainPage";
 import { ErrorBoundary } from "./app/providers";
