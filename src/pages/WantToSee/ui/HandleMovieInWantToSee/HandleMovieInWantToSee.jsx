@@ -12,7 +12,6 @@ const HandleMovieInWantToSee = ({ firstMovie }) => {
       ? dispatch(MyCollectionActions.removeMovieFromCollection(movie))
       : dispatch(MyCollectionActions.addMovieToCollection(movie));
   };
-
   return (
     <MyButton styles={styles.btn} handler={() => handleMovie(firstMovie)}>
       {action ? "Удалить из коллекции" : "Добавить в коллекцию"}

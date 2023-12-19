@@ -18,17 +18,17 @@ export const WantToSeeSlice = createSlice({
       if (!isExist) {
         state.wantToSee.push(action.payload);
         state.length++;
-        localStorage.setItem(LOCAL_STORAGE_WANT_TO_SEE, JSON.stringify(state.wantToSee));
+        // localStorage.setItem(LOCAL_STORAGE_WANT_TO_SEE, JSON.stringify(state.wantToSee));
       }
     },
     removeMovie(state, action) {
       const movieToRemove = state.wantToSee.find((item) => item.id === action.payload.id);
       if (movieToRemove) {
         state.wantToSee = state.wantToSee.filter((item) => item.id !== action.payload.id);
-        const storedData = JSON.parse(localStorage.getItem(LOCAL_STORAGE_WANT_TO_SEE));
+        // const storedData = JSON.parse(localStorage.getItem(LOCAL_STORAGE_WANT_TO_SEE));
         if (storedData) {
           const updatedData = storedData.filter((item) => item.id !== action.payload.id);
-          localStorage.setItem(LOCAL_STORAGE_WANT_TO_SEE, JSON.stringify(updatedData));
+          // localStorage.setItem(LOCAL_STORAGE_WANT_TO_SEE, JSON.stringify(updatedData));
         }
       }
       state.length--;
@@ -36,7 +36,7 @@ export const WantToSeeSlice = createSlice({
     clearAll(state) {
       state.wantToSee = [];
       state.length = 0;
-      localStorage.removeItem(LOCAL_STORAGE_WANT_TO_SEE);
+      // localStorage.removeItem(LOCAL_STORAGE_WANT_TO_SEE);
     },
   },
 });
