@@ -1,0 +1,36 @@
+.modalOverlay {
+  position: fixed;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.6s ease;
+  background-color: rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+.modalOverlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modalContent {
+  height: 10px;
+  width: 10px;
+  transition: all 0.6s ease;
+  background-color: rgba(12, 10, 10, 0.993);
+}
+
+.modalOverlay.visible .modalContent {
+  height: 500px;
+  width: 520px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3%;
+}

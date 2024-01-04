@@ -1,0 +1,17 @@
+.wrapperAvatar {
+  width: 170px;
+  border: 2px solid gray;
+  display: flex;
+  align-items: center;
+  text-align: right;
+  padding: 5px;
+  justify-content: space-between;
+  border-radius: 9px;
+}
+
+.userAvatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid teal;
+}

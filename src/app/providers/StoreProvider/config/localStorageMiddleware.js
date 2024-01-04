@@ -10,6 +10,10 @@ export const localStorageMiddleware = (store) => (next) => (action) => {
     case "WantToSee/addMovie":
       localStorage.setItem(LOCAL_STORAGE_WANT_TO_SEE, JSON.stringify(state.wantToSee.wantToSee));
       break;
+    case "WantToSee/removeMovie":
+      const updatedWantToSee = state.wantToSee.wantToSee.filter((movie) => movie.id !== action.payload.movieId);
+      localStorage.setItem(LOCAL_STORAGE_WANT_TO_SEE, JSON.stringify(updatedWantToSee));
+      break;
     case "WantToSee/clearAll":
       localStorage.setItem(LOCAL_STORAGE_WANT_TO_SEE, JSON.stringify([]));
       break;

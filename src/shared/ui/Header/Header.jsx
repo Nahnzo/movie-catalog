@@ -1,4 +1,5 @@
 import { ROUTES } from "../../lib/config/routes";
+import { User } from "entities/User";
 import { useDataLength } from "../../lib/hooks/useDataLength";
 import useLocalStorageData from "../../lib/hooks/useLocalStorage";
 import FilmIcon from "../../assets/film-icon.svg";
@@ -32,6 +33,9 @@ const Header = () => {
           <Svg path={ListReviewIcon} styles={styles.svg} viewBox="-200 -10 890 500" />
         </Navbar>
         <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>
+        <Navbar>
+          <User />
+        </Navbar>
       </nav>
     </section>
   );

@@ -4,8 +4,9 @@
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
-  width: 80%;
+  width: 70%;
   margin: auto;
+  margin-left: auto;
   color: white;
   font-family: "Inter", sans-serif;
   padding: 30px;

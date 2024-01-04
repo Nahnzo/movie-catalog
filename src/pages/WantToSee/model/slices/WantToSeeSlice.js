@@ -22,16 +22,10 @@ export const WantToSeeSlice = createSlice({
       }
     },
     removeMovie(state, action) {
-      const movieToRemove = state.wantToSee.find((item) => item.id === action.payload.id);
-      if (movieToRemove) {
-        state.wantToSee = state.wantToSee.filter((item) => item.id !== action.payload.id);
-        // const storedData = JSON.parse(localStorage.getItem(LOCAL_STORAGE_WANT_TO_SEE));
-        if (storedData) {
-          const updatedData = storedData.filter((item) => item.id !== action.payload.id);
-          // localStorage.setItem(LOCAL_STORAGE_WANT_TO_SEE, JSON.stringify(updatedData));
-        }
-      }
-      state.length--;
+      const { id } = action.payload;
+      const updatedWantToSee = state.wantToSee.filter((item) => item.id !== id);
+      state.wantToSee = updatedWantToSee;
+      state.length = updatedWantToSee.length;
     },
     clearAll(state) {
       state.wantToSee = [];
