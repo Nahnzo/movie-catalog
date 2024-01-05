@@ -20,6 +20,7 @@ import {
   LOCAL_STORAGE_WANT_TO_SEE,
 } from "shared/lib/const/const";
 import styles from "./wantToSee.module.css";
+import Header from "../../../../shared/ui/Header/Header";
 
 const WantToSee = memo(() => {
   useLocalStorageData([LOCAL_STORAGE_WANT_TO_SEE, LOCAL_STORAGE_MY_REVIEWS, LOCAL_STORAGE_MY_COLLECTION]);
@@ -38,7 +39,8 @@ const WantToSee = memo(() => {
   if (wantToSeeLength) {
     return (
       <section className={styles.main}>
-        <nav className={styles.header}>
+        <Header />
+        {/* <nav className={styles.header}>
           <Navbar path={ROUTES.home}>Ha главную</Navbar>
           <Navbar path={ROUTES.myCollection} dataLength={myCollectionLength}>
             Моя коллекция
@@ -52,7 +54,7 @@ const WantToSee = memo(() => {
           <MyButton styles={`${styles.deleteAll}`} handler={() => dispatch(WantToSeeActions.clearAll())}>
             Очистить список ({wantToSeeLength})
           </MyButton>
-        </nav>
+        </nav> */}
         <div className={styles.container}>
           {selectedMovie && <WantToSeeCard firstMovie={selectedMovie} />}
           <div className={styles.wrapperCollection} ref={ref}>
@@ -73,7 +75,8 @@ const WantToSee = memo(() => {
   } else {
     return (
       <section className={styles.mainEmpty}>
-        <nav className={styles.header}>
+        <Header />
+        {/* <nav className={styles.header}>
           <Navbar path={ROUTES.home}>Ha главную</Navbar>
           <Navbar path={ROUTES.myCollection} dataLength={myCollectionLength}>
             Моя коллекция
@@ -84,7 +87,7 @@ const WantToSee = memo(() => {
             <Svg path={ListReviewIcon} styles={styles.svg} viewBox="-200 -10 890 500" />
           </Navbar>
           <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>
-        </nav>
+        </nav> */}
         <h1> Список пуст</h1>
         <Footer />
       </section>

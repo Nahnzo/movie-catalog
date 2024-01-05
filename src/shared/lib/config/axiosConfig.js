@@ -20,6 +20,7 @@ $api.interceptors.response.use(
       originalRequest._isRetry = true;
       try {
         const response = await fetch(`${API_URL}/refresh`, { withCredentials: true });
+        console.log(response);
         localStorage.setItem("token", response.data.accessToken);
         return $api.request(originalRequest);
       } catch (error) {

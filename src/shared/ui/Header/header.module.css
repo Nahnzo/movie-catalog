@@ -1,14 +1,13 @@
-.header {
-  width: 100%;
-  height: 90px;
-  padding: 20px;
-  color: white;
-  font-family: "Merriweather", serif;
-}
 .navigation {
+  width: 80%;
+  margin: 0 auto;
+  align-items: center;
   display: flex;
   justify-content: space-evenly;
   position: relative;
+  color: whitesmoke;
+  font-family: "Poppins", sans-serif;
+  transition: all 0.3s ease;
 }
 .navigation > h3 {
   cursor: pointer;
@@ -16,10 +15,10 @@
 .navigation > h3:hover {
   opacity: 0.5;
 }
-.svg {
-  fill: white;
-  position: absolute;
-  bottom: -10px;
-  width: 50px;
-  height: 40px;
+
+.searchBar {
+  display: flex;
+  justify-content: space-between;
+  width: 440px;
+  align-items: center;
 }

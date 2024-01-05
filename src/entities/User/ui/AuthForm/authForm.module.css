@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
 
 .error {
+  height: 30px;
   margin: 15px;
   color: white;
   font-size: 18px;
@@ -58,4 +59,20 @@
   font-size: 16px;
   padding: 5px;
   border-radius: 5px;
+}
+.btnAuth {
+  font-family: "Poppins", sans-serif;
+  margin: 10px;
+  width: 85px;
+  height: 30px;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  font-size: 14px;
+  padding: 5px;
+  border-radius: 5px;
+  &:hover {
+    opacity: 0.5;
+  }
 }

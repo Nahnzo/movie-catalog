@@ -17,6 +17,7 @@ import {
   LOCAL_STORAGE_MY_REVIEWS,
   LOCAL_STORAGE_WANT_TO_SEE,
 } from "shared/lib/const/const";
+import Header from "../../../shared/ui/Header/Header";
 
 const MyCollection = () => {
   const dispatch = useDispatch();
@@ -26,7 +27,8 @@ const MyCollection = () => {
 
   return (
     <section className={styles.main}>
-      <nav className={styles.header}>
+      <Header />
+      {/* <nav className={styles.header}>
         <Navbar path={ROUTES.home}>На главную</Navbar>
         <Navbar path={ROUTES.wantToSee} dataLength={wantToSeeLength}>
           Хочу посмотреть
@@ -44,7 +46,7 @@ const MyCollection = () => {
         ) : (
           ""
         )}
-      </nav>
+      </nav> */}
       <section className={!myCollectionLength ? styles.wrapper : styles.wrapperEmpty}>
         <div className={styles.myCollection}>
           {!myCollectionLength ? (

@@ -26,12 +26,15 @@ const AuthForm = () => {
       const response = await dispatch(userRegistration({ email: email, password: password }));
       if (!response.error) {
         handleModal();
+        setEmail("");
+        setPassword("");
       } else {
         throw new Error(response.payload);
       }
     } catch (error) {
+      setEmail("");
+      setPassword("");
       console.log(error);
-      setInformation("Пользователь с таким email уже зарегистрирован");
     }
   };
 
@@ -40,22 +43,29 @@ const AuthForm = () => {
       const response = await dispatch(userLogin({ email: email, password: password }));
       if (response.payload.user) {
         handleModal();
+        setEmail("");
+        setPassword("");
       } else {
         throw new Error(response.payload);
       }
     } catch (error) {
-      setInformation(error.message);
+      console.log(error);
+      setEmail("");
+      setPassword("");
     }
   };
 
   const onLogout = () => {
     dispatch(userLogout());
   };
+  const f = async () => {
+    await checkAuth();
+  };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await checkAuth();
+        await dispatch(checkAuth());
         const token = localStorage.getItem("token");
         if (!token) {
           dispatch(userActions.handleIsAuthUser(false));
@@ -93,12 +103,13 @@ const AuthForm = () => {
                 Регистрация
               </MyButton>
             </div>
-
             <p className={styles.error}>{error}</p>
           </>
         )}
       </Modal>
-      <button onClick={isAuth ? onLogout : handleModal}>{isAuth ? "Выйти" : "Войти"}</button>
+      <MyButton styles={styles.btnAuth} handler={isAuth ? onLogout : handleModal}>
+        {isAuth ? "Выйти" : "Войти"}
+      </MyButton>
     </>
   );
 };

@@ -5,10 +5,12 @@ const userSlice = createSlice({
   name: "auth",
   initialState: {
     isAuth: false,
-    user: null,
+    email: localStorage.getItem("userEmail") || null,
     loading: false,
     error: null,
+    isActivated: false,
   },
+
   reducers: {
     handleIsAuthUser: (state, action) => {
       state.isAuth = action.payload;
@@ -23,8 +25,10 @@ const userSlice = createSlice({
       .addCase(userLogin.fulfilled, (state, action) => {
         state.loading = false;
         state.isAuth = true;
-        state.user = action.payload.user;
+        state.isActivated = action.payload.user.isActivated;
+        state.email = action.payload.user.email;
         localStorage.setItem("token", action.payload.accessToken);
+        localStorage.setItem("userEmail", action.payload.user.email);
       })
       .addCase(userLogin.rejected, (state, action) => {
         state.loading = false;
@@ -36,9 +40,10 @@ const userSlice = createSlice({
       })
       .addCase(userLogout.fulfilled, (state) => {
         state.loading = false;
-        state.user = null;
+        state.email = null;
         state.isAuth = false;
         localStorage.removeItem("token");
+        localStorage.removeItem("userEmail");
       })
       .addCase(userLogout.rejected, (state, action) => {
         state.loading = false;
@@ -47,8 +52,9 @@ const userSlice = createSlice({
       .addCase(userRegistration.fulfilled, (state, action) => {
         state.loading = false;
         state.isAuth = true;
-        state.user = action.payload.user;
+        state.email = action.payload.user.email;
         localStorage.setItem("token", action.payload.accessToken);
+        localStorage.setItem("userEmail", action.payload.user.email);
       })
       .addCase(userRegistration.rejected, (state, action) => {
         state.loading = false;
@@ -60,18 +66,23 @@ const userSlice = createSlice({
       .addCase(checkAuth.fulfilled, (state, action) => {
         if (action.payload?.accessToken) {
           localStorage.setItem("token", action.payload.accessToken);
+          localStorage.setItem("userEmail", action.payload.user.email);
+          state.isActivated = action.payload.user.isActivated;
           state.isAuth = true;
-          state.user = action.payload.user;
+          state.email = action.payload.user.email;
         } else {
           localStorage.removeItem("token");
+          localStorage.removeItem("userEmail");
           state.isAuth = false;
-          state.user = null;
+          state.email = null;
         }
       })
       .addCase(checkAuth.rejected, (state, action) => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("userEmail");
         state.isAuth = false;
-        state.user = null;
-        state.isAuth = false;
+        state.email = null;
+        state.isActivated = false;
       });
   },
 });

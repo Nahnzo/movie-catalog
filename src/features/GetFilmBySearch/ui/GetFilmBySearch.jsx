@@ -1,9 +1,10 @@
-import Input from "shared/ui/Input/Input";
-import styles from "./getFilmBySearch.module.css";
 import { getFilmByName } from "../model/services/getFilmByName";
 import { useDispatch } from "react-redux";
 import { MovieActions } from "pages/MainPage/model/slices/MovieSlice";
 import { useEffect, useState } from "react";
+import Input from "shared/ui/Input/Input";
+import MyButton from "shared/ui/MyButton/MyButton";
+import styles from "./getFilmBySearch.module.css";
 
 const GetFilmBySearch = ({ disabled, placeholder }) => {
   const [search, setSearch] = useState("");
@@ -22,7 +23,9 @@ const GetFilmBySearch = ({ disabled, placeholder }) => {
   return (
     <>
       <Input styles={styles.searchInput} disabled={disabled} placeholder={placeholder} handler={onChangeSearch} />
-      <button onClick={() => getMovie()}>Искать</button>
+      <MyButton styles={styles.searchBtn} handler={() => getMovie()}>
+        Найти
+      </MyButton>
     </>
   );
 };

@@ -7,9 +7,12 @@ const User = () => {
   const isLoading = useSelector(getIsLoadingUser);
   const isAuth = useSelector(getIsAuthUser);
   const error = useSelector(getErrorUser);
+  const state = useSelector((state) => state.user);
+  console.log(state);
 
   return (
     <>
+      {state?.email ? state?.email : ""}
       <AuthForm />
     </>
   );

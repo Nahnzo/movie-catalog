@@ -1,13 +1,27 @@
 .searchInput {
-  display: block;
-  margin: 20px auto;
-  width: 50vw;
-  height: 22px;
+  width: 90%;
+  height: 28px;
+  padding-left: 8px;
   background: transparent;
   outline: none;
-  border: 2px solid white;
+  border: 1px solid white;
   border-radius: 8px;
-  padding: 10px;
   font-size: 15px;
   color: white;
+  margin-right: 10px;
+}
+.searchBtn {
+  font-family: "Poppins", sans-serif;
+  width: 85px;
+  height: 30px;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  font-size: 14px;
+  padding: 5px;
+  border-radius: 5px;
+  &:hover {
+    opacity: 0.5;
+  }
 }
