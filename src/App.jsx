@@ -6,13 +6,15 @@ import { ErrorBoundary } from "./app/providers";
 
 const App = () => {
   return (
-    <section className="main">
-      <Header />
-      <ErrorBoundary>
-        <MainPage />
-      </ErrorBoundary>
-      <Footer />
-    </section>
+    <>
+      <section className="main">
+        <Header />
+        <ErrorBoundary>
+          <MainPage />
+        </ErrorBoundary>
+        <Footer />
+      </section>
+    </>
   );
 };
 

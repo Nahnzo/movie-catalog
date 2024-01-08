@@ -1,0 +1,57 @@
+.Sidebar {
+  display: flex;
+  margin-left: auto;
+  width: 300px;
+  height: 1000px;
+  transition: transform 0.5s ease;
+  border: 1px solid white;
+}
+
+.Sidebar.Collapsed {
+  transform: translateX(90%);
+}
+
+.btnHandleSidebar {
+  cursor: pointer;
+  color: whitesmoke;
+  width: 10%;
+  font-size: 22px;
+  background-color: transparent;
+  border: none;
+  /* &:active {
+    border: none;
+  } */
+}
+
+.routes {
+  width: 60%;
+  height: 40%;
+  margin: 20px;
+  padding: 10px;
+  cursor: pointer;
+  color: whitesmoke;
+  & > h3:hover {
+    opacity: 0.5;
+  }
+  & > h3 {
+    margin: 5px;
+  }
+}
+.icons {
+  position: relative;
+  width: 30px;
+  height: 50%;
+}
+
+.svgReview {
+  margin-top: 50px;
+  fill: white;
+  width: 40px;
+  height: 40px;
+}
+.svgWantToSee {
+  /* position: absolute; */
+  fill: white;
+  width: 90px;
+  height: 90px;
+}

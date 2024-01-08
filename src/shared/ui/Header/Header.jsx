@@ -9,7 +9,7 @@ const Header = () => {
       <Navbar path={ROUTES.home}>Главная</Navbar>
       <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>
       <div className={styles.searchBar}>
-        <GetFilmBySearch placeholder="Мультфильм, кино, сериал" />
+        <GetFilmBySearch placeholder="Мультфильм, фильм, сериал" />
       </div>
       <User />
     </nav>

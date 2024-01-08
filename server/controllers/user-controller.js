@@ -1,5 +1,6 @@
 const ApiError = require("../exceptions/api-error");
 const userService = require("../service/user-service");
+const movieService = require("../service/movie-service");
 const { validationResult } = require("express-validator");
 
 class UserController {
@@ -54,6 +55,16 @@ class UserController {
       return res.json(userData);
     } catch (error) {
       next(error);
+    }
+  }
+  async getUserMovies(req, res, next) {
+    try {
+      const userId = req.params.userId;
+      const movies = await userService.getUserMovies(userId);
+      return res.json(movies);
+    } catch (err) {
+      console.error(err);
+      next(err);
     }
   }
 }

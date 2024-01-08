@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Modal from "shared/ui/Modal/Modal";
 import Input from "shared/ui/Input/Input";
 import MyButton from "shared/ui/MyButton/MyButton";
-import { checkAuth, userLogin, userLogout, userRegistration } from "../../model/services/authService";
+import { checkAuth, userLogin, userLogout, userRegistration } from "../../../../shared/lib/config/authService";
 import { useDispatch, useSelector } from "react-redux";
 import { getErrorUser, getIsAuthUser, getIsLoadingUser } from "../../model/selectors/getUserSelector";
 import { useModal } from "shared/lib/hooks/useModal";

@@ -21,40 +21,54 @@ import {
 } from "shared/lib/const/const";
 import styles from "./wantToSee.module.css";
 import Header from "../../../../shared/ui/Header/Header";
+import { getIsAuthUser, getIsLoadingUser } from "../../../MainPage";
+import { useNavigate } from "react-router-dom";
+import { userActions } from "../../../../entities/User/model/slices/userSlice";
+import { getFilmsById } from "../../model/services/getFilmsById";
 
-const WantToSee = memo(() => {
-  useLocalStorageData([LOCAL_STORAGE_WANT_TO_SEE, LOCAL_STORAGE_MY_REVIEWS, LOCAL_STORAGE_MY_COLLECTION]);
-  const { wantToSeeLength, myCollectionLength, myReviewsLength } = useDataLength();
-  const [selectedMovie, setSelectedMovie] = useState(null);
-  const ref = useRef(null);
-  const wrapper = ref.current;
-  const dispatch = useDispatch();
-  const movies = useSelector(getMovieForWantToSee);
-  const firstMovie = useSelector(getFirstMovie);
+const WantToSee = memo(
+  () => {
+    useLocalStorageData([LOCAL_STORAGE_WANT_TO_SEE, LOCAL_STORAGE_MY_REVIEWS, LOCAL_STORAGE_MY_COLLECTION]);
 
-  useEffect(() => {
-    setSelectedMovie(firstMovie);
-  }, [firstMovie]);
+    const { wantToSeeLength, myCollectionLength, myReviewsLength } = useDataLength();
+    const [selectedMovie, setSelectedMovie] = useState(null);
+    const ref = useRef(null);
+    const wrapper = ref.current;
+    const dispatch = useDispatch();
+    const movies = useSelector(getMovieForWantToSee);
+    const firstMovie = useSelector(getFirstMovie);
+    const navigate = useNavigate();
+    const isAuth = useSelector(getIsAuthUser);
+    const isLoadingUser = useSelector(getIsLoadingUser);
+    const state = useSelector((state) => state);
+    console.log(state);
+    // useEffect(())
 
-  if (wantToSeeLength) {
+    useEffect(() => {
+      if (!localStorage.getItem("userEmail")) {
+        navigate(ROUTES.home);
+      }
+      setSelectedMovie(firstMovie);
+    }, [firstMovie, isAuth, navigate, dispatch]);
+
     return (
       <section className={styles.main}>
         <Header />
         {/* <nav className={styles.header}>
-          <Navbar path={ROUTES.home}>Ha главную</Navbar>
-          <Navbar path={ROUTES.myCollection} dataLength={myCollectionLength}>
-            Моя коллекция
-            <Svg path={HeartIcon} styles={styles.svg} viewBox="-30 -15 180 130" />
-          </Navbar>
-          <Navbar path={ROUTES.myReviews} dataLength={myReviewsLength}>
-            Мои рецензии
-            <Svg path={ListReviewIcon} styles={styles.svg} viewBox="-200 -10 890 500" />
-          </Navbar>
-          <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>
-          <MyButton styles={`${styles.deleteAll}`} handler={() => dispatch(WantToSeeActions.clearAll())}>
-            Очистить список ({wantToSeeLength})
-          </MyButton>
-        </nav> */}
+            <Navbar path={ROUTES.home}>Ha главную</Navbar>
+            <Navbar path={ROUTES.myCollection} dataLength={myCollectionLength}>
+              Моя коллекция
+              <Svg path={HeartIcon} styles={styles.svg} viewBox="-30 -15 180 130" />
+            </Navbar>
+            <Navbar path={ROUTES.myReviews} dataLength={myReviewsLength}>
+              Мои рецензии
+              <Svg path={ListReviewIcon} styles={styles.svg} viewBox="-200 -10 890 500" />
+            </Navbar>
+            <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>
+            <MyButton styles={`${styles.deleteAll}`} handler={() => dispatch(WantToSeeActions.clearAll())}>
+              Очистить список ({wantToSeeLength})
+            </MyButton>
+          </nav> */}
         <div className={styles.container}>
           {selectedMovie && <WantToSeeCard firstMovie={selectedMovie} />}
           <div className={styles.wrapperCollection} ref={ref}>
@@ -72,27 +86,31 @@ const WantToSee = memo(() => {
         <Footer />
       </section>
     );
-  } else {
-    return (
-      <section className={styles.mainEmpty}>
-        <Header />
-        {/* <nav className={styles.header}>
-          <Navbar path={ROUTES.home}>Ha главную</Navbar>
-          <Navbar path={ROUTES.myCollection} dataLength={myCollectionLength}>
-            Моя коллекция
-            <Svg path={HeartIcon} styles={styles.svg} viewBox="-30 -15 180 130" />
-          </Navbar>
-          <Navbar path={ROUTES.myReviews} dataLength={myReviewsLength}>
-            Мои рецензии
-            <Svg path={ListReviewIcon} styles={styles.svg} viewBox="-200 -10 890 500" />
-          </Navbar>
-          <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>
-        </nav> */}
-        <h1> Список пуст</h1>
-        <Footer />
-      </section>
-    );
   }
-});
+
+  // if (wantToSeeLength) {
+
+  // } else {
+  // return (
+  //   <section className={styles.mainEmpty}>
+  //     <Header />
+  //     {/* <nav className={styles.header}>
+  //         <Navbar path={ROUTES.home}>Ha главную</Navbar>
+  //         <Navbar path={ROUTES.myCollection} dataLength={myCollectionLength}>
+  //           Моя коллекция
+  //           <Svg path={HeartIcon} styles={styles.svg} viewBox="-30 -15 180 130" />
+  //         </Navbar>
+  //         <Navbar path={ROUTES.myReviews} dataLength={myReviewsLength}>
+  //           Мои рецензии
+  //           <Svg path={ListReviewIcon} styles={styles.svg} viewBox="-200 -10 890 500" />
+  //         </Navbar>
+  //         <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>
+  //       </nav> */}
+  //     <h1> Список пуст</h1>
+  //     <Footer />
+  //   </section>
+  // );
+  // }
+);
 
 export default WantToSee;

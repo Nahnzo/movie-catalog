@@ -1,14 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { checkAuth, userLogin, userLogout, userRegistration } from "../services/authService";
+import { checkAuth, userLogin, userLogout, userRegistration } from "../../../../shared/lib/config/authService";
 
 const userSlice = createSlice({
   name: "auth",
   initialState: {
     isAuth: false,
     email: localStorage.getItem("userEmail") || null,
-    loading: false,
+    isLoading: false,
     error: null,
     isActivated: false,
+    id: null,
   },
 
   reducers: {
@@ -19,49 +20,53 @@ const userSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(userLogin.pending, (state) => {
-        state.loading = true;
+        state.isLoading = true;
         state.error = null;
       })
       .addCase(userLogin.fulfilled, (state, action) => {
-        state.loading = false;
+        state.isLoading = false;
         state.isAuth = true;
         state.isActivated = action.payload.user.isActivated;
         state.email = action.payload.user.email;
+        state.id = action.payload.user.id;
         localStorage.setItem("token", action.payload.accessToken);
         localStorage.setItem("userEmail", action.payload.user.email);
       })
       .addCase(userLogin.rejected, (state, action) => {
-        state.loading = false;
+        state.isLoading = false;
         state.error = action.payload;
       })
       .addCase(userLogout.pending, (state) => {
-        state.loading = true;
+        state.isLoading = true;
         state.error = null;
       })
       .addCase(userLogout.fulfilled, (state) => {
-        state.loading = false;
+        state.isLoading = false;
         state.email = null;
         state.isAuth = false;
+        state.id = null;
         localStorage.removeItem("token");
         localStorage.removeItem("userEmail");
+        localStorage.removeItem("WANT_TO_SEE");
       })
       .addCase(userLogout.rejected, (state, action) => {
-        state.loading = false;
+        state.isLoading = false;
         state.error = action.payload;
       })
       .addCase(userRegistration.fulfilled, (state, action) => {
-        state.loading = false;
+        state.isLoading = false;
         state.isAuth = true;
         state.email = action.payload.user.email;
+        state.id = action.payload.user.id;
         localStorage.setItem("token", action.payload.accessToken);
         localStorage.setItem("userEmail", action.payload.user.email);
       })
       .addCase(userRegistration.rejected, (state, action) => {
-        state.loading = false;
+        state.isLoading = false;
         state.error = action.payload;
       })
       .addCase(checkAuth.pending, (state, action) => {
-        state.loading = true;
+        // state.isLoading = true;
       })
       .addCase(checkAuth.fulfilled, (state, action) => {
         if (action.payload?.accessToken) {
@@ -70,6 +75,7 @@ const userSlice = createSlice({
           state.isActivated = action.payload.user.isActivated;
           state.isAuth = true;
           state.email = action.payload.user.email;
+          state.id = action.payload.user.id;
         } else {
           localStorage.removeItem("token");
           localStorage.removeItem("userEmail");
@@ -83,6 +89,7 @@ const userSlice = createSlice({
         state.isAuth = false;
         state.email = null;
         state.isActivated = false;
+        state.id = null;
       });
   },
 });

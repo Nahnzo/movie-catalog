@@ -1,6 +1,6 @@
 .navigation {
-  width: 80%;
-  margin: 0 auto;
+  width: 55%;
+  margin: 10px auto;
   align-items: center;
   display: flex;
   justify-content: space-evenly;
@@ -8,9 +8,11 @@
   color: whitesmoke;
   font-family: "Poppins", sans-serif;
   transition: all 0.3s ease;
+  font-size: 14px;
 }
 .navigation > h3 {
   cursor: pointer;
+  font-weight: 450;
 }
 .navigation > h3:hover {
   opacity: 0.5;

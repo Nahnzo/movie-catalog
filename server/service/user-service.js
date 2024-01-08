@@ -5,6 +5,7 @@ const mailService = require("./mail-service");
 const tokenService = require("./token-service");
 const UserDto = require("../dtos/user-dto");
 const ApiError = require("../exceptions/api-error");
+const movieModel = require("../models/movie-model");
 
 class UserService {
   async registration(email, password) {
@@ -75,6 +76,14 @@ class UserService {
       ...tokens,
       user: userDto,
     };
+  }
+  async getUserMovies(userId) {
+    const user = await UserModel.findById(userId);
+    if (!user) {
+      throw new Error("Пользователь не найден");
+    }
+    const movies = user.movies;
+    return movies;
   }
 }
 module.exports = new UserService();

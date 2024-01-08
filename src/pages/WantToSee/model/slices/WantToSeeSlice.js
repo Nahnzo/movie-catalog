@@ -1,10 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { LOCAL_STORAGE_WANT_TO_SEE } from "shared/lib/const/const";
+import { userLogout } from "shared/lib/config/authService";
+import { initialDataUser } from "shared/lib/config/getInitialDataUserSlice";
 
 export const WantToSeeSlice = createSlice({
   name: "WantToSee",
   initialState: {
-    wantToSee: [],
+    wantToSee: JSON.parse(localStorage.getItem(LOCAL_STORAGE_WANT_TO_SEE)) || [],
     length: 0,
     source: "wantToSee",
   },
@@ -18,7 +20,6 @@ export const WantToSeeSlice = createSlice({
       if (!isExist) {
         state.wantToSee.push(action.payload);
         state.length++;
-        // localStorage.setItem(LOCAL_STORAGE_WANT_TO_SEE, JSON.stringify(state.wantToSee));
       }
     },
     removeMovie(state, action) {
@@ -30,8 +31,18 @@ export const WantToSeeSlice = createSlice({
     clearAll(state) {
       state.wantToSee = [];
       state.length = 0;
-      // localStorage.removeItem(LOCAL_STORAGE_WANT_TO_SEE);
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(userLogout.fulfilled, (state) => {
+      state.wantToSee = [];
+    });
+    builder.addCase(initialDataUser.fulfilled, (state, action) => {
+      console.log(action.payload.myCollection);
+      if (!state.wantToSee.length) {
+        state.wantToSee = action.payload.myCollection;
+      }
+    });
   },
 });
 
