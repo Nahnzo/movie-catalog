@@ -38,9 +38,10 @@ export const WantToSeeSlice = createSlice({
       state.wantToSee = [];
     });
     builder.addCase(initialDataUser.fulfilled, (state, action) => {
-      console.log(action.payload.myCollection);
-      if (!state.wantToSee.length) {
-        state.wantToSee = action.payload.myCollection;
+      const payload = action.payload.wantToSee;
+      if (!state.wantToSee.length && payload) {
+        state.wantToSee = payload;
+        localStorage.setItem("WANT_TO_SEE", JSON.stringify(payload));
       }
     });
   },

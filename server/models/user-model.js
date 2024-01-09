@@ -8,9 +8,8 @@ const UserSchema = new Schema({
   activationLink: { type: String },
   movies: {
     myCollection: [Schema.Types.Mixed],
-    // myCollection: [{ type: Schema.Types.ObjectId, ref: "Movie" }],
-    // myReviews: [{ type: Schema.Types.ObjectId, ref: "Movie" }],
-    // wantToSee: [{ type: Schema.Types.ObjectId, ref: "Movie" }],
+    myReviews: [Schema.Types.Mixed],
+    wantToSee: [Schema.Types.Mixed],
   },
 });
 

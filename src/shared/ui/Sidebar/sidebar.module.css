@@ -5,6 +5,8 @@
   height: 1000px;
   transition: transform 0.5s ease;
   border: 1px solid white;
+  position: absolute;
+  right: -255px;
 }
 
 .Sidebar.Collapsed {
@@ -18,9 +20,9 @@
   font-size: 22px;
   background-color: transparent;
   border: none;
-  /* &:active {
-    border: none;
-  } */
+  &:hover {
+    opacity: 0.5;
+  }
 }
 
 .routes {
@@ -28,9 +30,9 @@
   height: 40%;
   margin: 20px;
   padding: 10px;
-  cursor: pointer;
   color: whitesmoke;
   & > h3:hover {
+    cursor: pointer;
     opacity: 0.5;
   }
   & > h3 {

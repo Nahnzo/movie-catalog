@@ -1,7 +1,8 @@
+import { memo } from "react";
 import Portal from "../Portal/Portal";
 import styles from "./modal.module.css";
 
-const Modal = ({ children, isOpen, onClose }) => {
+const Modal = memo(({ children, isOpen, onClose }) => {
   return (
     <Portal>
       <div className={`${styles.modalOverlay} ${isOpen ? styles.visible : ""}`} onClick={onClose}>
@@ -11,6 +12,6 @@ const Modal = ({ children, isOpen, onClose }) => {
       </div>
     </Portal>
   );
-};
+});
 
 export default Modal;

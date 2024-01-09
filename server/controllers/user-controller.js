@@ -60,6 +60,7 @@ class UserController {
   async getUserMovies(req, res, next) {
     try {
       const userId = req.params.userId;
+      console.log(req.body);
       const movies = await userService.getUserMovies(userId);
       return res.json(movies);
     } catch (err) {

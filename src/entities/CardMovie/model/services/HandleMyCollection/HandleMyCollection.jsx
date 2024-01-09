@@ -2,6 +2,8 @@ import { MyCollectionActions } from "pages/MyCollection/model/slices/MyCollectio
 import { useDispatch, useSelector } from "react-redux";
 import { memo } from "react";
 import { getExistingMovieForMyCollection } from "../../selectors/getSortedMovie/getSortedMovie";
+import { addMovieToCollection, removeMovieFromCollection } from "../handleMovie";
+import { getUserId } from "../../selectors/getUserDataSelectors/getUserDataSelectors";
 import HeartIcon from "shared/assets/heart-icon.svg";
 import styles from "./handleMyCollection.module.css";
 import Svg from "shared/ui/Svg/Svg";
@@ -9,14 +11,17 @@ import Svg from "shared/ui/Svg/Svg";
 const HandleWantToSee = memo(({ movie }) => {
   const dispatch = useDispatch();
   const isExist = useSelector((state) => getExistingMovieForMyCollection(state)(movie));
+  const id = useSelector(getUserId);
 
   const handleClick = (event, item) => {
     if (isExist) {
       event.stopPropagation();
       dispatch(MyCollectionActions.removeMovieFromCollection(item));
+      removeMovieFromCollection({ movie }, id, "myCollection");
     } else {
       event.stopPropagation();
       dispatch(MyCollectionActions.addMovieToCollection(item));
+      addMovieToCollection({ movie }, id, "myCollection");
     }
   };
 

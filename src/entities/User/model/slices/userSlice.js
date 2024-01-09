@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { checkAuth, userLogin, userLogout, userRegistration } from "../../../../shared/lib/config/authService";
 
 const userSlice = createSlice({
-  name: "auth",
+  name: "userSlcie",
   initialState: {
     isAuth: false,
     email: localStorage.getItem("userEmail") || null,
@@ -11,7 +11,6 @@ const userSlice = createSlice({
     isActivated: false,
     id: null,
   },
-
   reducers: {
     handleIsAuthUser: (state, action) => {
       state.isAuth = action.payload;
@@ -48,6 +47,7 @@ const userSlice = createSlice({
         localStorage.removeItem("token");
         localStorage.removeItem("userEmail");
         localStorage.removeItem("WANT_TO_SEE");
+        localStorage.removeItem("MY_COLLECTION");
       })
       .addCase(userLogout.rejected, (state, action) => {
         state.isLoading = false;
@@ -65,9 +65,7 @@ const userSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
       })
-      .addCase(checkAuth.pending, (state, action) => {
-        // state.isLoading = true;
-      })
+
       .addCase(checkAuth.fulfilled, (state, action) => {
         if (action.payload?.accessToken) {
           localStorage.setItem("token", action.payload.accessToken);

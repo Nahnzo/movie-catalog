@@ -1,10 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { LOCAL_STORAGE_MY_COLLECTION } from "shared/lib/const/const";
+import { userLogout } from "shared/lib/config/authService";
+import { initialDataUser } from "shared/lib/config/getInitialDataUserSlice";
 
 export const MyCollectionSlice = createSlice({
   name: "collectionSlice",
   initialState: {
-    myCollection: [],
+    myCollection: JSON.parse(localStorage.getItem(LOCAL_STORAGE_MY_COLLECTION)) || [],
     length: 0,
     source: "myCollection",
   },
@@ -18,7 +20,7 @@ export const MyCollectionSlice = createSlice({
       if (!isExist) {
         state.myCollection.push(action.payload);
         state.length++;
-        // localStorage.setItem(LOCAL_STORAGE_MY_COLLECTION, JSON.stringify(state.myCollection));
+        localStorage.setItem(LOCAL_STORAGE_MY_COLLECTION, JSON.stringify(state.myCollection));
       }
     },
     removeMovieFromCollection(state, action) {
@@ -28,7 +30,7 @@ export const MyCollectionSlice = createSlice({
         const storedData = JSON.parse(localStorage.getItem(LOCAL_STORAGE_MY_COLLECTION));
         if (storedData) {
           const updatedData = storedData.filter((item) => item.id !== action.payload.id);
-          // localStorage.setItem(LOCAL_STORAGE_MY_COLLECTION, JSON.stringify(updatedData));
+          localStorage.setItem(LOCAL_STORAGE_MY_COLLECTION, JSON.stringify(updatedData));
         }
       }
       state.length--;
@@ -36,7 +38,7 @@ export const MyCollectionSlice = createSlice({
     clearAll(state) {
       state.myCollection = [];
       state.length = 0;
-      // localStorage.removeItem(LOCAL_STORAGE_MY_COLLECTION);
+      localStorage.removeItem(LOCAL_STORAGE_MY_COLLECTION);
     },
     addRating(state, action) {
       const { movieId, rating } = action.payload;
@@ -53,6 +55,18 @@ export const MyCollectionSlice = createSlice({
         state.myCollection[movieIndex].myReviews = myReviews;
       }
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(userLogout.fulfilled, (state) => {
+      state.myCollection = [];
+    });
+    builder.addCase(initialDataUser.fulfilled, (state, action) => {
+      const payload = action.payload.myCollection;
+      if (!state.myCollection.length && payload) {
+        state.myCollection = payload;
+        localStorage.setItem("MY_COLLECTION", JSON.stringify(payload));
+      }
+    });
   },
 });
 

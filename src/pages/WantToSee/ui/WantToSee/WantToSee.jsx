@@ -41,8 +41,6 @@ const WantToSee = memo(
     const isAuth = useSelector(getIsAuthUser);
     const isLoadingUser = useSelector(getIsLoadingUser);
     const state = useSelector((state) => state);
-    console.log(state);
-    // useEffect(())
 
     useEffect(() => {
       if (!localStorage.getItem("userEmail")) {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import Modal from "shared/ui/Modal/Modal";
 import Input from "shared/ui/Input/Input";
 import MyButton from "shared/ui/MyButton/MyButton";
@@ -9,7 +9,7 @@ import { useModal } from "shared/lib/hooks/useModal";
 import { userActions } from "../../model/slices/userSlice";
 import styles from "./authForm.module.css";
 
-const AuthForm = () => {
+const AuthForm = memo(() => {
   const isLoading = useSelector(getIsLoadingUser);
   const error = useSelector(getErrorUser);
   const isAuth = useSelector(getIsAuthUser);
@@ -57,9 +57,6 @@ const AuthForm = () => {
 
   const onLogout = () => {
     dispatch(userLogout());
-  };
-  const f = async () => {
-    await checkAuth();
   };
 
   useEffect(() => {
@@ -112,6 +109,6 @@ const AuthForm = () => {
       </MyButton>
     </>
   );
-};
+});
 
 export default AuthForm;

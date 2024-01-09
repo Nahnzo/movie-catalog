@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import MyButton from "../MyButton/MyButton";
 import Navbar from "../Navbar/Navbar";
 import styles from "./sidebar.module.css";
@@ -7,7 +7,7 @@ import FilmIcon from "shared/assets/wanttosee-icon.svg";
 import Svg from "../Svg/Svg";
 import { ROUTES } from "../../lib/config/routes";
 
-const Sidebar = () => {
+const Sidebar = memo(() => {
   const [collapsed, setCollapsed] = useState(true);
 
   const toggleSidebar = () => {
@@ -32,6 +32,6 @@ const Sidebar = () => {
       </div>
     </>
   );
-};
+});
 
 export default Sidebar;
