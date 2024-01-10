@@ -26,89 +26,60 @@ import { useNavigate } from "react-router-dom";
 import { userActions } from "../../../../entities/User/model/slices/userSlice";
 import { getFilmsById } from "../../model/services/getFilmsById";
 
-const WantToSee = memo(
-  () => {
-    useLocalStorageData([LOCAL_STORAGE_WANT_TO_SEE, LOCAL_STORAGE_MY_REVIEWS, LOCAL_STORAGE_MY_COLLECTION]);
+const WantToSee = memo(() => {
+  useLocalStorageData([LOCAL_STORAGE_WANT_TO_SEE, LOCAL_STORAGE_MY_REVIEWS, LOCAL_STORAGE_MY_COLLECTION]);
 
-    const { wantToSeeLength, myCollectionLength, myReviewsLength } = useDataLength();
-    const [selectedMovie, setSelectedMovie] = useState(null);
-    const ref = useRef(null);
-    const wrapper = ref.current;
-    const dispatch = useDispatch();
-    const movies = useSelector(getMovieForWantToSee);
-    const firstMovie = useSelector(getFirstMovie);
-    const navigate = useNavigate();
-    const isAuth = useSelector(getIsAuthUser);
-    const isLoadingUser = useSelector(getIsLoadingUser);
-    const state = useSelector((state) => state);
+  const { wantToSeeLength, myCollectionLength, myReviewsLength } = useDataLength();
+  const [selectedMovie, setSelectedMovie] = useState(null);
+  const ref = useRef(null);
+  const wrapper = ref.current;
+  const dispatch = useDispatch();
+  const movies = useSelector(getMovieForWantToSee);
+  const firstMovie = useSelector(getFirstMovie);
+  const navigate = useNavigate();
+  const isAuth = useSelector(getIsAuthUser);
+  const isLoadingUser = useSelector(getIsLoadingUser);
+  const state = useSelector((state) => state);
 
-    useEffect(() => {
-      if (!localStorage.getItem("userEmail")) {
-        navigate(ROUTES.home);
-      }
-      setSelectedMovie(firstMovie);
-    }, [firstMovie, isAuth, navigate, dispatch]);
+  useEffect(() => {
+    if (!localStorage.getItem("userEmail")) {
+      navigate(ROUTES.home);
+    }
+    setSelectedMovie(movies[1] || firstMovie);
+  }, [firstMovie, isAuth, navigate, dispatch, movies]);
 
+  if (!wantToSeeLength) {
     return (
       <section className={styles.main}>
         <Header />
-        {/* <nav className={styles.header}>
-            <Navbar path={ROUTES.home}>Ha главную</Navbar>
-            <Navbar path={ROUTES.myCollection} dataLength={myCollectionLength}>
-              Моя коллекция
-              <Svg path={HeartIcon} styles={styles.svg} viewBox="-30 -15 180 130" />
-            </Navbar>
-            <Navbar path={ROUTES.myReviews} dataLength={myReviewsLength}>
-              Мои рецензии
-              <Svg path={ListReviewIcon} styles={styles.svg} viewBox="-200 -10 890 500" />
-            </Navbar>
-            <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>
-            <MyButton styles={`${styles.deleteAll}`} handler={() => dispatch(WantToSeeActions.clearAll())}>
-              Очистить список ({wantToSeeLength})
-            </MyButton>
-          </nav> */}
-        <div className={styles.container}>
-          {selectedMovie && <WantToSeeCard firstMovie={selectedMovie} />}
-          <div className={styles.wrapperCollection} ref={ref}>
-            {movies.map((item) => (
-              <div
-                className={styles.card}
-                key={item.id}
-                style={{ backgroundImage: `url(${item.poster.url})` }}
-                onClick={() => setSelectedMovie(item)}
-              ></div>
-            ))}
-          </div>
-        </div>
-        <CarouselX wrapper={wrapper} data={movies} />
-        <Footer />
+        <h2 className={styles.emptyPage}>Список пуст</h2>
       </section>
     );
   }
 
-  // if (wantToSeeLength) {
-
-  // } else {
-  // return (
-  //   <section className={styles.mainEmpty}>
-  //     <Header />
-  //     {/* <nav className={styles.header}>
-  //         <Navbar path={ROUTES.home}>Ha главную</Navbar>
-  //         <Navbar path={ROUTES.myCollection} dataLength={myCollectionLength}>
-  //           Моя коллекция
-  //           <Svg path={HeartIcon} styles={styles.svg} viewBox="-30 -15 180 130" />
-  //         </Navbar>
-  //         <Navbar path={ROUTES.myReviews} dataLength={myReviewsLength}>
-  //           Мои рецензии
-  //           <Svg path={ListReviewIcon} styles={styles.svg} viewBox="-200 -10 890 500" />
-  //         </Navbar>
-  //         <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>
-  //       </nav> */}
-  //     <h1> Список пуст</h1>
-  //     <Footer />
-  //   </section>
-  // );
-  // }
-);
+  return (
+    <section className={styles.main}>
+      <Header />
+      <MyButton styles={`${styles.deleteAll}`} handler={() => dispatch(WantToSeeActions.clearAll())}>
+        Очистить список ({wantToSeeLength})
+      </MyButton>
+      <div className={styles.container}>
+        {selectedMovie && <WantToSeeCard firstMovie={selectedMovie} />}
+        <div className={styles.wrapperCollection} ref={ref}>
+          {movies.map((item) => (
+            <div
+              className={styles.card}
+              key={item.id}
+              style={{ backgroundImage: `url(${item.poster.url})` }}
+              onClick={() => setSelectedMovie(item)}
+            ></div>
+          ))}
+        </div>
+      </div>
+      <CarouselX wrapper={wrapper} data={movies} />
+      <Footer />
+    </section>
+  );
+});
 
 export default WantToSee;

@@ -6,6 +6,8 @@ export const removeMovieFromCollection = async ({ movie }, userId, collectionTyp
     },
     body: JSON.stringify(movie),
   });
+  const r = await res.json();
+  console.log(r);
 };
 export const addMovieToCollection = async ({ movie }, userId, collectionType) => {
   const res = await fetch(`http://localhost:5000/api/user/${userId}/movies/${collectionType}/add`, {

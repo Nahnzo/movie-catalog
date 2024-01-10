@@ -19,6 +19,7 @@ const HandleWantToSee = memo(({ movie }) => {
       event.stopPropagation();
       dispatch(WantToSeeActions.removeMovie(item));
       removeMovieFromCollection({ movie }, id, "wantToSee");
+      console.log(movie);
     } else {
       event.stopPropagation();
       dispatch(WantToSeeActions.addMovie(item));
