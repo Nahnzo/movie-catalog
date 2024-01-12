@@ -17,9 +17,7 @@ const GetFilmBySearch = ({ disabled, placeholder }) => {
   const onChangeSearch = (event) => {
     setSearch(event.target.value);
   };
-  useEffect(() => {
-    getMovie();
-  }, []);
+
   return (
     <>
       <Input styles={styles.searchInput} disabled={disabled} placeholder={placeholder} handler={onChangeSearch} />

@@ -1,14 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
-import { HandleMovieInWantToSee } from "pages/WantToSee/index.js";
-import { WantToSeeActions } from "pages/WantToSee/model/slices/WantToSeeSlice";
+import HandleMovieInWantToSee from "../HandleMovieInWantToSee/HandleMovieInWantToSee";
+import { WantToSeeActions } from "../../model/slices/WantToSeeSlice";
 import { memo, useEffect } from "react";
-import { removeMovieFromCollection } from "../../model/services/handleMovie";
-import { getUserId } from "../../model/selectors/getUserDataSelectors/getUserDataSelectors";
-import formatTime from "../../model/services/time/time";
+import { removeMovieFromCollection } from "shared/lib/config/movieService";
+import { getUserId } from "../../model/selectors/getUserDataSelectors";
+import getFormateTime from "widgets/FormateTimeFunction/getFormateTime";
 import MyButton from "shared/ui/MyButton/MyButton";
 import styles from "./wantToSeeCard.module.css";
 
-const WantToSeeCard = memo(({ firstMovie }) => {
+const WantToSeeCard = memo(({ firstMovie, setSelectedMovie }) => {
   const dispatch = useDispatch();
   const id = useSelector(getUserId);
 
@@ -36,7 +36,7 @@ const WantToSeeCard = memo(({ firstMovie }) => {
             {firstMovie.countries.length > 1 ? "Страны: " : "Страна: "}
             {firstMovie.countries.map((item) => item.name) + "."} {firstMovie.year} год
           </p>
-          <p>{firstMovie.movieLength > 0 ? "Длительность: " + formatTime(firstMovie.movieLength) : ""}</p>
+          <p>{firstMovie.movieLength > 0 ? "Длительность: " + getFormateTime(firstMovie.movieLength) : ""}</p>
         </div>
         <div className={styles.rating}>
           <MyButton styles={styles.btnDelete} handler={() => deleteMovie(firstMovie)}>
@@ -44,7 +44,7 @@ const WantToSeeCard = memo(({ firstMovie }) => {
           </MyButton>
           <HandleMovieInWantToSee firstMovie={firstMovie} />
           <hr />
-          Rating: Кинопоиск <strong> {firstMovie.rating.kp} </strong>
+          Rating: Кинопоиск <strong> {Math.floor(firstMovie.rating.kp)}. </strong>
           IMDB <strong>{firstMovie.rating.imdb}</strong>
         </div>
         <div className={styles.description}>{firstMovie.description}</div>

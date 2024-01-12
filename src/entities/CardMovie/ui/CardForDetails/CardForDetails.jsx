@@ -1,4 +1,4 @@
-import formatTime from "../../model/services/time/time";
+import getFormateTime from "widgets/FormateTimeFunction/getFormateTime";
 import CardForActors from "../CardForActors/CardForActors";
 // import SequelsAndPrequels from "components/SequelsAndPrequels/SequelsAndPrequels";
 // import SimilarFilms from "components/SimilarFilms/SimilarFilms";

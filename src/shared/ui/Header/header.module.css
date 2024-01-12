@@ -1,14 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,300;1,6..12,300&display=swap");
+
+.wrapper {
+  width: 100%;
+  position: fixed;
+  z-index: 999;
+  background-color: rgb(12, 10, 10);
+}
+
 .navigation {
   width: 55%;
   margin: 10px auto;
   align-items: center;
   display: flex;
   justify-content: space-evenly;
-  position: relative;
   color: whitesmoke;
-  font-family: "Poppins", sans-serif;
+  font-family: "Nunito Sans", sans-serif;
   transition: all 0.3s ease;
-  font-size: 14px;
+  font-size: 16px;
 }
 .navigation > h3 {
   cursor: pointer;

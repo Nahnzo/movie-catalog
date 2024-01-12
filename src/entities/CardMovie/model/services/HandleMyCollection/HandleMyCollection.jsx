@@ -2,8 +2,8 @@ import { MyCollectionActions } from "pages/MyCollection/model/slices/MyCollectio
 import { useDispatch, useSelector } from "react-redux";
 import { memo } from "react";
 import { getExistingMovieForMyCollection } from "../../selectors/getSortedMovie/getSortedMovie";
-import { addMovieToCollection, removeMovieFromCollection } from "../handleMovie";
-import { getUserId } from "../../selectors/getUserDataSelectors/getUserDataSelectors";
+import { addMovieToCollection, removeMovieFromCollection } from "shared/lib/config/movieService";
+import { getUserId } from "../../selectors/getUserData/getUserData";
 import HeartIcon from "shared/assets/heart-icon.svg";
 import styles from "./handleMyCollection.module.css";
 import Svg from "shared/ui/Svg/Svg";

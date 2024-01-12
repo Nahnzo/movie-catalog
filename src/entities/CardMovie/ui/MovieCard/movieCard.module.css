@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,300;1,6..12,300&display=swap");
+
 .card {
   position: relative;
   width: 200px;
@@ -20,10 +22,10 @@
   white-space: nowrap;
 }
 .textEllipsis {
-  font-family: "Merriweather", serif;
-  font-size: 18px;
+  font-size: 19px;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-weight: 600;
 }
 
 .card:hover {

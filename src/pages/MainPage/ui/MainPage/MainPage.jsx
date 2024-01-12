@@ -32,32 +32,35 @@ const MainPage = memo(() => {
 
   if (isLoading) {
     return (
-      <>
+      <section className={styles.wrapper}>
         <div className={styles.container}>
           {skeletons.map((item) => (
             <Skeleton width={200} height={300} key={item} />
           ))}
         </div>
-      </>
+      </section>
     );
   } else {
     return (
-      <>
+      <section className={styles.wrapper}>
+        {isAuth && <Sidebar />}
         <div className={styles.container}>
-          {isAuth && <Sidebar />}
           {currentMovies?.map((item) => (
             <MovieCard data={item} key={item.id} />
           ))}
         </div>
-        {/* <Pagination
-          moviesPerPage={MOVIES_PER_PAGE}
-          // хардкодим 250 из за ограничения API
-          totalMovies={250}
-          // ----
-          onPageChange={handlePageChange}
-          currentPage={currentPage}
-        /> */}
-      </>
+
+        {currentMovies && (
+          <Pagination
+            moviesPerPage={MOVIES_PER_PAGE}
+            // хардкодим 250 из за ограничения API
+            totalMovies={250}
+            // ----
+            onPageChange={handlePageChange}
+            currentPage={currentPage}
+          />
+        )}
+      </section>
     );
   }
 });

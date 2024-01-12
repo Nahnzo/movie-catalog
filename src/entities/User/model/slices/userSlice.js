@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { checkAuth, userLogin, userLogout, userRegistration } from "../../../../shared/lib/config/authService";
 
 const userSlice = createSlice({
-  name: "userSlcie",
+  name: "userSlice",
   initialState: {
     isAuth: false,
     email: localStorage.getItem("userEmail") || null,

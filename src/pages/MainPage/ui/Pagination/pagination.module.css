@@ -1,6 +1,8 @@
 .btnsWrapper {
   display: flex;
   justify-content: center;
+  position: absolute;
+  bottom: -5%;
 }
 
 .currentPage {

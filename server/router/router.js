@@ -17,5 +17,6 @@ router.get("/refresh", userController.refresh);
 router.get("/user/:userId/movies", userController.getUserMovies);
 router.post("/user/:userId/movies/:collectionType/add", movieController.addToUserCollection);
 router.delete("/user/:userId/movies/:collectionType/delete", movieController.removeMovieFromCollection);
+router.delete("/user/:userId/movies/:collectionType/deleteList", movieController.removeEntireListCollection);
 
 module.exports = router;
