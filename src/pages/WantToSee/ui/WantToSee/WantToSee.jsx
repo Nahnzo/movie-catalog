@@ -19,7 +19,7 @@ import {
 import styles from "./wantToSee.module.css";
 import Header from "shared/ui/Header/Header";
 import { getIsAuthUser, getIsLoadingUser } from "../../../MainPage";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { removeEntireListCollection } from "shared/lib/config/movieService";
 
 const WantToSee = memo(() => {

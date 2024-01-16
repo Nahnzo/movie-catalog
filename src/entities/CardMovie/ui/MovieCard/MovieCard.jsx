@@ -4,10 +4,12 @@ import { ROUTES } from "shared/lib/config/routes";
 import HandleWantToSee from "../../model/services/HandleWantToSee/HandleWantToSee";
 import HandleMyCollection from "../../model/services/HandleMyCollection/HandleMyCollection";
 import styles from "./movieCard.module.css";
+import AuthForm from "../../../../features/AuthForm/ui/AuthForm";
 
-const MovieCard = ({ data }) => {
+const MovieCard = ({ data, handleModal }) => {
   const [showDetails, setShowDetails] = useState(false);
   const navigate = useNavigate();
+  const backgroundImage = data.poster.url || data.poster;
   const navigateToDetail = (movie) => {
     navigate(`${ROUTES.home}${movie.type}/${movie.id}`);
   };
@@ -15,14 +17,14 @@ const MovieCard = ({ data }) => {
     <div>
       <div
         className={styles.card}
-        style={{ backgroundImage: `url(${data.poster.url || data.poster})` }}
+        style={{ backgroundImage: `url(${backgroundImage})` }}
         onMouseEnter={() => setShowDetails(true)}
         onMouseLeave={() => setShowDetails(false)}
         onClick={() => navigateToDetail(data)}
       >
         <div style={{ display: showDetails ? "block" : "none" }}>
-          <HandleWantToSee movie={data} />
-          <HandleMyCollection movie={data} />
+          <HandleWantToSee movie={data} handleModal={handleModal} />
+          <HandleMyCollection movie={data} handleModal={handleModal} />
         </div>
       </div>
       <div className={styles.info}>

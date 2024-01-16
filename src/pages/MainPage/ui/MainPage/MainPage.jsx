@@ -7,10 +7,12 @@ import { getIsLoadingMovie } from "../../model/selectors/getIsLoadingMovie/getIs
 import { initialDataUser } from "shared/lib/config/getInitialDataUserSlice";
 import { getIsAuthUser } from "../../model/selectors/getUserSelectors/getUserSelectors";
 import { useDispatch } from "react-redux";
+import { useModal } from "shared/lib/hooks/useModal";
 import Skeleton from "shared/ui/Skeleton/Skeleton";
 import Pagination from "../Pagination/Pagination";
 import Sidebar from "shared/ui/Sidebar/Sidebar";
 import styles from "./MainPage.module.css";
+import AuthForm from "../../../../features/AuthForm/ui/AuthForm";
 
 const skeletons = Array(24)
   .fill()
@@ -22,6 +24,7 @@ const MainPage = memo(() => {
   const isAuth = useSelector(getIsAuthUser);
   const dispatch = useDispatch();
   const id = useSelector((state) => state.user.id);
+  const { isOpened, handleModal } = useModal();
   useEffect(() => {
     const localDataWantToSee = localStorage.getItem("WANT_TO_SEE");
     const localDataMyCollection = localStorage.getItem("MY_COLLECTION");
@@ -42,11 +45,12 @@ const MainPage = memo(() => {
     );
   } else {
     return (
-      <section className={styles.wrapper}>
+      <section className={styles.wrapper} onClick={isOpened ? handleModal : null}>
+        <AuthForm isOpened={isOpened} handleModal={handleModal} />
         {isAuth && <Sidebar />}
         <div className={styles.container}>
           {currentMovies?.map((item) => (
-            <MovieCard data={item} key={item.id} />
+            <MovieCard data={item} key={item.id} handleModal={handleModal} />
           ))}
         </div>
 

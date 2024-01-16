@@ -1,37 +1,50 @@
-import React, { memo } from "react";
+import React, { memo, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getErrorUser, getIsAuthUser, getIsLoadingUser } from "../../model/selectors/getUserSelector";
-import AuthForm from "../AuthForm/AuthForm";
+import { useModal } from "shared/lib/hooks/useModal";
+import { userActions } from "../../model/slices/userSlice";
+import { AuthForm } from "features/AuthForm/";
+import { checkAuth } from "shared/lib/config/authService";
+import MyButton from "shared/ui/MyButton/MyButton";
 import UserAvatar from "shared/assets/user-avatar-icon.svg";
 import Svg from "shared/ui/Svg/Svg";
 import styles from "./user.module.css";
-// import { addToUserCollection } from "../../model/services/authService";
-// import { userAdd } from "../../model/services/authService";
+import { userLogout } from "../../../../shared/lib/config/authService";
 
 const User = memo(() => {
-  const isLoading = useSelector(getIsLoadingUser);
-  const isAuth = useSelector(getIsAuthUser);
-  const error = useSelector(getErrorUser);
-  const state = useSelector((state) => state.user);
-  console.log(state);
+  // const isLoading = useSelector(getIsLoadingUser);
+  // const isAuth = useSelector(getIsAuthUser);
+  // const error = useSelector(getErrorUser);
+  const { isOpened, handleModal } = useModal();
+
   const dispatch = useDispatch();
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     await addToUserCollection("659aa78c5fe4e112f51a21f1", "77777", "myReviews");
-  //     alert("Фильм успешно добавлен в вашу коллекцию");
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
+  const onLogout = () => {
+    dispatch(userLogout());
+  };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await dispatch(checkAuth());
+        const token = localStorage.getItem("token");
+        if (!token) {
+          dispatch(userActions.handleIsAuthUser(false));
+        } else {
+          dispatch(userActions.handleIsAuthUser(true));
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, [dispatch]);
+  const state = useSelector((state) => state.user);
   return (
     <>
       {state?.email ? state?.email : ""}
       <div className={styles.userContent}>
-        <AuthForm />
-        {/* <button onClick={handleSubmit}>sdasdasdasd</button> */}
+        <MyButton styles={styles.btnAuth} handler={state.isAuth ? onLogout : handleModal}>
+          {state.isAuth ? "Выйти" : "Войти"}
+        </MyButton>
+        <AuthForm isOpened={isOpened} handleModal={handleModal} />
         <div className={styles.userAvatar}>
           <Svg path={UserAvatar} styles={styles.svg} viewBox="7 7 58 58" />
         </div>

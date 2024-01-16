@@ -61,7 +61,7 @@ export const MyCollectionSlice = createSlice({
       state.myCollection = [];
     });
     builder.addCase(initialDataUser.fulfilled, (state, action) => {
-      const payload = action.payload.myCollection;
+      const payload = action?.payload?.myCollection;
       if (!state.myCollection.length && payload) {
         state.myCollection = payload;
         localStorage.setItem("MY_COLLECTION", JSON.stringify(payload));

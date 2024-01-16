@@ -8,13 +8,17 @@ import HeartIcon from "shared/assets/heart-icon.svg";
 import styles from "./handleMyCollection.module.css";
 import Svg from "shared/ui/Svg/Svg";
 
-const HandleWantToSee = memo(({ movie }) => {
+const HandleWantToSee = memo(({ movie, handleModal }) => {
   const dispatch = useDispatch();
   const isExist = useSelector((state) => getExistingMovieForMyCollection(state)(movie));
   const id = useSelector(getUserId);
+  const isAuth = useSelector((state) => state.user.isAuth);
 
   const handleClick = (event, item) => {
-    if (isExist) {
+    if (!isAuth) {
+      event.stopPropagation();
+      handleModal();
+    } else if (isExist) {
       event.stopPropagation();
       dispatch(MyCollectionActions.removeMovieFromCollection(item));
       removeMovieFromCollection({ movie }, id, "myCollection");
