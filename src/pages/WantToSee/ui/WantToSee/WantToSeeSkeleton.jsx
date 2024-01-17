@@ -24,10 +24,18 @@ const WantToSeeSkeleton = () => {
             <Skeleton width="80%" height="20%" margin="0 0 0 0" border="0 10px 10px 0" />
             <Skeleton width="80%" height="45%" margin="20px 0 0 0" border="0 10px 10px 0" />
             <div className={styles.btnsWrapper}>
-              <Skeleton width="30%" height={40} margin="0 0 0 0" border="10px" />
-              <Skeleton width="30%" height={40} margin="0 0 0 0" border="10px" />
+              <Skeleton width="49%" height={40} margin="0 0 0 0" border="10px" />
+              <Skeleton width="32%" height={40} margin="0 0 0 0" border="10px" />
             </div>
+            <Skeleton width="45%" height={30} margin="0 0 0 0" border="0 10px 10px 0" />
           </div>
+        </div>
+        <div className={styles.collectionWrapper}>
+          <Skeleton height="100%" width={162} margin="0 5px 0 0 " />
+          <Skeleton height="100%" width={162} margin="0 5px 0 0 " />
+          <Skeleton height="100%" width={162} margin="0 5px 0 0 " />
+          <Skeleton height="100%" width={162} margin="0 5px 0 0 " />
+          <Skeleton height="100%" width={162} margin="0 5px 0 0 " />
         </div>
       </div>
     </section>

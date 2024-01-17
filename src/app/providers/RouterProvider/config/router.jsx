@@ -29,8 +29,7 @@ export const router = createBrowserRouter([
     path: ROUTES.wantToSee,
     element: (
       <Suspense fallback={<WantToSeeSkeleton />}>
-        <WantToSeeSkeleton />
-        {/* <WantToSee /> */}
+        <WantToSee />
       </Suspense>
     ),
   },

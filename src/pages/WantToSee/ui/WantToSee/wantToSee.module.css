@@ -116,23 +116,22 @@
   }
 }
 .containerSkeleton {
-  margin: 40px auto;
+  margin: 45px auto;
   width: 90%;
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
-  background-color: red;
 }
 .wrapperCard {
   width: 90%;
   height: 70%;
   display: flex;
   justify-content: flex-start;
-  background-color: black;
 }
 
 .skeletonCard {
-  width: 400px;
+  width: 440px;
   height: 100%;
   & > div {
     margin: 10px;
@@ -148,11 +147,17 @@
 }
 
 .btnsWrapper {
-  margin-top: 20px;
+  margin-top: 50px;
   align-items: center;
   display: flex;
   width: 80%;
   border-radius: 0 10px 10px 0;
   justify-content: space-between;
   height: 20%;
+}
+
+.collectionWrapper {
+  display: flex;
+  width: 100%;
+  height: 24%;
 }
