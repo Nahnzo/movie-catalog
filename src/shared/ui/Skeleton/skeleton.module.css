@@ -4,7 +4,6 @@
   position: relative;
   box-shadow: 0 8px 15px 0 gray;
   overflow: hidden;
-  margin: 25px;
 }
 .Skeleton::before {
   content: "";

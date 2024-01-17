@@ -4,7 +4,6 @@ import { ROUTES } from "shared/lib/config/routes";
 import HandleWantToSee from "../../model/services/HandleWantToSee/HandleWantToSee";
 import HandleMyCollection from "../../model/services/HandleMyCollection/HandleMyCollection";
 import styles from "./movieCard.module.css";
-import AuthForm from "../../../../features/AuthForm/ui/AuthForm";
 
 const MovieCard = ({ data, handleModal }) => {
   const [showDetails, setShowDetails] = useState(false);

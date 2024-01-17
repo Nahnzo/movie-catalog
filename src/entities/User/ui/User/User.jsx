@@ -1,14 +1,14 @@
-import React, { memo, useEffect } from "react";
+import React, { memo, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "shared/lib/hooks/useModal";
 import { userActions } from "../../model/slices/userSlice";
 import { AuthForm } from "features/AuthForm/";
 import { checkAuth } from "shared/lib/config/authService";
+import { userLogout } from "shared/lib/config/authService";
 import MyButton from "shared/ui/MyButton/MyButton";
 import UserAvatar from "shared/assets/user-avatar-icon.svg";
 import Svg from "shared/ui/Svg/Svg";
 import styles from "./user.module.css";
-import { userLogout } from "../../../../shared/lib/config/authService";
 
 const User = memo(() => {
   // const isLoading = useSelector(getIsLoadingUser);
@@ -17,6 +17,9 @@ const User = memo(() => {
   const { isOpened, handleModal } = useModal();
 
   const dispatch = useDispatch();
+  const onHandleModal = useCallback(() => {
+    handleModal();
+  }, [handleModal]);
   const onLogout = () => {
     dispatch(userLogout());
   };
@@ -44,7 +47,7 @@ const User = memo(() => {
         <MyButton styles={styles.btnAuth} handler={state.isAuth ? onLogout : handleModal}>
           {state.isAuth ? "Выйти" : "Войти"}
         </MyButton>
-        <AuthForm isOpened={isOpened} handleModal={handleModal} />
+        <AuthForm isOpened={isOpened} handleModal={onHandleModal} />
         <div className={styles.userAvatar}>
           <Svg path={UserAvatar} styles={styles.svg} viewBox="7 7 58 58" />
         </div>

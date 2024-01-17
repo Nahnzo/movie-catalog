@@ -83,8 +83,7 @@ const WantToSee = memo(() => {
           </div>
         </div>
       </div>
-
-      <CarouselX wrapper={wrapper} data={movies} />
+      {/* <CarouselX wrapper={wrapper} data={movies} /> */}
       <Footer />
     </section>
   );

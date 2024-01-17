@@ -1,4 +1,4 @@
-import { memo, useEffect } from "react";
+import { memo, useCallback, useEffect } from "react";
 import { MovieCard } from "entities/CardMovie/index";
 import { usePagination } from "shared/lib/hooks/usePagination";
 import { MOVIES_PER_PAGE } from "shared/lib/const/const";
@@ -12,7 +12,7 @@ import Skeleton from "shared/ui/Skeleton/Skeleton";
 import Pagination from "../Pagination/Pagination";
 import Sidebar from "shared/ui/Sidebar/Sidebar";
 import styles from "./MainPage.module.css";
-import AuthForm from "../../../../features/AuthForm/ui/AuthForm";
+import AuthForm from "features/AuthForm/ui/AuthForm";
 
 const skeletons = Array(24)
   .fill()
@@ -25,6 +25,9 @@ const MainPage = memo(() => {
   const dispatch = useDispatch();
   const id = useSelector((state) => state.user.id);
   const { isOpened, handleModal } = useModal();
+  const onHandleModal = useCallback(() => {
+    handleModal();
+  }, [handleModal]);
   useEffect(() => {
     const localDataWantToSee = localStorage.getItem("WANT_TO_SEE");
     const localDataMyCollection = localStorage.getItem("MY_COLLECTION");
@@ -38,15 +41,15 @@ const MainPage = memo(() => {
       <section className={styles.wrapper}>
         <div className={styles.container}>
           {skeletons.map((item) => (
-            <Skeleton width={200} height={300} key={item} />
+            <Skeleton width={200} height={300} key={item} margin={25} />
           ))}
         </div>
       </section>
     );
   } else {
     return (
-      <section className={styles.wrapper} onClick={isOpened ? handleModal : null}>
-        <AuthForm isOpened={isOpened} handleModal={handleModal} />
+      <section className={styles.wrapper}>
+        <AuthForm isOpened={isOpened} handleModal={onHandleModal} />
         {isAuth && <Sidebar />}
         <div className={styles.container}>
           {currentMovies?.map((item) => (

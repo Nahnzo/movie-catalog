@@ -7,6 +7,8 @@ import { DetailsMoviePage } from "pages/DetailsMoviePage";
 import { DetailsPersonPage } from "pages/DetailsPersonPage";
 import { createBrowserRouter } from "react-router-dom";
 import { ROUTES } from "shared/lib/config/routes";
+import { Suspense } from "react";
+import WantToSeeSkeleton from "pages/WantToSee/ui/WantToSee/WantToSeeSkeleton";
 
 export const router = createBrowserRouter([
   {
@@ -22,10 +24,17 @@ export const router = createBrowserRouter([
     path: ROUTES.whatToSee,
     element: <WhatToSee />,
   },
+
   {
     path: ROUTES.wantToSee,
-    element: <WantToSee />,
+    element: (
+      <Suspense fallback={<WantToSeeSkeleton />}>
+        <WantToSeeSkeleton />
+        {/* <WantToSee /> */}
+      </Suspense>
+    ),
   },
+
   {
     path: ROUTES.myReviews,
     element: <MyReviews />,

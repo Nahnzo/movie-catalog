@@ -1,2 +1,2 @@
-import WantToSee from "./ui/WantToSee/WantToSee";
+import { WantToSeeLazy as WantToSee } from "./ui/WantToSee/WantToSee.async";
 export { WantToSee };
