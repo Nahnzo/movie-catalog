@@ -1,15 +1,15 @@
 import { ROUTES } from "shared/lib/config/routes";
 import { useNavigate } from "react-router-dom";
 import { memo, useCallback, useState } from "react";
-import { getSortedMovie } from "../../model/selectors/getSortedMovie/getSortedMovie";
+import { getSortedMovie } from "../../../../entities/CardMovie/model/selectors/getSortedMovie/getSortedMovie";
 import { useSelector, useDispatch } from "react-redux";
 import { ReviewActions } from "pages/MyReviews/model/slices/ReviewSlice";
-import { MyCollectionActions } from "pages/MyCollection/model/slices/MyCollectionSlice";
+import { MyCollectionActions } from "../../model/slices/MyCollectionSlice";
 import MyButton from "shared/ui/MyButton/MyButton";
-import HandleRating from "../../model/services/HandleRating/HandleRating";
-import styles from "./cardForCollection.module.css";
+import HandleRating from "../../../../entities/CardMovie/model/services/HandleRating/HandleRating";
+import styles from "./myCollectionCard.module.css";
 
-const CardForCollection = memo(({ movie }) => {
+const MyCollectionCard = memo(({ movie, ref }) => {
   const [showRateWindow, setShowRateWindow] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -20,8 +20,17 @@ const CardForCollection = memo(({ movie }) => {
   }, [dispatch, movie, navigate]);
 
   return (
-    <div className={styles.cardWrapper}>
+    <div className={styles.wrapperCard} ref={ref}>
       <div className={styles.poster} style={{ backgroundImage: `url(${movie.poster.url})` }}></div>
+      <div className={styles.trailer}>TRAILER</div>
+    </div>
+  );
+});
+
+export default MyCollectionCard;
+
+{
+  /* <div className={styles.poster} style={{ backgroundImage: `url(${movie.poster.url})` }}></div>
       <div className={styles.info}>
         <div className={styles.rating}>
           <h3>{movie.name}</h3>
@@ -64,9 +73,5 @@ const CardForCollection = memo(({ movie }) => {
             <HandleRating movieId={movie.id} setShowRateWindow={setShowRateWindow} />
           </div>
         </div>
-      </div>
-    </div>
-  );
-});
-
-export default CardForCollection;
+      </div> */
+}

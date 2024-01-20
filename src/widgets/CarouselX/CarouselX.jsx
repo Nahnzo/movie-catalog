@@ -6,11 +6,9 @@ const CarouselX = memo(({ wrapper, data }) => {
   let count = 0;
 
   function goForwardCarousel() {
-    let lengthMovie = data.length / 10;
     count++;
-
     currentPosition -= 100;
-    if (count >= lengthMovie) {
+    if (count >= data) {
       currentPosition = 0;
       count = 0;
     }
@@ -18,10 +16,10 @@ const CarouselX = memo(({ wrapper, data }) => {
   }
 
   function goBackCarousel() {
-    let lengthMovie = Math.floor(data.length / 10);
     if (count === 0) {
-      currentPosition -= lengthMovie * 100;
-      count = lengthMovie;
+      currentPosition -= data * 100 - 100;
+      count = data - 1;
+      console.log(count, data);
     } else {
       count--;
       currentPosition += 100;

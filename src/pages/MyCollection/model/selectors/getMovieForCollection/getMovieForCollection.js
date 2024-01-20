@@ -1,1 +1,1 @@
-export const getMovieForCollection = (state) => state?.myCollection?.myCollection;
+export const getMovieForCollection = (state) => state?.myCollection?.myCollection ?? 0;

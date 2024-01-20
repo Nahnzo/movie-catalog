@@ -1,4 +1,3 @@
-import CardForCollection from "./ui/CardForCollection/CardForCollection";
 import CardForMyReviews from "./ui/CardForMyReviews/CardForMyReviews";
 import CardForDetails from "./ui/CardForDetails/CardForDetails";
 import CardForLeaveReview from "./ui/CardForLeaveReview/CardForLeaveReview";
@@ -9,14 +8,6 @@ import { getSortedMovie } from "./model/selectors/getSortedMovie/getSortedMovie"
 import { getExistingMovieForMyCollection } from "./model/selectors/getSortedMovie/getSortedMovie";
 import { getExistingMovieForWanToSee } from "./model/selectors/getSortedMovie/getSortedMovie";
 
-export {
-  CardForCollection,
-  CardForMyReviews,
-  CardForDetails,
-  CardForSimilarMovie,
-  CardForActors,
-  CardForLeaveReview,
-  MovieCard,
-};
+export { CardForMyReviews, CardForDetails, CardForSimilarMovie, CardForActors, CardForLeaveReview, MovieCard };
 
 export { getExistingMovieForMyCollection, getSortedMovie, getExistingMovieForWanToSee };

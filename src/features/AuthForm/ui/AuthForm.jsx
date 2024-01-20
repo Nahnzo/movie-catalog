@@ -10,7 +10,6 @@ import { useModal } from "shared/lib/hooks/useModal";
 import styles from "./authForm.module.css";
 
 const AuthForm = memo(({ isOpened, handleModal }) => {
-  console.log(isOpened);
   // useEffect(() => {
   //   const fetchData = async () => {
   //     try {
