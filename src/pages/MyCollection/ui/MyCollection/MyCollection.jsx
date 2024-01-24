@@ -49,15 +49,16 @@ const MyCollection = () => {
       <Header />
       <div className={styles.mainWrapper}>
         <Sidebar />
-        <div className={styles.container}>
-          <div className={styles.wrapperCollections} ref={ref}>
-            {movies.map((item) => (
-              <div key={item.id} className={styles.card}>
-                {item.name}
-              </div>
-            ))}
-          </div>
+        {/* <div className={styles.container}> */}
+        <div className={styles.wrapperCollections} ref={ref}>
+          {movies.map((item) => (
+            <MyCollectionCard movie={item} key={item.id} />
+            // <div key={item.id} className={styles.card}>
+            //   {item.name}
+            // </div>
+          ))}
         </div>
+        {/* </div> */}
         <CarouselX wrapper={wrapper} data={movies.length} />
       </div>
       <Footer />

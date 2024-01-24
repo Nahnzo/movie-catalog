@@ -1,0 +1,32 @@
+.wrapper {
+  transition: transform 0.8s ease-in;
+  display: flex;
+  position: relative;
+  margin-top: 10px;
+}
+
+.buttons {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  pointer-events: all;
+  height: 10px;
+  bottom: 200px;
+}
+
+.handleBtn {
+  width: 30px;
+  height: 70px;
+  background-color: wheat;
+  opacity: 0.8;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  margin: 40px;
+  font-size: 20px;
+  &:hover {
+    background-color: wheat;
+    opacity: 1;
+  }
+}

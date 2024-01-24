@@ -9,7 +9,7 @@ import MyButton from "shared/ui/MyButton/MyButton";
 import HandleRating from "../../../../entities/CardMovie/model/services/HandleRating/HandleRating";
 import styles from "./myCollectionCard.module.css";
 
-const MyCollectionCard = memo(({ movie, ref }) => {
+const MyCollectionCard = memo(({ movie }) => {
   const [showRateWindow, setShowRateWindow] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ const MyCollectionCard = memo(({ movie, ref }) => {
   }, [dispatch, movie, navigate]);
 
   return (
-    <div className={styles.wrapperCard} ref={ref}>
+    <div className={styles.wrapperCard}>
       <div className={styles.poster} style={{ backgroundImage: `url(${movie.poster.url})` }}></div>
       <div className={styles.trailer}>TRAILER</div>
     </div>

@@ -21,6 +21,7 @@ import Header from "shared/ui/Header/Header";
 import { getIsAuthUser, getIsLoadingUser } from "../../../MainPage";
 import { useNavigate, useParams } from "react-router-dom";
 import { removeEntireListCollection } from "shared/lib/config/movieService";
+import Slider from "../../../../widgets/Slider/Slider";
 
 const WantToSee = memo(() => {
   useLocalStorageData([LOCAL_STORAGE_WANT_TO_SEE, LOCAL_STORAGE_MY_REVIEWS, LOCAL_STORAGE_MY_COLLECTION]);
@@ -71,7 +72,7 @@ const WantToSee = memo(() => {
         <Sidebar />
         <div className={styles.container}>
           {selectedMovie && <WantToSeeCard firstMovie={selectedMovie} />}
-          <div className={styles.wrapperCollection} ref={ref}>
+          {/* <div className={styles.wrapperCollection} ref={ref}>
             {movies.map((item) => (
               <div
                 className={styles.card}
@@ -80,10 +81,20 @@ const WantToSee = memo(() => {
                 onClick={() => setSelectedMovie(item)}
               ></div>
             ))}
-          </div>
+          </div> */}
+          <Slider width="100%" height="25%" sizeCard={160}>
+            {movies.map((item) => (
+              <div
+                className={styles.card}
+                key={item.id}
+                style={{ backgroundImage: `url(${item.poster.url})` }}
+                onClick={() => setSelectedMovie(item)}
+              ></div>
+            ))}
+          </Slider>
         </div>
       </div>
-      <CarouselX wrapper={wrapper} data={movies} />
+      {/* <CarouselX wrapper={wrapper} data={movies} /> */}
       <Footer />
     </section>
   );
