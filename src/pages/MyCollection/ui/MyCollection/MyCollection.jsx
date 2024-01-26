@@ -12,13 +12,13 @@ import Svg from "shared/ui/Svg/Svg";
 import FilmIcon from "shared/assets/film-icon.svg";
 import ListReviewIcon from "shared/assets/list-review-icon.svg";
 import styles from "./myCollection.module.css";
+import Slider from "widgets/Slider/Slider";
 import {
   LOCAL_STORAGE_MY_COLLECTION,
   LOCAL_STORAGE_MY_REVIEWS,
   LOCAL_STORAGE_WANT_TO_SEE,
 } from "shared/lib/const/const";
 import Header from "shared/ui/Header/Header";
-import CarouselX from "widgets/CarouselX/CarouselX";
 import { getIsAuthUser } from "../../../MainPage";
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
@@ -29,8 +29,6 @@ const MyCollection = () => {
   const movies = useSelector(getMovieForCollection);
   const isAuth = useSelector(getIsAuthUser);
   const navigate = useNavigate();
-  const ref = useRef(null);
-  const wrapper = ref.current;
 
   const { wantToSeeLength, myCollectionLength, myReviewsLength } = useDataLength();
   useLocalStorageData([LOCAL_STORAGE_MY_COLLECTION, LOCAL_STORAGE_MY_REVIEWS, LOCAL_STORAGE_WANT_TO_SEE]);
@@ -40,26 +38,17 @@ const MyCollection = () => {
       navigate(ROUTES.home);
     }
   }, [navigate]);
-  if (!ref) {
-    return null;
-  }
 
   return (
     <section className={styles.main}>
       <Header />
       <div className={styles.mainWrapper}>
         <Sidebar />
-        {/* <div className={styles.container}> */}
-        <div className={styles.wrapperCollections} ref={ref}>
+        <Slider width="80%" height="80%" sizeCard={1500} itemsPerPage={1}>
           {movies.map((item) => (
             <MyCollectionCard movie={item} key={item.id} />
-            // <div key={item.id} className={styles.card}>
-            //   {item.name}
-            // </div>
           ))}
-        </div>
-        {/* </div> */}
-        <CarouselX wrapper={wrapper} data={movies.length} />
+        </Slider>
       </div>
       <Footer />
     </section>

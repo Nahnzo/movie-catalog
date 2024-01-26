@@ -52,8 +52,7 @@
 .card {
   min-width: 160px;
   height: 100%;
-  margin: 0 5px;
-  background: center / 100% no-repeat;
+  background: center / 90% no-repeat;
   cursor: pointer;
 }
 

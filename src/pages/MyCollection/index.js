@@ -1,4 +1,4 @@
 import { getMovieForCollection } from "./model/selectors/getMovieForCollection/getMovieForCollection";
-import MyCollection from "./ui/MyCollection/MyCollection";
-export default getMovieForCollection;
+import { MyCollectionLazy as MyCollection } from "./ui/MyCollection/MyCollection.async";
 export { MyCollection };
+export default getMovieForCollection;

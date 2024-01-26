@@ -8,6 +8,7 @@ import { MyCollectionActions } from "../../model/slices/MyCollectionSlice";
 import MyButton from "shared/ui/MyButton/MyButton";
 import HandleRating from "../../../../entities/CardMovie/model/services/HandleRating/HandleRating";
 import styles from "./myCollectionCard.module.css";
+import { TrailerPlayer } from "features/TrailerPlayer";
 
 const MyCollectionCard = memo(({ movie }) => {
   const [showRateWindow, setShowRateWindow] = useState(false);
@@ -22,7 +23,25 @@ const MyCollectionCard = memo(({ movie }) => {
   return (
     <div className={styles.wrapperCard}>
       <div className={styles.poster} style={{ backgroundImage: `url(${movie.poster.url})` }}></div>
-      <div className={styles.trailer}>TRAILER</div>
+      <TrailerPlayer id={movie.id} />
+      <div className={styles.info}>
+        <div className={styles.rating}>
+          Ваша оценка
+          {movie.userRating ? (
+            movie.userRating
+          ) : (
+            <p>
+              Вы еще не оценили
+              <MyButton styles={styles.rateBtn} handler={() => setShowRateWindow(true)}>
+                Оценить
+              </MyButton>
+            </p>
+          )}
+          <div style={{ display: showRateWindow ? "block" : "none" }} className={styles.rate}>
+            <HandleRating movieId={movie.id} setShowRateWindow={setShowRateWindow} />
+          </div>
+        </div>
+      </div>
     </div>
   );
 });

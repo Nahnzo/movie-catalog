@@ -18,7 +18,7 @@ export const MyCollectionSlice = createSlice({
     addMovieToCollection(state, action) {
       const isExist = state.myCollection.find((item) => item.id === action.payload.id);
       if (!isExist) {
-        state.myCollection.push(action.payload);
+        state.myCollection.push({ ...action.payload, userRating: 0 });
         state.length++;
         localStorage.setItem(LOCAL_STORAGE_MY_COLLECTION, JSON.stringify(state.myCollection));
       }

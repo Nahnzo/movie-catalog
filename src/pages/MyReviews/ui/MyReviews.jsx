@@ -12,7 +12,7 @@ import useLocalStorageData from "shared/lib/hooks/useLocalStorage";
 import MyButton from "shared/ui/MyButton/MyButton";
 // import LeaveReview from "components/LeaveReview/LeaveReview";
 import Navbar from "shared/ui/Navbar/Navbar";
-import CarouselX from "widgets/CarouselX/CarouselX";
+// import CarouselX from "widgets/CarouselX/CarouselX";
 import FilmIcon from "shared/assets/film-icon.svg";
 import HeartIcon from "shared/assets/heart-icon.svg";
 import Svg from "shared/ui/Svg/Svg";
@@ -78,7 +78,7 @@ const MyReviews = () => {
                 }}
               ></div>
             ))}
-            <CarouselX wrapper={wrapper} data={movieWithReviews} />
+            {/* <CarouselX wrapper={wrapper} data={movieWithReviews} /> */}
           </div>
         )}
       </div>

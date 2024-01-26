@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Ysabeau+Infant:wght@500&display=swap");
+.iframe {
+  margin-top: 40px;
+  width: 100%;
+  height: 87%;
+  border: none;
+  display: block;
+}
+
+.wrapperTrailer {
+  width: 100%;
+}
+.btnHandle {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 23%;
+  height: 40px;
+  border: 1px solid white;
+  background-color: transparent;
+  color: white;
+  font-family: "Ysabeau Infant", sans-serif;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 5px;
+  &:hover {
+    opacity: 0.5;
+  }
+}

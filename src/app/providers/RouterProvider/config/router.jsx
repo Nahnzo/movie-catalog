@@ -17,7 +17,11 @@ export const router = createBrowserRouter([
   },
   {
     path: ROUTES.myCollection,
-    element: <MyCollection />,
+    element: (
+      <Suspense fallback={"Loading"}>
+        <MyCollection />
+      </Suspense>
+    ),
   },
   ,
   {
