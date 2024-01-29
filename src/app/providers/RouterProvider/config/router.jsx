@@ -9,6 +9,7 @@ import { createBrowserRouter } from "react-router-dom";
 import { ROUTES } from "shared/lib/config/routes";
 import { Suspense } from "react";
 import WantToSeeSkeleton from "pages/WantToSee/ui/WantToSee/WantToSeeSkeleton";
+import MyCollectionSkeleton from "pages/MyCollection/ui/MyCollection/MyCollectionSkeleton";
 
 export const router = createBrowserRouter([
   {
@@ -18,7 +19,7 @@ export const router = createBrowserRouter([
   {
     path: ROUTES.myCollection,
     element: (
-      <Suspense fallback={"Loading"}>
+      <Suspense fallback={<MyCollectionSkeleton />}>
         <MyCollection />
       </Suspense>
     ),

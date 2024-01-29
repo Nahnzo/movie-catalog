@@ -52,8 +52,9 @@
 .card {
   min-width: 160px;
   height: 100%;
-  background: center / 90% no-repeat;
+  background: center / 100% no-repeat;
   cursor: pointer;
+  margin-right: 5px;
 }
 
 .card:hover {

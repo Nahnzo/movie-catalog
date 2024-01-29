@@ -70,7 +70,7 @@ const WantToSee = memo(() => {
         <Sidebar />
         <div className={styles.container}>
           {selectedMovie && <WantToSeeCard firstMovie={selectedMovie} />}
-          <Slider width="100%" height="25%" sizeCard={160}>
+          <Slider width="100%" height="25%" sizeCard={160} snowButtons>
             {movies.map((item) => (
               <div
                 className={styles.card}

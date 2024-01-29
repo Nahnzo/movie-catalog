@@ -17,3 +17,84 @@
   margin: 60px auto;
   padding: 5px;
 }
+
+.deleteEntireList {
+  position: absolute;
+  width: 200px;
+  height: 30px;
+  text-align: center;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+  border: 1px solid white;
+  border-radius: 10px;
+  font-family: "Ysabeau Infant", sans-serif;
+  font-size: 15px;
+  cursor: pointer;
+  top: 2.5%;
+  right: 5%;
+  z-index: 1000;
+  &:hover {
+    opacity: 0.5;
+  }
+}
+.emptyWrapper {
+  color: white;
+  overflow: none;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+}
+.emptyPage {
+  font-size: 28px;
+  margin-top: 250px;
+}
+
+/* Skeleton */
+
+.skeletonsHeader {
+  width: 100%;
+  height: 20px;
+}
+
+.skeletonsNav {
+  width: 55%;
+  margin: 5px auto 0;
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  & > div {
+    margin: 10px;
+  }
+}
+
+.mainContainer {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  /* flex-direction: column; */
+  flex-wrap: wrap;
+  margin-top: 60px;
+  height: 90vh;
+}
+
+.posterSkeleton {
+  width: 30%;
+  height: 70%;
+}
+.btnSkeleton {
+  margin-top: 5px;
+  width: 100%;
+  height: 10%;
+}
+
+.infoSkeleton {
+  margin-top: auto;
+  width: 100%;
+  height: 22%;
+}

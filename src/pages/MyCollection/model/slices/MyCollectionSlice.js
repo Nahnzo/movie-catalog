@@ -44,7 +44,7 @@ export const MyCollectionSlice = createSlice({
       const { movieId, rating } = action.payload;
       const movieIndex = state.myCollection.findIndex((item) => item.id === movieId);
       if (movieIndex !== -1) {
-        state.myCollection[movieIndex].myRating = rating;
+        state.myCollection[movieIndex].userRating = rating;
         localStorage.setItem(LOCAL_STORAGE_MY_COLLECTION, JSON.stringify(state.myCollection));
       }
     },

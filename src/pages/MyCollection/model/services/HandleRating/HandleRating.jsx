@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MyCollectionActions } from "pages/MyCollection/model/slices/MyCollectionSlice";
+import { MyCollectionActions } from "../../slices/MyCollectionSlice";
 import { useDispatch } from "react-redux";
 import styles from "./handleRating.module.css";
 import MyButton from "shared/ui/MyButton/MyButton";
@@ -15,7 +15,7 @@ const ratingsData = [
 const HandleRating = ({ movieId, setShowRateWindow }) => {
   const dispatch = useDispatch();
   const [rating, setRating] = useState(null);
-  const handleR = (item) => {
+  const addRating = (item) => {
     dispatch(MyCollectionActions.addRating({ movieId: movieId, rating: item.value }));
     setShowRateWindow(false);
   };
@@ -37,7 +37,7 @@ const HandleRating = ({ movieId, setShowRateWindow }) => {
             className={styles.smiles}
             onMouseEnter={() => handleMouseEnter(item.value)}
             onMouseLeave={handleMouseLeave}
-            onClick={() => handleR(item, item)}
+            onClick={() => addRating(item, item)}
           >
             {rating && rating >= item.value ? item.emoji : "😐"}
           </span>

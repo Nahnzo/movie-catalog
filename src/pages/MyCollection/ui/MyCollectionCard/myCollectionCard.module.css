@@ -4,44 +4,41 @@
   position: relative;
   flex: 0 0 auto;
   display: flex;
-  justify-content: center;
-  width: 1500px;
-  background-color: blue;
+  width: 1800px;
+}
+.content {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
 }
 .poster {
-  width: 30%;
-  height: 100%;
+  width: 100%;
+  height: 90%;
   background: center / 100% no-repeat;
 }
 .rating {
+  display: flex;
+  position: relative;
+  height: 150px;
   color: white;
-  font-size: 26px;
+  font-size: 23px;
   font-family: "Ysabeau Infant", sans-serif;
 }
-
-/* .rating > h3 {
-  position: sticky;
-  padding-bottom: 5px;
-} */
 
 .info {
   position: absolute;
   bottom: -245px;
   height: 40%;
   width: 100%;
-  background-color: red;
 }
-/* 
-.rating {
-  text-align: left;
+.userRate {
+  margin-left: 5px;
 }
-.rating > .isRated {
-  position: absolute;
-  bottom: 5px;
-} */
+
 .rateBtn {
-  width: 130px;
-  height: 25px;
+  width: 230px;
+  height: 35px;
   cursor: pointer;
   background-color: transparent;
   margin-left: 15px;
@@ -83,18 +80,6 @@
   font-size: 17px;
 }
 
-.myRate {
-  display: inline-flex;
-  font-size: 13px;
-}
-.myRate > p {
-  font-size: 17px;
-  margin: 0 0 0 5px;
-}
-.myRate > h3 {
-  font-size: 15px;
-}
-
 .rateBtn:hover,
 .reviewBtnAfter:hover {
   opacity: 0.5;
@@ -103,10 +88,11 @@
 .rate {
   position: absolute;
   width: 60%;
+  background-color: black;
   top: 0;
-  height: 240px;
-  background: black;
+  height: 160px;
   display: flex;
+  left: -1px;
   justify-content: center;
   border-radius: 0px 25px 25px 0px;
 }
@@ -146,8 +132,8 @@
 }
 
 .btnChangeRate {
-  width: 200px;
-  height: 25px;
+  width: 140px;
+  height: 35px;
   text-align: center;
   background-color: transparent;
   outline: none;
@@ -156,12 +142,12 @@
   color: white;
   border: 1px solid white;
   margin: 20px 0 20px 169px;
-  border-radius: 10px;
+  border-radius: 5px;
   font-family: "Ysabeau Infant", sans-serif;
   font-size: 16px;
   position: absolute;
-  bottom: -22px;
-  left: -20px;
+  bottom: 60px;
+  left: -170px;
 }
 .btnChangeRate:hover {
   opacity: 0.5;

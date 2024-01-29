@@ -29,22 +29,50 @@ const MyCollection = () => {
   const movies = useSelector(getMovieForCollection);
   const isAuth = useSelector(getIsAuthUser);
   const navigate = useNavigate();
+  const id = useSelector((state) => state.user.id);
 
   const { wantToSeeLength, myCollectionLength, myReviewsLength } = useDataLength();
   useLocalStorageData([LOCAL_STORAGE_MY_COLLECTION, LOCAL_STORAGE_MY_REVIEWS, LOCAL_STORAGE_WANT_TO_SEE]);
+
+  const handleCollection = async () => {
+    dispatch(MyCollectionActions.clearAll());
+    removeEntireListCollection(id, "myCollection");
+  };
 
   useEffect(() => {
     if (!localStorage.getItem("userEmail")) {
       navigate(ROUTES.home);
     }
   }, [navigate]);
+  if (!movies.length) {
+    return (
+      <section className={styles.main}>
+        <Header />
+        <div className={styles.emptyWrapper}>
+          <Sidebar />
+          <h2 className={styles.emptyPage}>Список пуст</h2>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className={styles.main}>
       <Header />
+      {movies.length && (
+        <MyButton styles={styles.deleteEntireList} handler={() => handleCollection()}>
+          Очистить список ({movies.length})
+        </MyButton>
+      )}
       <div className={styles.mainWrapper}>
         <Sidebar />
-        <Slider width="80%" height="80%" sizeCard={1500} itemsPerPage={1}>
+        <Slider
+          width="80%"
+          height="80%"
+          sizeCard={1800}
+          itemsPerPage={1}
+          snowButtons={movies.length > 1 ? true : false}
+        >
           {movies.map((item) => (
             <MyCollectionCard movie={item} key={item.id} />
           ))}

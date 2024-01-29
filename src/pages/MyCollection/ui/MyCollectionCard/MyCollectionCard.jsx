@@ -1,12 +1,12 @@
 import { ROUTES } from "shared/lib/config/routes";
 import { useNavigate } from "react-router-dom";
 import { memo, useCallback, useState } from "react";
-import { getSortedMovie } from "../../../../entities/CardMovie/model/selectors/getSortedMovie/getSortedMovie";
+// import { getSortedMovie } from "../../../../entities/CardMovie/model/selectors/getSortedMovie/getSortedMovie";
 import { useSelector, useDispatch } from "react-redux";
 import { ReviewActions } from "pages/MyReviews/model/slices/ReviewSlice";
 import { MyCollectionActions } from "../../model/slices/MyCollectionSlice";
 import MyButton from "shared/ui/MyButton/MyButton";
-import HandleRating from "../../../../entities/CardMovie/model/services/HandleRating/HandleRating";
+import HandleRating from "../../model/services/HandleRating/HandleRating";
 import styles from "./myCollectionCard.module.css";
 import { TrailerPlayer } from "features/TrailerPlayer";
 
@@ -14,24 +14,31 @@ const MyCollectionCard = memo(({ movie }) => {
   const [showRateWindow, setShowRateWindow] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const review = useSelector(getSortedMovie);
+  // const review = useSelector(getSortedMovie);
   const handleReview = useCallback(() => {
     navigate(`${ROUTES.myReviews}`);
     dispatch(ReviewActions.addMovieToReview(movie));
   }, [dispatch, movie, navigate]);
+  console.log(movie);
 
   return (
     <div className={styles.wrapperCard}>
-      <div className={styles.poster} style={{ backgroundImage: `url(${movie.poster.url})` }}></div>
-      <TrailerPlayer id={movie.id} />
+      <div className={styles.content}>
+        <div className={styles.poster} style={{ backgroundImage: `url(${movie.poster.url})` }}></div>
+        <TrailerPlayer id={movie.id} />
+      </div>
       <div className={styles.info}>
         <div className={styles.rating}>
-          Ваша оценка
+          Ваша оценка:
           {movie.userRating ? (
-            movie.userRating
+            <>
+              <p className={styles.userRate}>{movie.userRating}</p>
+              <MyButton styles={styles.btnChangeRate} handler={() => setShowRateWindow(true)}>
+                Изменить оценку
+              </MyButton>
+            </>
           ) : (
             <p>
-              Вы еще не оценили
               <MyButton styles={styles.rateBtn} handler={() => setShowRateWindow(true)}>
                 Оценить
               </MyButton>

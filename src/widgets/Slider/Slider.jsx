@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import styles from "./slider.module.css";
 
-const Slider = ({ width, height, children, sizeCard, itemsPerPage = 10 }) => {
+const Slider = ({ width, height, children, sizeCard, itemsPerPage = 10, snowButtons }) => {
   const refWrapper = useRef(null);
   const [startIndex, setStartIndex] = useState(0);
 
@@ -34,14 +34,16 @@ const Slider = ({ width, height, children, sizeCard, itemsPerPage = 10 }) => {
       <div style={style} className={styles.wrapper} ref={refWrapper}>
         {children}
       </div>
-      <div className={styles.buttons}>
-        <button onClick={goBack} className={styles.handleBtn}>
-          {"<"}
-        </button>
-        <button onClick={goForward} className={styles.handleBtn}>
-          {">"}
-        </button>
-      </div>
+      {snowButtons && (
+        <div className={styles.buttons}>
+          <button onClick={goBack} className={styles.handleBtn}>
+            {"<"}
+          </button>
+          <button onClick={goForward} className={styles.handleBtn}>
+            {">"}
+          </button>
+        </div>
+      )}
     </>
   );
 };
