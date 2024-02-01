@@ -11,6 +11,7 @@ import { useModal } from "shared/lib/hooks/useModal";
 import Skeleton from "shared/ui/Skeleton/Skeleton";
 import Pagination from "../Pagination/Pagination";
 import Sidebar from "shared/ui/Sidebar/Sidebar";
+// import "../../../../app/styles/variables/index.scss";
 import styles from "./MainPage.module.css";
 import AuthForm from "features/AuthForm/ui/AuthForm";
 
@@ -35,6 +36,7 @@ const MainPage = memo(() => {
       dispatch(initialDataUser(id));
     }
   }, [dispatch, id]);
+  console.log(currentMovies);
 
   if (isLoading) {
     return (
@@ -56,7 +58,6 @@ const MainPage = memo(() => {
             <MovieCard data={item} key={item.id} handleModal={handleModal} />
           ))}
         </div>
-
         {currentMovies && (
           <Pagination
             moviesPerPage={MOVIES_PER_PAGE}

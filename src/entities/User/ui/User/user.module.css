@@ -3,7 +3,6 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  /* border: 2px solid whitesmoke; */
   position: relative;
 }
 .userContent {
@@ -14,7 +13,7 @@
 }
 .svg {
   position: absolute;
-  fill: white;
+  fill: var(--main-color);
   width: 48px;
   height: 48px;
   cursor: pointer;
@@ -23,16 +22,15 @@
   }
 }
 .btnAuth {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--main-font);
   margin: 10px;
-  width: 85px;
+  width: 90px;
   height: 30px;
   cursor: pointer;
   background: transparent;
-  border: 1px solid white;
-  color: white;
-  font-size: 14px;
-  padding: 5px;
+  border: var(--main-border);
+  color: var(--main-color);
+  font-size: var(--font-size-m);
   border-radius: 5px;
   &:hover {
     opacity: 0.5;

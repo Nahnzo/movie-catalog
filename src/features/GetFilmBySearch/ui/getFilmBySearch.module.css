@@ -1,25 +1,24 @@
 .searchInput {
-  width: 90%;
+  min-width: 320px;
   height: 28px;
   padding-left: 8px;
   background: transparent;
   outline: none;
-  border: 1px solid white;
+  border: var(--main-border);
   border-radius: 8px;
-  font-size: 15px;
+  font-size: 17px;
   color: white;
   margin-right: 10px;
 }
 .searchBtn {
   margin-right: 5px;
-  font-family: "Poppins", sans-serif;
   width: 85px;
   height: 30px;
   cursor: pointer;
   background: transparent;
-  border: 1px solid white;
-  color: white;
-  font-size: 14px;
+  border: var(--main-border);
+  color: var(--main-color);
+  font-size: var(--font-size-s);
   padding: 5px;
   border-radius: 5px;
   &:hover {

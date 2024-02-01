@@ -1,0 +1,64 @@
+.wrapperContentCard {
+  width: 90%;
+  height: 70%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.cardImage {
+  width: 28%;
+  height: 100%;
+  background-size: 100%;
+}
+.wrapperContent {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: 10px 0 0 5px;
+  height: 100%;
+}
+
+.movieInfo {
+  height: 30%;
+  width: 100%;
+  font-size: 19px;
+}
+.movieDescription {
+  display: flex;
+  margin-top: 10px;
+  height: 50%;
+  width: 100%;
+  font-size: 19px;
+}
+.btnsWrapper {
+  display: flex;
+  justify-content: space-between;
+  height: 12%;
+  width: 100%;
+  font-size: 19px;
+}
+.movieRating {
+  margin-top: 15px;
+  width: 100%;
+  font-size: 22px;
+}
+
+.btnDelete {
+  width: 300px;
+  height: 40px;
+  text-align: center;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+  border: 1px solid white;
+  margin: 20px 0 20px 0px;
+  border-radius: 10px;
+  font-family: "Ysabeau Infant", sans-serif;
+  font-size: 17px;
+}
+
+.btnDelete:hover {
+  opacity: 0.5;
+}

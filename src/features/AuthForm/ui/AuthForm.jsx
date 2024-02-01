@@ -2,37 +2,15 @@ import React, { memo, useEffect, useState } from "react";
 import Modal from "shared/ui/Modal/Modal";
 import Input from "shared/ui/Input/Input";
 import MyButton from "shared/ui/MyButton/MyButton";
-import { ROUTES } from "shared/lib/config/routes";
 import { userLogin, userLogout, userRegistration } from "shared/lib/config/authService";
 import { useDispatch, useSelector } from "react-redux";
 import { getErrorUser, getIsAuthUser, getIsLoadingUser } from "../model/selectors/getUserSelector";
-import { useModal } from "shared/lib/hooks/useModal";
 import styles from "./authForm.module.css";
 
 const AuthForm = memo(({ isOpened, handleModal }) => {
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       await dispatch(checkAuth());
-  //       const token = localStorage.getItem("token");
-  //       if (!token) {
-  //         dispatch(userActions.handleIsAuthUser(false));
-  //       } else {
-  //         dispatch(userActions.handleIsAuthUser(true));
-  //       }
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   fetchData();
-  // }, [dispatch, isOpened]);
-  const isLoading = useSelector(getIsLoadingUser);
   const error = useSelector(getErrorUser);
-  const isAuth = useSelector(getIsAuthUser);
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-
-  // const { isOpened, handleModal } = useModal();
 
   const dispatch = useDispatch();
 
@@ -56,6 +34,7 @@ const AuthForm = memo(({ isOpened, handleModal }) => {
   const onSignIn = async () => {
     try {
       const response = await dispatch(userLogin({ email: email, password: password }));
+      console.log(response);
       if (response.payload.user) {
         handleModal();
         setEmail("");

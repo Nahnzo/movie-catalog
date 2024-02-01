@@ -1,4 +1,4 @@
-import { MyCollectionActions } from "pages/MyCollection/model/slices/MyCollectionSlice";
+import { MyCollectionActions } from "pages/CollectionPage/model/slices/MyCollectionSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { memo } from "react";
 import { getExistingMovieForMyCollection } from "../../selectors/getSortedMovie/getSortedMovie";

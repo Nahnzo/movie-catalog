@@ -1,7 +1,7 @@
-export const ROUTES = {
+export const routes = {
   home: "/movie-catalog/",
-  whatToSee: "/movie-catalog/whatToSee",
-  wantToSee: "/movie-catalog/wantToSee",
-  myCollection: "/movie-catalog/myCollection",
-  myReviews: "/movie-catalog/myReviews",
+  whatToSeePage: "/movie-catalog/what-to-see",
+  wantToSeePage: "/movie-catalog/want-to-see",
+  collectionPage: "/movie-catalog/collection",
+  reviewsPage: "/movie-catalog/reviews",
 };

@@ -1,22 +1,21 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,300;1,6..12,300&display=swap");
-
 .wrapper {
   width: 100%;
   position: fixed;
   z-index: 999;
-  background-color: rgb(12, 10, 10);
+  background-color: var(--main-bg-color);
 }
 
 .navigation {
-  width: 55%;
+  width: 60%;
   margin: 10px auto;
   align-items: center;
   display: flex;
+  flex-wrap: nowrap;
   justify-content: space-evenly;
-  color: whitesmoke;
-  font-family: "Nunito Sans", sans-serif;
+  color: var(--main-color);
+  font-family: var(--main-font);
+  font-size: var(--font-size-m);
   transition: all 0.3s ease;
-  font-size: 16px;
 }
 .navigation > h3 {
   cursor: pointer;
@@ -24,11 +23,4 @@
 }
 .navigation > h3:hover {
   opacity: 0.5;
-}
-
-.searchBar {
-  display: flex;
-  justify-content: space-between;
-  width: 440px;
-  align-items: center;
 }

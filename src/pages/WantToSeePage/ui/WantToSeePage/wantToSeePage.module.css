@@ -1,0 +1,152 @@
+.main {
+  position: relative;
+  min-height: 100vh;
+  min-width: 100%;
+  box-sizing: border-box;
+  background-color: rgb(12, 10, 10);
+  overflow-x: hidden;
+  color: white;
+  font-family: "Merriweather", serif;
+}
+.wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+}
+
+.emptyWrapper {
+  overflow: none;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+}
+
+.container {
+  margin: 0 auto;
+  width: 90%;
+  height: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  font-family: "Ysabeau Infant", sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.wrapperBtn {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: -40px;
+  right: 10%;
+  z-index: 999;
+}
+
+.card {
+  min-width: 8%;
+  height: 100%;
+  background: center / 100% no-repeat;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.card:hover {
+  opacity: 0.5;
+}
+
+.card:nth-child(1) {
+  margin-left: 0;
+}
+
+.deleteEntireList {
+  width: 200px;
+  height: 30px;
+  text-align: center;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+  border: 1px solid white;
+  border-radius: 10px;
+  font-family: "Ysabeau Infant", sans-serif;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.deleteEntireList:hover {
+  opacity: 0.5;
+}
+
+.emptyPage {
+  margin-top: 250px;
+}
+
+/* Skeletons */
+
+.skeletonsHeader {
+  width: 100%;
+  height: 20px;
+}
+
+.skeletonsNav {
+  width: 55%;
+  margin: 5px auto 0;
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  & > div {
+    margin: 10px;
+  }
+}
+.containerSkeleton {
+  margin: 45px auto;
+  width: 90%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.wrapperCard {
+  width: 90%;
+  height: 70%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.skeletonCard {
+  width: 440px;
+  height: 100%;
+  & > div {
+    margin: 10px;
+  }
+}
+
+.wrapperContent {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin-left: 5px;
+  height: 100%;
+}
+
+.btnsWrapper {
+  margin-top: 50px;
+  align-items: center;
+  display: flex;
+  width: 80%;
+  border-radius: 0 10px 10px 0;
+  justify-content: space-between;
+  height: 20%;
+}
+
+.collectionWrapper {
+  display: flex;
+  width: 100%;
+  height: 24%;
+}

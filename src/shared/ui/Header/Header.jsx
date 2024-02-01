@@ -1,14 +1,14 @@
-import { ROUTES } from "../../lib/config/routes";
+import { routes } from "../../lib/config/routes";
 import { User } from "entities/User";
 import { GetFilmBySearch } from "features/GetFilmBySearch/index";
 import Navbar from "../Navbar/Navbar";
 import styles from "./header.module.css";
-const Header = () => {
+const Header = ({ children }) => {
   return (
     <div className={styles.wrapper}>
       <nav className={styles.navigation}>
-        <Navbar path={ROUTES.home}>Главная</Navbar>
-        <Navbar path={ROUTES.whatToSee}>Что посмотреть?</Navbar>
+        <Navbar path={routes.home}>Главная</Navbar>
+        <Navbar path={routes.whatToSeePage}>Что посмотреть?</Navbar>
         <div className={styles.searchBar}>
           <GetFilmBySearch placeholder="Мультфильм, фильм, сериал" />
         </div>

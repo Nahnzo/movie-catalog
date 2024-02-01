@@ -1,31 +1,33 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { ROUTES } from "shared/lib/config/routes";
+import React, { useState } from "react";
 import HandleWantToSee from "../../model/services/HandleWantToSee/HandleWantToSee";
 import HandleMyCollection from "../../model/services/HandleMyCollection/HandleMyCollection";
 import styles from "./movieCard.module.css";
 
 const MovieCard = ({ data, handleModal }) => {
   const [showDetails, setShowDetails] = useState(false);
-  const navigate = useNavigate();
   const backgroundImage = data.poster.url || data.poster;
-  const navigateToDetail = (movie) => {
-    navigate(`${ROUTES.home}${movie.type}/${movie.id}`);
+
+  const handleCardMouseEnter = () => {
+    setShowDetails(true);
   };
+
+  const handleCardMouseLeave = () => {
+    setShowDetails(false);
+  };
+
+  const handleDetailsClick = (e) => {
+    e.stopPropagation();
+  };
+
   return (
-    <div>
-      <div
-        className={styles.card}
-        style={{ backgroundImage: `url(${backgroundImage})` }}
-        onMouseEnter={() => setShowDetails(true)}
-        onMouseLeave={() => setShowDetails(false)}
-        onClick={() => navigateToDetail(data)}
-      >
-        <div style={{ display: showDetails ? "block" : "none" }}>
+    <div onMouseEnter={handleCardMouseEnter} onMouseLeave={handleCardMouseLeave} className={styles.card}>
+      <img src={backgroundImage} className={styles.image} alt={data.name || data.alternativeName} loading="lazy" />
+      {showDetails && (
+        <div onClick={handleDetailsClick}>
           <HandleWantToSee movie={data} handleModal={handleModal} />
           <HandleMyCollection movie={data} handleModal={handleModal} />
         </div>
-      </div>
+      )}
       <div className={styles.info}>
         <p className={styles.textEllipsis}>{data.name || data.alternativeName}</p>
       </div>

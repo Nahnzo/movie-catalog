@@ -5,7 +5,7 @@ import styles from "./sidebar.module.css";
 import ListReviewIcon from "shared/assets/list-review-icon.svg";
 import FilmIcon from "shared/assets/wanttosee-icon.svg";
 import Svg from "../Svg/Svg";
-import { ROUTES } from "../../lib/config/routes";
+import { routes } from "../../lib/config/routes";
 import { useLocation } from "react-router-dom";
 
 const Sidebar = memo(() => {
@@ -28,9 +28,9 @@ const Sidebar = memo(() => {
           {/* <Svg path={FilmIcon} styles={styles.svgReview} viewBox="-200 260 990 10" /> */}
         </div>
         <div className={styles.routes}>
-          <Navbar path={ROUTES.myCollection}>Моя коллекция</Navbar>
-          <Navbar path={ROUTES.myReviews}>Мои рецензии</Navbar>
-          <Navbar path={ROUTES.wantToSee}>Хочу посмотреть</Navbar>
+          <Navbar path={routes.collectionPage}>Моя коллекция</Navbar>
+          <Navbar path={routes.reviewsPage}>Мои рецензии</Navbar>
+          <Navbar path={routes.wantToSeePage}>Хочу посмотреть</Navbar>
         </div>
       </div>
     </>

@@ -1,14 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import styles from "./navbar.module.css";
 
-const Navbar = ({ path, children, dataLength }) => {
+const Navbar = ({ path, children }) => {
   const navigate = useNavigate();
   return (
-    <h3 onClick={() => navigate(path)}>
+    <h3 onClick={() => navigate(path)} className={styles.text}>
       {children}
-      <div className={dataLength ? styles.counterWrapper : styles.counterWrapperHidden}>
-        <div className={styles.counter}>{dataLength}</div>
-      </div>
     </h3>
   );
 };

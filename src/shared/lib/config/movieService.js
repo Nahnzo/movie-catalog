@@ -8,12 +8,14 @@ export const removeMovieFromCollection = async ({ movie }, userId, collectionTyp
   });
 };
 export const removeEntireListCollection = async (userId, collectionType) => {
-  await fetch(`http://localhost:5000/api/user/${userId}/movies/${collectionType}/deleteList`, {
+  const res = await fetch(`http://localhost:5000/api/user/${userId}/movies/${collectionType}/deleteList`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
     },
   });
+  const response = await res.json();
+  console.log(response);
 };
 
 export const addMovieToCollection = async ({ movie }, userId, collectionType) => {

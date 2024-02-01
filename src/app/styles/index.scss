@@ -1,0 +1,9 @@
+@import "variables/global";
+@import "reset";
+
+.main {
+  overflow: hidden;
+  min-height: 100vh;
+  font-family: var(--main-font);
+  background-color: var(--main-bg-color);
+}

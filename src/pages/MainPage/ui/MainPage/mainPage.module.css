@@ -6,17 +6,16 @@
   display: flex;
   justify-content: center;
   margin-top: 60px;
-  font-family: "Nunito Sans", sans-serif;
 }
 
 .container {
   position: relative;
   display: flex;
   flex-wrap: wrap;
-  width: 1300px;
+  width: 60%;
   margin: 0 auto;
-  color: white;
+  color: var(--main-color);
   padding: 30px;
-  min-height: 100vh;
+  height: 100%;
   align-content: flex-start;
 }

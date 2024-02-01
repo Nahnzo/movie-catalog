@@ -1,55 +1,43 @@
-import App from "/src/App";
-import { MyCollection } from "pages/MyCollection";
-import { WantToSee } from "pages/WantToSee";
-import { MyReviews } from "pages/MyReviews";
+import App from "../../../App";
+import { CollectionPage } from "pages/CollectionPage";
+import { WantToSeePage } from "pages/WantToSeePage";
+import { ReviewsPage } from "pages/ReviewsPage";
 import { WhatToSee } from "pages/WhatToSee";
-import { DetailsMoviePage } from "pages/DetailsMoviePage";
-import { DetailsPersonPage } from "pages/DetailsPersonPage";
 import { createBrowserRouter } from "react-router-dom";
-import { ROUTES } from "shared/lib/config/routes";
+import { routes } from "shared/lib/config/routes";
 import { Suspense } from "react";
-import WantToSeeSkeleton from "pages/WantToSee/ui/WantToSee/WantToSeeSkeleton";
-import MyCollectionSkeleton from "pages/MyCollection/ui/MyCollection/MyCollectionSkeleton";
+import WantToSeePageSkeleton from "pages/WantToSeePage/ui/WantToSeePage/WantToSeePageSkeleton";
+import CollectionPageSkeleton from "pages/CollectionPage/ui/CollectionPage/CollectionPageSkeleton";
 
 export const router = createBrowserRouter([
   {
-    path: ROUTES.home,
+    path: routes.home,
     element: <App />,
   },
   {
-    path: ROUTES.myCollection,
+    path: routes.collectionPage,
     element: (
-      <Suspense fallback={<MyCollectionSkeleton />}>
-        <MyCollection />
+      <Suspense fallback={<CollectionPageSkeleton />}>
+        <CollectionPage />
       </Suspense>
     ),
   },
   ,
   {
-    path: ROUTES.whatToSee,
+    path: routes.whatToSeePage,
     element: <WhatToSee />,
   },
-
   {
-    path: ROUTES.wantToSee,
+    path: routes.wantToSeePage,
     element: (
-      <Suspense fallback={<WantToSeeSkeleton />}>
-        <WantToSee />
+      <Suspense fallback={<WantToSeePageSkeleton />}>
+        <WantToSeePage />
       </Suspense>
     ),
   },
-
   {
-    path: ROUTES.myReviews,
-    element: <MyReviews />,
-  },
-  {
-    path: "/movie-catalog/:type/:id",
-    element: <DetailsMoviePage />,
-  },
-  {
-    path: "/movie-catalog/person/:id",
-    element: <DetailsPersonPage />,
+    path: routes.reviewsPage,
+    element: <ReviewsPage />,
   },
   {
     path: "*",
