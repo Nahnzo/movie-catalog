@@ -1,17 +1,17 @@
 import { routes } from "shared/lib/config/routes";
 import { useEffect, useState, memo } from "react";
-import { WantToSeeActions } from "../../model/slices/WantToSeeSlice";
 import { useSelector, useDispatch } from "react-redux";
+import { WantToSeeActions } from "../../model/slices/WantToSeeSlice";
 import { getMovieForWantToSee } from "../../model/selectors/getMovieForWantToSee";
 import { getFirstMovie } from "../../model/selectors/getFirstMovie";
-import { getIsAuthUser } from "../../../MainPage";
+import { getIsUserAuth } from "../../model/selectors/getUserDataSelectors";
 import { useNavigate } from "react-router-dom";
 import { removeEntireListCollection } from "shared/lib/config/movieService";
-import MyButton from "shared/ui/MyButton/MyButton";
+import Button from "shared/ui/Button/Button";
 import WantToSeeCard from "../WantToSeeCard/WantToSeeCard";
 import Sidebar from "shared/ui/Sidebar/Sidebar";
 import Footer from "shared/ui/Footer/Footer";
-import styles from "./wantToSeePage.module.css";
+import styles from "./wantToSeePage.module.scss";
 import Header from "shared/ui/Header/Header";
 import Slider from "widgets/Slider/Slider";
 
@@ -22,7 +22,7 @@ const WantToSee = memo(() => {
   const movies = useSelector(getMovieForWantToSee);
   const firstMovie = useSelector(getFirstMovie);
   const navigate = useNavigate();
-  const isAuth = useSelector(getIsAuthUser);
+  const isAuth = useSelector(getIsUserAuth);
   const id = useSelector((state) => state.user.id);
 
   useEffect(() => {
@@ -47,15 +47,14 @@ const WantToSee = memo(() => {
       </section>
     );
   }
-
   return (
     <section className={styles.main}>
       <Header />
       <div className={styles.wrapper}>
         <div className={styles.wrapperBtn}>
-          <MyButton styles={`${styles.deleteEntireList}`} handler={() => handleCollection()}>
+          <Button styles={`${styles.deleteEntireList}`} handler={() => handleCollection()}>
             Очистить список ({movies.length})
-          </MyButton>
+          </Button>
         </div>
         <Sidebar />
         <div className={styles.container}>
@@ -65,7 +64,7 @@ const WantToSee = memo(() => {
               <img
                 className={styles.card}
                 key={item.id}
-                src={item.poster.url}
+                src={item.poster.previewUrl}
                 alt={item.title}
                 onClick={() => setSelectedMovie(item)}
               />

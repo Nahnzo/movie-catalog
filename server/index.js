@@ -5,15 +5,18 @@ const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 const router = require("./router/router");
 const errorMiddleware = require("./middlewares/error-middleware");
+// const compression = require("compression");
 
 const PORT = process.env.PORT || 5000;
 const app = express();
+// app.use(compression());
 app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
     credentials: true,
-    origin: process.env.ORIGIN_URL,
+    origin: "https://nahnzo.github.io/movie-catalog",
+    // process.env.ORIGIN_URL,
   })
 );
 app.use("/api", router);

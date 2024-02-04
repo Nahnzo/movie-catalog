@@ -8,8 +8,8 @@ import { useNavigate } from "react-router-dom";
 import { removeEntireListCollection } from "shared/lib/config/movieService";
 import Sidebar from "shared/ui/Sidebar/Sidebar";
 import Footer from "shared/ui/Footer/Footer";
-import MyButton from "shared/ui/MyButton/MyButton";
-import styles from "./collectionPage.module.css";
+import Button from "shared/ui/Button/Button";
+import styles from "./collectionPage.module.scss";
 import Slider from "widgets/Slider/Slider";
 import Header from "shared/ui/Header/Header";
 import CollectionCard from "../CollectionCard/CollectionCard";
@@ -35,7 +35,6 @@ const CollectionPage = () => {
     return (
       <section className={styles.main}>
         <Header />
-
         <div className={styles.emptyWrapper}>
           <Sidebar />
           <h2 className={styles.emptyPage}>Список пуст</h2>
@@ -48,9 +47,9 @@ const CollectionPage = () => {
     <section className={styles.main}>
       <Header />
       {movies.length && (
-        <MyButton styles={styles.deleteEntireList} handler={() => handleCollection()}>
+        <Button styles={styles.deleteEntireList} handler={() => handleCollection()}>
           Очистить список ({movies.length})
-        </MyButton>
+        </Button>
       )}
       <div className={styles.mainWrapper}>
         <Sidebar />

@@ -35,12 +35,11 @@
   justify-content: space-between;
   height: 12%;
   width: 100%;
-  font-size: 19px;
 }
 .movieRating {
   margin-top: 15px;
   width: 100%;
-  font-size: 22px;
+  font-size: var(--font-size-l);
 }
 
 .btnDelete {
@@ -49,14 +48,12 @@
   text-align: center;
   background-color: transparent;
   outline: none;
-  border: none;
   cursor: pointer;
-  color: white;
-  border: 1px solid white;
+  color: var(--main-color);
+  border: var(--main-border);
+  font-size: var(--font-size-m);
   margin: 20px 0 20px 0px;
   border-radius: 10px;
-  font-family: "Ysabeau Infant", sans-serif;
-  font-size: 17px;
 }
 
 .btnDelete:hover {

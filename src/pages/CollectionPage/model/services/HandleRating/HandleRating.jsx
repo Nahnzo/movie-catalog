@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { MyCollectionActions } from "../../slices/MyCollectionSlice";
 import { useDispatch } from "react-redux";
-import styles from "./handleRating.module.css";
-import MyButton from "shared/ui/MyButton/MyButton";
+import styles from "./handleRating.module.scss";
+import Button from "shared/ui/Button/Button";
 
 const ratingsData = [
   { value: 1, emoji: "😖", description: "Ужасно" },
@@ -42,9 +42,9 @@ const HandleRating = ({ movieId, setShowRateWindow }) => {
             {rating && rating >= item.value ? item.emoji : "😐"}
           </span>
         ))}
-        <MyButton styles={styles.cancelBtn} handler={() => setShowRateWindow()}>
+        <Button styles={styles.cancelBtn} handler={() => setShowRateWindow()}>
           Отменить
-        </MyButton>
+        </Button>
         <div className={styles.infoRating}>
           {rating && (
             <p>

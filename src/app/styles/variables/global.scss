@@ -1,12 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Ysabeau+Infant:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,300;1,6..12,300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+
 
 :root {
   // colors
-  --main-bg-color: rgb(12, 10, 10);
+  --main-bg-color: #0c0a0a;
+  --sidebar-bg-color: #0e0e13;
+  --modal-bg-color: #00000080;
   --main-color: whitesmoke;
   // fonts
+  --sidebar-font: "Nunito Sans", sans-serif;
   --main-font: "Ysabeau Infant", sans-serif;
+  --input-font:"Poppins", sans-serif,
   // fonts-size
+  --font-size-l: 24px;
   --font-size-m: 18px;
   --font-size-s: 14px;
   // styles

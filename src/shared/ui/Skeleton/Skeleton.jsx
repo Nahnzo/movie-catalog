@@ -1,5 +1,5 @@
 import { memo } from "react";
-import classes from "./skeleton.module.css";
+import classes from "./skeleton.module.scss";
 
 const Skeleton = memo((props) => {
   const { height, width, border, margin } = props;

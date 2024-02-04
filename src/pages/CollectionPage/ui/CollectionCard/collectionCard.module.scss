@@ -21,9 +21,9 @@
   display: flex;
   position: relative;
   height: 150px;
-  color: white;
-  font-size: 23px;
-  font-family: "Ysabeau Infant", sans-serif;
+  color: var(--main-color);
+  font-size: var(--font-size-l);
+  font-family: var(--main-font);
 }
 
 .info {
@@ -43,11 +43,10 @@
   background-color: transparent;
   margin-left: 15px;
   text-align: center;
-  color: white;
-  border: 1px solid white;
+  color: var(--main-color);
+  border: var(--main-border);
   border-radius: 8px;
-  font-family: "Ysabeau Infant", sans-serif;
-  font-size: 17px;
+  font-size: var(--font-size-m);
 }
 .reviewBtn {
   width: 170px;
@@ -56,28 +55,13 @@
   background-color: transparent;
   margin-left: 15px;
   text-align: center;
-  color: white;
-  border: 1px solid white;
+  color: var(--main-color);
+  border: var(--main-border);
+  font-size: var(--font-size-m);
   border-radius: 8px;
-  font-family: "Ysabeau Infant", sans-serif;
-  font-size: 17px;
 }
 .reviewBtn:hover {
   opacity: 0.5;
-}
-.reviewBtnAfter {
-  width: 170px;
-  height: 25px;
-  cursor: pointer;
-  background-color: transparent;
-  margin: 1px 0 0 245px;
-  position: absolute;
-  text-align: center;
-  color: white;
-  border: 1px solid white;
-  border-radius: 8px;
-  font-family: "Ysabeau Infant", sans-serif;
-  font-size: 17px;
 }
 
 .rateBtn:hover,
@@ -114,13 +98,12 @@
   text-align: center;
   background-color: transparent;
   outline: none;
-  border: none;
   cursor: pointer;
-  color: white;
-  border: 1px solid white;
+  color: var(--main-color);
+  border: var(--main-border);
   margin: 20px 0 27px 169px;
   border-radius: 10px;
-  font-family: "Ysabeau Infant", sans-serif;
+  font-family: var(--main-font);
   font-size: 16px;
   position: absolute;
   bottom: -18px;
@@ -132,19 +115,17 @@
 }
 
 .btnChangeRate {
-  width: 140px;
+  width: 150px;
   height: 35px;
   text-align: center;
   background-color: transparent;
   outline: none;
-  border: none;
   cursor: pointer;
-  color: white;
-  border: 1px solid white;
+  color: var(--main-color);
+  border: var(--main-border);
   margin: 20px 0 20px 169px;
   border-radius: 5px;
-  font-family: "Ysabeau Infant", sans-serif;
-  font-size: 16px;
+  font-size: var(--font-size-m);
   position: absolute;
   bottom: 60px;
   left: -170px;

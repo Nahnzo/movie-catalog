@@ -4,9 +4,9 @@ import { memo, useCallback, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { ReviewActions } from "pages/ReviewsPage/model/slices/ReviewSlice";
 import { MyCollectionActions } from "../../model/slices/MyCollectionSlice";
-import MyButton from "shared/ui/MyButton/MyButton";
+import Button from "shared/ui/Button/Button";
 import HandleRating from "../../model/services/HandleRating/HandleRating";
-import styles from "./collectionCard.module.css";
+import styles from "./collectionCard.module.scss";
 import { TrailerPlayer } from "features/TrailerPlayer";
 
 const CollectionCard = memo(({ movie }) => {
@@ -31,15 +31,15 @@ const CollectionCard = memo(({ movie }) => {
           {movie.userRating ? (
             <>
               <p className={styles.userRate}>{movie.userRating}</p>
-              <MyButton styles={styles.btnChangeRate} handler={() => setShowRateWindow(true)}>
+              <Button styles={styles.btnChangeRate} handler={() => setShowRateWindow(true)}>
                 Изменить оценку
-              </MyButton>
+              </Button>
             </>
           ) : (
             <p>
-              <MyButton styles={styles.rateBtn} handler={() => setShowRateWindow(true)}>
+              <Button styles={styles.rateBtn} handler={() => setShowRateWindow(true)}>
                 Оценить
-              </MyButton>
+              </Button>
             </p>
           )}
           <div style={{ display: showRateWindow ? "block" : "none" }} className={styles.rate}>

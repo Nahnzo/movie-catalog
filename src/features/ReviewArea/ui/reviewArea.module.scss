@@ -19,8 +19,8 @@ h2 {
   outline: none;
   border: none;
   font-size: 24px;
-  font-family: "Ysabeau Infant", sans-serif;
-  color: white;
+  font-family: var(--main-font);
+  color: var(--main-color);
   resize: none;
   position: relative;
 }
@@ -31,14 +31,13 @@ h2 {
   text-align: center;
   background-color: transparent;
   outline: none;
-  border: none;
   cursor: pointer;
-  color: white;
-  border: 1px solid white;
+  color: var(--main-color);
+  border: var(main-border);
   margin: 20px 0 20px 169px;
   border-radius: 8px;
-  font-family: "Ysabeau Infant", sans-serif;
-  font-size: 16px;
+  font-family: var(--main-font);
+  font-size: var(font-size-m);
   position: absolute;
   bottom: -105px;
   left: 295px;
@@ -53,14 +52,13 @@ h2 {
   text-align: center;
   background-color: transparent;
   outline: none;
-  border: none;
   cursor: pointer;
-  color: white;
-  border: 1px solid white;
+  color: var(--main-color);
+  border: var(main-border);
   margin: 20px 0 20px 169px;
   border-radius: 8px;
-  font-family: "Ysabeau Infant", sans-serif;
-  font-size: 16px;
+  font-family: var(--main-font);
+  font-size: var(font-size-m);
   position: absolute;
   bottom: -105px;
   left: 505px;

@@ -2,7 +2,7 @@ import { routes } from "../../lib/config/routes";
 import { User } from "entities/User";
 import { GetFilmBySearch } from "features/GetFilmBySearch/index";
 import Navbar from "../Navbar/Navbar";
-import styles from "./header.module.css";
+import styles from "./header.module.scss";
 const Header = ({ children }) => {
   return (
     <div className={styles.wrapper}>

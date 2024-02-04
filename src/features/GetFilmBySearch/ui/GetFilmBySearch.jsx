@@ -3,8 +3,8 @@ import { useDispatch } from "react-redux";
 import { MovieActions } from "pages/MainPage/model/slices/MovieSlice";
 import { useEffect, useState } from "react";
 import Input from "shared/ui/Input/Input";
-import MyButton from "shared/ui/MyButton/MyButton";
-import styles from "./getFilmBySearch.module.css";
+import Button from "shared/ui/Button/Button";
+import styles from "./getFilmBySearch.module.scss";
 
 const GetFilmBySearch = ({ disabled, placeholder }) => {
   const [search, setSearch] = useState("");
@@ -21,9 +21,9 @@ const GetFilmBySearch = ({ disabled, placeholder }) => {
   return (
     <>
       <Input styles={styles.searchInput} disabled={disabled} placeholder={placeholder} handler={onChangeSearch} />
-      <MyButton styles={styles.searchBtn} handler={() => getMovie()}>
+      <Button styles={styles.searchBtn} handler={() => getMovie()}>
         Найти
-      </MyButton>
+      </Button>
     </>
   );
 };

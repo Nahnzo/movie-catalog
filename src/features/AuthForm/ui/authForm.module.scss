@@ -1,22 +1,20 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
-
 .error {
   height: 30px;
   margin: 15px;
-  color: white;
-  font-size: 18px;
-  font-family: "Poppins", sans-serif;
+  color: var(--main-color);
+  font-size: var(--font-size-m);
+  font-family: var(--input-font);
 }
 
 .formInput {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--input-font);
   margin: 2px;
   width: 50%;
   height: 26px;
   padding: 3px;
   outline: none;
   border: none;
-  font-size: 15px;
+  font-size: var(--font-size-m);
   font-weight: 520;
   letter-spacing: 0.5px;
   border-radius: 4px;
@@ -35,41 +33,41 @@
 }
 
 .btnSignIn {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--input-font);
   width: 60%;
   height: 30px;
   cursor: pointer;
   margin: 10px;
   background: transparent;
-  border: 1px solid white;
-  color: white;
-  font-size: 16px;
+  border: var(--main-border);
+  color: var(--main-color);
+  font-size: var(--font-size-m);
   padding: 5px;
   border-radius: 5px;
 }
 .btnSignUp {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--input-font);
   margin: 10px;
   width: 60%;
   height: 30px;
   cursor: pointer;
   background: transparent;
-  border: 1px solid white;
-  color: white;
+  border: var(--main-border);
+  color: var(--main-color);
   font-size: 16px;
   padding: 5px;
   border-radius: 5px;
 }
 .btnAuth {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--input-font);
   margin: 10px;
   width: 85px;
   height: 30px;
   cursor: pointer;
   background: transparent;
-  border: 1px solid white;
-  color: white;
-  font-size: 14px;
+  border: var(--main-border);
+  color: var(--main-color);
+  font-size: var(--font-size-s);
   padding: 5px;
   border-radius: 5px;
   &:hover {

@@ -1,11 +1,11 @@
 import React, { memo, useEffect, useState } from "react";
 import Modal from "shared/ui/Modal/Modal";
 import Input from "shared/ui/Input/Input";
-import MyButton from "shared/ui/MyButton/MyButton";
+import Button from "shared/ui/Button/Button";
 import { userLogin, userLogout, userRegistration } from "shared/lib/config/authService";
 import { useDispatch, useSelector } from "react-redux";
 import { getErrorUser, getIsAuthUser, getIsLoadingUser } from "../model/selectors/getUserSelector";
-import styles from "./authForm.module.css";
+import styles from "./authForm.module.scss";
 
 const AuthForm = memo(({ isOpened, handleModal }) => {
   const error = useSelector(getErrorUser);
@@ -67,12 +67,12 @@ const AuthForm = memo(({ isOpened, handleModal }) => {
               placeholder="password"
             />
             <div className={styles.buttons}>
-              <MyButton styles={styles.btnSignIn} handler={() => onSignIn({ email: email, password: password })}>
+              <Button styles={styles.btnSignIn} handler={() => onSignIn({ email: email, password: password })}>
                 Войти
-              </MyButton>
-              <MyButton styles={styles.btnSignUp} handler={() => onSignUp({ email: email, password: password })}>
+              </Button>
+              <Button styles={styles.btnSignUp} handler={() => onSignUp({ email: email, password: password })}>
                 Регистрация
-              </MyButton>
+              </Button>
             </div>
             <p className={styles.error}>{error}</p>
           </>

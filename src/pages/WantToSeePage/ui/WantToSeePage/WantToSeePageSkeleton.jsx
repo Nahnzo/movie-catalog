@@ -1,4 +1,4 @@
-import styles from "./wantToSeePage.module.css";
+import styles from "./wantToSeePage.module.scss";
 import Skeleton from "shared/ui/Skeleton/Skeleton";
 
 const WantToSeeSkeleton = () => {

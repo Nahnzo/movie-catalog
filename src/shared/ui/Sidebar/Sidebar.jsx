@@ -1,10 +1,7 @@
 import React, { memo, useState } from "react";
-import MyButton from "../MyButton/MyButton";
+import Button from "../Button/Button";
 import Navbar from "../Navbar/Navbar";
-import styles from "./sidebar.module.css";
-import ListReviewIcon from "shared/assets/list-review-icon.svg";
-import FilmIcon from "shared/assets/wanttosee-icon.svg";
-import Svg from "../Svg/Svg";
+import styles from "./sidebar.module.scss";
 import { routes } from "../../lib/config/routes";
 import { useLocation } from "react-router-dom";
 
@@ -20,9 +17,9 @@ const Sidebar = memo(() => {
   return (
     <>
       <div className={`${styles.Sidebar} ${collapsed ? styles.Collapsed : ""}`}>
-        <MyButton handler={() => toggleSidebar()} styles={styles.btnHandleSidebar}>
+        <Button handler={() => toggleSidebar()} styles={styles.btnHandleSidebar}>
           {collapsed ? "<" : ">"}
-        </MyButton>
+        </Button>
         <div className={styles.icons}>
           {/* <Svg path={ListReviewIcon} styles={styles.svgReview} viewBox="-200 -290 990 900" /> */}
           {/* <Svg path={FilmIcon} styles={styles.svgReview} viewBox="-200 260 990 10" /> */}

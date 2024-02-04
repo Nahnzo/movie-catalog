@@ -1,0 +1,68 @@
+.wrapper {
+  width: 100%;
+  height: 200px;
+  margin-top: auto;
+  border-top: var(--main-border);
+  align-items: center;
+  color: var(--main-color);
+  font-size: var(--font-size-l);
+  font-family: var(--main-font);
+}
+
+// a,
+// a:link,
+// a:visited {
+//   text-decoration: none;
+// }
+
+// .description {
+//   width: 33%;
+//   height: 100%;
+//   padding: 5px;
+//   border-right: 2px solid gray;
+// }
+
+// .contacts {
+//   width: 33%;
+//   height: 100%;
+//   padding: 5px;
+//   border-right: 2px solid gray;
+// }
+
+// .github {
+//   width: 20px;
+//   height: 20px;
+//   margin: 0 5px 0px;
+//   cursor: pointer;
+//   align-items: center;
+//   color: white;
+// }
+
+// .vk {
+//   width: 20px;
+//   height: 20px;
+//   align-items: center;
+//   margin: 0 8px 0px;
+//   cursor: pointer;
+//   color: white;
+// }
+
+// .gmail {
+//   width: 20px;
+//   height: 20px;
+//   align-items: center;
+//   margin: 0 8px 0px;
+//   cursor: pointer;
+//   color: white;
+// }
+
+// .github:hover,
+// .gmail:hover,
+// .vk:hover {
+//   transform: scale(1.4);
+// }
+// .github,
+// .gmail,
+// .vk {
+//   transition: all 0.2s ease-in;
+// }

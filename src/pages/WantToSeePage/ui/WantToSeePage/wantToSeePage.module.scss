@@ -3,10 +3,10 @@
   min-height: 100vh;
   min-width: 100%;
   box-sizing: border-box;
-  background-color: rgb(12, 10, 10);
+  background-color: var(--main-bg-color);
   overflow-x: hidden;
-  color: white;
-  font-family: "Merriweather", serif;
+  color: var(--main-color);
+  font-family: var(--main-font);
 }
 .wrapper {
   position: relative;
@@ -14,9 +14,19 @@
   height: 100vh;
   display: flex;
   justify-content: center;
-  margin-top: 60px;
+  margin-top: 110px;
 }
 
+.container {
+  margin: 0 auto;
+  width: 90%;
+  height: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  font-family: var(--main-font);
+  position: relative;
+  overflow: hidden;
+}
 .emptyWrapper {
   overflow: none;
   position: relative;
@@ -27,22 +37,11 @@
   margin-top: 60px;
 }
 
-.container {
-  margin: 0 auto;
-  width: 90%;
-  height: 90%;
-  display: flex;
-  flex-wrap: wrap;
-  font-family: "Ysabeau Infant", sans-serif;
-  position: relative;
-  overflow: hidden;
-}
-
 .wrapperBtn {
   width: 100px;
   height: 100px;
   position: absolute;
-  top: -40px;
+  top: -85px;
   right: 10%;
   z-index: 999;
 }
@@ -69,14 +68,11 @@
   text-align: center;
   background-color: transparent;
   outline: none;
-  border: none;
   cursor: pointer;
-  color: white;
-  border: 1px solid white;
+  color: var(--main-color);
+  border: var(--main-border);
+  font-size: var(--font-size-m);
   border-radius: 10px;
-  font-family: "Ysabeau Infant", sans-serif;
-  font-size: 15px;
-  cursor: pointer;
 }
 
 .deleteEntireList:hover {

@@ -1,4 +1,4 @@
-const MyButton = ({ styles, children, handler }) => {
+const Button = ({ styles, children, handler }) => {
   return (
     <button className={`${styles}`} onClick={handler}>
       {children}
@@ -6,4 +6,4 @@ const MyButton = ({ styles, children, handler }) => {
   );
 };
 
-export default MyButton;
+export default Button;

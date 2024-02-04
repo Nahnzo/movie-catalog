@@ -6,8 +6,8 @@
   outline: none;
   border: var(--main-border);
   border-radius: 8px;
-  font-size: 17px;
-  color: white;
+  font-size: var(--font-size-m);
+  color: var(--main-color);
   margin-right: 10px;
 }
 .searchBtn {

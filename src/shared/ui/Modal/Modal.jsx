@@ -1,6 +1,6 @@
 import { memo } from "react";
 import Portal from "../Portal/Portal";
-import styles from "./modal.module.css";
+import styles from "./modal.module.scss";
 
 const Modal = memo(({ children, isOpen, onClose }) => {
   return (

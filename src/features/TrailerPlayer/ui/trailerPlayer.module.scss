@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Ysabeau+Infant:wght@500&display=swap");
 .iframe {
   position: absolute;
   width: 60%;
@@ -15,12 +14,12 @@
 .btnHandle {
   width: 100%;
   height: 50px;
-  border: 1px solid white;
+  border: var(--main-border);
   background-color: transparent;
-  color: white;
-  font-family: "Ysabeau Infant", sans-serif;
+  color: var(--main-color);
+  font-family: var(--main-font);
   cursor: pointer;
-  font-size: 18px;
+  font-size: var(--font-size-m);
   border-radius: 5px;
   &:hover {
     opacity: 0.5;

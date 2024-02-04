@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   position: absolute;
-  bottom: -5%;
+  bottom: -0.5%;
 }
 
 .currentPage {
@@ -11,9 +11,9 @@
   margin: 25px 10px;
   background-color: transparent;
   align-items: center;
-  border: 2px solid wheat;
+  border: var(--main-border);
   cursor: pointer;
-  color: white;
+  color: var(--main-color);
   border-radius: 5px;
   font-size: 15px;
 }
@@ -25,7 +25,7 @@
   align-items: center;
   border: 2px solid teal;
   cursor: pointer;
-  color: white;
+  color: var(--main-color);
   border-radius: 5px;
   font-size: 15px;
 }

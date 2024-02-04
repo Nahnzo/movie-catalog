@@ -1,4 +1,4 @@
-import cls from "./avatar.module.css";
+import cls from "./avatar.module.scss";
 
 const Avatar = ({ styles, image, userName }) => {
   return (

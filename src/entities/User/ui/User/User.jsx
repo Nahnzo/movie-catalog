@@ -5,10 +5,10 @@ import { userActions } from "../../model/slices/userSlice";
 import { AuthForm } from "features/AuthForm/";
 import { checkAuth } from "shared/lib/config/authService";
 import { userLogout } from "shared/lib/config/authService";
-import MyButton from "shared/ui/MyButton/MyButton";
+import Button from "shared/ui/Button/Button";
 import UserAvatar from "shared/assets/user-avatar-icon.svg";
 import Svg from "shared/ui/Svg/Svg";
-import styles from "./user.module.css";
+import styles from "./user.module.scss";
 
 const User = memo(() => {
   // const isLoading = useSelector(getIsLoadingUser);
@@ -44,9 +44,9 @@ const User = memo(() => {
     <>
       {state?.email ? state?.email : ""}
       <div className={styles.userContent}>
-        <MyButton styles={styles.btnAuth} handler={state.isAuth ? onLogout : handleModal}>
+        <Button styles={styles.btnAuth} handler={state.isAuth ? onLogout : handleModal}>
           {state.isAuth ? "Выйти" : "Войти"}
-        </MyButton>
+        </Button>
         <AuthForm isOpened={isOpened} handleModal={onHandleModal} />
         <div className={styles.userAvatar}>
           <Svg path={UserAvatar} styles={styles.svg} viewBox="7 7 58 58" />

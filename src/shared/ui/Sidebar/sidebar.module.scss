@@ -1,17 +1,16 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,300;1,6..12,300&display=swap");
 .Sidebar {
   display: flex;
   align-self: center;
   width: 295px;
   height: 550px;
   transition: transform 0.5s ease;
-  background-color: rgb(14, 14, 19);
+  background-color: var(--sidebar-bg-color);
   position: absolute;
   right: 0.1%;
   top: 6vh;
   z-index: 100;
   border-radius: 15px 0 0 15px;
-  font-family: "Nunito Sans", sans-serif;
+  font-family: var(--sidebar-font);
 }
 
 .Sidebar.Collapsed {
@@ -20,9 +19,9 @@
 
 .btnHandleSidebar {
   cursor: pointer;
-  color: whitesmoke;
+  color: var(--main-color);
   width: 10%;
-  font-size: 22px;
+  font-size: var(--font-size-l);
   background-color: transparent;
   border: none;
   &:hover {
@@ -35,13 +34,13 @@
   height: 40%;
   margin: 20px 45px 0 0;
   padding: 10px;
-  font-size: 1.1rem;
-  color: whitesmoke;
+  font-size: var(--font-size-m);
+  color: var(--main-color);
   & > h3:hover {
     cursor: pointer;
     opacity: 0.5;
   }
-  & > h3 {
+  .routes > h3 {
     margin: 5px;
   }
 }

@@ -1,4 +1,4 @@
-import styles from "./collectionPage.module.css";
+import styles from "./collectionPage.module.scss";
 import Skeleton from "shared/ui/Skeleton/Skeleton";
 
 const CollectionPageSkeleton = () => {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from "./trailerPlayer.module.css";
+import styles from "./trailerPlayer.module.scss";
 import { getFilmTrailerById } from "../model/services/getFilmTrailerById";
 
 const TrailerPlayer = ({ id }) => {

@@ -1,16 +1,17 @@
 .wantToSeePlus {
-  width: 45px;
-  height: 45px;
+  width: 25%;
+  height: 15%;
   position: absolute;
   bottom: 45px;
+  bottom: 30%;
   right: 5px;
   stroke: gray;
 }
 .wantToSeeMinus {
-  width: 45px;
-  height: 45px;
+  width: 25%;
+  height: 15%;
   position: absolute;
-  bottom: 45px;
+  bottom: 30%;
   right: 5px;
   stroke: rgb(44, 44, 247);
 }

@@ -1,5 +1,5 @@
 import { memo } from "react";
-import styles from "./pagination.module.css";
+import styles from "./pagination.module.scss";
 
 const Pagination = memo(({ totalMovies, moviesPerPage, onPageChange, currentPage }) => {
   const pages = Array.from({ length: Math.ceil(totalMovies / moviesPerPage) }, (_, i) => i + 1);

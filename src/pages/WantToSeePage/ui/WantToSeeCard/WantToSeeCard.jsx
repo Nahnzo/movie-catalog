@@ -5,13 +5,13 @@ import { memo } from "react";
 import { removeMovieFromCollection } from "shared/lib/config/movieService";
 import { getUserId } from "../../model/selectors/getUserDataSelectors";
 import getFormateTime from "widgets/FormateTimeFunction/getFormateTime";
-import MyButton from "shared/ui/MyButton/MyButton";
-import styles from "./wantToSeeCard.module.css";
+import Button from "shared/ui/Button/Button";
+import styles from "./wantToSeeCard.module.scss";
 
 const WantToSeeCard = memo(({ firstMovie, setSelectedMovie }) => {
   const dispatch = useDispatch();
   const id = useSelector(getUserId);
-  const backgroundImage = firstMovie.poster.url || firstMovie.poster;
+  const backgroundImage = firstMovie.poster.previewUrl;
 
   const deleteMovie = async (movie) => {
     dispatch(WantToSeeActions.removeMovie(firstMovie));
@@ -42,9 +42,9 @@ const WantToSeeCard = memo(({ firstMovie, setSelectedMovie }) => {
           </div>
           <div className={styles.movieDescription}>{firstMovie.description}</div>
           <div className={styles.btnsWrapper}>
-            <MyButton styles={styles.btnDelete} handler={() => deleteMovie(firstMovie)}>
+            <Button styles={styles.btnDelete} handler={() => deleteMovie(firstMovie)}>
               Удалить из списка
-            </MyButton>
+            </Button>
             <HandleMovieInWantToSee firstMovie={firstMovie} />
           </div>
           <hr />

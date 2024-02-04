@@ -1,8 +1,8 @@
 import { MyCollectionActions } from "pages/CollectionPage/model/slices/MyCollectionSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { getSortedMovie } from "../../model/selectors/getSortedMovie";
-import MyButton from "shared/ui/MyButton/MyButton";
-import styles from "./handleMovieInWantToSee.module.css";
+import Button from "shared/ui/Button/Button";
+import styles from "./handleMovieInWantToSee.module.scss";
 
 const HandleMovieInWantToSee = ({ firstMovie }) => {
   const dispatch = useDispatch();
@@ -13,9 +13,9 @@ const HandleMovieInWantToSee = ({ firstMovie }) => {
       : dispatch(MyCollectionActions.addMovieToCollection(movie));
   };
   return (
-    <MyButton styles={styles.btn} handler={() => handleMovie(firstMovie)}>
+    <Button styles={styles.btn} handler={() => handleMovie(firstMovie)}>
       {action ? "Удалить из коллекции" : "Добавить в коллекцию"}
-    </MyButton>
+    </Button>
   );
 };
 

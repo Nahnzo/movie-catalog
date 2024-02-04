@@ -11,9 +11,9 @@ import { useModal } from "shared/lib/hooks/useModal";
 import Skeleton from "shared/ui/Skeleton/Skeleton";
 import Pagination from "../Pagination/Pagination";
 import Sidebar from "shared/ui/Sidebar/Sidebar";
-// import "../../../../app/styles/variables/index.scss";
-import styles from "./MainPage.module.css";
+import styles from "./MainPage.module.scss";
 import AuthForm from "features/AuthForm/ui/AuthForm";
+import MovieList from "../MovieList/MovieList";
 
 const skeletons = Array(24)
   .fill()
@@ -36,14 +36,13 @@ const MainPage = memo(() => {
       dispatch(initialDataUser(id));
     }
   }, [dispatch, id]);
-  console.log(currentMovies);
 
   if (isLoading) {
     return (
       <section className={styles.wrapper}>
         <div className={styles.container}>
           {skeletons.map((item) => (
-            <Skeleton width={200} height={300} key={item} margin={25} />
+            <Skeleton width="15%" height={260} key={item} margin={25} />
           ))}
         </div>
       </section>
@@ -54,9 +53,7 @@ const MainPage = memo(() => {
         <AuthForm isOpened={isOpened} handleModal={onHandleModal} />
         {isAuth && <Sidebar />}
         <div className={styles.container}>
-          {currentMovies?.map((item) => (
-            <MovieCard data={item} key={item.id} handleModal={handleModal} />
-          ))}
+          <MovieList currentMovies={currentMovies} handleModal={handleModal} />
         </div>
         {currentMovies && (
           <Pagination

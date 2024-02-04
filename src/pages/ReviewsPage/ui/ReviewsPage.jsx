@@ -1,6 +1,6 @@
 import Sidebar from "shared/ui/Sidebar/Sidebar";
 import Header from "shared/ui/Header/Header";
-import styles from "./reviewsPage.module.css";
+import styles from "./reviewsPage.module.scss";
 
 const ReviewsPage = () => {
   return (

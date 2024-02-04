@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
-
 .wrapper {
   position: relative;
   width: 100%;
@@ -13,9 +11,9 @@
   display: flex;
   flex-wrap: wrap;
   width: 60%;
-  margin: 0 auto;
+  margin: 0 auto 80px;
   color: var(--main-color);
   padding: 30px;
-  height: 100%;
+  height: 30%;
   align-content: flex-start;
 }

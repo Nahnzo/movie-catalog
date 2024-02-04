@@ -16,7 +16,7 @@ const App = () => {
       <ErrorBoundary>
         <MainPage />
       </ErrorBoundary>
-      <Footer />
+      {/* <Footer /> */}
     </section>
   );
 };

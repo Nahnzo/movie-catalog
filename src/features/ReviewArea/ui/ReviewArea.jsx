@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { ReviewActions } from "pages/MyReviews/model/slices/ReviewSlice";
 import { getDefaultReviewValue } from "../model/services/validateReview/validateReview";
-import styles from "./reviewArea.module.css";
-import MyButton from "shared/ui/MyButton/MyButton";
+import styles from "./reviewArea.module.scss";
+import Button from "shared/ui/Button/Button";
 
 const ReviewArea = ({ movie }) => {
   const initialText = "Место для вашей рецензии";
@@ -50,12 +50,12 @@ const ReviewArea = ({ movie }) => {
         readOnly={readonly}
       />
       <div className={styles.buttons}>
-        <MyButton handler={leaveReview} styles={styles.reviewBtn}>
+        <Button handler={leaveReview} styles={styles.reviewBtn}>
           {isReviewEmptyOrDefault ? "Оставить рецензию" : "Изменить рецензию"}
-        </MyButton>
-        <MyButton handler={deleteReview} styles={styles.deleteRw}>
+        </Button>
+        <Button handler={deleteReview} styles={styles.deleteRw}>
           Удалить рецензию
-        </MyButton>
+        </Button>
       </div>
     </>
   );
