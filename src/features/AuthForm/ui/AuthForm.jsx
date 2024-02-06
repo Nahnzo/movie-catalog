@@ -1,10 +1,10 @@
-import React, { memo, useEffect, useState } from "react";
+import { memo, useState } from "react";
 import Modal from "shared/ui/Modal/Modal";
 import Input from "shared/ui/Input/Input";
 import Button from "shared/ui/Button/Button";
-import { userLogin, userLogout, userRegistration } from "shared/lib/config/authService";
+import { userLogin, userRegistration } from "shared/lib/config/authService";
 import { useDispatch, useSelector } from "react-redux";
-import { getErrorUser, getIsAuthUser, getIsLoadingUser } from "../model/selectors/getUserSelector";
+import { getErrorUser } from "../model/selectors/getUserSelector";
 import styles from "./authForm.module.scss";
 
 const AuthForm = memo(({ isOpened, handleModal }) => {
@@ -27,14 +27,12 @@ const AuthForm = memo(({ isOpened, handleModal }) => {
     } catch (error) {
       setEmail("");
       setPassword("");
-      console.log(error);
     }
   };
 
   const onSignIn = async () => {
     try {
       const response = await dispatch(userLogin({ email: email, password: password }));
-      console.log(response);
       if (response.payload.user) {
         handleModal();
         setEmail("");
@@ -58,7 +56,7 @@ const AuthForm = memo(({ isOpened, handleModal }) => {
               styles={styles.formInput}
               handler={(e) => setEmail(e.target.value)}
               value={email}
-              placeholder="email"
+              placeholder="working email"
             />
             <Input
               styles={styles.formInput}

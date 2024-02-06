@@ -15,9 +15,11 @@ export const userLogin = createAsyncThunk("auth/login", async ({ email, password
 export const userRegistration = createAsyncThunk(
   "auth/registration",
   async ({ email, password }, { rejectWithValue }) => {
+    if (!email.trim() || !password.trim()) {
+      return rejectWithValue("Заполните все поля");
+    }
     try {
       const response = await $api.post("/registration", { email, password });
-      console.log(response);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data.message);

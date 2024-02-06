@@ -1,9 +1,10 @@
-import { getFilmByName } from "../model/services/getFilmByName";
+// import { getFilmByName } from "../model/services/getFilmByName";
 import { useDispatch } from "react-redux";
 import { MovieActions } from "pages/MainPage/model/slices/MovieSlice";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Input from "shared/ui/Input/Input";
 import Button from "shared/ui/Button/Button";
+import { getFilmByName } from "../../../features/GetFilmBySearch/model/services/getFilmByName";
 import styles from "./getFilmBySearch.module.scss";
 
 const GetFilmBySearch = ({ disabled, placeholder }) => {

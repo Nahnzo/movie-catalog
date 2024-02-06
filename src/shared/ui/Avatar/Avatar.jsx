@@ -1,6 +1,10 @@
 import cls from "./avatar.module.scss";
 
-const Avatar = ({ styles, image, userName }) => {
+const Avatar = ({
+  styles,
+  // image,
+  userName,
+}) => {
   return (
     <div className={`${styles}`}>
       <p className={cls.userName}>{userName}</p>

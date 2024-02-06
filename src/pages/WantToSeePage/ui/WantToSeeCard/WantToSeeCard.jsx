@@ -8,7 +8,7 @@ import getFormateTime from "widgets/FormateTimeFunction/getFormateTime";
 import Button from "shared/ui/Button/Button";
 import styles from "./wantToSeeCard.module.scss";
 
-const WantToSeeCard = memo(({ firstMovie, setSelectedMovie }) => {
+const WantToSeeCard = memo(({ firstMovie }) => {
   const dispatch = useDispatch();
   const id = useSelector(getUserId);
   const backgroundImage = firstMovie.poster.previewUrl;

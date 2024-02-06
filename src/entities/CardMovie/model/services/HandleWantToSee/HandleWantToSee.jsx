@@ -33,6 +33,7 @@ const HandleWantToSee = memo(({ movie, handleModal }) => {
   return (
     <>
       <Svg
+        title={isExist ? "Уже смотрел, удалить" : "Буду смотреть"}
         styles={isExist ? styles.wantToSeeMinus : styles.wantToSeePlus}
         onClick={(event) => handleClick(event, movie)}
         path={isExist ? DeletedMovieFolder : AddMovieFolder}

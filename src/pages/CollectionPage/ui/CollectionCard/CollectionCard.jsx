@@ -1,9 +1,8 @@
 import { routes } from "shared/lib/config/routes";
 import { useNavigate } from "react-router-dom";
 import { memo, useCallback, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { ReviewActions } from "pages/ReviewsPage/model/slices/ReviewSlice";
-import { MyCollectionActions } from "../../model/slices/MyCollectionSlice";
 import Button from "shared/ui/Button/Button";
 import HandleRating from "../../model/services/HandleRating/HandleRating";
 import styles from "./collectionCard.module.scss";
@@ -14,10 +13,10 @@ const CollectionCard = memo(({ movie }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   // const review = useSelector(getSortedMovie);
-  const handleReview = useCallback(() => {
-    navigate(`${routes.reviewsPage}`);
-    dispatch(ReviewActions.addMovieToReview(movie));
-  }, [dispatch, movie, navigate]);
+  // const handleReview = useCallback(() => {
+  //   navigate(`${routes.reviewsPage}`);
+  //   dispatch(ReviewActions.addMovieToReview(movie));
+  // }, [dispatch, movie, navigate]);
 
   return (
     <div className={styles.wrapperCard}>

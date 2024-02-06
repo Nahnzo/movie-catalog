@@ -1,5 +1,4 @@
-import { memo, useCallback, useEffect } from "react";
-import { MovieCard } from "entities/CardMovie/index";
+import { Suspense, memo, useCallback, useEffect } from "react";
 import { usePagination } from "shared/lib/hooks/usePagination";
 import { MOVIES_PER_PAGE } from "shared/lib/const/const";
 import { useSelector } from "react-redux";
@@ -42,7 +41,7 @@ const MainPage = memo(() => {
       <section className={styles.wrapper}>
         <div className={styles.container}>
           {skeletons.map((item) => (
-            <Skeleton width="15%" height={260} key={item} margin={25} />
+            <Skeleton width="15%" height={240} key={item} margin={25} />
           ))}
         </div>
       </section>

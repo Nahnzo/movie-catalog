@@ -1,5 +1,4 @@
 const { Schema, model } = require("mongoose");
-const MovieSchema = require("../models/movie-model");
 
 const UserSchema = new Schema({
   email: { type: String, unique: true, required: true },

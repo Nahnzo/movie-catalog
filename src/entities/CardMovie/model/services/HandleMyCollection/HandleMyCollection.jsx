@@ -31,6 +31,7 @@ const HandleWantToSee = memo(({ movie, handleModal }) => {
 
   return (
     <Svg
+      title={isExist ? "Удалить из коллекции" : "Добавить в коллекцию"}
       path={HeartIcon}
       viewBox="-25 0 135 105"
       styles={isExist ? styles.collectionFill : styles.collectionEmpty}

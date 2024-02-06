@@ -1,4 +1,4 @@
-import Footer from "shared/ui/Footer/Footer";
+// import Footer from "shared/ui/Footer/Footer";
 import Header from "shared/ui/Header/Header";
 import { GetFilmBySearch } from "features/GetFilmBySearch/index";
 import { User } from "entities/User";

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { checkAuth, userLogin, userLogout, userRegistration } from "../../../../shared/lib/config/authService";
+import { checkAuth, userLogin, userLogout, userRegistration } from "shared/lib/config/authService";
 
 const userSlice = createSlice({
   name: "userSlice",
@@ -81,7 +81,7 @@ const userSlice = createSlice({
           state.email = null;
         }
       })
-      .addCase(checkAuth.rejected, (state, action) => {
+      .addCase(checkAuth.rejected, (state) => {
         localStorage.removeItem("token");
         localStorage.removeItem("userEmail");
         state.isAuth = false;

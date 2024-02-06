@@ -2,8 +2,7 @@ import { routes } from "shared/lib/config/routes";
 import { useSelector, useDispatch } from "react-redux";
 import { getMovieForCollection } from "../../model/selectors/getMovieForCollection/getMovieForCollection";
 import { MyCollectionActions } from "../../model/slices/MyCollectionSlice";
-import { getIsAuthUser } from "../../../MainPage";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { removeEntireListCollection } from "shared/lib/config/movieService";
 import Sidebar from "shared/ui/Sidebar/Sidebar";
@@ -17,7 +16,6 @@ import CollectionCard from "../CollectionCard/CollectionCard";
 const CollectionPage = () => {
   const dispatch = useDispatch();
   const movies = useSelector(getMovieForCollection);
-  const isAuth = useSelector(getIsAuthUser);
   const navigate = useNavigate();
   const id = useSelector((state) => state.user.id);
 

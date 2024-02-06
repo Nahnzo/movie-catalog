@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useCallback } from "react";
+import { memo, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "shared/lib/hooks/useModal";
 import { userActions } from "../../model/slices/userSlice";

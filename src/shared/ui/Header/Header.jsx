@@ -3,7 +3,7 @@ import { User } from "entities/User";
 import { GetFilmBySearch } from "features/GetFilmBySearch/index";
 import Navbar from "../Navbar/Navbar";
 import styles from "./header.module.scss";
-const Header = ({ children }) => {
+const Header = () => {
   return (
     <div className={styles.wrapper}>
       <nav className={styles.navigation}>

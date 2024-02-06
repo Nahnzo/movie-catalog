@@ -1,14 +1,13 @@
-import React, { memo, useState } from "react";
+import { memo, useState } from "react";
+import { routes } from "../../lib/config/routes";
+import { useLocation } from "react-router-dom";
 import Button from "../Button/Button";
 import Navbar from "../Navbar/Navbar";
 import styles from "./sidebar.module.scss";
-import { routes } from "../../lib/config/routes";
-import { useLocation } from "react-router-dom";
 
 const Sidebar = memo(() => {
   const [collapsed, setCollapsed] = useState(true);
-  const location = useLocation();
-  const styledRoute = location?.pathname?.slice(15);
+  const { pathname } = useLocation();
 
   const toggleSidebar = () => {
     setCollapsed(!collapsed);
@@ -25,9 +24,15 @@ const Sidebar = memo(() => {
           {/* <Svg path={FilmIcon} styles={styles.svgReview} viewBox="-200 260 990 10" /> */}
         </div>
         <div className={styles.routes}>
-          <Navbar path={routes.collectionPage}>Моя коллекция</Navbar>
-          <Navbar path={routes.reviewsPage}>Мои рецензии</Navbar>
-          <Navbar path={routes.wantToSeePage}>Хочу посмотреть</Navbar>
+          <Navbar path={routes.collectionPage} pathname={pathname}>
+            Моя коллекция
+          </Navbar>
+          <Navbar path={routes.reviewsPage} pathname={pathname}>
+            Мои рецензии
+          </Navbar>
+          <Navbar path={routes.wantToSeePage} pathname={pathname}>
+            Хочу посмотреть
+          </Navbar>
         </div>
       </div>
     </>

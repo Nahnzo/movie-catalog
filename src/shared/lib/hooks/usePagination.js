@@ -1,5 +1,3 @@
-// 250 максимум фильмов из за ограничения API
-
 import { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllMovie } from "pages/MainPage/model/selectors/getAllMovie/getAllMovie";

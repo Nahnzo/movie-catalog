@@ -4,15 +4,20 @@ const uuid = require("uuid");
 const mailService = require("./mail-service");
 const tokenService = require("./token-service");
 const UserDto = require("../dtos/user-dto");
+const { isEmail } = require("validator");
 const ApiError = require("../exceptions/api-error");
-const movieModel = require("../models/movie-model");
 
 class UserService {
   async registration(email, password) {
     const candidate = await UserModel.findOne({ email });
+
+    if (!isEmail(email)) {
+      throw ApiError.BadRequest("Некорректный email");
+    }
     if (candidate) {
       throw ApiError.BadRequest("Пользователь таким адресом уже существует");
     }
+
     const hashPassword = await bcrypt.hash(password, 3);
     const activationLink = uuid.v4();
 

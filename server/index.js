@@ -15,8 +15,7 @@ app.use(cookieParser());
 app.use(
   cors({
     credentials: true,
-    origin: "https://nahnzo.github.io/movie-catalog",
-    // process.env.ORIGIN_URL,
+    origin: process.env.ORIGIN_URL,
   })
 );
 app.use("/api", router);

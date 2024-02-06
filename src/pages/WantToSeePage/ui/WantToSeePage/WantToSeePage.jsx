@@ -5,7 +5,7 @@ import { WantToSeeActions } from "../../model/slices/WantToSeeSlice";
 import { getMovieForWantToSee } from "../../model/selectors/getMovieForWantToSee";
 import { getFirstMovie } from "../../model/selectors/getFirstMovie";
 import { getIsUserAuth } from "../../model/selectors/getUserDataSelectors";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { removeEntireListCollection } from "shared/lib/config/movieService";
 import Button from "shared/ui/Button/Button";
 import WantToSeeCard from "../WantToSeeCard/WantToSeeCard";

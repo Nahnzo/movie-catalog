@@ -1,5 +1,5 @@
-import React, { useState, useRef } from "react";
-import styles from "./slider.module.css";
+import { useState, useRef } from "react";
+import styles from "./slider.module.scss";
 
 const Slider = ({ width, height, children, sizeCard, itemsPerPage = 10, snowButtons }) => {
   const refWrapper = useRef(null);
