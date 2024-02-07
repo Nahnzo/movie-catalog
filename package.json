@@ -5,7 +5,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "lint:css": "npx stylelint \"./**/*.{css,scss}\" --ignore-pattern dist/",
+    "lint:scss": "npx stylelint \"./**/*.{css,scss}\" --ignore-pattern dist/",
     "dev": "concurrently \"(vite)\" \"(npm run dev --prefix server)\"",
     "build": "vite build",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",

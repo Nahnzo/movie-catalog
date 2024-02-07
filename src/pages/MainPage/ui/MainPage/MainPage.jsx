@@ -10,7 +10,7 @@ import { useModal } from "shared/lib/hooks/useModal";
 import Skeleton from "shared/ui/Skeleton/Skeleton";
 import Pagination from "../Pagination/Pagination";
 import Sidebar from "shared/ui/Sidebar/Sidebar";
-import styles from "./MainPage.module.scss";
+import styles from "./mainPage.module.scss";
 import AuthForm from "features/AuthForm/ui/AuthForm";
 import MovieList from "../MovieList/MovieList";
 

@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import Modal from "shared/ui/Modal/Modal";
 import Input from "shared/ui/Input/Input";
 import Button from "shared/ui/Button/Button";
@@ -11,7 +11,6 @@ const AuthForm = memo(({ isOpened, handleModal }) => {
   const error = useSelector(getErrorUser);
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-
   const dispatch = useDispatch();
 
   const onSignUp = async () => {
