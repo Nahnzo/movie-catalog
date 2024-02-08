@@ -1,19 +1,37 @@
-// import { getFilmByName } from "../model/services/getFilmByName";
 import { useDispatch } from "react-redux";
 import { MovieActions } from "pages/MainPage/model/slices/MovieSlice";
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { getFilmByName } from "../model/services/getFilmByName";
 import Input from "shared/ui/Input/Input";
 import Button from "shared/ui/Button/Button";
-import { getFilmByName } from "../../../features/GetFilmBySearch/model/services/getFilmByName";
 import styles from "./getFilmBySearch.module.scss";
+import { setResultSearch } from "../model/services/setResultSearch";
 
-const GetFilmBySearch = ({ disabled, placeholder }) => {
+const GetFilmBySearch = ({ disabled, placeholder, collectionType, handleMovie }) => {
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
-  const getMovie = async () => {
-    const res = await getFilmByName(`${search}`).then((data) => data);
-    dispatch(MovieActions.setFilmBySearch(res));
-  };
+
+  setResultSearch(search, collectionType, dispatch, handleMovie);
+  // const actions = {
+  //   movie: MovieActions.setFilmBySearch,
+  // };
+  console.log(1);
+
+  // const setResultSearch = async () => {
+  //   try {
+  //     if (collectionType) {
+  //       const result = await getFilmByName(`${search}`);
+  //       const action = actions[collectionType];
+  //       dispatch(action(result));
+  //       setSearch("");
+  //     } else {
+  //       handleMovie(search);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error in setResultSearch:", error);
+  //     setSearch("");
+  //   }
+  // };
 
   const onChangeSearch = (event) => {
     setSearch(event.target.value);
@@ -22,9 +40,9 @@ const GetFilmBySearch = ({ disabled, placeholder }) => {
   return (
     <>
       <Input styles={styles.searchInput} disabled={disabled} placeholder={placeholder} handler={onChangeSearch} />
-      <Button styles={styles.searchBtn} handler={() => getMovie()}>
+      {/* <Button styles={styles.searchBtn} handler={() => setResultSearch()}>
         Найти
-      </Button>
+      </Button> */}
     </>
   );
 };

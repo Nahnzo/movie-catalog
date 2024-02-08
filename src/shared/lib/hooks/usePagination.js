@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllMovie } from "pages/MainPage/model/selectors/getAllMovie/getAllMovie";
 import { getMovie } from "pages/MainPage/model/api/getMovie";
+import { getAllMovie } from "pages/MainPage/model/selectors/getAllMovie/getAllMovie";
 import { LOCAL_STORAGE_USER_NUMBER_PAGINATION } from "../../lib/const/const";
 
 export const usePagination = (moviesPerPage = 18) => {

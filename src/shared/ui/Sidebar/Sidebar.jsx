@@ -1,6 +1,6 @@
 import { memo, useState } from "react";
-import { routes } from "../../lib/config/routes";
 import { useLocation } from "react-router-dom";
+import { routes } from "shared/lib/config/routes";
 import Button from "../Button/Button";
 import Navbar from "../Navbar/Navbar";
 import styles from "./sidebar.module.scss";

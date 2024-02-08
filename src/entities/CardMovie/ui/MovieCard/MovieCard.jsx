@@ -5,7 +5,7 @@ import styles from "./movieCard.module.scss";
 
 const MovieCard = ({ data, handleModal }) => {
   const [showDetails, setShowDetails] = useState(false);
-  const backgroundImage = data.poster.previewUrl;
+  const backgroundImage = data?.poster?.previewUrl || data?.poster;
 
   const handleCardMouseEnter = () => {
     setShowDetails(true);

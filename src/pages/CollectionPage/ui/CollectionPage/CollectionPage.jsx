@@ -10,7 +10,7 @@ import Footer from "shared/ui/Footer/Footer";
 import Button from "shared/ui/Button/Button";
 import styles from "./collectionPage.module.scss";
 import Slider from "widgets/Slider/Slider";
-import Header from "shared/ui/Header/Header";
+import Header from "features/Header/ui/Header";
 import CollectionCard from "../CollectionCard/CollectionCard";
 
 const CollectionPage = () => {

@@ -1,5 +1,5 @@
 import Sidebar from "shared/ui/Sidebar/Sidebar";
-import Header from "shared/ui/Header/Header";
+import Header from "features/Header/ui/Header";
 import styles from "./reviewsPage.module.scss";
 
 const ReviewsPage = () => {

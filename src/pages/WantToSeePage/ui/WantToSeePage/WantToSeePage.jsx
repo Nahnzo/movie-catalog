@@ -1,21 +1,22 @@
 import { routes } from "shared/lib/config/routes";
-import { useEffect, useState, memo } from "react";
+import { useEffect, useState, memo, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { WantToSeeActions } from "../../model/slices/WantToSeeSlice";
 import { getMovieForWantToSee } from "../../model/selectors/getMovieForWantToSee";
 import { getFirstMovie } from "../../model/selectors/getFirstMovie";
 import { getIsUserAuth } from "../../model/selectors/getUserDataSelectors";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { removeEntireListCollection } from "shared/lib/config/movieService";
+import { GetFilmBySearch } from "features/GetFilmBySearch";
 import Button from "shared/ui/Button/Button";
 import WantToSeeCard from "../WantToSeeCard/WantToSeeCard";
 import Sidebar from "shared/ui/Sidebar/Sidebar";
 import Footer from "shared/ui/Footer/Footer";
 import styles from "./wantToSeePage.module.scss";
-import Header from "shared/ui/Header/Header";
+import Header from "features/Header/ui/Header";
 import Slider from "widgets/Slider/Slider";
 
-const WantToSee = memo(() => {
+const WantToSeePage = memo(() => {
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   const dispatch = useDispatch();
@@ -25,13 +26,23 @@ const WantToSee = memo(() => {
   const isAuth = useSelector(getIsUserAuth);
   const id = useSelector((state) => state.user.id);
 
+  const setResultBySearch = useCallback(
+    (name) => {
+      const result = movies.filter((item) => item.name === name);
+      if (result.length) {
+        setSelectedMovie(result[0]);
+      }
+    },
+    [movies]
+  );
+
   useEffect(() => {
     if (!localStorage.getItem("userEmail")) {
       navigate(routes.home);
     }
     setSelectedMovie(movies[movies.length - 1] && firstMovie);
   }, [firstMovie, isAuth, movies, navigate]);
-  const handleCollection = async () => {
+  const deleteEntireList = async () => {
     dispatch(WantToSeeActions.clearAll());
     removeEntireListCollection(id, "wantToSee");
   };
@@ -39,7 +50,9 @@ const WantToSee = memo(() => {
   if (!movies.length) {
     return (
       <section className={styles.main}>
-        <Header />
+        <Header>
+          <GetFilmBySearch placeholder="Что найти в коллекции?" handleMovie={setResultBySearch} />
+        </Header>
         <div className={styles.emptyWrapper}>
           <Sidebar />
           <h2 className={styles.emptyPage}>Список пуст</h2>
@@ -49,10 +62,12 @@ const WantToSee = memo(() => {
   }
   return (
     <section className={styles.main}>
-      <Header />
+      <Header>
+        <GetFilmBySearch placeholder="Что найти в коллекции?" handleMovie={setResultBySearch} />
+      </Header>
       <div className={styles.wrapper}>
         <div className={styles.wrapperBtn}>
-          <Button styles={`${styles.deleteEntireList}`} handler={() => handleCollection()}>
+          <Button styles={`${styles.deleteEntireList}`} handler={() => deleteEntireList()}>
             Очистить список ({movies.length})
           </Button>
         </div>
@@ -77,4 +92,4 @@ const WantToSee = memo(() => {
   );
 });
 
-export default WantToSee;
+export default WantToSeePage;
