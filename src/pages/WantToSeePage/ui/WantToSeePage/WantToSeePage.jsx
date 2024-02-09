@@ -28,7 +28,7 @@ const WantToSeePage = memo(() => {
 
   const setResultBySearch = useCallback(
     (name) => {
-      const result = movies.filter((item) => item.name === name);
+      const result = movies.filter((item) => item.name.toLowerCase() === name.toLowerCase());
       if (result.length) {
         setSelectedMovie(result[0]);
       }

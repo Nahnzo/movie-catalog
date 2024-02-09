@@ -4,7 +4,7 @@ import { MOVIES_PER_PAGE } from "shared/lib/const/const";
 import { useSelector } from "react-redux";
 import { getIsLoadingMovie } from "../../model/selectors/getIsLoadingMovie/getIsLoadingMovie";
 import { initialDataUser } from "shared/lib/config/getInitialDataUserSlice";
-import { getIsAuthUser } from "../../model/selectors/getUserSelectors/getUserSelectors";
+import { getIsAuthUser, getUserId } from "../../model/selectors/getUserSelectors/getUserSelectors";
 import { useDispatch } from "react-redux";
 import { useModal } from "shared/lib/hooks/useModal";
 import Skeleton from "shared/ui/Skeleton/Skeleton";
@@ -23,7 +23,7 @@ const MainPage = memo(() => {
   const isLoading = useSelector(getIsLoadingMovie);
   const isAuth = useSelector(getIsAuthUser);
   const dispatch = useDispatch();
-  const id = useSelector((state) => state.user.id);
+  const id = useSelector(getUserId);
   const { isOpened, handleModal } = useModal();
   const onHandleModal = useCallback(() => {
     handleModal();
@@ -54,7 +54,7 @@ const MainPage = memo(() => {
         <div className={styles.container}>
           <MovieList currentMovies={currentMovies} handleModal={handleModal} />
         </div>
-        {currentMovies && (
+        {currentMovies?.length > 15 && (
           <Pagination
             moviesPerPage={MOVIES_PER_PAGE}
             // хардкодим 250 из за ограничения API

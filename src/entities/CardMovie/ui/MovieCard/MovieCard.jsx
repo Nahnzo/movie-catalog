@@ -1,11 +1,12 @@
 import { useState } from "react";
 import HandleWantToSee from "../../model/services/HandleWantToSee/HandleWantToSee";
 import HandleMyCollection from "../../model/services/HandleMyCollection/HandleMyCollection";
+import EmptyBackground from "shared/assets/empty-background.jpg";
 import styles from "./movieCard.module.scss";
 
 const MovieCard = ({ data, handleModal }) => {
   const [showDetails, setShowDetails] = useState(false);
-  const backgroundImage = data?.poster?.previewUrl || data?.poster;
+  const backgroundImage = data?.poster?.previewUrl || data?.poster || EmptyBackground;
 
   const handleCardMouseEnter = () => {
     setShowDetails(true);
