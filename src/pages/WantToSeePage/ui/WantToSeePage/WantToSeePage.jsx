@@ -79,7 +79,7 @@ const WantToSeePage = memo(() => {
               <img
                 className={styles.card}
                 key={item.id}
-                src={item.poster.previewUrl}
+                src={item.poster?.previewUrl || item.poster}
                 alt={item.title}
                 onClick={() => setSelectedMovie(item)}
               />

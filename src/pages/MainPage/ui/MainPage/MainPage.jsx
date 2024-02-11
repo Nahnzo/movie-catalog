@@ -1,4 +1,4 @@
-import { Suspense, memo, useCallback, useEffect } from "react";
+import { memo, useCallback, useEffect } from "react";
 import { usePagination } from "shared/lib/hooks/usePagination";
 import { MOVIES_PER_PAGE } from "shared/lib/const/const";
 import { useSelector } from "react-redux";
@@ -7,6 +7,7 @@ import { initialDataUser } from "shared/lib/config/getInitialDataUserSlice";
 import { getIsAuthUser, getUserId } from "../../model/selectors/getUserSelectors/getUserSelectors";
 import { useDispatch } from "react-redux";
 import { useModal } from "shared/lib/hooks/useModal";
+import { getAllMovie } from "../../model/selectors/getAllMovie/getAllMovie";
 import Skeleton from "shared/ui/Skeleton/Skeleton";
 import Pagination from "../Pagination/Pagination";
 import Sidebar from "shared/ui/Sidebar/Sidebar";
@@ -19,11 +20,13 @@ const skeletons = Array(24)
   .map((_, index) => index + 1);
 
 const MainPage = memo(() => {
-  const { currentPage, currentMovies, handlePageChange } = usePagination(MOVIES_PER_PAGE);
+  const data = useSelector(getAllMovie);
+  const { currentPage, currentMovies, handlePageChange } = usePagination(MOVIES_PER_PAGE, data);
   const isLoading = useSelector(getIsLoadingMovie);
   const isAuth = useSelector(getIsAuthUser);
-  const dispatch = useDispatch();
   const id = useSelector(getUserId);
+  const dispatch = useDispatch();
+  const lastPage = 14;
   const { isOpened, handleModal } = useModal();
   const onHandleModal = useCallback(() => {
     handleModal();
@@ -35,6 +38,7 @@ const MainPage = memo(() => {
       dispatch(initialDataUser(id));
     }
   }, [dispatch, id]);
+  console.log(Number(currentPage) <= lastPage);
 
   if (isLoading) {
     return (
@@ -53,8 +57,9 @@ const MainPage = memo(() => {
         {isAuth && <Sidebar />}
         <div className={styles.container}>
           <MovieList currentMovies={currentMovies} handleModal={handleModal} />
+          {Number(currentPage) >= lastPage && <button onClick={() => handlePageChange(currentPage)}>{"<--"}</button>}
         </div>
-        {currentMovies?.length > 15 && (
+        {Number(currentPage) <= lastPage && (
           <Pagination
             moviesPerPage={MOVIES_PER_PAGE}
             // хардкодим 250 из за ограничения API
