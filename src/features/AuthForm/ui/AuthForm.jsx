@@ -1,4 +1,4 @@
-import { memo, useEffect, useRef, useState } from "react";
+import { memo, useState } from "react";
 import Modal from "shared/ui/Modal/Modal";
 import Input from "shared/ui/Input/Input";
 import Button from "shared/ui/Button/Button";

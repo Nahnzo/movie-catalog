@@ -45,11 +45,24 @@
   right: 10%;
   z-index: 999;
 }
+.modal {
+  width: 80%;
+  height: 80%;
+  display: flex;
+}
 
 .card {
   min-width: 8%;
   height: 100%;
   background: center / 100% no-repeat;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.cardModal {
+  min-width: 8%;
+  height: 50%;
+  background: center / 50% no-repeat;
   cursor: pointer;
   margin-right: 5px;
 }
