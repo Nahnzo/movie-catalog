@@ -6,4 +6,4 @@ export const LOCAL_STORAGE_USER_NUMBER_PAGINATION = "NUMBER_PAGINATION";
 
 export const API_URL = "http://localhost:5000/api";
 // На глобальном уровне, из за ограничение API
-export const MOVIES_PER_PAGE = 18;
+export const MOVIES_PER_PAGE = 25;

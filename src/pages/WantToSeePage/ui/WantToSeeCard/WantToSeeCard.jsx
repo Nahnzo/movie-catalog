@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import HandleMovieInWantToSee from "../HandleMovieInWantToSee/HandleMovieInWantToSee";
 import { WantToSeeActions } from "../../model/slices/WantToSeeSlice";
 import { memo } from "react";
 import { removeMovieFromCollection } from "shared/lib/config/movieService";
 import { getUserId } from "../../model/selectors/getUserDataSelectors";
+import HandleMovieInWantToSee from "../HandleMovieInWantToSee/HandleMovieInWantToSee";
 import getFormateTime from "widgets/FormateTimeFunction/getFormateTime";
 import Button from "shared/ui/Button/Button";
 import styles from "./wantToSeeCard.module.scss";
@@ -12,11 +12,26 @@ const WantToSeeCard = memo(({ firstMovie }) => {
   const dispatch = useDispatch();
   const id = useSelector(getUserId);
   const backgroundImage = firstMovie?.poster?.previewUrl || firstMovie?.poster;
-
   const deleteMovie = async (movie) => {
     dispatch(WantToSeeActions.removeMovie(firstMovie));
     removeMovieFromCollection({ movie }, id, "wantToSee");
   };
+
+  let rating =
+    typeof firstMovie.rating === "object" ? (
+      <>
+        {Object.entries(firstMovie?.rating)
+          .filter(([key, value]) => value !== null && value >= 0)
+          .map(([key, value]) => (
+            <strong key={key} className={styles.rating}>
+              {key}: {value}
+            </strong>
+          ))}
+      </>
+    ) : (
+      firstMovie.rating
+    );
+
   if (!firstMovie.length) {
     return (
       <>
@@ -26,7 +41,7 @@ const WantToSeeCard = memo(({ firstMovie }) => {
             <div className={styles.movieInfo}>
               <p>
                 {firstMovie.genres.length > 1 ? "Жанры: " : "Жанр: "}
-                {firstMovie.genres.map((item) => item.name + "") + "."}
+                {firstMovie.genres.map((item) => (typeof item === "object" ? item.name : item)) + "."}
               </p>
               <p>
                 Название: <strong>{firstMovie.name}</strong>
@@ -36,7 +51,8 @@ const WantToSeeCard = memo(({ firstMovie }) => {
               </p>
               <p>
                 {firstMovie.countries.length > 1 ? "Страны: " : "Страна: "}
-                {firstMovie.countries.map((item) => item.name) + "."} {firstMovie.year} год
+                {firstMovie.countries.map((item) => (typeof item === "object" ? item.name : item)) + "."}
+                {firstMovie.year} год
               </p>
               <p>{firstMovie.movieLength > 0 ? "Длительность: " + getFormateTime(firstMovie.movieLength) : ""}</p>
             </div>
@@ -48,10 +64,7 @@ const WantToSeeCard = memo(({ firstMovie }) => {
               <HandleMovieInWantToSee firstMovie={firstMovie} />
             </div>
             <hr />
-            <div className={styles.movieRating}>
-              Rating: Кинопоиск <strong> {Math.floor(firstMovie.rating.kp)}. </strong>
-              IMDB <strong>{firstMovie.rating.imdb}</strong>
-            </div>
+            <div className={styles.movieRating}>Rating {rating} </div>
           </div>
         </div>
       </>

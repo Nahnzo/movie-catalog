@@ -38,11 +38,13 @@ const WantToSeePage = memo(() => {
       }
       const regex = new RegExp(name, "i");
       const result = movies.filter((item) => regex.test(item.name));
+      if (result.length === 0) {
+        return;
+      }
       if (result.length === 1) {
         setSelectedMovie(result[0]);
       } else {
         setFilteredBySearchMovie(result);
-        console.log(result);
         handleModal();
       }
     },
@@ -55,6 +57,7 @@ const WantToSeePage = memo(() => {
     }
     setSelectedMovie(movies[movies.length - 1] && firstMovie);
   }, [firstMovie, isAuth, movies, navigate]);
+
   const deleteEntireList = async () => {
     dispatch(WantToSeeActions.clearAll());
     removeEntireListCollection(id, "wantToSee");

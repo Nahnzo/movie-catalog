@@ -30,7 +30,7 @@ export const usePagination = (moviesPerPage = 18, data) => {
       dispatch(
         getMovie({
           page: Number(localStorage.getItem(LOCAL_STORAGE_USER_NUMBER_PAGINATION)) || 1,
-          limit: Number(localStorage.getItem(LOCAL_STORAGE_USER_NUMBER_PAGINATION)) * 18 || 18,
+          limit: Number(localStorage.getItem(LOCAL_STORAGE_USER_NUMBER_PAGINATION)) * 25 || 25,
         })
       );
     }

@@ -8,6 +8,7 @@ import { getIsAuthUser, getUserId } from "../../model/selectors/getUserSelectors
 import { useDispatch } from "react-redux";
 import { useModal } from "shared/lib/hooks/useModal";
 import { getAllMovie } from "../../model/selectors/getAllMovie/getAllMovie";
+import Button from "shared/ui/Button/Button";
 import Skeleton from "shared/ui/Skeleton/Skeleton";
 import Pagination from "../Pagination/Pagination";
 import Sidebar from "shared/ui/Sidebar/Sidebar";
@@ -26,11 +27,12 @@ const MainPage = memo(() => {
   const isAuth = useSelector(getIsAuthUser);
   const id = useSelector(getUserId);
   const dispatch = useDispatch();
-  const lastPage = 14;
+
   const { isOpened, handleModal } = useModal();
   const onHandleModal = useCallback(() => {
     handleModal();
   }, [handleModal]);
+
   useEffect(() => {
     const localDataWantToSee = localStorage.getItem("WANT_TO_SEE");
     const localDataMyCollection = localStorage.getItem("MY_COLLECTION");
@@ -38,7 +40,6 @@ const MainPage = memo(() => {
       dispatch(initialDataUser(id));
     }
   }, [dispatch, id]);
-  console.log(Number(currentPage) <= lastPage);
 
   if (isLoading) {
     return (
@@ -57,9 +58,13 @@ const MainPage = memo(() => {
         {isAuth && <Sidebar />}
         <div className={styles.container}>
           <MovieList currentMovies={currentMovies} handleModal={handleModal} />
-          {Number(currentPage) >= lastPage && <button onClick={() => handlePageChange(currentPage)}>{"<--"}</button>}
+          {currentMovies?.length < MOVIES_PER_PAGE && (
+            <Button handler={() => handlePageChange(currentPage)} styles={styles.buttonBack}>
+              {"Назад к списку"}
+            </Button>
+          )}
         </div>
-        {Number(currentPage) <= lastPage && (
+        {currentMovies?.length == MOVIES_PER_PAGE && (
           <Pagination
             moviesPerPage={MOVIES_PER_PAGE}
             // хардкодим 250 из за ограничения API

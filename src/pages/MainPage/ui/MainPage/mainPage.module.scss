@@ -13,6 +13,19 @@
   width: 60%;
   margin: 0 auto 80px;
   color: var(--main-color);
-  padding: 30px;
+  padding: 20px;
   align-content: flex-start;
+}
+
+.buttonBack {
+  width: 15%;
+  background: transparent;
+  outline: none;
+  border: var(--main-border);
+  color: var(--main-color);
+  cursor: pointer;
+  border-radius: 5px;
+  &:hover {
+    opacity: 0.5;
+  }
 }
