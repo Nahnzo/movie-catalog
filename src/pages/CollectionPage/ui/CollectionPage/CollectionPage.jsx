@@ -2,37 +2,66 @@ import { routes } from "shared/lib/config/routes";
 import { useSelector, useDispatch } from "react-redux";
 import { getMovieForCollection } from "../../model/selectors/getMovieForCollection/getMovieForCollection";
 import { MyCollectionActions } from "../../model/slices/MyCollectionSlice";
-import { useEffect } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { removeEntireListCollection } from "shared/lib/config/movieService";
+import { GetFilmBySearch } from "features/GetFilmBySearch";
 import Sidebar from "shared/ui/Sidebar/Sidebar";
 import Footer from "shared/ui/Footer/Footer";
 import Button from "shared/ui/Button/Button";
-import styles from "./collectionPage.module.scss";
 import Slider from "widgets/Slider/Slider";
 import Header from "features/Header/ui/Header";
+import Modal from "shared/ui/Modal/Modal";
+import { useModal } from "shared/lib/hooks/useModal";
+import styles from "./collectionPage.module.scss";
 import CollectionCard from "../CollectionCard/CollectionCard";
 
 const CollectionPage = () => {
+  const [filteredBySearchMovie, setFilteredBySearchMovie] = useState(null);
   const dispatch = useDispatch();
   const movies = useSelector(getMovieForCollection);
   const navigate = useNavigate();
   const id = useSelector((state) => state.user.id);
+  const isAuth = useSelector((state) => state.user.isAuth);
+
+  const { isOpened, handleModal } = useModal();
 
   const handleCollection = async () => {
     dispatch(MyCollectionActions.clearAll());
     removeEntireListCollection(id, "myCollection");
   };
 
+  const setResultBySearch = useCallback(
+    (name) => {
+      if (name.trim() === "") {
+        return;
+      }
+      const regex = new RegExp(name, "i");
+      const result = movies.filter((item) => regex.test(item.name) || regex.test(item.alternativeName));
+      if (result.length === 0) {
+        return;
+      }
+      if (result.length === 1) {
+        dispatch(MyCollectionActions.setMovieBySearch(result[0]));
+      } else {
+        setFilteredBySearchMovie(result);
+        handleModal();
+      }
+    },
+    [dispatch, handleModal, movies]
+  );
+
   useEffect(() => {
     if (!localStorage.getItem("userEmail")) {
       navigate(routes.home);
     }
-  }, [navigate]);
+  }, [navigate, isAuth, movies]);
   if (!movies.length) {
     return (
       <section className={styles.main}>
-        <Header />
+        <Header>
+          <GetFilmBySearch placeholder="Что найти в коллекции?" />
+        </Header>
         <div className={styles.emptyWrapper}>
           <Sidebar />
           <h2 className={styles.emptyPage}>Список пуст</h2>
@@ -43,7 +72,20 @@ const CollectionPage = () => {
 
   return (
     <section className={styles.main}>
-      <Header />
+      <Header>
+        <GetFilmBySearch placeholder="Что найти в коллекции?" handleMovie={setResultBySearch} />
+        <Modal isOpen={isOpened} onClose={handleModal} style={styles.modal}>
+          {filteredBySearchMovie?.map((item) => (
+            <img
+              className={styles.cardModal}
+              key={item.id}
+              src={item.poster?.previewUrl || item.poster}
+              alt={item.title}
+              onClick={() => dispatch(MyCollectionActions.setMovieBySearch(item))}
+            />
+          ))}
+        </Modal>
+      </Header>
       {movies.length && (
         <Button styles={styles.deleteEntireList} handler={() => handleCollection()}>
           Очистить список ({movies.length})
@@ -51,6 +93,10 @@ const CollectionPage = () => {
       )}
       <div className={styles.mainWrapper}>
         <Sidebar />
+        <div className={styles.prevAndNextMovies}>
+          <p className={styles.prevMovie}>{movies[0].name}</p>
+          <p className={styles.nextMovie}>{movies[1].name}</p>
+        </div>
         <Slider
           width="80%"
           height="80%"
@@ -63,6 +109,7 @@ const CollectionPage = () => {
           ))}
         </Slider>
       </div>
+
       <Footer />
     </section>
   );

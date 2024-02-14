@@ -11,6 +11,11 @@ export const MyCollectionSlice = createSlice({
     source: "myCollection",
   },
   reducers: {
+    setMovieBySearch(state, action) {
+      const isExist = state.myCollection.filter((item) => item.id === action.payload.id);
+      state.myCollection = state.myCollection.filter((item) => item.id !== action.payload.id);
+      state.myCollection.unshift(...isExist);
+    },
     addAllInitialMovie(state, action) {
       state.myCollection = action.payload;
       state.length = action.payload.length;

@@ -10,6 +10,7 @@ import { TrailerPlayer } from "features/TrailerPlayer";
 
 const CollectionCard = memo(({ movie }) => {
   const [showRateWindow, setShowRateWindow] = useState(false);
+  const backgroundImage = movie?.poster?.previewUrl || movie?.poster;
   const dispatch = useDispatch();
   const navigate = useNavigate();
   // const review = useSelector(getSortedMovie);
@@ -21,7 +22,7 @@ const CollectionCard = memo(({ movie }) => {
   return (
     <div className={styles.wrapperCard}>
       <div className={styles.content}>
-        <div className={styles.poster} style={{ backgroundImage: `url(${movie.poster.url})` }}></div>
+        <img className={styles.poster} src={backgroundImage} />
         <TrailerPlayer id={movie.id} />
       </div>
       <div className={styles.info}>

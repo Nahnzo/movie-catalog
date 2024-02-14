@@ -37,7 +37,7 @@ const WantToSeePage = memo(() => {
         return;
       }
       const regex = new RegExp(name, "i");
-      const result = movies.filter((item) => regex.test(item.name));
+      const result = movies.filter((item) => regex.test(item.name) || regex.test(item.alternativeName));
       if (result.length === 0) {
         return;
       }
