@@ -10,7 +10,6 @@ export const getMovie = createAsyncThunk("movie/getMovie", async ({ page, limit 
       },
     });
     const response = await data.json();
-    console.log(response);
     return response;
   } catch (error) {
     console.log("Error: ", error.message);

@@ -6,13 +6,13 @@ import { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { removeEntireListCollection } from "shared/lib/config/movieService";
 import { GetFilmBySearch } from "features/GetFilmBySearch";
+import { useModal } from "shared/lib/hooks/useModal";
 import Sidebar from "shared/ui/Sidebar/Sidebar";
 import Footer from "shared/ui/Footer/Footer";
 import Button from "shared/ui/Button/Button";
 import Slider from "widgets/Slider/Slider";
 import Header from "features/Header/ui/Header";
 import Modal from "shared/ui/Modal/Modal";
-import { useModal } from "shared/lib/hooks/useModal";
 import styles from "./collectionPage.module.scss";
 import CollectionCard from "../CollectionCard/CollectionCard";
 
@@ -93,10 +93,10 @@ const CollectionPage = () => {
       )}
       <div className={styles.mainWrapper}>
         <Sidebar />
-        <div className={styles.prevAndNextMovies}>
+        {/* <div className={styles.prevAndNextMovies}>
           <p className={styles.prevMovie}>{movies[0].name}</p>
           <p className={styles.nextMovie}>{movies[1].name}</p>
-        </div>
+        </div> */}
         <Slider
           width="80%"
           height="80%"

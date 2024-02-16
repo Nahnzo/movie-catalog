@@ -3,6 +3,7 @@ import HandleWantToSee from "../../model/services/HandleWantToSee/HandleWantToSe
 import HandleMyCollection from "../../model/services/HandleMyCollection/HandleMyCollection";
 import EmptyBackground from "shared/assets/empty-background.jpg";
 import styles from "./movieCard.module.scss";
+import HandleReviews from "../../model/services/HandleReviews/HandleReviews";
 
 const MovieCard = ({ data, handleModal }) => {
   const [showDetails, setShowDetails] = useState(false);
@@ -25,6 +26,7 @@ const MovieCard = ({ data, handleModal }) => {
       <img src={backgroundImage} className={styles.image} alt={data.name || data.alternativeName} srcSet="" />
       {showDetails && (
         <div onClick={handleDetailsClick}>
+          <HandleReviews movie={data} handleModal={handleModal} />
           <HandleWantToSee movie={data} handleModal={handleModal} />
           <HandleMyCollection movie={data} handleModal={handleModal} />
         </div>

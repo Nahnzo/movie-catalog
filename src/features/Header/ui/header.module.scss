@@ -18,29 +18,12 @@
   font-size: var(--font-size-m);
   transition: all 0.3s ease;
 }
+
 .navigation > h3 {
   cursor: pointer;
   font-weight: 450;
 }
+
 .navigation > h3:hover {
   opacity: 0.5;
 }
-
-// @media (max-width: 768px) {
-//   .navigation {
-//     width: 60%;
-//     flex-direction: column;
-//     justify-content: center;
-//     align-items: flex-start;
-//     padding: 10px;
-//   }
-//   .navigation > * {
-//     margin-bottom: 10px;
-//   }
-// }
-
-// @media (min-width: 769px) and (max-width: 1024px) {
-//   .navigation {
-//     width: 80%;
-//   }
-// }

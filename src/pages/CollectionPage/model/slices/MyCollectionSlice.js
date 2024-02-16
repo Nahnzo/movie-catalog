@@ -23,7 +23,7 @@ export const MyCollectionSlice = createSlice({
     addMovieToCollection(state, action) {
       const isExist = state.myCollection.find((item) => item.id === action.payload.id);
       if (!isExist) {
-        state.myCollection.push({ ...action.payload, userRating: 0 });
+        state.myCollection.push({ ...action.payload, userRating: 0, userReview: "" });
         state.length++;
         localStorage.setItem(LOCAL_STORAGE_MY_COLLECTION, JSON.stringify(state.myCollection));
       }
@@ -54,10 +54,10 @@ export const MyCollectionSlice = createSlice({
       }
     },
     addReview(state, action) {
-      const { movieId, myReviews } = action.payload;
+      const { movieId, myReview } = action.payload;
       const movieIndex = state.myCollection.findIndex((item) => item.id === movieId);
       if (movieIndex !== -1) {
-        state.myCollection[movieIndex].myReviews = myReviews;
+        state.myCollection[movieIndex].myReview = myReview;
       }
     },
   },

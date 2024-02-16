@@ -36,7 +36,8 @@ const MainPage = memo(() => {
   useEffect(() => {
     const localDataWantToSee = localStorage.getItem("WANT_TO_SEE");
     const localDataMyCollection = localStorage.getItem("MY_COLLECTION");
-    if (!localDataWantToSee && !localDataMyCollection) {
+    const localDataMyReviews = localStorage.getItem("MY_REVIEWS");
+    if (!localDataWantToSee && !localDataMyCollection && !localDataMyReviews) {
       dispatch(initialDataUser(id));
     }
   }, [dispatch, id]);

@@ -18,7 +18,7 @@ export const WantToSeeSlice = createSlice({
     addMovie(state, action) {
       const isExist = state.wantToSee.find((item) => item.id === action.payload.id);
       if (!isExist) {
-        state.wantToSee.push(action.payload);
+        state.wantToSee.push({ ...action.payload, myReview: "" });
         state.length++;
       }
     },

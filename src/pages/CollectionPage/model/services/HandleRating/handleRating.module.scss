@@ -13,7 +13,8 @@
 }
 
 .smiles {
-  font-size: 35px;
+  display: block;
+  font-size: 45px;
   cursor: pointer;
 }
 
@@ -41,5 +42,5 @@
 
 .infoRating {
   position: absolute;
-  bottom: 10px;
+  bottom: 0;
 }

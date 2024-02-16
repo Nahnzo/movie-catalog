@@ -8,9 +8,41 @@
 .mainWrapper {
   display: flex;
   justify-content: center;
-  height: 80vh;
+  height: 85vh;
   width: 100%;
   position: relative;
   margin: 60px auto;
-  padding: 5px;
+  background-color: gray;
+}
+.sliders {
+  display: flex;
+  margin-top: auto;
+  width: 100%;
+  height: 30%;
+  background-color: blue;
+}
+
+.card {
+  min-width: 8%;
+  height: 100%;
+  background: center / 100% no-repeat;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.reviewBlock {
+  position: absolute;
+  width: 50%;
+  top: 50px;
+  height: 350px;
+  background-color: red;
+}
+
+.img {
+  position: absolute;
+  top: 50px;
+  left: 190px;
+  height: 350px;
+  width: 15%;
+  background: center / 100 no-repeat;
 }

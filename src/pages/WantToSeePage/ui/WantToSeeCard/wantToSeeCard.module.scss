@@ -7,6 +7,7 @@
 
 .cardImage {
   width: 28%;
+  min-width: 150px;
   height: 100%;
   background-size: 100%;
 }
@@ -21,14 +22,16 @@
 .movieInfo {
   height: 30%;
   width: 100%;
-  font-size: 19px;
+  width: 100%;
+  font-size: var(--font-size-m);
 }
 .movieDescription {
   display: flex;
   margin-top: 10px;
   height: 50%;
   width: 100%;
-  font-size: 19px;
+  font-size: var(--font-size-m);
+  font-size: 1.1rem;
 }
 .btnsWrapper {
   display: flex;

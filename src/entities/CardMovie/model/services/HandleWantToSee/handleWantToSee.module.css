@@ -13,10 +13,10 @@
   position: absolute;
   bottom: 30%;
   right: 5px;
-  stroke: rgb(44, 44, 247);
+  stroke: blue;
 }
 .wantToSeePlus:hover {
-  stroke: rgb(44, 44, 247);
+  stroke: blue;
 }
 .wantToSeeMinus:hover {
   stroke: red;

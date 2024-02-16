@@ -27,7 +27,13 @@ class MovieController {
       }
 
       if (!collection.some((movie) => movie.id === movieTarget.id)) {
-        collection.push(req.body);
+        // Добавляем фильм в коллекцию
+        if (collectionType === "myReviews") {
+          const newMovie = { ...movieTarget, userReview: "" }; // Устанавливаем пустую рецензию
+          collection.push(newMovie);
+        } else {
+          collection.push(movieTarget);
+        }
         await user.save();
         return res.status(200).json({ message: "Фильм успешно добавлен в коллекцию пользователя" });
       } else {
@@ -81,8 +87,6 @@ class MovieController {
       if (!user) {
         return res.status(404).json({ error: "Пользователь не найден" });
       }
-
-      let collection;
       switch (collectionType) {
         case "myCollection":
           user.movies.myCollection = [];
@@ -98,6 +102,32 @@ class MovieController {
       }
       await user.save();
       return res.status(200).json({ message: "Коллекция успешно очищена" });
+    } catch (error) {
+      next(error);
+    }
+  }
+  async addReview(req, res, next) {
+    try {
+      const { userId } = req.params;
+      const { movieId, userReview } = req.body;
+      const user = await userModel.findById(userId);
+      if (!user) {
+        return res.status(404).json({ error: "Пользователь не найден" });
+      }
+      const movieIndex = user.movies.myReviews.findIndex((movie) => movie.id === movieId);
+      if (movieIndex === -1) {
+        return res.status(404).json({ error: "Фильм не найден в коллекции пользователя" });
+      } else {
+        user.movies.myReviews = user.movies.myReviews.map((movie) => {
+          if (movie.id === movieId) {
+            return { ...movie, userReview: userReview };
+          }
+          return movie;
+        });
+
+        await user.save();
+      }
+      return res.status(200).json({ message: "Рецензия успешно изменена" });
     } catch (error) {
       next(error);
     }

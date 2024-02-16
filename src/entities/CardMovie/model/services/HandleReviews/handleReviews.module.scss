@@ -1,0 +1,27 @@
+.collectionFill {
+  width: 25%;
+  height: 15%;
+  position: absolute;
+  bottom: 43%;
+  right: 10px;
+  stroke: rgb(4, 148, 245);
+  stroke-width: 4;
+}
+
+.collectionEmpty {
+  width: 25%;
+  height: 15%;
+  position: absolute;
+  bottom: 43%;
+  right: 10px;
+  stroke-width: 4;
+  stroke: gray;
+}
+
+.collectionEmpty:hover {
+  stroke: blue;
+}
+
+.collectionFill:hover {
+  opacity: 0.5;
+}
