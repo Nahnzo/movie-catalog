@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 import { removeEntireListCollection } from "shared/lib/config/movieService";
 import { GetFilmBySearch } from "features/GetFilmBySearch";
 import { useModal } from "shared/lib/hooks/useModal";
-import Modal from "shared/ui/Modal/Modal";
 import Button from "shared/ui/Button/Button";
 import WantToSeeCard from "../WantToSeeCard/WantToSeeCard";
 import Sidebar from "shared/ui/Sidebar/Sidebar";
@@ -17,6 +16,8 @@ import Footer from "shared/ui/Footer/Footer";
 import styles from "./wantToSeePage.module.scss";
 import Header from "features/Header/ui/Header";
 import Slider from "widgets/Slider/Slider";
+import useSetResultBySearch from "shared/lib/hooks/useSetResultBySearch";
+import ModalResultMovies from "widgets/ModalResultMovies/ModalResultMovies";
 
 const WantToSeePage = memo(() => {
   const [selectedMovie, setSelectedMovie] = useState(null);
@@ -78,17 +79,13 @@ const WantToSeePage = memo(() => {
   }
   return (
     <section className={styles.main}>
-      <Modal isOpen={isOpened} onClose={handleModal} style={styles.modal}>
-        {filteredBySearchMovie?.map((item) => (
-          <img
-            className={styles.cardModal}
-            key={item.id}
-            src={item.poster?.previewUrl || item.poster}
-            alt={item.title}
-            onClick={() => setSelectedMovie(item)}
-          />
-        ))}
-      </Modal>
+      <ModalResultMovies
+        movies={filteredBySearchMovie}
+        isOpen={isOpened}
+        onClose={handleModal}
+        styles={styles.modal}
+        handleCard={setSelectedMovie}
+      />
       <Header>
         <GetFilmBySearch placeholder="Что найти в коллекции?" handleMovie={setResultBySearch} />
       </Header>

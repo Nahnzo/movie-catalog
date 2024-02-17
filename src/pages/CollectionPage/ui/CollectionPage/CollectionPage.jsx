@@ -12,9 +12,9 @@ import Footer from "shared/ui/Footer/Footer";
 import Button from "shared/ui/Button/Button";
 import Slider from "widgets/Slider/Slider";
 import Header from "features/Header/ui/Header";
-import Modal from "shared/ui/Modal/Modal";
 import styles from "./collectionPage.module.scss";
 import CollectionCard from "../CollectionCard/CollectionCard";
+import ModalResultMovies from "widgets/ModalResultMovies/ModalResultMovies";
 
 const CollectionPage = () => {
   const [filteredBySearchMovie, setFilteredBySearchMovie] = useState(null);
@@ -60,7 +60,7 @@ const CollectionPage = () => {
     return (
       <section className={styles.main}>
         <Header>
-          <GetFilmBySearch placeholder="Что найти в коллекции?" />
+          <GetFilmBySearch placeholder="Что найти в коллекции?" handleMovie={setResultBySearch} />
         </Header>
         <div className={styles.emptyWrapper}>
           <Sidebar />
@@ -70,21 +70,21 @@ const CollectionPage = () => {
     );
   }
 
+  const handleCard = (item) => {
+    dispatch(MyCollectionActions.setMovieBySearch(item));
+  };
+
   return (
     <section className={styles.main}>
       <Header>
         <GetFilmBySearch placeholder="Что найти в коллекции?" handleMovie={setResultBySearch} />
-        <Modal isOpen={isOpened} onClose={handleModal} style={styles.modal}>
-          {filteredBySearchMovie?.map((item) => (
-            <img
-              className={styles.cardModal}
-              key={item.id}
-              src={item.poster?.previewUrl || item.poster}
-              alt={item.title}
-              onClick={() => dispatch(MyCollectionActions.setMovieBySearch(item))}
-            />
-          ))}
-        </Modal>
+        <ModalResultMovies
+          movies={filteredBySearchMovie}
+          isOpen={isOpened}
+          onClose={handleModal}
+          styles={styles.modal}
+          handleCard={handleCard}
+        />
       </Header>
       {movies.length && (
         <Button styles={styles.deleteEntireList} handler={() => handleCollection()}>

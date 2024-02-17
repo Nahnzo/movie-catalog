@@ -6,7 +6,26 @@
 h2 {
   text-align: center;
 }
-
+.info {
+  color: var(--main-color);
+  font-size: var(--font-size-m);
+}
+.btnOk {
+  width: 180px;
+  height: 35px;
+  text-align: center;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+  color: var(--main-color);
+  border: var(main-border);
+  border-radius: 8px;
+  font-family: var(--main-font);
+  font-size: var(font-size-m);
+  &:hover {
+    opacity: 0.5;
+  }
+}
 .reviews {
   height: 300px;
   text-align: center;
@@ -19,7 +38,7 @@ h2 {
   background-color: transparent;
   outline: none;
   border: none;
-  font-size: 24px;
+  font-size: var(--font-size-l);
   font-family: var(--main-font);
   color: var(--main-color);
   resize: none;
@@ -28,7 +47,7 @@ h2 {
 
 .reviewBtn {
   width: 180px;
-  height: 25px;
+  height: 35px;
   text-align: center;
   background-color: transparent;
   outline: none;
@@ -40,7 +59,7 @@ h2 {
   font-family: var(--main-font);
   font-size: var(font-size-m);
   position: absolute;
-  bottom: -105px;
+  bottom: -155px;
   left: 295px;
   &:hover {
     opacity: 0.5;
@@ -49,7 +68,7 @@ h2 {
 
 .deleteRw {
   width: 180px;
-  height: 25px;
+  height: 35px;
   text-align: center;
   background-color: transparent;
   outline: none;
@@ -61,7 +80,7 @@ h2 {
   font-family: var(--main-font);
   font-size: var(font-size-m);
   position: absolute;
-  bottom: -105px;
+  bottom: -155px;
   left: 505px;
   &:hover {
     opacity: 0.5;

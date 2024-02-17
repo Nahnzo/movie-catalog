@@ -44,10 +44,7 @@ const userSlice = createSlice({
         state.email = null;
         state.isAuth = false;
         state.id = null;
-        localStorage.removeItem("token");
-        localStorage.removeItem("userEmail");
-        localStorage.removeItem("WANT_TO_SEE");
-        localStorage.removeItem("MY_COLLECTION");
+        localStorage.clear();
       })
       .addCase(userLogout.rejected, (state, action) => {
         state.isLoading = false;
