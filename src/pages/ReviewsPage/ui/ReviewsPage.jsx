@@ -2,22 +2,29 @@ import { GetFilmBySearch } from "features/GetFilmBySearch";
 import Sidebar from "shared/ui/Sidebar/Sidebar";
 import Header from "features/Header/ui/Header";
 import Slider from "widgets/Slider/Slider";
+import ModalResultMovies from "widgets/ModalResultMovies/ModalResultMovies";
 import styles from "./reviewsPage.module.scss";
+import Button from "shared/ui/Button/Button";
 import { routes } from "shared/lib/config/routes";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllMovies, getFirsMovie, getMoviesForReviews } from "../model/selectors/getMoviesForReviews";
 import { ReviewArea } from "features/ReviewArea/index";
+import { useModal } from "shared/lib/hooks/useModal";
+import { removeEntireListCollection } from "shared/lib/config/movieService";
 import { useCallback, useEffect, useState } from "react";
 import { ReviewActions } from "../model/slices/ReviewSlice";
 import { useNavigate } from "react-router-dom";
 
 const ReviewsPage = () => {
+  const id = useSelector((state) => state.user.id);
+  const [filteredBySearchMovie, setFilteredBySearchMovie] = useState(null);
   const movies = useSelector(getMoviesForReviews);
   const firstMovie = useSelector(getFirsMovie);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const backgroundImage = selectedMovie?.poster?.previewUrl || selectedMovie?.poster;
   const isAuth = useSelector((state) => state.user.isAuth);
   const navigate = useNavigate();
+  const { isOpened, handleModal } = useModal();
 
   const setResultBySearch = useCallback(
     (name) => {
@@ -32,10 +39,11 @@ const ReviewsPage = () => {
       if (result.length === 1) {
         setSelectedMovie(result[0]);
       } else {
-        // setFilteredBySearchMovie(result);
+        setFilteredBySearchMovie(result);
+        handleModal();
       }
     },
-    [movies]
+    [handleModal, movies]
   );
 
   const dispatch = useDispatch();
@@ -50,12 +58,33 @@ const ReviewsPage = () => {
     dispatch(ReviewActions.addAllInitialMovie(movies));
   }, [dispatch, firstMovie, movies]);
 
+  const handleCard = (item) => {
+    setSelectedMovie(item);
+  };
+  const deleteEntireCollection = async () => {
+    setSelectedMovie(null);
+    dispatch(ReviewActions.deleteAll());
+    removeEntireListCollection(id, "myReviews");
+  };
+
   if (selectedMovie) {
     return (
       <section className={styles.main}>
         <Header>
           <GetFilmBySearch placeholder="Найдите ваш отзыв" handleMovie={setResultBySearch} />
+          <ModalResultMovies
+            movies={filteredBySearchMovie}
+            isOpen={isOpened}
+            onClose={handleModal}
+            styles={styles.modal}
+            handleCard={handleCard}
+          />
         </Header>
+        {movies.length && (
+          <Button styles={styles.deleteEntireList} handler={() => deleteEntireCollection()}>
+            Очистить список ({movies.length})
+          </Button>
+        )}
         <div className={styles.mainWrapper}>
           <img className={styles.img} src={backgroundImage} />
           <div className={styles.reviewBlock}>
@@ -84,6 +113,10 @@ const ReviewsPage = () => {
         <Header>
           <GetFilmBySearch placeholder="Найдите ваш отзыв" />
         </Header>
+        <div className={styles.emptyWrapper}>
+          <Sidebar />
+          <h2 className={styles.emptyPage}>Список пуст</h2>
+        </div>
       </section>
     );
   }

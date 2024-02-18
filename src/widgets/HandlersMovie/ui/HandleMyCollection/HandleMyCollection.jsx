@@ -1,18 +1,17 @@
-import { MyCollectionActions } from "pages/CollectionPage/model/slices/MyCollectionSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { memo } from "react";
-import { getExistingMovieForMyCollection } from "../../selectors/getSortedMovie/getSortedMovie";
 import { addMovieToCollection, removeMovieFromCollection } from "shared/lib/config/movieService";
-import { getUserId } from "../../selectors/getUserData/getUserData";
+import { getIsUserAuth, getUserId } from "../../model/selectors/getUserData";
+import { getExistingMovieForMyCollection } from "../../model/selectors/getMovieData";
 import HeartIcon from "shared/assets/heart-icon.svg";
-import styles from "./handleMyCollection.module.css";
+import styles from "./handleMyCollection.module.scss";
 import Svg from "shared/ui/Svg/Svg";
 
-const HandleWantToSee = memo(({ movie, handleModal }) => {
+const HandleMyCollection = memo(({ movie, handleModal, actions }) => {
   const dispatch = useDispatch();
   const isExist = useSelector((state) => getExistingMovieForMyCollection(state)(movie));
-  const id = useSelector(getUserId);
-  const isAuth = useSelector((state) => state.user.isAuth);
+  const userId = useSelector(getUserId);
+  const isAuth = useSelector(getIsUserAuth);
 
   const handleClick = (event, item) => {
     if (!isAuth) {
@@ -20,12 +19,12 @@ const HandleWantToSee = memo(({ movie, handleModal }) => {
       handleModal();
     } else if (isExist) {
       event.stopPropagation();
-      dispatch(MyCollectionActions.removeMovieFromCollection(item));
-      removeMovieFromCollection({ movie }, id, "myCollection");
+      dispatch(actions.deleteItem(item));
+      removeMovieFromCollection({ movie }, userId, "myCollection");
     } else {
       event.stopPropagation();
-      dispatch(MyCollectionActions.addMovieToCollection(item));
-      addMovieToCollection({ movie }, id, "myCollection");
+      dispatch(actions.addItem(item));
+      addMovieToCollection({ movie }, userId, "myCollection");
     }
   };
 
@@ -40,4 +39,4 @@ const HandleWantToSee = memo(({ movie, handleModal }) => {
   );
 });
 
-export default HandleWantToSee;
+export default HandleMyCollection;

@@ -1,20 +1,19 @@
 import { memo } from "react";
-import { ReviewActions } from "pages/ReviewsPage/model/slices/ReviewSlice";
-import { getExistingMovieForArrayReviews } from "../../selectors/getSortedMovie/getSortedMovie";
+import { getExistingMovieForArrayReviews } from "../../model/selectors/getMovieData";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserId } from "../../selectors/getUserData/getUserData";
-import { addMovieToCollection, removeMovieFromCollection } from "shared/lib/config/movieService";
+import { addMovieToCollection } from "shared/lib/config/movieService";
 import { routes } from "shared/lib/config/routes";
-import styles from "./handleReviews.module.scss";
-import ReviewIcon from "shared/assets/review-icon.svg";
+import { getIsUserAuth, getUserId } from "../../model/selectors/getUserData";
 import { useNavigate } from "react-router-dom";
+import ReviewIcon from "shared/assets/review-icon.svg";
+import styles from "./handleReviews.module.scss";
 import Svg from "shared/ui/Svg/Svg";
 
-const HandleReviews = memo(({ movie, handleModal }) => {
+const HandleReviews = memo(({ movie, handleModal, actions }) => {
   const dispatch = useDispatch();
   const isExist = useSelector((state) => getExistingMovieForArrayReviews(state)(movie));
-  const id = useSelector(getUserId);
-  const isAuth = useSelector((state) => state.user.isAuth);
+  const userId = useSelector(getUserId);
+  const isAuth = useSelector(getIsUserAuth);
   const navigate = useNavigate();
 
   const handleClick = (event, item) => {
@@ -26,8 +25,8 @@ const HandleReviews = memo(({ movie, handleModal }) => {
       navigate(routes.reviewsPage);
     } else {
       event.stopPropagation();
-      dispatch(ReviewActions.addMovieToReview(item));
-      addMovieToCollection({ movie }, id, "myReviews");
+      dispatch(actions.addItem(item));
+      addMovieToCollection({ movie }, userId, "myReviews");
     }
   };
   return (

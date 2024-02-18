@@ -1,19 +1,18 @@
-import { WantToSeeActions } from "pages/WantToSeePage/model/slices/WantToSeeSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { memo } from "react";
-import { getExistingMovieForWanToSee } from "../../selectors/getSortedMovie/getSortedMovie";
+import { getExistingMovieForWanToSee } from "../../model/selectors/getMovieData";
 import { addMovieToCollection, removeMovieFromCollection } from "shared/lib/config/movieService";
-import { getUserId } from "../../selectors/getUserData/getUserData";
+import { getIsUserAuth, getUserId } from "../../model/selectors/getUserData";
 import AddMovieFolder from "shared/assets/folder-plus-icon.svg";
 import DeletedMovieFolder from "shared/assets/folder-minus-icon.svg";
 import Svg from "shared/ui/Svg/Svg";
-import styles from "./handleWantToSee.module.css";
+import styles from "./handleWantToSee.module.scss";
 
-const HandleWantToSee = memo(({ movie, handleModal }) => {
+const HandleWantToSee = memo(({ movie, handleModal, actions }) => {
   const dispatch = useDispatch();
   const isExist = useSelector((state) => getExistingMovieForWanToSee(state)(movie));
-  const id = useSelector(getUserId);
-  const isAuth = useSelector((state) => state.user.isAuth);
+  const userId = useSelector(getUserId);
+  const isAuth = useSelector(getIsUserAuth);
 
   const handleClick = (event, item) => {
     if (!isAuth) {
@@ -21,12 +20,12 @@ const HandleWantToSee = memo(({ movie, handleModal }) => {
       handleModal();
     } else if (isExist) {
       event.stopPropagation();
-      dispatch(WantToSeeActions.removeMovie(item));
-      removeMovieFromCollection({ movie }, id, "wantToSee");
+      dispatch(actions.deleteItem(item));
+      removeMovieFromCollection({ movie }, userId, "wantToSee");
     } else {
       event.stopPropagation();
-      dispatch(WantToSeeActions.addMovie(item));
-      addMovieToCollection({ movie }, id, "wantToSee");
+      dispatch(actions.addItem(item));
+      addMovieToCollection({ movie }, userId, "wantToSee");
     }
   };
 

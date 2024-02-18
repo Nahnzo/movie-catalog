@@ -57,7 +57,6 @@ const ReviewArea = memo(({ movie }) => {
       <textarea
         className={styles.reviewArea}
         value={movieReview}
-        // placeholder={movieReview === initialText ? initialText : movieReview}
         onChange={(event) => onChangeReview(event.target.value)}
         ref={refArea}
         readOnly={readonly}
