@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { setResultSearch } from "../model/services/setResultSearch";
 import Input from "shared/ui/Input/Input";
 import Button from "shared/ui/Button/Button";

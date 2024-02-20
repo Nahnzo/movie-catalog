@@ -1,0 +1,19 @@
+h1 {
+  margin: auto;
+  color: var(--main-color);
+}
+.reloadBtn {
+  margin: auto;
+  width: 220px;
+  background: transparent;
+  height: 30px;
+  outline: none;
+  font-size: var(--font-size-m);
+  border: var(--main-border);
+  color: var(--main-color);
+  cursor: pointer;
+  border-radius: 5px;
+  &:hover {
+    opacity: 0.5;
+  }
+}

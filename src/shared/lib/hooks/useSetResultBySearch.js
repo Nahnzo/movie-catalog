@@ -1,9 +1,9 @@
-import { useState, useCallback } from "react";
+import { useState } from "react";
 
-const useSetResultBySearch = () => {
+export const useSetResultBySearch = (movies, handleModal, dispatchFn = null) => {
+  const [selectedMovie, setSelectedMovie] = useState(null);
   const [filteredBySearchMovie, setFilteredBySearchMovie] = useState(null);
-
-  (name) => {
+  const search = (name) => {
     if (name.trim() === "") {
       return;
     }
@@ -13,13 +13,20 @@ const useSetResultBySearch = () => {
       return;
     }
     if (result.length === 1) {
-      dispatch(MyCollectionActions.setMovieBySearch(result[0]));
+      if (dispatchFn) {
+        dispatchFn(result[0]);
+      } else {
+        setSelectedMovie(result[0]);
+      }
     } else {
       setFilteredBySearchMovie(result);
       handleModal();
     }
-  },
-    [dispatch, handleModal, movies];
+  };
+  return {
+    search,
+    selectedMovie,
+    filteredBySearchMovie,
+    setSelectedMovie,
+  };
 };
-
-export default useSetResultBySearch;

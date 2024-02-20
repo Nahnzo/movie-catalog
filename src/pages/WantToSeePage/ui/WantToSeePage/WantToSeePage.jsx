@@ -1,56 +1,32 @@
 import { routes } from "shared/lib/config/routes";
-import { useEffect, useState, memo, useCallback } from "react";
+import { useEffect, memo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { WantToSeeActions } from "../../model/slices/WantToSeeSlice";
-import { getMovieForWantToSee } from "../../model/selectors/getMovieForWantToSee";
-import { getFirstMovie } from "../../model/selectors/getFirstMovie";
 import { getIsUserAuth } from "../../model/selectors/getUserDataSelectors";
 import { useNavigate } from "react-router-dom";
 import { removeEntireListCollection } from "shared/lib/config/movieService";
 import { GetFilmBySearch } from "features/GetFilmBySearch";
 import { useModal } from "shared/lib/hooks/useModal";
+import { getFirstMovie, getMovieForWantToSee } from "../../model/selectors/getMovies";
+import { useSetResultBySearch } from "shared/lib/hooks/useSetResultBySearch";
 import Button from "shared/ui/Button/Button";
 import WantToSeeCard from "../WantToSeeCard/WantToSeeCard";
 import Sidebar from "shared/ui/Sidebar/Sidebar";
 import Footer from "shared/ui/Footer/Footer";
-import styles from "./wantToSeePage.module.scss";
 import Header from "features/Header/ui/Header";
 import Slider from "widgets/Slider/Slider";
-import useSetResultBySearch from "shared/lib/hooks/useSetResultBySearch";
 import ModalResultMovies from "widgets/ModalResultMovies/ModalResultMovies";
+import styles from "./wantToSeePage.module.scss";
 
 const WantToSeePage = memo(() => {
-  const [selectedMovie, setSelectedMovie] = useState(null);
-  const [filteredBySearchMovie, setFilteredBySearchMovie] = useState(null);
-
   const { isOpened, handleModal } = useModal();
-
   const dispatch = useDispatch();
   const movies = useSelector(getMovieForWantToSee);
   const firstMovie = useSelector(getFirstMovie);
   const navigate = useNavigate();
   const isAuth = useSelector(getIsUserAuth);
   const id = useSelector((state) => state.user.id);
-
-  const setResultBySearch = useCallback(
-    (name) => {
-      if (name.trim() === "") {
-        return;
-      }
-      const regex = new RegExp(name, "i");
-      const result = movies.filter((item) => regex.test(item.name) || regex.test(item.alternativeName));
-      if (result.length === 0) {
-        return;
-      }
-      if (result.length === 1) {
-        setSelectedMovie(result[0]);
-      } else {
-        setFilteredBySearchMovie(result);
-        handleModal();
-      }
-    },
-    [movies, handleModal]
-  );
+  const { search, selectedMovie, filteredBySearchMovie, setSelectedMovie } = useSetResultBySearch(movies, handleModal);
 
   useEffect(() => {
     if (!localStorage.getItem("userEmail")) {
@@ -68,7 +44,7 @@ const WantToSeePage = memo(() => {
     return (
       <section className={styles.main}>
         <Header>
-          <GetFilmBySearch placeholder="Что найти в коллекции?" handleMovie={setResultBySearch} />
+          <GetFilmBySearch placeholder="Что найти в коллекции?" handleMovie={search} />
         </Header>
         <div className={styles.emptyWrapper}>
           <Sidebar />
@@ -87,11 +63,11 @@ const WantToSeePage = memo(() => {
         handleCard={setSelectedMovie}
       />
       <Header>
-        <GetFilmBySearch placeholder="Что найти в коллекции?" handleMovie={setResultBySearch} />
+        <GetFilmBySearch placeholder="Что найти в коллекции?" handleMovie={search} />
       </Header>
       <div className={styles.wrapper}>
         <div className={styles.wrapperBtn}>
-          <Button styles={`${styles.deleteEntireList}`} handler={() => deleteEntireList()}>
+          <Button styles={styles.deleteEntireList} handler={() => deleteEntireList()}>
             Очистить список ({movies.length})
           </Button>
         </div>

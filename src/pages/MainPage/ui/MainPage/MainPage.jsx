@@ -61,7 +61,7 @@ const MainPage = memo(() => {
           <MovieList currentMovies={currentMovies} handleModal={handleModal} />
           {currentMovies?.length < MOVIES_PER_PAGE && (
             <Button handler={() => handlePageChange(currentPage)} styles={styles.buttonBack}>
-              {"Назад к списку"}
+              Назад к списку
             </Button>
           )}
         </div>

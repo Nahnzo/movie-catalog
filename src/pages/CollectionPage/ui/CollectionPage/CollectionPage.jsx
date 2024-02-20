@@ -2,11 +2,12 @@ import { routes } from "shared/lib/config/routes";
 import { useSelector, useDispatch } from "react-redux";
 import { getMovieForCollection } from "../../model/selectors/getMovieForCollection/getMovieForCollection";
 import { MyCollectionActions } from "../../model/slices/MyCollectionSlice";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { removeEntireListCollection } from "shared/lib/config/movieService";
 import { GetFilmBySearch } from "features/GetFilmBySearch";
 import { useModal } from "shared/lib/hooks/useModal";
+import { useSetResultBySearch } from "shared/lib/hooks/useSetResultBySearch";
 import Sidebar from "shared/ui/Sidebar/Sidebar";
 import Footer from "shared/ui/Footer/Footer";
 import Button from "shared/ui/Button/Button";
@@ -17,7 +18,6 @@ import CollectionCard from "../CollectionCard/CollectionCard";
 import ModalResultMovies from "widgets/ModalResultMovies/ModalResultMovies";
 
 const CollectionPage = () => {
-  const [filteredBySearchMovie, setFilteredBySearchMovie] = useState(null);
   const dispatch = useDispatch();
   const movies = useSelector(getMovieForCollection);
   const navigate = useNavigate();
@@ -25,31 +25,15 @@ const CollectionPage = () => {
   const isAuth = useSelector((state) => state.user.isAuth);
 
   const { isOpened, handleModal } = useModal();
+  const setMovie = (item) => {
+    dispatch(MyCollectionActions.setMovieBySearch(item));
+  };
+  const { search, filteredBySearchMovie } = useSetResultBySearch(movies, handleModal, setMovie);
 
   const handleCollection = async () => {
     dispatch(MyCollectionActions.clearAll());
     removeEntireListCollection(id, "myCollection");
   };
-
-  const setResultBySearch = useCallback(
-    (name) => {
-      if (name.trim() === "") {
-        return;
-      }
-      const regex = new RegExp(name, "i");
-      const result = movies.filter((item) => regex.test(item.name) || regex.test(item.alternativeName));
-      if (result.length === 0) {
-        return;
-      }
-      if (result.length === 1) {
-        dispatch(MyCollectionActions.setMovieBySearch(result[0]));
-      } else {
-        setFilteredBySearchMovie(result);
-        handleModal();
-      }
-    },
-    [dispatch, handleModal, movies]
-  );
 
   useEffect(() => {
     if (!localStorage.getItem("userEmail")) {
@@ -60,7 +44,7 @@ const CollectionPage = () => {
     return (
       <section className={styles.main}>
         <Header>
-          <GetFilmBySearch placeholder="Что найти в коллекции?" handleMovie={setResultBySearch} />
+          <GetFilmBySearch placeholder="Что найти в коллекции?" handleMovie={search} />
         </Header>
         <div className={styles.emptyWrapper}>
           <Sidebar />
@@ -77,7 +61,7 @@ const CollectionPage = () => {
   return (
     <section className={styles.main}>
       <Header>
-        <GetFilmBySearch placeholder="Что найти в коллекции?" handleMovie={setResultBySearch} />
+        <GetFilmBySearch placeholder="Что найти в коллекции?" handleMovie={search} />
         <ModalResultMovies
           movies={filteredBySearchMovie}
           isOpen={isOpened}

@@ -1,4 +1,7 @@
 export default function getFormateTime(minutes) {
+  if (!minutes) {
+    return "";
+  }
   let hours = Math.floor(minutes / 60);
   let remainingMinutes = minutes % 60;
 

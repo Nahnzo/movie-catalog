@@ -1,62 +1,24 @@
-import { GetFilmBySearch } from "features/GetFilmBySearch";
-import Sidebar from "shared/ui/Sidebar/Sidebar";
-import Header from "features/Header/ui/Header";
-import Slider from "widgets/Slider/Slider";
-import ModalResultMovies from "widgets/ModalResultMovies/ModalResultMovies";
-import styles from "./reviewsPage.module.scss";
-import Button from "shared/ui/Button/Button";
-import { routes } from "shared/lib/config/routes";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllMovies, getFirsMovie, getMoviesForReviews } from "../model/selectors/getMoviesForReviews";
-import { ReviewArea } from "features/ReviewArea/index";
-import { useModal } from "shared/lib/hooks/useModal";
-import { removeEntireListCollection } from "shared/lib/config/movieService";
-import { useCallback, useEffect, useState } from "react";
-import { ReviewActions } from "../model/slices/ReviewSlice";
 import { useNavigate } from "react-router-dom";
+import { GetFilmBySearch } from "features/GetFilmBySearch";
+import { ReviewArea } from "features/ReviewArea/index";
+import Header from "features/Header/ui/Header";
+import { routes } from "shared/lib/config/routes";
+import { useModal } from "shared/lib/hooks/useModal";
+import Sidebar from "shared/ui/Sidebar/Sidebar";
+import Button from "shared/ui/Button/Button";
+import { removeEntireListCollection } from "shared/lib/config/movieService";
+import Slider from "widgets/Slider/Slider";
+import { useSetResultBySearch } from "shared/lib/hooks/useSetResultBySearch";
+import ModalResultMovies from "widgets/ModalResultMovies/ModalResultMovies";
+import { getMoviesForReviews } from "../model/selectors/getMoviesForReviews";
+import { ReviewActions } from "../model/slices/ReviewSlice";
+import { getIsUserAuth, getUserId } from "../model/selectors/getUserData";
+import styles from "./reviewsPage.module.scss";
 
 const ReviewsPage = () => {
-  const id = useSelector((state) => state.user.id);
-  const [filteredBySearchMovie, setFilteredBySearchMovie] = useState(null);
-  const movies = useSelector(getMoviesForReviews);
-  const firstMovie = useSelector(getFirsMovie);
-  const [selectedMovie, setSelectedMovie] = useState(null);
-  const backgroundImage = selectedMovie?.poster?.previewUrl || selectedMovie?.poster;
-  const isAuth = useSelector((state) => state.user.isAuth);
-  const navigate = useNavigate();
   const { isOpened, handleModal } = useModal();
-
-  const setResultBySearch = useCallback(
-    (name) => {
-      if (name.trim() === "") {
-        return;
-      }
-      const regex = new RegExp(name, "i");
-      const result = movies.filter((item) => regex.test(item.name) || regex.test(item.alternativeName));
-      if (result.length === 0) {
-        return;
-      }
-      if (result.length === 1) {
-        setSelectedMovie(result[0]);
-      } else {
-        setFilteredBySearchMovie(result);
-        handleModal();
-      }
-    },
-    [handleModal, movies]
-  );
-
-  const dispatch = useDispatch();
-  useEffect(() => {
-    if (!localStorage.getItem("userEmail")) {
-      navigate(routes.home);
-    }
-    setSelectedMovie(firstMovie);
-  }, [isAuth]);
-
-  useEffect(() => {
-    dispatch(ReviewActions.addAllInitialMovie(movies));
-  }, [dispatch, firstMovie, movies]);
 
   const handleCard = (item) => {
     setSelectedMovie(item);
@@ -67,11 +29,32 @@ const ReviewsPage = () => {
     removeEntireListCollection(id, "myReviews");
   };
 
+  const id = useSelector(getUserId);
+  const isAuth = useSelector(getIsUserAuth);
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (!localStorage.getItem("userEmail")) {
+      navigate(routes.home);
+    }
+    setSelectedMovie(movies[0]);
+  }, [isAuth]);
+
+  const movies = useSelector(getMoviesForReviews);
+
+  const { search, selectedMovie, filteredBySearchMovie, setSelectedMovie } = useSetResultBySearch(movies, handleModal);
+  const backgroundImage = selectedMovie?.poster?.previewUrl || selectedMovie?.poster;
+
+  useEffect(() => {
+    dispatch(ReviewActions.addAllInitialMovie(movies));
+  }, [dispatch, movies[0], movies]);
+
   if (selectedMovie) {
     return (
       <section className={styles.main}>
         <Header>
-          <GetFilmBySearch placeholder="Найдите ваш отзыв" handleMovie={setResultBySearch} />
+          <GetFilmBySearch placeholder="Найдите ваш отзыв" handleMovie={search} />
           <ModalResultMovies
             movies={filteredBySearchMovie}
             isOpen={isOpened}
@@ -111,7 +94,7 @@ const ReviewsPage = () => {
     return (
       <section className={styles.main}>
         <Header>
-          <GetFilmBySearch placeholder="Найдите ваш отзыв" />
+          <GetFilmBySearch placeholder="Найдите ваш отзыв" handleMovie={search} />
         </Header>
         <div className={styles.emptyWrapper}>
           <Sidebar />

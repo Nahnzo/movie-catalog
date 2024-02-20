@@ -1,6 +1,6 @@
 import { MyCollectionActions } from "pages/CollectionPage/model/slices/MyCollectionSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { getSortedMovie } from "../../model/selectors/getSortedMovie";
+import { getSortedMovie } from "../../model/selectors/getMovies";
 import Button from "shared/ui/Button/Button";
 import styles from "./handleMovieInWantToSee.module.scss";
 
