@@ -1,22 +1,26 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 import { MyCollectionActions } from "../../slices/MyCollectionSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addRating } from "shared/lib/config/movieService";
 import styles from "./handleRating.module.scss";
 import Button from "shared/ui/Button/Button";
 
 const ratingsData = [
-  { value: 1, emoji: "😖", description: "Ужасно" },
-  { value: 2, emoji: "😞", description: "Плохо" },
-  { value: 3, emoji: "😐", description: "Средне" },
-  { value: 4, emoji: "😊", description: "Хорошо" },
-  { value: 5, emoji: "😃", description: "Отлично" },
+  { value: 1, emoji: "😖" },
+  { value: 2, emoji: "😞" },
+  { value: 3, emoji: "😐" },
+  { value: 4, emoji: "😊" },
+  { value: 5, emoji: "😃" },
 ];
 
-const HandleRating = ({ movieId, setShowRateWindow }) => {
-  const dispatch = useDispatch();
+const HandleRating = memo(({ movieId, setShowRateWindow }) => {
   const [rating, setRating] = useState(null);
-  const addRating = (item) => {
+  const dispatch = useDispatch();
+  const id = useSelector((state) => state.user.id);
+
+  const setRatingMovie = async (item) => {
     dispatch(MyCollectionActions.addRating({ movieId: movieId, rating: item.value }));
+    await addRating(movieId, id, rating);
     setShowRateWindow(false);
   };
 
@@ -37,7 +41,7 @@ const HandleRating = ({ movieId, setShowRateWindow }) => {
             className={styles.smiles}
             onMouseEnter={() => handleMouseEnter(item.value)}
             onMouseLeave={handleMouseLeave}
-            onClick={() => addRating(item, item)}
+            onClick={() => setRatingMovie(item, item)}
           >
             {rating && rating >= item.value ? item.emoji : "😐"}
           </span>
@@ -45,16 +49,10 @@ const HandleRating = ({ movieId, setShowRateWindow }) => {
         <Button styles={styles.cancelBtn} handler={() => setShowRateWindow()}>
           Отменить
         </Button>
-        <div className={styles.infoRating}>
-          {rating && (
-            <p>
-              Оценка: {rating} ({ratingsData[rating - 1].description})
-            </p>
-          )}
-        </div>
+        <div className={styles.infoRating}>{rating && <p>Оценка: {rating}</p>}</div>
       </div>
     </div>
   );
-};
+});
 
 export default HandleRating;

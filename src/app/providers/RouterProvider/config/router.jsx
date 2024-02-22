@@ -8,6 +8,7 @@ import { routes } from "shared/lib/config/routes";
 import { Suspense } from "react";
 import WantToSeePageSkeleton from "pages/WantToSeePage/ui/WantToSeePage/WantToSeePageSkeleton";
 import CollectionPageSkeleton from "pages/CollectionPage/ui/CollectionPage/CollectionPageSkeleton";
+import ReviewsPageSkeleton from "../../../../pages/ReviewsPage/ui/ReviewsPageSkeleton";
 
 export const router = createBrowserRouter([
   {
@@ -37,7 +38,11 @@ export const router = createBrowserRouter([
   },
   {
     path: routes.reviewsPage,
-    element: <ReviewsPage />,
+    element: (
+      <Suspense fallback={<ReviewsPageSkeleton />}>
+        <ReviewsPage />
+      </Suspense>
+    ),
   },
   {
     path: "*",

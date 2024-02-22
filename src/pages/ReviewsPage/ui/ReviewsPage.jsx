@@ -15,10 +15,12 @@ import ModalResultMovies from "widgets/ModalResultMovies/ModalResultMovies";
 import { getMoviesForReviews } from "../model/selectors/getMoviesForReviews";
 import { ReviewActions } from "../model/slices/ReviewSlice";
 import { getIsUserAuth, getUserId } from "../model/selectors/getUserData";
+import { useResize } from "../../../shared/lib/hooks/useResize";
 import styles from "./reviewsPage.module.scss";
 
 const ReviewsPage = () => {
   const { isOpened, handleModal } = useModal();
+  const size = useResize();
 
   const handleCard = (item) => {
     setSelectedMovie(item);
@@ -74,7 +76,7 @@ const ReviewsPage = () => {
             <ReviewArea movie={selectedMovie} />
           </div>
           <div className={styles.sliders}>
-            <Slider width="100%" height="100%" sizeCard={160} snowButtons>
+            <Slider width="100%" height="100%" sizeCard={160} snowButtons itemsPerPage={Math.floor(size / 160)}>
               {movies.map((item) => (
                 <img
                   className={styles.card}

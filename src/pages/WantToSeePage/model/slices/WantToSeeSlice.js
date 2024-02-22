@@ -39,6 +39,7 @@ export const WantToSeeSlice = createSlice({
     });
     builder.addCase(initialDataUser.fulfilled, (state, action) => {
       const payload = action?.payload?.wantToSee;
+
       if (!state.wantToSee.length && payload) {
         state.wantToSee = payload;
         localStorage.setItem("WANT_TO_SEE", JSON.stringify(payload));

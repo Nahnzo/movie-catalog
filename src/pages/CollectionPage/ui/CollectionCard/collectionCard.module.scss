@@ -6,6 +6,30 @@
   display: flex;
   width: 1800px;
 }
+.description {
+  position: absolute;
+  left: 26%;
+  max-width: 60%;
+  color: var(--main-color);
+  font-size: var(--font-size-l);
+  font-family: var(--main-font);
+}
+
+.deleteBtn {
+  position: absolute;
+  right: 20%;
+  bottom: 2%;
+  width: 230px;
+  height: 35px;
+  cursor: pointer;
+  background-color: transparent;
+  text-align: center;
+  color: var(--main-color);
+  border: var(--main-border);
+  font-size: var(--font-size-m);
+  border-radius: 8px;
+}
+
 .content {
   width: 25%;
   height: 100%;
@@ -60,11 +84,10 @@
   font-size: var(--font-size-m);
   border-radius: 8px;
 }
-.reviewBtn:hover {
-  opacity: 0.5;
-}
 
+.reviewBtn:hover,
 .rateBtn:hover,
+.deleteBtn:hover,
 .reviewBtnAfter:hover {
   opacity: 0.5;
 }

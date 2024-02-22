@@ -26,19 +26,6 @@ export const userRegistration = createAsyncThunk(
     }
   }
 );
-// export async function addToUserCollection(userId, movieId, collectionType) {
-//   const response = await fetch(`http://localhost:5000/api/users/${userId}/movies/collection`, {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify({ movieId }),
-//   });
-
-//   if (!response.ok) {
-//     throw new Error("Ошибка при добавлении фильма в коллекцию");
-//   }
-// }
 
 export const userLogout = createAsyncThunk("auth/logout", async (_, { rejectWithValue }) => {
   try {

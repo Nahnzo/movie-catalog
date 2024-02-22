@@ -1,4 +1,4 @@
-import { User } from "entities/User";
+import { User } from "../../User";
 import { routes } from "shared/lib/config/routes";
 import Navbar from "shared/ui/Navbar/Navbar";
 import styles from "./header.module.scss";

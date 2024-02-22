@@ -8,6 +8,7 @@ export const getFilteredMovie = createSelector(getMoviesForReviews, (movies) =>
 
 export const getMoviesFromCollections = (state) => state.myCollection.myCollection;
 export const getAllMoviesFromWantToSee = (state) => state.wantToSee.wantToSee;
+
 export const getAllMovies = createSelector(
   [getMoviesFromCollections, getAllMoviesFromWantToSee],
   (moviesFromCollections, moviesFromWantToSee) => {

@@ -14,6 +14,7 @@ const ReviewArea = memo(({ movie }) => {
   const [readonly, setReadonly] = useState(true);
   const dispatch = useDispatch();
   const { isOpened, handleModal } = useModal();
+
   const id = useSelector((state) => state.user.id);
   const isActivated = useSelector((state) => state.user.isActivated);
   const refArea = useRef(null);
@@ -32,6 +33,11 @@ const ReviewArea = memo(({ movie }) => {
     }
     refArea.current.focus();
     setReadonly((prev) => !prev);
+
+    if (movieReview === "") {
+      setMovieReview(initialText);
+    }
+
     if (movieReview == initialText) {
       setMovieReview("");
     } else {

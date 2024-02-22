@@ -1,6 +1,6 @@
 import { useState } from "react";
-import styles from "./trailerPlayer.module.scss";
 import { getFilmTrailerById } from "../model/services/getFilmTrailerById";
+import styles from "./trailerPlayer.module.scss";
 
 const TrailerPlayer = ({ id }) => {
   const [isPlaying, setIsPlaying] = useState(false);

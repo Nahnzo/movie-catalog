@@ -19,5 +19,6 @@ router.post("/user/:userId/movies/:collectionType/add", movieController.addToUse
 router.delete("/user/:userId/movies/:collectionType/delete", movieController.removeMovieFromCollection);
 router.delete("/user/:userId/movies/:collectionType/deleteList", movieController.removeEntireListCollection);
 router.put("/user/:userId/movies/addReview", movieController.addReview);
+router.put("/user/:userId/movies/addRating", movieController.addRating);
 
 module.exports = router;

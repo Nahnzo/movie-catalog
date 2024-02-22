@@ -7,6 +7,7 @@ import styles from "./handleMovieInWantToSee.module.scss";
 const HandleMovieInWantToSee = ({ firstMovie }) => {
   const dispatch = useDispatch();
   const action = useSelector((state) => getSortedMovie(state)(firstMovie.id));
+
   const handleMovie = (movie) => {
     action
       ? dispatch(MyCollectionActions.removeMovieFromCollection(movie))

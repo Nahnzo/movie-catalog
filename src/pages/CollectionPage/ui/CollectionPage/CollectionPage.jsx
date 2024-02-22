@@ -1,28 +1,30 @@
 import { routes } from "shared/lib/config/routes";
 import { useSelector, useDispatch } from "react-redux";
-import { getMovieForCollection } from "../../model/selectors/getMovieForCollection/getMovieForCollection";
 import { MyCollectionActions } from "../../model/slices/MyCollectionSlice";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { removeEntireListCollection } from "shared/lib/config/movieService";
 import { GetFilmBySearch } from "features/GetFilmBySearch";
 import { useModal } from "shared/lib/hooks/useModal";
+import { getMovieForCollection } from "../../model/selectors/getMovieData";
 import { useSetResultBySearch } from "shared/lib/hooks/useSetResultBySearch";
+import { getIsAuth, getUserId } from "../../model/selectors/getUserData";
 import Sidebar from "shared/ui/Sidebar/Sidebar";
 import Footer from "shared/ui/Footer/Footer";
 import Button from "shared/ui/Button/Button";
 import Slider from "widgets/Slider/Slider";
 import Header from "features/Header/ui/Header";
-import styles from "./collectionPage.module.scss";
 import CollectionCard from "../CollectionCard/CollectionCard";
 import ModalResultMovies from "widgets/ModalResultMovies/ModalResultMovies";
+import styles from "./collectionPage.module.scss";
 
 const CollectionPage = () => {
   const dispatch = useDispatch();
   const movies = useSelector(getMovieForCollection);
+  console.log(movies);
   const navigate = useNavigate();
-  const id = useSelector((state) => state.user.id);
-  const isAuth = useSelector((state) => state.user.isAuth);
+  const id = useSelector(getUserId);
+  const isAuth = useSelector(getIsAuth);
 
   const { isOpened, handleModal } = useModal();
   const setMovie = (item) => {
@@ -40,6 +42,11 @@ const CollectionPage = () => {
       navigate(routes.home);
     }
   }, [navigate, isAuth, movies]);
+
+  const handleCard = (item) => {
+    dispatch(MyCollectionActions.setMovieBySearch(item));
+  };
+
   if (!movies.length) {
     return (
       <section className={styles.main}>
@@ -53,10 +60,6 @@ const CollectionPage = () => {
       </section>
     );
   }
-
-  const handleCard = (item) => {
-    dispatch(MyCollectionActions.setMovieBySearch(item));
-  };
 
   return (
     <section className={styles.main}>
@@ -93,7 +96,6 @@ const CollectionPage = () => {
           ))}
         </Slider>
       </div>
-
       <Footer />
     </section>
   );

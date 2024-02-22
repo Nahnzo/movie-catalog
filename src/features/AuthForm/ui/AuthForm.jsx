@@ -8,9 +8,9 @@ import { getErrorUser } from "../model/selectors/getUserSelector";
 import styles from "./authForm.module.scss";
 
 const AuthForm = memo(({ isOpened, handleModal }) => {
-  const error = useSelector(getErrorUser);
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const error = useSelector(getErrorUser);
   const dispatch = useDispatch();
 
   const onSignUp = async () => {

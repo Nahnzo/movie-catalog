@@ -27,7 +27,6 @@ class MovieController {
       }
 
       if (!collection.some((movie) => movie.id === movieTarget.id)) {
-        // Добавляем фильм в коллекцию
         if (collectionType === "myReviews") {
           const newMovie = { ...movieTarget, userReview: "" }; // Устанавливаем пустую рецензию
           collection.push(newMovie);
@@ -128,6 +127,32 @@ class MovieController {
         await user.save();
       }
       return res.status(200).json({ message: "Рецензия успешно изменена" });
+    } catch (error) {
+      next(error);
+    }
+  }
+  async addRating(req, res, next) {
+    try {
+      const { userId } = req.params;
+      const { movieId, userRating } = req.body;
+      const user = await userModel.findById(userId);
+      if (!user) {
+        return res.status(404).json({ error: "Пользователь не найден" });
+      }
+      const movieIndex = user.movies.myCollection.findIndex((movie) => movie.id === movieId);
+      if (movieIndex === -1) {
+        return res.status(404).json({ error: "Фильм не найден в коллекции пользователя" });
+      } else {
+        user.movies.myCollection = user.movies.myCollection.map((movie) => {
+          if (movie.id === movieId) {
+            return { ...movie, userRating: userRating };
+          }
+          return movie;
+        });
+
+        await user.save();
+      }
+      return res.status(200).json({ message: "Рейтинг успешно изменен" });
     } catch (error) {
       next(error);
     }

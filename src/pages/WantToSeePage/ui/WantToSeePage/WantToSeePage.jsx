@@ -2,13 +2,14 @@ import { routes } from "shared/lib/config/routes";
 import { useEffect, memo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { WantToSeeActions } from "../../model/slices/WantToSeeSlice";
-import { getIsUserAuth } from "../../model/selectors/getUserDataSelectors";
+import { getIsUserAuth, getUserId } from "../../model/selectors/getUserDataSelectors";
 import { useNavigate } from "react-router-dom";
 import { removeEntireListCollection } from "shared/lib/config/movieService";
 import { GetFilmBySearch } from "features/GetFilmBySearch";
 import { useModal } from "shared/lib/hooks/useModal";
 import { getFirstMovie, getMovieForWantToSee } from "../../model/selectors/getMovies";
 import { useSetResultBySearch } from "shared/lib/hooks/useSetResultBySearch";
+import { useResize } from "shared/lib/hooks/useResize";
 import Button from "shared/ui/Button/Button";
 import WantToSeeCard from "../WantToSeeCard/WantToSeeCard";
 import Sidebar from "shared/ui/Sidebar/Sidebar";
@@ -21,11 +22,12 @@ import styles from "./wantToSeePage.module.scss";
 const WantToSeePage = memo(() => {
   const { isOpened, handleModal } = useModal();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const movies = useSelector(getMovieForWantToSee);
   const firstMovie = useSelector(getFirstMovie);
-  const navigate = useNavigate();
   const isAuth = useSelector(getIsUserAuth);
-  const id = useSelector((state) => state.user.id);
+  const id = useSelector(getUserId);
+  const size = useResize();
   const { search, selectedMovie, filteredBySearchMovie, setSelectedMovie } = useSetResultBySearch(movies, handleModal);
 
   useEffect(() => {
@@ -74,7 +76,7 @@ const WantToSeePage = memo(() => {
         <Sidebar />
         <div className={styles.container}>
           {selectedMovie && <WantToSeeCard firstMovie={selectedMovie} />}
-          <Slider width="100%" height="25%" sizeCard={160} snowButtons>
+          <Slider width="100%" height="25%" sizeCard={160} snowButtons itemsPerPage={Math.floor(size / 160)}>
             {movies.map((item) => (
               <img
                 className={styles.card}

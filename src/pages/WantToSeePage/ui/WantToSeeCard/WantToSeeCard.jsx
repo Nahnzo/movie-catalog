@@ -12,6 +12,7 @@ const WantToSeeCard = memo(({ firstMovie }) => {
   const dispatch = useDispatch();
   const id = useSelector(getUserId);
   const backgroundImage = firstMovie?.poster?.previewUrl || firstMovie?.poster;
+
   const deleteMovie = async (movie) => {
     dispatch(WantToSeeActions.removeMovie(firstMovie));
     removeMovieFromCollection({ movie }, id, "wantToSee");

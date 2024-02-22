@@ -1,2 +1,2 @@
-import ReviewsPage from "./ui/ReviewsPage";
+import { ReviewPageLazy as ReviewsPage } from "./ui/ReviewsPage.async";
 export { ReviewsPage };
