@@ -1,11 +1,10 @@
 import { memo, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ReviewActions } from "pages/ReviewsPage/model/slices/ReviewSlice";
-import { getDefaultReviewValue } from "../model/services/validateReview/validateReview";
+import { addReview } from "shared/lib/config/movieService";
+import { useModal } from "shared/lib/hooks/useModal";
 import styles from "./reviewArea.module.scss";
 import Button from "shared/ui/Button/Button";
-import { addReview } from "../../../shared/lib/config/movieService";
-import { useModal } from "shared/lib/hooks/useModal";
 import Modal from "shared/ui/Modal/Modal";
 
 const ReviewArea = memo(({ movie }) => {

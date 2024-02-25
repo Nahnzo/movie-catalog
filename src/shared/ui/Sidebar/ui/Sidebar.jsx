@@ -1,13 +1,18 @@
 import { memo, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { routes } from "shared/lib/config/routes";
-import Button from "../Button/Button";
-import Navbar from "../Navbar/Navbar";
+import { useSelector } from "react-redux";
+import { getCollectionLength, getReviewsLength, getWantToSeeLength } from "../model/selectors/getCollectionsData";
+import Button from "../../Button/Button";
+import Navbar from "../../Navbar/Navbar";
 import styles from "./sidebar.module.scss";
 
 const Sidebar = memo(() => {
   const [collapsed, setCollapsed] = useState(true);
   const { pathname } = useLocation();
+  const collectionLength = useSelector(getCollectionLength);
+  const reviewsLength = useSelector(getReviewsLength);
+  const wantToSeeLength = useSelector(getWantToSeeLength);
 
   const toggleSidebar = () => {
     setCollapsed(!collapsed);
@@ -33,6 +38,11 @@ const Sidebar = memo(() => {
           <Navbar path={routes.wantToSeePage} pathname={pathname}>
             Хочу посмотреть
           </Navbar>
+          <div className={styles.lengthsCollections}>
+            <p>{collectionLength}</p>
+            <p>{reviewsLength}</p>
+            <p>{wantToSeeLength}</p>
+          </div>
         </div>
       </div>
     </>

@@ -12,7 +12,7 @@ import { useSetResultBySearch } from "shared/lib/hooks/useSetResultBySearch";
 import { useResize } from "shared/lib/hooks/useResize";
 import Button from "shared/ui/Button/Button";
 import WantToSeeCard from "../WantToSeeCard/WantToSeeCard";
-import Sidebar from "shared/ui/Sidebar/Sidebar";
+import Sidebar from "shared/ui/Sidebar/index.js";
 import Footer from "shared/ui/Footer/Footer";
 import Header from "features/Header/ui/Header";
 import Slider from "widgets/Slider/Slider";

@@ -1,6 +1,7 @@
 .wrapper {
   width: 100%;
   position: fixed;
+  align-items: center;
   z-index: 999;
   background-color: var(--main-bg-color);
 }
@@ -17,6 +18,14 @@
   font-family: var(--main-font);
   font-size: var(--font-size-m);
   transition: all 0.3s ease;
+  // background-color: red;
+}
+.searchBar {
+  width: 500px;
+  min-width: 100px;
+  justify-content: space-between;
+  display: flex;
+  // margin: auto;
 }
 
 .navigation > h3 {
@@ -26,4 +35,10 @@
 
 .navigation > h3:hover {
   opacity: 0.5;
+}
+
+@media (min-width: 768px) {
+  .navigation {
+    width: 60%;
+  }
 }

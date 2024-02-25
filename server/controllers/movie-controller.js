@@ -28,7 +28,7 @@ class MovieController {
 
       if (!collection.some((movie) => movie.id === movieTarget.id)) {
         if (collectionType === "myReviews") {
-          const newMovie = { ...movieTarget, userReview: "" }; // Устанавливаем пустую рецензию
+          const newMovie = { ...movieTarget, userReview: "" };
           collection.push(newMovie);
         } else {
           collection.push(movieTarget);

@@ -6,7 +6,7 @@ import { ReviewArea } from "features/ReviewArea/index";
 import Header from "features/Header/ui/Header";
 import { routes } from "shared/lib/config/routes";
 import { useModal } from "shared/lib/hooks/useModal";
-import Sidebar from "shared/ui/Sidebar/Sidebar";
+import Sidebar from "shared/ui/Sidebar/index.js";
 import Button from "shared/ui/Button/Button";
 import { removeEntireListCollection } from "shared/lib/config/movieService";
 import Slider from "widgets/Slider/Slider";

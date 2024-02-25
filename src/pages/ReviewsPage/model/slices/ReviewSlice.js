@@ -25,10 +25,12 @@ export const ReviewSlice = createSlice({
     },
     addReviews(state, action) {
       const { movieId, userReview } = action.payload;
-      const movieIndex = state.arrayReviews.findIndex((item) => item.id === movieId);
-      if (movieIndex !== -1) {
-        state.arrayReviews[movieIndex].userReview = userReview;
-        localStorage.setItem(LOCAL_STORAGE_MY_REVIEWS, JSON.stringify(state.arrayReviews));
+      if (userReview !== "") {
+        const movieIndex = state.arrayReviews.findIndex((item) => item.id === movieId);
+        if (movieIndex !== -1) {
+          state.arrayReviews[movieIndex].userReview = userReview;
+          localStorage.setItem(LOCAL_STORAGE_MY_REVIEWS, JSON.stringify(state.arrayReviews));
+        }
       }
     },
     deleteAll(state) {

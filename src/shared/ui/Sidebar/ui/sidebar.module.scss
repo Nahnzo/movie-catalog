@@ -30,6 +30,7 @@
 }
 
 .routes {
+  position: relative;
   width: 100%;
   height: 40%;
   margin: 20px 0 0;
@@ -41,6 +42,20 @@
   }
   .routes > h3 {
     margin: 5px;
+  }
+}
+
+.lengthsCollections {
+  position: absolute;
+  // display: flex;
+  // flex-wrap: wrap;
+  text-align: center;
+  width: 30px;
+  height: 80px;
+  right: 5%;
+  top: 4%;
+  & > p {
+    margin: 0px 5px 5px 0;
   }
 }
 

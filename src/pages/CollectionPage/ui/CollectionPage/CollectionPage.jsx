@@ -9,7 +9,7 @@ import { useModal } from "shared/lib/hooks/useModal";
 import { getMovieForCollection } from "../../model/selectors/getMovieData";
 import { useSetResultBySearch } from "shared/lib/hooks/useSetResultBySearch";
 import { getIsAuth, getUserId } from "../../model/selectors/getUserData";
-import Sidebar from "shared/ui/Sidebar/Sidebar";
+import Sidebar from "shared/ui/Sidebar/index.js";
 import Footer from "shared/ui/Footer/Footer";
 import Button from "shared/ui/Button/Button";
 import Slider from "widgets/Slider/Slider";
@@ -21,7 +21,6 @@ import styles from "./collectionPage.module.scss";
 const CollectionPage = () => {
   const dispatch = useDispatch();
   const movies = useSelector(getMovieForCollection);
-  console.log(movies);
   const navigate = useNavigate();
   const id = useSelector(getUserId);
   const isAuth = useSelector(getIsAuth);

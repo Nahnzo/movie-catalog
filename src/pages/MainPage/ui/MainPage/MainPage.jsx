@@ -10,7 +10,7 @@ import { getIsAuthUser, getUserId } from "../../model/selectors/getUserData";
 import Button from "shared/ui/Button/Button";
 import Skeleton from "shared/ui/Skeleton/Skeleton";
 import Pagination from "../Pagination/Pagination";
-import Sidebar from "shared/ui/Sidebar/Sidebar";
+import Sidebar from "shared/ui/Sidebar/index.js";
 import styles from "./mainPage.module.scss";
 import AuthForm from "features/AuthForm/ui/AuthForm";
 import MovieList from "../MovieList/MovieList";
