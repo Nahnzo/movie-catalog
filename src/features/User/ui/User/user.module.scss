@@ -36,3 +36,8 @@
     opacity: 0.5;
   }
 }
+
+.email {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

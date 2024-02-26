@@ -42,7 +42,7 @@ const User = memo(() => {
   const state = useSelector((state) => state.user);
   return (
     <>
-      {state?.email ? state?.email : ""}
+      <p className={styles.email}>{state?.email ? state?.email : ""}</p>
       <div className={styles.userContent}>
         <Button styles={styles.btnAuth} handler={state.isAuth ? onLogout : handleModal}>
           {state.isAuth ? "Выйти" : "Войти"}
