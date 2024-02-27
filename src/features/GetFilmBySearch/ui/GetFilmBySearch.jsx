@@ -5,7 +5,7 @@ import Input from "shared/ui/Input/Input";
 import Button from "shared/ui/Button/Button";
 import styles from "./getFilmBySearch.module.scss";
 
-const GetFilmBySearch = ({ disabled, placeholder, collectionType, handleMovie }) => {
+const GetFilmBySearch = ({ disabled, placeholder, collectionType, handleMovie, handleSearch }) => {
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
 
@@ -16,6 +16,9 @@ const GetFilmBySearch = ({ disabled, placeholder, collectionType, handleMovie })
   const onSearch = async () => {
     setResultSearch(search, collectionType, dispatch, handleMovie);
     setSearch("");
+    if (typeof handleSearch === "function") {
+      handleSearch();
+    }
   };
   return (
     <>

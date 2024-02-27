@@ -33,3 +33,17 @@ html {
   border-radius: 5px;
   font-size: 15px;
 }
+
+@media (max-width: 1102px) {
+  .btnsWrapper {
+    width: 100%;
+    font-size: 15px;
+  }
+  .currentPage,
+  .otherPages {
+    width: 30px;
+    height: 35px;
+    font-size: 20px;
+    margin: 0 0 120px 5px;
+  }
+}

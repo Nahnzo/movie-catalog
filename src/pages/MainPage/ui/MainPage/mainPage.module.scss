@@ -30,3 +30,11 @@
     opacity: 0.5;
   }
 }
+
+@media (max-width: 1102px) {
+  .buttonBack {
+    position: absolute;
+    width: 50%;
+    bottom: 0;
+  }
+}
