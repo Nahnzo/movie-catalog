@@ -11,18 +11,17 @@ import Svg from "shared/ui/Svg/Svg";
 import styles from "./user.module.scss";
 
 const User = memo(() => {
-  // const isLoading = useSelector(getIsLoadingUser);
-  // const isAuth = useSelector(getIsAuthUser);
-  // const error = useSelector(getErrorUser);
   const { isOpened, handleModal } = useModal();
-
   const dispatch = useDispatch();
+
   const onHandleModal = useCallback(() => {
     handleModal();
   }, [handleModal]);
+
   const onLogout = () => {
     dispatch(userLogout());
   };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -39,12 +38,14 @@ const User = memo(() => {
     };
     fetchData();
   }, [dispatch]);
+
   const state = useSelector((state) => state.user);
+
   return (
     <>
       <p className={styles.email}>{state?.email ? state?.email : ""}</p>
       <div className={styles.userContent}>
-        <Button styles={styles.btnAuth} handler={state.isAuth ? onLogout : handleModal}>
+        <Button styles={styles.btnAuth} handler={state.isAuth ? onLogout : onHandleModal}>
           {state.isAuth ? "Выйти" : "Войти"}
         </Button>
         <AuthForm isOpened={isOpened} handleModal={onHandleModal} />

@@ -10,6 +10,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  padding-left: 80px;
 }
 .svg {
   position: absolute;
@@ -38,6 +39,16 @@
 }
 
 .email {
+  margin-left: 20px;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+@media (max-width: 1102px) {
+  .email {
+    position: absolute;
+    font-size: 16px;
+    top: -14px;
+    right: -120px;
+  }
 }

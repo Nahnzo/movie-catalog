@@ -1,10 +1,23 @@
 import { User } from "../../User";
 import { routes } from "shared/lib/config/routes";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useResize } from "shared/lib/hooks/useResize";
+import { useModal } from "shared/lib/hooks/useModal";
+import { AuthForm } from "features/AuthForm/";
+import BurgerMenu from "shared/assets/burger-menu-icon.svg";
+import Svg from "shared/ui/Svg/Svg";
 import Navbar from "shared/ui/Navbar/Navbar";
 import styles from "./header.module.scss";
+
 const Header = ({ children }) => {
-  const [isOpened, setIsOpened] = useState(false);
+  const size = useResize();
+  const [isOpenedMenu, setIsOpened] = useState(false);
+  const { isOpened, handleModal } = useModal();
+  useEffect(() => {
+    if (size >= 1103) {
+      setIsOpened(false);
+    }
+  }, [size]);
 
   return (
     <div className={styles.wrapper}>
@@ -14,15 +27,20 @@ const Header = ({ children }) => {
         <div className={styles.searchBar}>
           {children} <User />
         </div>
-        <div
-          className={!isOpened ? styles.mobileContent : styles.mobileContentOpen}
-          onClick={() => setIsOpened((prev) => !prev)}
-        >
-          X
-          {isOpened && (
+
+        <div className={!isOpenedMenu ? styles.mobileContent : styles.mobileContentOpen}>
+          <div className={styles.burger} onClick={() => setIsOpened((prev) => !prev)}>
+            <Svg path={BurgerMenu} />
+          </div>
+          {isOpenedMenu && (
             <div onClick={(event) => event.stopPropagation()} className={styles.content}>
               {children}
-              <User />
+              <div className={styles.modal}>
+                <AuthForm isOpened={isOpened} handleModal={handleModal} />
+              </div>
+              <div className={styles.userContent}>
+                <User />
+              </div>
             </div>
           )}
         </div>
