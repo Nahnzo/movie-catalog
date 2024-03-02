@@ -1,7 +1,8 @@
 .wrapper {
   transition: transform 0.8s ease-in;
   display: flex;
-  position: relative;
+  position: absolute;
+  // bottom: -30%;
   min-width: 900px;
 }
 
@@ -12,7 +13,7 @@
   width: 100%;
   pointer-events: all;
   height: 10px;
-  bottom: 23%;
+  bottom: -28%;
 }
 
 .handleBtn {
@@ -27,5 +28,18 @@
   font-size: 20px;
   &:hover {
     opacity: 1;
+  }
+}
+
+@media (max-width: 1102px) {
+  .wrapper {
+    position: absolute;
+    bottom: -30%;
+    width: 100%;
+    min-width: 320px;
+  }
+  .buttons {
+    position: absolute;
+    bottom: -10%;
   }
 }

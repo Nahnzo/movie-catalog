@@ -15,3 +15,14 @@
 .btn:hover {
   opacity: 0.5;
 }
+
+@media (max-width: 1102px) {
+  .btn {
+    position: absolute;
+    height: 23px;
+    bottom: -4px;
+    left: -34.3%;
+    width: 50%;
+    font-size: 15px;
+  }
+}

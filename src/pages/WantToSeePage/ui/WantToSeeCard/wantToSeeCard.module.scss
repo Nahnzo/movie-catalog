@@ -3,11 +3,12 @@
   height: 70%;
   display: flex;
   justify-content: flex-start;
+  position: relative;
 }
 
 .cardImage {
   width: 28%;
-  min-width: 150px;
+  min-width: 180px;
   height: 100%;
   background-size: 100%;
 }
@@ -24,6 +25,7 @@
   width: 100%;
   font-size: var(--font-size-m);
 }
+
 .movieDescription {
   display: flex;
   margin-top: 10px;
@@ -32,6 +34,7 @@
   font-size: var(--font-size-m);
   font-size: 1.1rem;
 }
+
 .btnsWrapper {
   display: flex;
   justify-content: space-between;
@@ -64,4 +67,66 @@
 
 .rating {
   margin: 5px;
+}
+
+// MOBILE
+@media (max-width: 1102px) {
+  .cardImage {
+    height: 250px;
+  }
+
+  .wrapperContentCard {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    justify-content: left;
+  }
+
+  .btnsWrapper {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 200%;
+    height: 30px;
+    bottom: -90%;
+  }
+
+  .btnDelete {
+    width: 50%;
+    font-size: 15px;
+  }
+
+  .wrapperContent {
+    position: absolute;
+    height: 100%;
+    top: 250px;
+    width: 260px;
+  }
+
+  .movieInfo {
+    height: 300px;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    font-size: 14px;
+    word-wrap: break-word;
+  }
+
+  .movieDescription {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    font-size: calc(1rem - 0.3rem);
+  }
+
+  .rating {
+    margin: 1px;
+  }
+
+  .movieRating {
+    position: absolute;
+    top: 53%;
+    font-size: 13px;
+  }
 }

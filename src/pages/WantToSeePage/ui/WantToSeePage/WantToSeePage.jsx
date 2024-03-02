@@ -61,7 +61,6 @@ const WantToSeePage = memo(() => {
         movies={filteredBySearchMovie}
         isOpen={isOpened}
         onClose={handleModal}
-        styles={styles.modal}
         handleCard={setSelectedMovie}
       />
       <Header>
@@ -74,22 +73,20 @@ const WantToSeePage = memo(() => {
           </Button>
         </div>
         <Sidebar />
-        <div className={styles.container}>
-          {selectedMovie && <WantToSeeCard firstMovie={selectedMovie} />}
-          <Slider width="100%" height="25%" sizeCard={160} snowButtons itemsPerPage={Math.floor(size / 160)}>
-            {movies.map((item) => (
-              <img
-                className={styles.card}
-                key={item.id}
-                src={item.poster?.previewUrl || item.poster}
-                alt={item.title}
-                onClick={() => setSelectedMovie(item)}
-              />
-            ))}
-          </Slider>
-        </div>
+        <div className={styles.container}>{selectedMovie && <WantToSeeCard firstMovie={selectedMovie} />}</div>
+        <Slider width="100%" height="25%" sizeCard={160} snowButtons itemsPerPage={Math.floor(size / 160)}>
+          {movies.map((item) => (
+            <img
+              className={styles.card}
+              key={item.id}
+              src={item.poster?.previewUrl || item.poster}
+              alt={item.title}
+              onClick={() => setSelectedMovie(item)}
+            />
+          ))}
+        </Slider>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </section>
   );
 });
